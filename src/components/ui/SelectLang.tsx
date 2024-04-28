@@ -1,6 +1,9 @@
 import { IoLanguage } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
-const SelectLang = () => {
+const SelectLang = (props: {
+  lang: string;
+  handleChangeLang: (value: string) => void;
+}) => {
   return (
     <>
       <div className="justify-center items-center  rounded-md transition-none ring-default">
@@ -12,6 +15,9 @@ const SelectLang = () => {
             name="lang"
             id="lang"
             className="border-none py-2 bg-neutral-900/50 backdrop:blur-md outline-none appearance-none w-0 px-10 z-10 font-semibold sm:w-full"
+            onChange={(e) => {
+              props.handleChangeLang(e.currentTarget.value);
+            }}
           >
             <option value="1" className="select-default">
               Français

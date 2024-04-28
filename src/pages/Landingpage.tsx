@@ -1,9 +1,14 @@
-import Navbar from "../components/Navbar/Navbar";
+import Header from "../components/Header/Header";
+import Herocard from "../components/Herocard/Herocard";
 
-const Landingpage = () => {
+const Landingpage = (props: {
+  lang: string;
+  handleChangeLang: (value: string) => void;
+}) => {
   return (
     <>
-      <Navbar />
+      <Header lang={props.lang} handleChangeLang={props.handleChangeLang} />
+      <Herocard />
     </>
   );
 };
