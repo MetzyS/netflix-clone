@@ -7,16 +7,18 @@ const Header = (props: {
   handleChangeLang: (value: string) => void;
 }) => {
   return (
-    <header className="flex flex-wrap gap-4 justify-between items-center">
-      <Logo className="w-32 lg:w-44" />
-      <div className="flex items-center gap-4">
-        <SelectLang
-          lang={props.lang}
-          handleChangeLang={props.handleChangeLang}
-        />
-        <DefaultLink text="S'identifier" />
-      </div>
-    </header>
+    <>
+      <header className="flex flex-wrap gap-2 justify-between items-center relative py-6 z-10">
+        <Logo className="w-24 lg:w-40" />
+        <div className="flex justify-center items-center gap-2">
+          <SelectLang
+            lang={props.lang}
+            handleChangeLang={props.handleChangeLang}
+          />
+          <DefaultLink text="S'identifier" />
+        </div>
+      </header>
+    </>
   );
 };
 

@@ -7,16 +7,16 @@ const SelectLang = (props: {
   return (
     <>
       <div className="justify-center items-center  rounded-md transition-none ring-default">
-        <div className="flex justify-center items-center gap-2 rounded-md text-white border-white/50 border-2 relative">
+        <div className="flex justify-center items-center gap-2 rounded-md text-white border-white/50 border-2 relative bg-white/5">
           <div className="absolute left-4">
-            <IoLanguage className="size-4" />
+            <IoLanguage className="size-4 text-white" />
           </div>
           <select
             name="lang"
             id="lang"
-            className="border-none py-2 bg-neutral-900/50 backdrop:blur-md outline-none appearance-none w-0 px-10 z-10 font-semibold sm:w-full"
+            className="border-none py-1.5 backdrop:blur-md outline-none appearance-none w-0 px-10 z-10 font-semibold sm:w-full bg-transparent"
             onChange={(e) => {
-              props.handleChangeLang(e.currentTarget.value);
+              props.handleChangeLang(e.target.value);
             }}
           >
             <option value="1" className="select-default">

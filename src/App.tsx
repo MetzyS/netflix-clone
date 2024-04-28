@@ -4,10 +4,10 @@ import { useState } from "react";
 
 function App() {
   // 1 = FR, 2 = EN
-  const [lang, setLang] = useState("fr");
+  const [lang, setLang] = useState("en");
   const handleChangeLang = (value: string) => {
     setLang(value);
-    console.log(value);
+    // console.log(value);
   };
   return (
     <>

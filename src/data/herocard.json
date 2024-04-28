@@ -2,11 +2,15 @@
   "fr": {
     "title": "Films et séries en illimité, et bien plus",
     "subtitle": "Où que vous soyez. Annulez à tout moment.",
-    "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement."
+    "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
+    "email": "Adresse e-mail",
+    "button": "Commencer"
   },
   "en": {
     "title": "Unlimited movies, TV shows, and more",
     "subtitle": "Watch anywhere. Cancel anytime.",
-    "text": "Ready to watch? Enter your email to create or restart your membership."
+    "text": "Ready to watch? Enter your email to create or restart your membership.",
+    "email": "Email address",
+    "button": "Get Started"
   }
 }

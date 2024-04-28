@@ -1,7 +1,14 @@
-const DefaultButton = (props: { text: string }) => {
+import { ReactElement } from "react";
+
+const DefaultButton = (props: {
+  text: string;
+  icon?: ReactElement;
+  className?: string;
+}) => {
   return (
-    <button className="bg-red-600 text-white font-semibold px-4 py-2 rounded-md">
+    <button className={`btn-default ` + props.className}>
       {props.text}
+      {props.icon && props.icon}
     </button>
   );
 };
