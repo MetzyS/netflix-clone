@@ -24,3 +24,12 @@
   -moz-osx-font-smoothing: grayscale;
   color: white;
 }
+
+.radial-gradient {
+  background: radial-gradient(
+    120.35% 220% at 49.86% -6.29%,
+    #e50914 0%,
+    #0e1b4f 46.15%,
+    #0d1121 100%
+  );
+}

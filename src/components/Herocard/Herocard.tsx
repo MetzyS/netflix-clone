@@ -2,6 +2,7 @@ import data from "../../data/herocard.json";
 import bg from "../../assets/herobg.jpg";
 import DefaultButton from "../ui/DefaultButton";
 import { MdArrowForwardIos } from "react-icons/md";
+import OfferAd from "./OfferAd";
 
 const Herocard = (props: { lang: string }) => {
   let content;
@@ -9,15 +10,15 @@ const Herocard = (props: { lang: string }) => {
   switch (props.lang) {
     case "fr":
       content = data.fr;
-      height = "min-h-[42rem]";
+      height = "h-[44rem]";
       break;
     case "en":
       content = data.en;
-      height = "min-h-[38rem]";
+      height = "h-[40rem]";
       break;
     default:
       content = data.fr;
-      height = "min-h-[42rem]";
+      height = "h-[44rem]";
       break;
   }
   return (
@@ -66,6 +67,7 @@ const Herocard = (props: { lang: string }) => {
             </div>
           </form>
         </div>
+        <OfferAd />
       </div>
     </>
   );
