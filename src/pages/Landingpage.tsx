@@ -8,7 +8,7 @@ const Landingpage = (props: {
   return (
     <>
       <Header lang={props.lang} handleChangeLang={props.handleChangeLang} />
-      <Herocard />
+      <Herocard lang={props.lang} />
     </>
   );
 };
