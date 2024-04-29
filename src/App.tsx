@@ -1,4 +1,3 @@
-import "./App.css";
 import Landingpage from "./pages/Landingpage";
 import { useState } from "react";
 
