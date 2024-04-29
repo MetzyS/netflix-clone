@@ -8,14 +8,14 @@ const Header = (props: {
 }) => {
   return (
     <>
-      <header className="flex flex-wrap gap-2 justify-between items-center relative py-6 z-20">
-        <Logo className="w-24 lg:w-40" />
-        <div className="flex justify-center items-center gap-2">
+      <header className="flex flex-col gap-2 relative p-8">
+        <Logo className="w-28 lg:w-40" />
+        <div className="flex items-center gap-2">
           <SelectLang
             lang={props.lang}
             handleChangeLang={props.handleChangeLang}
           />
-          <DefaultLink text="S'identifier" />
+          <DefaultLink text="S'identifier" className="py-2 px-6 text-xl" />
         </div>
       </header>
     </>

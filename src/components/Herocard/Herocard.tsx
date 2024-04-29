@@ -14,29 +14,25 @@ const Herocard = (props: {
     text: "",
     email: "",
   };
-  // let height;
   switch (props.lang) {
     case "fr":
       content = data.fr;
-      // height = "h-[44rem]";
       break;
     case "en":
       content = data.en;
-      // height = "h-[40rem]";
       break;
     default:
       content = data.fr;
-      // height = "h-[44rem]";
       break;
   }
   return (
-    <div className="w-screen relative pb-16 m-auto">
+    <div className="w-screen relative pb-16 overflow-hidden">
       <div className="bg bg-hero"></div>
       <div className="bg bg-fade w-screen"></div>
-      <div className="max-w-[1024px] m-auto px-10">
+      <div className="max-w-[1024px] m-auto text-center">
         <Header lang={props.lang} handleChangeLang={props.handleChangeLang} />
-        <div className="">
-          <h1 className="pt-32 text-4xl md:text-5xl font-bold leading-snug">
+        <div className="px-6">
+          <h1 className="pt-6 text-5xl md:text-5xl font-bold leading-tight">
             {content.title}
           </h1>
           <h2 className="text-xl mt-4">{content.subtitle}</h2>

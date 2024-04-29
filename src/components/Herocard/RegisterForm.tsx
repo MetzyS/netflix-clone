@@ -29,7 +29,7 @@ const RegisterForm = (props: {
           </div>
           <DefaultButton
             text={props.data.button}
-            className="flex gap-3 text-xl items-center justify-between w-fit self-center md:text-2xl"
+            className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
             icon={<MdArrowForwardIos className="size-5" />}
           />
         </div>
