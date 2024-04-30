@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import DefaultLink from "../ui/DefaultLink";
 import Logo from "../ui/Logo";
 import SelectLang from "../ui/SelectLang";
@@ -7,7 +6,6 @@ const Header = (props: {
   lang: string;
   handleChangeLang: (value: string) => void;
 }) => {
-  // const [btnText, setBtnText] = useState("S'identifier");
   return (
     <>
       <header className="flex flex-wrap items-center relative p-6 justify-between gap-2">

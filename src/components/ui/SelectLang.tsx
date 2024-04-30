@@ -19,10 +19,10 @@ const SelectLang = (props: {
               props.handleChangeLang(e.target.value);
             }}
           >
-            <option value="1" className="select-default">
+            <option value="fr" className="select-default">
               Français
             </option>
-            <option value="2" className="select-default">
+            <option value="en" className="select-default">
               English
             </option>
           </select>
