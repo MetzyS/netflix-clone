@@ -2,6 +2,7 @@ import data from "../../data/herocard.json";
 import RegisterForm from "./RegisterForm";
 import Header from "../Header/Header";
 import OfferAd from "./OfferAd";
+import Card from "./Card";
 
 const Herocard = (props: {
   lang: string;
@@ -20,13 +21,13 @@ const Herocard = (props: {
       break;
   }
   return (
-    <>
-      <div className="relative pb-8 overflow-hidden">
-        <div className="bg bg-hero"></div>
-        <div className="bg bg-fade w-screen"></div>
+    <div className="w-screen overflow-hidden pr-4">
+      <div className="relative pb-8">
+        <div className="bg bg-hero w-full"></div>
+        <div className="bg bg-fade w-full"></div>
         <div className="max-w-[1024px] m-auto text-center">
           <Header lang={props.lang} handleChangeLang={props.handleChangeLang} />
-          <div className="overflow-hidden px-4">
+          <div className="px-4">
             <h1 className="pt-10 px-4 text-3xl md:text-5xl font-bold leading-snug text-wrap max-w-full">
               {content.title}
             </h1>
@@ -36,7 +37,12 @@ const Herocard = (props: {
         </div>
       </div>
       <OfferAd content={content.offer} />
-    </>
+      <div>
+        {Object.values(content.description).map((item, index) => (
+          <Card data={item} key={"card-" + index} />
+        ))}
+      </div>
+    </div>
   );
 };
 

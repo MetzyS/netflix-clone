@@ -19,6 +19,10 @@
   } */
 }
 
+/* * {
+  outline: 1px solid #f00 !important;
+} */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.25;
@@ -35,9 +39,14 @@
   max-width: 1920px;
 }
 
+body,
+html {
+  max-width: 100%;
+}
+
 body {
   background-color: black;
-  /* margin: 0 auto; */
+  overflow-x: hidden;
 }
 
 .bg-hero {
@@ -73,4 +82,9 @@ body {
     #0e1b4f 46.15%,
     #0d1121 100%
   );
+}
+
+.separation {
+  background-color: rgb(35, 35, 35);
+  height: 0.5rem;
 }

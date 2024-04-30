@@ -9,6 +9,32 @@
       "title": "Le Netflix que vous aimez pour juste 5,99€.",
       "subtitle": "Choisissez l'offre Standard avec pub.",
       "linkText": "En savoir plus"
+    },
+    "description": {
+      "0": {
+        "id": "0",
+        "title": "Regardez Netflix sur votre TV",
+        "text": "Regardez Netflix sur votre Smart TV, PlayStation, Xbox, Chromecast, Apple TV, lecteur Blu-ray et bien plus.",
+        "videoUrl": "videos/video-tv-0.m4v"
+      },
+      "1": {
+        "id": "1",
+        "title": "Où que vous soyez",
+        "text": "Regardez des films et séries en accès illimité sur votre TV, smartphone, tablette et ordinateur.",
+        "videoUrl": "videos/video-tv-0.m4v"
+      },
+      "2": {
+        "id": "2",
+        "title": "Créez des profils pour les enfants",
+        "text": "Les enfants découvrent de nouvelles aventures et retrouvent leurs personnages préférés dans un espace bien à eux, déjà inclus dans votre abonnement.",
+        "videoUrl": "videos/video-tv-0.m4v"
+      },
+      "3": {
+        "id": "3",
+        "title": "Téléchargez vos séries pour les regarder hors connexion",
+        "text": "Regardez Netflix dans l'avion, le train, le sous-marin…",
+        "videoUrl": "videos/video-tv-0.m4v"
+      }
     }
   },
   "en": {
@@ -21,6 +47,31 @@
       "title": "The Netflix you love for just EUR 5.99.",
       "subtitle": "Get the Standard with ads plan.",
       "linkText": "Learn More"
+    },
+    "description": {
+      "0": {
+        "id": "0",
+        "title": "Enjoy on your TV",
+        "text": "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more."
+      },
+      "1": {
+        "id": "1",
+        "title": "Watch everywhere",
+        "text": "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
+        "videoUrl": "videos/video-tv-0.m4v"
+      },
+      "2": {
+        "id": "2",
+        "title": "Create profiles for kids",
+        "text": "Send kids on adventures with their favorite characters in a space made just for them—free with your membership.",
+        "videoUrl": "videos/video-tv-0.m4v"
+      },
+      "3": {
+        "id": "3",
+        "title": "Download your shows to watch offline",
+        "text": "Watch on a plane, train, or submarine…",
+        "videoUrl": "videos/video-tv-0.m4v"
+      }
     }
   }
 }
