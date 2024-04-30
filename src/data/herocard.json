@@ -21,19 +21,19 @@
         "id": "1",
         "title": "Où que vous soyez",
         "text": "Regardez des films et séries en accès illimité sur votre TV, smartphone, tablette et ordinateur.",
-        "videoUrl": "videos/video-tv-0.m4v"
+        "videoUrl": "videos/video-devices-1.m4v"
       },
       "2": {
         "id": "2",
         "title": "Créez des profils pour les enfants",
-        "text": "Les enfants découvrent de nouvelles aventures et retrouvent leurs personnages préférés dans un espace bien à eux, déjà inclus dans votre abonnement.",
-        "videoUrl": "videos/video-tv-0.m4v"
+        "text": "Les enfants découvrent de nouvelles aventures et retrouvent leurs personnages préférés dans un espace bien à eux, déjà inclus dans votre abonnement."
       },
       "3": {
         "id": "3",
         "title": "Téléchargez vos séries pour les regarder hors connexion",
         "text": "Regardez Netflix dans l'avion, le train, le sous-marin…",
-        "videoUrl": "videos/video-tv-0.m4v"
+        "downloadMovieTitle": "Stranger Things",
+        "downloadText": "Téléchargement en cours..."
       }
     }
   },
@@ -52,25 +52,26 @@
       "0": {
         "id": "0",
         "title": "Enjoy on your TV",
-        "text": "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more."
+        "text": "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
+        "videoUrl": "videos/video-tv-0.m4v"
       },
       "1": {
         "id": "1",
         "title": "Watch everywhere",
         "text": "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
-        "videoUrl": "videos/video-tv-0.m4v"
+        "videoUrl": "videos/video-devices-1.m4v"
       },
       "2": {
         "id": "2",
         "title": "Create profiles for kids",
-        "text": "Send kids on adventures with their favorite characters in a space made just for them—free with your membership.",
-        "videoUrl": "videos/video-tv-0.m4v"
+        "text": "Send kids on adventures with their favorite characters in a space made just for them—free with your membership."
       },
       "3": {
         "id": "3",
         "title": "Download your shows to watch offline",
         "text": "Watch on a plane, train, or submarine…",
-        "videoUrl": "videos/video-tv-0.m4v"
+        "downloadMovieTitle": "Stranger Things",
+        "downloadText": "Downloading..."
       }
     }
   }

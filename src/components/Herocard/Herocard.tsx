@@ -39,7 +39,7 @@ const Herocard = (props: {
       <OfferAd content={content.offer} />
       <div>
         {Object.values(content.description).map((item, index) => (
-          <Card data={item} key={"card-" + index} />
+          <Card data={item} key={"card-" + index} lang={props.lang} />
         ))}
       </div>
     </div>

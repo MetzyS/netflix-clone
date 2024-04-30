@@ -1,11 +1,11 @@
-import tv from "../../../assets/tv.png";
+import devices from "../../../assets/devices.png";
 import ReactPlayer from "react-player";
 
-const Tv = (props: { videoUrl: string }) => {
+const Devices = (props: { videoUrl: string }) => {
   return (
     <>
-      <img src={tv} alt="" />
-      <div className="absolute h-full w-full top-[21%] left-[17%] max-w-[65%] max-h-[54%] -z-10">
+      <img src={devices} alt="" />
+      <div className="absolute h-full w-full top-[10%] left-[21%] max-w-[58%] max-h-[46%] -z-10">
         <ReactPlayer
           controls={false}
           loop={true}
@@ -22,4 +22,4 @@ const Tv = (props: { videoUrl: string }) => {
   );
 };
 
-export default Tv;
+export default Devices;

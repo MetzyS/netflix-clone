@@ -5,7 +5,6 @@ const RegisterForm = (props: {
   data: {
     text: string;
     email: string;
-    content: string;
     button: string;
   };
 }) => {

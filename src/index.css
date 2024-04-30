@@ -49,6 +49,13 @@ body {
   overflow-x: hidden;
 }
 
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
 .bg-hero {
   background: url("./assets/herobg.jpg");
   background-size: cover;
@@ -87,4 +94,13 @@ body {
 .separation {
   background-color: rgb(35, 35, 35);
   height: 0.5rem;
+}
+
+.download-animation {
+  display: block;
+  outline: 2px solid rgba(0, 0, 0);
+  outline-offset: -2px;
+  background: url("./assets/download-icon.gif") center center no-repeat;
+  background-size: 100%;
+  content: "";
 }
