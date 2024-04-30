@@ -4,13 +4,23 @@
     "subtitle": "Où que vous soyez. Annulez à tout moment.",
     "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
     "email": "Adresse e-mail",
-    "button": "Commencer"
+    "button": "Commencer",
+    "offer": {
+      "title": "Le Netflix que vous aimez pour juste 5,99€.",
+      "subtitle": "Choisissez l'offre Standard avec pub.",
+      "linkText": "En savoir plus"
+    }
   },
   "en": {
     "title": "Unlimited movies, TV shows, and more",
     "subtitle": "Watch anywhere. Cancel anytime.",
     "text": "Ready to watch? Enter your email to create or restart your membership.",
     "email": "Email address",
-    "button": "Get Started"
+    "button": "Get Started",
+    "offer": {
+      "title": "The Netflix you love for just EUR 5.99.",
+      "subtitle": "Get the Standard with ads plan.",
+      "linkText": "Learn More"
+    }
   }
 }

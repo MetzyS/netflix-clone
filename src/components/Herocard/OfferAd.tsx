@@ -1,7 +1,20 @@
-const OfferAd = () => {
+import { MdArrowForwardIos } from "react-icons/md";
+
+const OfferAd = (props: {
+  content: {
+    title: string;
+    subtitle: string;
+    linkText: string;
+  };
+}) => {
   return (
-    <div className="mt-14 rounded-lg px-8 radial-gradient relative">
-      <svg width="96" height="96" fill="none" className="absolute -top-16">
+    <div className="mt-4 pb-6 pt-12 rounded-lg px-8 radial-gradient relative mx-6">
+      <svg
+        width="96"
+        height="96"
+        fill="none"
+        className="absolute -top-12 scale-[80%] left-2"
+      >
         <path
           d="M48 95.213c26.51 0 48-3.875 48-8.656 0-4.78-21.49-8.655-48-8.655S0 81.777 0 86.557c0 4.78 21.49 8.656 48 8.656Z"
           fill="url(#a)"
@@ -531,16 +544,15 @@ const OfferAd = () => {
           </linearGradient>
         </defs>
       </svg>
-      <div className="pt-12">
-        <p className="text-lg text-left">
-          Lorem ipsum dolor sit amet consectetur.
-        </p>
-        <p className="text-lg text-left">Lorem ipsum, dolor sit.</p>
+      <div>
+        <p className="text-lg font-semibold text-left">{props.content.title}</p>
+        <p className="text-base text-left">{props.content.subtitle}</p>
         <a
           href=""
-          className="text-blue-600 underline text-lg block text-left mb-6"
+          className="flex gap-4 items-center mt-2 text-blue-500 text-base font-semibold underline"
         >
-          En savoir plus
+          {props.content.linkText}
+          <MdArrowForwardIos />
         </a>
       </div>
     </div>
