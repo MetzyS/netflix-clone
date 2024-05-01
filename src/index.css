@@ -14,11 +14,12 @@
     @apply bg-[#e50914] text-white font-semibold px-4 py-2 rounded-md  cursor-pointer hover:bg-red-700;
   }
 
-  /* .background-hero {
-    @apply absolute top-0 right-0 left-0 bottom-0 pointer-events-none h-[700px];
-  } */
+  .faq-answer {
+    @apply w-full max-w-[1024px] bg-neutral-800 px-6 py-5 text-lg border-t border-black;
+  }
 }
 
+/* debug */
 /* * {
   outline: 1px solid #f00 !important;
 } */

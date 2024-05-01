@@ -12,25 +12,26 @@ const Faq = (props: {
   const handleHidden = () => {
     setIsHidden(!isHidden);
   };
+  const answer = props.data.answer.replace(/\\n/g, "\n");
   // console.log(props.data);
   return (
     <div className="flex flex-col items-center px-6 mb-2">
       <button
         type="button"
-        className="bg-neutral-800 px-6 py-5 w-full max-w-[1024px] text-lg flex text-left items-center gap-2"
+        className="bg-neutral-800 px-6 py-5 w-full max-w-[1024px] text-lg flex text-left items-center gap-2 justify-between"
         onClick={handleHidden}
       >
-        {props.data.question}
-        <IoAdd className="size-11" />
+        <span className="flex flex-wrap">{props.data.question}</span>
+        <span>
+          {isHidden ? (
+            <IoAdd className="size-8" />
+          ) : (
+            <IoAdd className="size-8 rotate-45" />
+          )}
+        </span>
       </button>
-      <div
-        className={
-          isHidden
-            ? "w-full max-w-[1024px] bg-neutral-800 px-6 py-5 text-lg border-t border-black hidden"
-            : "w-full max-w-[1024px] bg-neutral-800 px-6 py-5 text-lg border-t border-black block"
-        }
-      >
-        <p>{props.data.answer}</p>
+      <div className={isHidden ? "faq-answer hidden" : "faq-answer block"}>
+        <p>{answer}</p>
       </div>
     </div>
   );
