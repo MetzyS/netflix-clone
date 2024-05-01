@@ -17,12 +17,22 @@ type Faq = {
   };
 };
 
+type Footer = {
+  id: {
+    title: string;
+    link: string;
+  };
+};
+
 type HeroDataType = {
   title: string;
   subtitle: string;
-  text: string;
-  email: string;
-  button: string;
+  form: {
+    text: string;
+    email: string;
+    button: string;
+    autocomplete: string;
+  };
   offer: {
     title: string;
     subtitle: string;
@@ -31,6 +41,8 @@ type HeroDataType = {
   description: Description;
   faqTitle: string;
   faq: Faq;
+  footerText: string;
+  footer: Footer;
 };
 
 export default HeroDataType;

@@ -1,3 +1,4 @@
+import Separation from "../ui/Separation";
 import Devices from "./Animations/Devices";
 import Download from "./Animations/Download";
 import Profiles from "./Animations/Profiles";
@@ -70,7 +71,7 @@ const Card = (props: {
         <p className="leading-6 mt-4">{props.data.text}</p>
       </div>
       <div className="max-w-[620px] px-5 relative">{animation}</div>
-      <div className="separation my-5 w-full mt-16" />
+      <Separation />
     </div>
   );
 };

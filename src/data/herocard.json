@@ -2,9 +2,12 @@
   "fr": {
     "title": "Films et séries en illimité, et bien plus",
     "subtitle": "Où que vous soyez. Annulez à tout moment.",
-    "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
-    "email": "Adresse e-mail",
-    "button": "Commencer",
+    "form": {
+      "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
+      "email": "Adresse e-mail",
+      "button": "Commencer",
+      "autocomplete": "Adresse e-mail"
+    },
     "offer": {
       "title": "Le Netflix que vous aimez pour juste 5,99€.",
       "subtitle": "Choisissez l'offre Standard avec pub.",
@@ -68,14 +71,100 @@
         "question": "Est-ce que Netflix est adapté aux enfants ?",
         "answer": "Netflix Jeunesse est inclus dans votre abonnement et offre un meilleur contrôle aux parents, ainsi qu'un espace dédié aux enfants, avec des films et des séries destinés à toute la famille.\\n\\nLes profils Jeunesse comportent des fonctionnalités de contrôle parental avec code PIN permettant de modifier la catégorie d'âge des contenus que vos enfants peuvent regarder et de bloquer des titres spécifiques."
       }
+    },
+    "footerText": "Questions? Contact us.",
+    "footer": {
+      "1": {
+        "title": "FAQ",
+        "link": "/"
+      },
+      "2": {
+        "title": "Compte",
+        "link": "/"
+      },
+      "3": {
+        "title": "Relations Investisseurs",
+        "link": "/"
+      },
+      "4": {
+        "title": "Boutique Netflix",
+        "link": "/"
+      },
+      "5": {
+        "title": "Acheter des cartes cadeaux",
+        "link": "/"
+      },
+      "6": {
+        "title": "Conditions d'utilisation",
+        "link": "/"
+      },
+      "7": {
+        "title": "Préférences de cookies",
+        "link": "/"
+      },
+      "8": {
+        "title": "Nous contacter",
+        "link": "/"
+      },
+      "9": {
+        "title": "Garantie légale",
+        "link": "/"
+      },
+      "10": {
+        "title": "Seulement sur Netflix",
+        "link": "/"
+      },
+      "11": {
+        "title": "Centre d'aide",
+        "link": "/"
+      },
+      "12": {
+        "title": "Press",
+        "link": "/"
+      },
+      "13": {
+        "title": "Recrutement",
+        "link": "/"
+      },
+      "14": {
+        "title": "Utiliser des cartes cadeaux",
+        "link": "/"
+      },
+      "15": {
+        "title": "Modes de lecture",
+        "link": "/"
+      },
+      "16": {
+        "title": "Confidentialité",
+        "link": "/"
+      },
+      "17": {
+        "title": "Mentions légales",
+        "link": "/"
+      },
+      "18": {
+        "title": "Test de vitesse",
+        "link": "/"
+      },
+      "19": {
+        "title": "Informations légales",
+        "link": "/"
+      },
+      "20": {
+        "title": "Choix liés à la pub",
+        "link": "/"
+      }
     }
   },
   "en": {
     "title": "Unlimited movies, TV shows, and more",
     "subtitle": "Watch anywhere. Cancel anytime.",
-    "text": "Ready to watch? Enter your email to create or restart your membership.",
-    "email": "Email address",
-    "button": "Get Started",
+    "form": {
+      "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
+      "email": "Adresse e-mail",
+      "button": "Commencer",
+      "autocomplete": "Adresse e-mail"
+    },
     "offer": {
       "title": "The Netflix you love for just EUR 5.99.",
       "subtitle": "Get the Standard with ads plan.",
@@ -138,6 +227,89 @@
         "id": "5",
         "question": "Is Netflix good for kids ?",
         "answer": "The Netflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and movies in their own space.\\n\\nKids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see."
+      }
+    },
+    "footerText": "Questions? Contact us.",
+    "footer": {
+      "1": {
+        "title": "FAQ",
+        "link": "/"
+      },
+      "2": {
+        "title": "Account",
+        "link": "/"
+      },
+      "3": {
+        "title": "Investor Relations",
+        "link": "/"
+      },
+      "4": {
+        "title": "Netflix Shop",
+        "link": "/"
+      },
+      "5": {
+        "title": "Buy Gift Cards",
+        "link": "/"
+      },
+      "6": {
+        "title": "Terms of Use",
+        "link": "/"
+      },
+      "7": {
+        "title": "Cookie Preferences",
+        "link": "/"
+      },
+      "8": {
+        "title": "Contact Us",
+        "link": "/"
+      },
+      "9": {
+        "title": "Legal Guarantee",
+        "link": "/"
+      },
+      "10": {
+        "title": "Only on Netflix",
+        "link": "/"
+      },
+      "11": {
+        "title": "Help Center",
+        "link": "/"
+      },
+      "12": {
+        "title": "Media Center",
+        "link": "/"
+      },
+      "13": {
+        "title": "Jobs",
+        "link": "/"
+      },
+      "14": {
+        "title": "Redeem Gift Cards",
+        "link": "/"
+      },
+      "15": {
+        "title": "Ways to Watch",
+        "link": "/"
+      },
+      "16": {
+        "title": "Privacy",
+        "link": "/"
+      },
+      "17": {
+        "title": "Corporate Information",
+        "link": "/"
+      },
+      "18": {
+        "title": "Speed Test",
+        "link": "/"
+      },
+      "19": {
+        "title": "Legal Notices",
+        "link": "/"
+      },
+      "20": {
+        "title": "Ad Choices",
+        "link": "/"
       }
     }
   }

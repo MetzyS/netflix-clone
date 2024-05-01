@@ -3,6 +3,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 const SelectLang = (props: {
   lang: string;
   handleChangeLang: (value: string) => void;
+  showText?: boolean;
 }) => {
   return (
     <>
@@ -14,7 +15,9 @@ const SelectLang = (props: {
           <select
             name="lang"
             id="lang"
-            className="border-none py-1.5 backdrop:blur-md outline-none appearance-none w-0 px-8 z-10 font-semibold sm:w-full bg-transparent"
+            className={`border-none py-1.5 backdrop:blur-md outline-none appearance-none w-0 ${
+              props.showText ? "w-full" : ""
+            } px-8 z-10 font-semibold sm:w-full bg-transparent`}
             onChange={(e) => {
               props.handleChangeLang(e.target.value);
             }}
