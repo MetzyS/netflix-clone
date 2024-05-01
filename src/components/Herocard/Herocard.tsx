@@ -35,7 +35,7 @@ const Herocard = (props: {
         ))}
       </div>
       <div>
-        <h3 className="w-full max-w-[1024px] text-3xl text-center font-bold mb-6 px-6">
+        <h3 className="w-full max-w-[1024px] text-3xl text-center font-bold mb-6 px-6 mx-auto">
           {props.content.faqTitle}
         </h3>
         {Object.values(props.content.faq).map((item, index) => (
