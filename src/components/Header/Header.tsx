@@ -9,7 +9,7 @@ const Header = (props: {
   return (
     <>
       <header className="flex flex-wrap items-center relative p-6 justify-between gap-2">
-        <Logo className="w-[88px] lg:w-40" />
+        <Logo className="w-24 lg:w-40" />
         <div className="flex items-center gap-2">
           <SelectLang
             lang={props.lang}

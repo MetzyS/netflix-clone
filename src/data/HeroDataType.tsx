@@ -1,3 +1,22 @@
+type Description = {
+  id: {
+    id: string;
+    title: string;
+    text: string;
+    videoUrl?: string;
+    downloadMovieTitle: string;
+    downloadText: string;
+  };
+};
+
+type Faq = {
+  id: {
+    id: string;
+    question: string;
+    answer: string;
+  };
+};
+
 type HeroDataType = {
   title: string;
   subtitle: string;
@@ -9,40 +28,8 @@ type HeroDataType = {
     subtitle: string;
     linkText: string;
   };
-  description: {
-    "0": {
-      id: string;
-      title: string;
-      text: string;
-      videoUrl?: string;
-      downloadMovieTitle: string;
-      downloadText: string;
-    };
-    "1": {
-      id: string;
-      title: string;
-      text: string;
-      videoUrl?: string;
-      downloadMovieTitle: string;
-      downloadText: string;
-    };
-    "2": {
-      id: string;
-      title: string;
-      text: string;
-      videoUrl?: string;
-      downloadMovieTitle: string;
-      downloadText: string;
-    };
-    "3": {
-      id: string;
-      title: string;
-      text: string;
-      videoUrl?: string;
-      downloadMovieTitle?: string;
-      downloadText?: string;
-    };
-  };
+  description: Description;
+  faq: Faq;
 };
 
 export default HeroDataType;
