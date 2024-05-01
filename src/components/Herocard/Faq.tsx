@@ -18,7 +18,7 @@ const Faq = (props: {
     <div className="flex flex-col items-center px-6 mb-2">
       <button
         type="button"
-        className="bg-neutral-800 px-6 py-5 w-full max-w-[1024px] text-lg flex text-left items-center gap-2 justify-between"
+        className="bg-neutral-800 hover:bg-neutral-700 px-6 py-5 w-full max-w-[1024px] text-lg flex text-left items-center gap-2 justify-between"
         onClick={handleHidden}
       >
         <span className="flex flex-wrap">{props.data.question}</span>

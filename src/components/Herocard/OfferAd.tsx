@@ -8,7 +8,7 @@ const OfferAd = (props: {
   };
 }) => {
   return (
-    <div className="mt-4 pb-6 pt-12 rounded-lg px-8 radial-gradient relative mx-6">
+    <div className="mt-4 mb-14 pb-6 pt-12 rounded-lg px-8 radial-gradient relative mx-6">
       <svg
         width="96"
         height="96"

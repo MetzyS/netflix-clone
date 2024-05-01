@@ -36,6 +36,7 @@
         "downloadText": "Téléchargement en cours..."
       }
     },
+    "faqTitle": "Foire aux questions",
     "faq": {
       "0": {
         "id": 0,
@@ -106,6 +107,7 @@
         "downloadText": "Downloading..."
       }
     },
+    "faqTitle": "Frequently Asked Questions",
     "faq": {
       "0": {
         "id": "0",

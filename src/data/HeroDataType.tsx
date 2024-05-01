@@ -29,6 +29,7 @@ type HeroDataType = {
     linkText: string;
   };
   description: Description;
+  faqTitle: string;
   faq: Faq;
 };
 

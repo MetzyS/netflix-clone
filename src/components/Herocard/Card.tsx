@@ -64,7 +64,7 @@ const Card = (props: {
       break;
   }
   return (
-    <div className="flex flex-col my-14 text-center items-center">
+    <div className="flex flex-col my-6 text-center items-center">
       <div className="mb-10 px-8 self-center">
         <h2 className="text-3xl font-bold leading-10">{props.data.title}</h2>
         <p className="leading-6 mt-4">{props.data.text}</p>
