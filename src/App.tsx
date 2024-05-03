@@ -1,4 +1,4 @@
-import Landingpage from "./pages/Landingpage";
+import Landing from "./pages/Landing";
 import { useState } from "react";
 import Data from "./data/herocard.json";
 
@@ -21,11 +21,7 @@ function App() {
   };
   return (
     <>
-      <Landingpage
-        lang={lang}
-        handleChangeLang={handleChangeLang}
-        data={data}
-      />
+      <Landing lang={lang} handleChangeLang={handleChangeLang} data={data} />
     </>
   );
 }

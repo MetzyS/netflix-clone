@@ -1,8 +1,9 @@
 import Herocard from "../components/Herocard/Herocard";
+import HeroDataType from "../data/HeroDataType";
 
-const Landingpage = (props: {
+const Landing = (props: {
   lang: string;
-  data: {};
+  data: HeroDataType;
   handleChangeLang: (value: string) => void;
 }) => {
   return (
@@ -16,4 +17,4 @@ const Landingpage = (props: {
   );
 };
 
-export default Landingpage;
+export default Landing;
