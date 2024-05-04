@@ -15,6 +15,7 @@ const RegisterForm = (props: {
     setIsFocus(!isFocus);
   };
 
+
   return (
     <div className="mt-6 mx-auto px-8 max-w-[770px]">
       <form action="">
@@ -23,9 +24,8 @@ const RegisterForm = (props: {
           <div className="relative flex flex-col border border-neutral-500 rounded-md bg-blue-300/15 px-4 py-1  md:w-full justify-center ring-default group/input">
             <label
               htmlFor="register-email"
-              className={`absolute pointer-events-none text-start text-gray-400 ${
-                isFocus ? "top-0 text-xs" : "top-2.5 text-base"
-              } `}
+              className={`absolute pointer-events-none text-start text-gray-400 ${isFocus ? "top-0 text-xs" : "top-2.5 text-base"
+                } `}
             >
               {props.data.email}
             </label>
