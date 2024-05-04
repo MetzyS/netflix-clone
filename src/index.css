@@ -52,7 +52,7 @@ body {
 
 .absolute-center {
   position: absolute;
-  top: 50%;
+  bottom: 18%;
   left: 50%;
   transform: translate(-50%, 50%);
 }
@@ -90,6 +90,34 @@ body {
     #0e1b4f 46.15%,
     #0d1121 100%
   );
+}
+
+.offer-icon {
+  position: absolute;
+  transform: scale(0.8);
+  top: -3rem;
+  left: 0.5rem;
+}
+
+@media screen and (min-width: 640px) {
+  .radial-gradient {
+    background: radial-gradient(
+      51.39% 511.66% at 47.68% -217.91%,
+      #ff9900 0%,
+      #e50914 17.27%,
+      #0e1b4f 79.44%,
+      #000413 100%
+    );
+  }
+  .offer-icon {
+    position: relative;
+    left: unset;
+    top: unset;
+    transform: unset;
+  }
+  .absolute-center {
+    bottom: 12%;
+  }
 }
 
 .separation {

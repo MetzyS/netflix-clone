@@ -8,13 +8,8 @@ const OfferAd = (props: {
   };
 }) => {
   return (
-    <div className="mt-4 mb-14 pb-6 pt-12 rounded-lg px-8 radial-gradient relative mx-6">
-      <svg
-        width="96"
-        height="96"
-        fill="none"
-        className="absolute -top-12 scale-[80%] left-2"
-      >
+    <div className="mt-4 mb-14 pb-6 pt-12 sm:pt-4 rounded-lg px-8 radial-gradient relative mx-6 sm:flex sm:gap-6 sm:mx-auto sm:w-5/6">
+      <svg width="96" height="96" fill="none" className="offer-icon">
         <path
           d="M48 95.213c26.51 0 48-3.875 48-8.656 0-4.78-21.49-8.655-48-8.655S0 81.777 0 86.557c0 4.78 21.49 8.656 48 8.656Z"
           fill="url(#a)"

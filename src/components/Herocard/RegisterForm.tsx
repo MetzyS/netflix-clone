@@ -19,8 +19,8 @@ const RegisterForm = (props: {
     <div className="mt-6 mx-auto px-8 max-w-[770px]">
       <form action="">
         <h3 className="text-base leading-normal">{props.data.text}</h3>
-        <div className="flex flex-col md:flex-row justify-center mt-4 gap-4">
-          <div className="relative flex flex-col border border-neutral-500 rounded-md bg-blue-300/15 px-4 py-1  md:w-full justify-center ring-default group/input">
+        <div className="flex flex-col sm:flex-row justify-center sm:justify-normal mt-4 gap-4">
+          <div className="relative flex flex-col border border-neutral-500 rounded-md bg-blue-300/15 px-4 py-1  sm:w-full justify-center ring-default group/input">
             <label
               htmlFor="register-email"
               className={`absolute pointer-events-none text-start text-gray-400 ${
@@ -42,7 +42,7 @@ const RegisterForm = (props: {
           </div>
           <DefaultButton
             text={props.data.button}
-            className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl mb-2"
+            className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
             icon={<MdArrowForwardIos className="size-5" />}
           />
         </div>

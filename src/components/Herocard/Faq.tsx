@@ -12,6 +12,7 @@ const Faq = (props: {
   const handleHidden = () => {
     setIsHidden(!isHidden);
   };
+  // const answer = JSON.stringify(props.data.answer).replace(/\\n/g, "\n");
   const answer = props.data.answer.replace(/\\n/g, "\n");
   // console.log(props.data);
   return (
@@ -31,7 +32,7 @@ const Faq = (props: {
         </span>
       </button>
       <div className={isHidden ? "faq-answer hidden" : "faq-answer block"}>
-        <p>{answer}</p>
+        <p className="whitespace-pre-line">{answer}</p>
       </div>
     </div>
   );
