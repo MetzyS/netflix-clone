@@ -1,14 +1,9 @@
 import SelectLang from "../ui/SelectLang";
 
 const Footer = (props: {
-  lang: string;
   text: string;
-  data: {
-    id: {
-      title: string;
-      link: string;
-    };
-  };
+  lang: string;
+  data: Record<string, { title: string; link: string }>;
   handleChangeLang: (value: string) => void;
 }) => {
   return (
@@ -36,9 +31,9 @@ const Footer = (props: {
       </ul>
       <div className="w-32 my-6">
         <SelectLang
-          lang={props.lang}
           handleChangeLang={props.handleChangeLang}
           showText={true}
+          lang={props.lang}
         />
       </div>
     </footer>

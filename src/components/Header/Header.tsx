@@ -3,8 +3,11 @@ import Logo from "../ui/Logo";
 import SelectLang from "../ui/SelectLang";
 
 const Header = (props: {
-  lang: string;
   handleChangeLang: (value: string) => void;
+  lang: string;
+  content: {
+    button: string
+  }
 }) => {
   return (
     <>
@@ -12,10 +15,10 @@ const Header = (props: {
         <Logo className="w-24 lg:w-40" />
         <div className="flex items-center gap-2">
           <SelectLang
-            lang={props.lang}
             handleChangeLang={props.handleChangeLang}
+            lang={props.lang}
           />
-          <DefaultLink text="S'identifier" className="py-1 px-4 text-base" />
+          <DefaultLink text={props.content.button} className="py-1 px-4 text-base" />
         </div>
       </header>
     </>

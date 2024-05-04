@@ -1,30 +1,34 @@
 type Description = {
-  id: {
-    id: string;
-    title: string;
-    text: string;
-    videoUrl?: string;
-    downloadMovieTitle: string;
-    downloadText: string;
-  };
+  id: string;
+  title: string;
+  text: string;
+  videoUrl?: string;
+  downloadMovieTitle?: string;
+  downloadText?: string;
 };
+
+type DescriptionMap = Record<string, Description>;
 
 type Faq = {
-  id: {
-    id: string;
-    question: string;
-    answer: string;
-  };
+  id: string;
+  question: string;
+  answer: string;
 };
+
+type FaqMap = Record<string, Faq>;
+
 
 type Footer = {
-  id: {
-    title: string;
-    link: string;
-  };
+  title: string;
+  link: string;
 };
+type FooterMap = Record<string, Footer>
+
 
 type HeroDataType = {
+  header: {
+    button: string;
+  }
   title: string;
   subtitle: string;
   form: {
@@ -38,11 +42,11 @@ type HeroDataType = {
     subtitle: string;
     linkText: string;
   };
-  description: Description;
+  description: DescriptionMap;
   faqTitle: string;
-  faq: Faq;
+  faq: FaqMap;
   footerText: string;
-  footer: Footer;
+  footer: FooterMap;
 };
 
 export default HeroDataType;
