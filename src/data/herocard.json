@@ -1,5 +1,8 @@
 {
   "fr": {
+    "header": {
+      "button": "S'identifier"     
+    },
     "title": "Films et séries en illimité, et bien plus",
     "subtitle": "Où que vous soyez. Annulez à tout moment.",
     "form": {
@@ -157,13 +160,16 @@
     }
   },
   "en": {
+    "header": {
+      "button": "Sign In"   
+    },
     "title": "Unlimited movies, TV shows, and more",
     "subtitle": "Watch anywhere. Cancel anytime.",
     "form": {
-      "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
-      "email": "Adresse e-mail",
-      "button": "Commencer",
-      "autocomplete": "Adresse e-mail"
+      "text": "Ready to watch? Enter your email address or mobile number to create or restart your membership.",
+      "email": "Email address",
+      "button": "Get started",
+      "autocomplete": "Email address"
     },
     "offer": {
       "title": "The Netflix you love for just EUR 5.99.",

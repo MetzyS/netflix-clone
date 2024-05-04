@@ -26,6 +26,9 @@ type FooterMap = Record<string, Footer>
 
 
 type HeroDataType = {
+  header: {
+    button: string;
+  }
   title: string;
   subtitle: string;
   form: {

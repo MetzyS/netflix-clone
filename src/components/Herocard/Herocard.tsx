@@ -20,8 +20,9 @@ const Herocard = (props: {
           <div className="bg bg-fade w-full"></div>
           <div className="max-w-[1024px] m-auto text-center">
             <Header
-              lang={props.lang}
               handleChangeLang={props.handleChangeLang}
+              content={props.content.header}
+              lang={props.lang}
             />
             <div className="px-4">
               <h1 className="pt-10 px-4 text-3xl md:text-5xl font-bold leading-snug text-wrap max-w-full">
@@ -57,8 +58,8 @@ const Herocard = (props: {
       <Footer
         data={props.content.footer}
         text={props.content.footerText}
-        lang={props.lang}
         handleChangeLang={props.handleChangeLang}
+        lang={props.lang}
       />
     </>
   );
