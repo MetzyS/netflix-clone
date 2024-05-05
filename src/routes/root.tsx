@@ -1,9 +1,8 @@
-import Landing from "./pages/Landing";
 import { useState } from "react";
-import Data from "./data/herocard.json";
-import HeroDataType from "./data/HeroDataType";
-
-function App() {
+import Herocard from "../components/Herocard/Herocard";
+import HeroDataType from "../data/HeroDataType";
+import Data from "../data/herocard.json";
+const Root = () => {
   const [lang, setLang] = useState("fr");
   const [data, setData] = useState<HeroDataType>(Data.fr);
   const handleChangeLang = (value: string) => {
@@ -22,9 +21,13 @@ function App() {
   };
   return (
     <>
-      <Landing lang={lang} handleChangeLang={handleChangeLang} data={data} />
+      <Herocard
+        handleChangeLang={handleChangeLang}
+        lang={lang}
+        content={data}
+      />
     </>
   );
-}
+};
 
-export default App;
+export default Root;
