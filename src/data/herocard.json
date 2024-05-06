@@ -160,7 +160,8 @@
       }
     },
     "login": {
-      "title": "S'identifier"
+      "title": "S'identifier",
+      "loginButton": "S'identifier"
     }
   },
   "en": {
@@ -324,7 +325,8 @@
       }
     },
     "login": {
-      "title": "Sign In"
+      "title": "Sign In",
+      "loginButton": "Sign In"
     }
   }
 }

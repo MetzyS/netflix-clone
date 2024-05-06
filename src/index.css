@@ -11,7 +11,15 @@
   }
 
   .btn-default {
-    @apply bg-[#e50914] text-white font-semibold px-4 py-2 rounded-md  cursor-pointer hover:bg-red-700;
+    @apply text-white font-semibold px-4 py-2 rounded-md  cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-[#e50914] hover:bg-red-700;
+  }
+
+  .btn-secondary {
+    @apply bg-[#2b2b2b] hover:bg-[#1e1e1e];
   }
 
   .faq-answer {

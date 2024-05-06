@@ -48,6 +48,7 @@ type HeroDataType = {
   footer: FooterMap;
   login: {
     title: string;
+    loginButton: string;
   };
 };
 

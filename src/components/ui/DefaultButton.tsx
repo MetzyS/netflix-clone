@@ -5,10 +5,27 @@ const DefaultButton = (props: {
   icon?: ReactElement;
   className?: string;
   onClick?: () => void;
+  primary?: boolean;
 }) => {
+  let primary;
+  let className;
+  if (props.primary == undefined) {
+    primary = false;
+  } else {
+    primary = props.primary;
+  }
+  if (props.className == undefined) {
+    className = "";
+  } else {
+    className = props.className;
+  }
   return (
     <button
-      className={`btn-default ` + props.className}
+      className={
+        `${
+          primary ? "btn-default btn-primary" : "btn-default btn-secondary "
+        }` + className
+      }
       onClick={props.onClick}
     >
       {props.text}
