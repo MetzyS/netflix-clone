@@ -1,26 +1,14 @@
-import { useState } from "react";
 import Herocard from "../components/Herocard/Herocard";
-import HeroDataType from "../data/HeroDataType";
-import Data from "../data/herocard.json";
+// import { TestType } from "../layouts/RootLayout";
+// import { ContextType } from "react";
+// import HeroDataType from "../data/HeroDataType";
+import { useDataContext } from "../layouts/RootLayout";
 const Root = () => {
-  const [lang, setLang] = useState("fr");
-  const [data, setData] = useState<HeroDataType>(Data.fr);
-  const handleChangeLang = (value: string) => {
-    setLang(value);
-    switch (value) {
-      case "fr":
-        setData(Data.fr);
-        break;
-      case "en":
-        setData(Data.en);
-        break;
-      default:
-        setData(Data.fr);
-    }
-    console.log(value);
-  };
+  const { lang, handleChangeLang, data } = useDataContext();
+  console.log(lang, handleChangeLang, data);
   return (
     <>
+      {/* <span>test</span> */}
       <Herocard
         handleChangeLang={handleChangeLang}
         lang={lang}

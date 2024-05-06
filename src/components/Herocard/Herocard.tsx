@@ -1,6 +1,5 @@
 import HeroDataType from "../../data/HeroDataType";
 import RegisterForm from "./RegisterForm";
-import Header from "../Header/Header";
 import OfferAd from "./OfferAd";
 import Card from "./Card";
 import Faq from "./Faq";
@@ -19,11 +18,6 @@ const Herocard = (props: {
           <div className="bg bg-hero w-full"></div>
           <div className="bg bg-fade w-full"></div>
           <div className="max-w-[1024px] m-auto text-center">
-            <Header
-              handleChangeLang={props.handleChangeLang}
-              content={props.content.header}
-              lang={props.lang}
-            />
             <div className="px-4">
               <h1 className="pt-10 px-4 text-3xl md:text-5xl font-bold leading-snug text-wrap max-w-full">
                 {props.content.title}

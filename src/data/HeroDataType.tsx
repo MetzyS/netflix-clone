@@ -17,18 +17,16 @@ type Faq = {
 
 type FaqMap = Record<string, Faq>;
 
-
 type Footer = {
   title: string;
   link: string;
 };
-type FooterMap = Record<string, Footer>
-
+type FooterMap = Record<string, Footer>;
 
 type HeroDataType = {
   header: {
     button: string;
-  }
+  };
   title: string;
   subtitle: string;
   form: {
