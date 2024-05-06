@@ -45,6 +45,9 @@ type HeroDataType = {
   faq: FaqMap;
   footerText: string;
   footer: FooterMap;
+  login: {
+    title: string;
+  };
 };
 
 export default HeroDataType;

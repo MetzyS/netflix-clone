@@ -1,7 +1,7 @@
 {
   "fr": {
     "header": {
-      "button": "S'identifier"     
+      "button": "S'identifier"
     },
     "title": "Films et séries en illimité, et bien plus",
     "subtitle": "Où que vous soyez. Annulez à tout moment.",
@@ -157,11 +157,14 @@
         "title": "Choix liés à la pub",
         "link": "/"
       }
+    },
+    "login": {
+      "title": "S'identifier"
     }
   },
   "en": {
     "header": {
-      "button": "Sign In"   
+      "button": "Sign In"
     },
     "title": "Unlimited movies, TV shows, and more",
     "subtitle": "Watch anywhere. Cancel anytime.",
@@ -317,6 +320,9 @@
         "title": "Ad Choices",
         "link": "/"
       }
+    },
+    "login": {
+      "title": "Sign In"
     }
   }
 }

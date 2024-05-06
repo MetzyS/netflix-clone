@@ -5,6 +5,8 @@ import Card from "./Card";
 import Faq from "./Faq";
 import Footer from "./Footer";
 import Separation from "../ui/Separation";
+import FadedBackground from "../Background/FadedBackground";
+import Header from "../Header/Header";
 
 const Herocard = (props: {
   lang: string;
@@ -14,9 +16,12 @@ const Herocard = (props: {
   return (
     <>
       <div className="w-screen overflow-hidden pr-4">
-        <div className="relative pb-8">
-          <div className="bg bg-hero w-full"></div>
-          <div className="bg bg-fade w-full"></div>
+        <FadedBackground>
+          <Header
+            lang={props.lang}
+            content={props.content.header}
+            handleChangeLang={props.handleChangeLang}
+          />
           <div className="max-w-[1024px] m-auto text-center">
             <div className="px-4">
               <h1 className="pt-10 px-4 text-3xl md:text-5xl font-bold leading-snug text-wrap max-w-full">
@@ -28,7 +33,7 @@ const Herocard = (props: {
               <RegisterForm data={props.content.form} />
             </div>
           </div>
-        </div>
+        </FadedBackground>
         <OfferAd content={props.content.offer} />
         <div>
           {Object.values(props.content.description).map((item, index) => (

@@ -1,8 +1,6 @@
 import { Outlet, useOutletContext } from "react-router-dom";
-import Header from "../components/Header/Header";
 import { useState } from "react";
 import HeroDataType from "../data/HeroDataType";
-// import Data from "../data/herocard.json";
 export type ContextType = {
   lang: string;
   data: HeroDataType;
@@ -23,17 +21,9 @@ const RootLayout = (props: { data: any }) => {
       default:
         setData(props.data.fr);
     }
-    console.log(value);
-    console.log(props.data);
-    console.log(lang);
   };
   return (
     <>
-      <Header
-        lang={lang}
-        content={data.header}
-        handleChangeLang={handleChangeLang}
-      />
       <main>
         <Outlet
           context={
