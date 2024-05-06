@@ -16,7 +16,7 @@ const Herocard = (props: {
   return (
     <>
       <div className="w-screen overflow-hidden pr-4">
-        <FadedBackground>
+        <FadedBackground className="pb-8">
           <Header
             lang={props.lang}
             content={props.content.header}

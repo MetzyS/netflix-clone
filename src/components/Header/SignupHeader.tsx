@@ -6,7 +6,7 @@ const SignupHeader = () => {
     <header className="flex flex-wrap items-center relative p-6 justify-between gap-2 bg-white/0">
       <div className="flex flex-col justify-between">
         <Link to="/">
-          <Logo className="w-24 lg:w-40" />
+          <Logo className="w-24 lg:w-40 py-1" />
         </Link>
       </div>
     </header>

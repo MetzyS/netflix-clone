@@ -11,7 +11,7 @@
   }
 
   .btn-default {
-    @apply text-white font-semibold px-4 py-2 rounded-md  cursor-pointer;
+    @apply text-white font-semibold px-4 py-2 rounded-md  cursor-pointer shadow-md;
   }
 
   .btn-primary {
@@ -24,6 +24,10 @@
 
   .faq-answer {
     @apply w-full max-w-[1024px] bg-neutral-800 px-6 py-5 text-lg border-t border-black;
+  }
+
+  .checkbox-default {
+    @apply cursor-pointer relative appearance-none size-5 rounded-sm border border-neutral-500 hover:border-neutral-100 checked:bg-neutral-100 checked:border-neutral-100 checked:hover:bg-neutral-400 checked:hover:border-neutral-400;
   }
 }
 
@@ -64,6 +68,15 @@ body {
   left: 50%;
   transform: translate(-50%, 50%);
 }
+.checkbox-default:checked:after {
+  content: "✔";
+  color: black;
+  font-weight: bold;
+  position: absolute;
+  font-size: 1rem;
+  top: -5%;
+  left: 15%;
+}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -87,7 +100,7 @@ input:-webkit-autofill:active {
   background: linear-gradient(
     rgba(0, 0, 0, 95%),
     rgba(0, 0, 0, 40%) 35%,
-    rgba(0, 0, 0, 95%) 90%
+    rgba(0, 0, 0, 100%) 98%
   );
   z-index: -1;
 }

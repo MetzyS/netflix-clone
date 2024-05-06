@@ -16,7 +16,7 @@ const Input = (props: { label: string; type: string; for?: string }) => {
   };
 
   return (
-    <div className="relative flex flex-col border border-neutral-500 rounded-md bg-blue-300/15 px-4 py-1  sm:w-full justify-center ring-default group/input">
+    <div className="relative flex flex-col border border-neutral-500 rounded-md bg-blue-300/15 px-4 py-1  sm:w-full justify-center ring-default group/input backdrop-blur-[2px]">
       {isEmpty ? (
         <label
           htmlFor={`input-${props.type}`}

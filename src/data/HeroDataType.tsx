@@ -54,6 +54,8 @@ type HeroDataType = {
     rememberMe: string;
     firstVisit: string;
     signup: string;
+    captcha: string;
+    captchaLink: string;
   };
 };
 

@@ -166,7 +166,9 @@
       "passwordForgot": "Mot de passe oublié?",
       "rememberMe": "Se souvenir de moi",
       "firstVisit": "Première visite sur Netflix?",
-      "signup": "Inscrivez-vous."
+      "signup": "Inscrivez-vous.",
+      "captcha": "Cette page est protégée par Google reCAPTCHA pour nous assurer que vous n'êtes pas un robot.",
+      "captchaLink": "En savoir plus."
     }
   },
   "en": {
@@ -336,7 +338,9 @@
       "passwordForgot": "Forgot password?",
       "rememberMe": "Remember me",
       "firstVisit": "New to Netflix?",
-      "signup": "Sign up now."
+      "signup": "Sign up now.",
+      "captcha": "This page is protected by Google reCAPTCHA to ensure you're not a bot.",
+      "captchaLink": "Learn more."
     }
   }
 }
