@@ -49,6 +49,11 @@ type HeroDataType = {
   login: {
     title: string;
     loginButton: string;
+    codeButton: string;
+    passwordForgot: string;
+    rememberMe: string;
+    firstVisit: string;
+    signup: string;
   };
 };
 

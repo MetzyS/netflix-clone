@@ -23,7 +23,7 @@ const DefaultButton = (props: {
     <button
       className={
         `${
-          primary ? "btn-default btn-primary" : "btn-default btn-secondary "
+          primary ? "btn-default btn-primary " : "btn-default btn-secondary "
         }` + className
       }
       onClick={props.onClick}

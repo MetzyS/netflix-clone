@@ -161,7 +161,12 @@
     },
     "login": {
       "title": "S'identifier",
-      "loginButton": "S'identifier"
+      "loginButton": "S'identifier",
+      "codeButton": "Utiliser un code d'identification",
+      "passwordForgot": "Mot de passe oublié?",
+      "rememberMe": "Se souvenir de moi",
+      "firstVisit": "Première visite sur Netflix?",
+      "signup": "Inscrivez-vous."
     }
   },
   "en": {
@@ -326,7 +331,12 @@
     },
     "login": {
       "title": "Sign In",
-      "loginButton": "Sign In"
+      "loginButton": "Sign In",
+      "codeButton": "Use a Sign-In Code",
+      "passwordForgot": "Forgot password?",
+      "rememberMe": "Remember me",
+      "firstVisit": "New to Netflix?",
+      "signup": "Sign up now."
     }
   }
 }

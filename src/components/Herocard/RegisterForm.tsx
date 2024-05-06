@@ -18,6 +18,7 @@ const RegisterForm = (props: {
           <Input type="email" label={props.data.email} />
           <DefaultButton
             text={props.data.button}
+            primary={true}
             className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
             icon={<MdArrowForwardIos className="size-5" />}
           />
