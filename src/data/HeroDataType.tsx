@@ -32,6 +32,7 @@ type HeroDataType = {
   form: {
     text: string;
     email: string;
+    password: string;
     button: string;
     autocomplete: string;
   };

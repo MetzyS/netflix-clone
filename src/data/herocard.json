@@ -8,6 +8,7 @@
     "form": {
       "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
       "email": "Adresse e-mail",
+      "password": "Mot de passe",
       "button": "Commencer",
       "autocomplete": "Adresse e-mail"
     },
@@ -171,6 +172,7 @@
     "form": {
       "text": "Ready to watch? Enter your email address or mobile number to create or restart your membership.",
       "email": "Email address",
+      "password": "Password",
       "button": "Get started",
       "autocomplete": "Email address"
     },
