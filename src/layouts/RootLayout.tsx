@@ -5,10 +5,12 @@ export type ContextType = {
   lang: string;
   data: HeroDataType;
   handleChangeLang: (value: string) => void;
+  handleChangeBg: (value: boolean) => void;
 };
 const RootLayout = (props: { data: any }) => {
   const [lang, setLang] = useState<string>("fr");
   const [data, setData] = useState(props.data.fr);
+  const [bgWhite, setBgWhite] = useState(false);
   const handleChangeLang = (value: string) => {
     setLang(value);
     switch (value) {
@@ -22,14 +24,24 @@ const RootLayout = (props: { data: any }) => {
         setData(props.data.fr);
     }
   };
+
+  const handleChangeBg = (value: boolean) => {
+    setBgWhite(value);
+    if (value) {
+      document.body.classList.add("bg-white");
+    } else {
+      document.body.classList.remove("bg-white");
+    }
+  };
   return (
     <>
-      <main>
+      <main className={bgWhite ? "bg-white" : undefined}>
         <Outlet
           context={
             {
               lang,
               handleChangeLang,
+              handleChangeBg,
               data,
             } satisfies ContextType
           }

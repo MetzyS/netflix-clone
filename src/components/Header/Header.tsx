@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import DefaultLink from "../ui/DefaultLink";
 import Logo from "../ui/Logo";
 import SelectLang from "../ui/SelectLang";
+import TransparentLink from "../ui/TransparentLink";
 
 const Header = (props: {
   content: {
@@ -9,8 +10,10 @@ const Header = (props: {
   };
   selectLang?: boolean;
   showButton?: boolean;
+  transparentButton?: boolean;
   link?: string;
   className?: string;
+  logoClassname?: string;
 }) => {
   let selectLang;
   if (props.selectLang == undefined || props.selectLang == true) {
@@ -32,6 +35,13 @@ const Header = (props: {
   } else {
     link = props.link;
   }
+
+  let logoClassname;
+  if (props.logoClassname == undefined || props.logoClassname == "") {
+    logoClassname = "logo-default";
+  } else {
+    logoClassname = props.logoClassname;
+  }
   return (
     <>
       <header
@@ -40,10 +50,17 @@ const Header = (props: {
         }`}
       >
         <Link to="/">
-          <Logo className="w-24 lg:w-40 py-1" />
+          <Logo className={`${logoClassname}`} />
         </Link>
         <div className="flex items-center gap-2">
           {selectLang && <SelectLang />}
+          {props.transparentButton && (
+            <TransparentLink
+              link={link}
+              text={props.content.button}
+              className="py-1 px-4 text-base"
+            />
+          )}
           {showButton && (
             <DefaultLink
               link={link}

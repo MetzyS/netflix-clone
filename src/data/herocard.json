@@ -203,6 +203,12 @@
         "title": "Choix liés à la pub",
         "link": "/"
       }
+    },
+    "signup": {
+      "maxStep": "3",
+      "firstStepTitle": "Complétez la configuration de votre compte",
+      "firstStepDesc": "Netflix est personnalisé selon vos goûts. Créez un mot de passe pour commencer à regarder Netflix.",
+      "firstButton": "Suivant"
     }
   },
   "en": {
@@ -409,6 +415,12 @@
         "title": "Ad Choices",
         "link": "/"
       }
+    },
+    "signup": {
+      "maxStep": "3",
+      "firstStepTitle": "Finish setting up your account",
+      "firstStepDesc": "Netflix is personalized for you. Create a password to start watching Netflix.",
+      "firstButton": "Next"
     }
   }
 }

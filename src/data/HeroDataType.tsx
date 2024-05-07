@@ -64,6 +64,12 @@ type HeroDataType = {
     captchaLink: string;
   };
   loginFooter: LoginFooterMap;
+  signup: {
+    maxStep: string;
+    firstStepTitle: string;
+    firstStepDesc: string;
+    firstButton: string;
+  };
 };
 
 export default HeroDataType;

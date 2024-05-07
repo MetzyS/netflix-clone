@@ -7,8 +7,8 @@ import Footer from "../components/Herocard/Footer";
 import Header from "../components/Header/Header";
 
 const Login = () => {
-  const { data } = useDataContext();
-
+  const { data, handleChangeBg } = useDataContext();
+  handleChangeBg(false);
   return (
     <>
       <FadedBackground className="pb-4">

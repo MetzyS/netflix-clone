@@ -8,7 +8,12 @@ import Separation from "../ui/Separation";
 import FadedBackground from "../Background/FadedBackground";
 import Header from "../Header/Header";
 
-const Herocard = (props: { lang: string; content: HeroDataType }) => {
+const Herocard = (props: {
+  lang: string;
+  content: HeroDataType;
+  handleChangeBg: (value: boolean) => void;
+}) => {
+  props.handleChangeBg(false);
   return (
     <>
       <div className="w-screen overflow-hidden pr-4">
