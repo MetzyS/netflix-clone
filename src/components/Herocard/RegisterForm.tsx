@@ -1,6 +1,7 @@
 import { MdArrowForwardIos } from "react-icons/md";
 import DefaultButton from "../ui/DefaultButton";
 import Input from "../Form/Input";
+import { Form } from "react-router-dom";
 
 const RegisterForm = (props: {
   data: {
@@ -9,10 +10,11 @@ const RegisterForm = (props: {
     button: string;
     autocomplete: string;
   };
+  to: string;
 }) => {
   return (
     <div className="mt-6 mx-auto px-8 max-w-[770px]">
-      <form action="">
+      <Form action={props.to}>
         <h3 className="text-base leading-normal">{props.data.text}</h3>
         <div className="flex flex-col sm:flex-row justify-center sm:justify-normal mt-4 gap-4">
           <Input type="email" label={props.data.email} />
@@ -23,7 +25,7 @@ const RegisterForm = (props: {
             icon={<MdArrowForwardIos className="size-5" />}
           />
         </div>
-      </form>
+      </Form>
     </div>
   );
 };

@@ -8,11 +8,11 @@ const Footer = (props: {
     <footer className="p-6">
       <a
         href="mailto:contact@metzys.net"
-        className="text-left underline text-secondary"
+        className="text-left text-secondary hover:underline"
       >
         {props.text}
       </a>
-      <ul className="grid grid-rows-10 grid-cols-2 mt-6 text-sm">
+      <ul className="grid grid-cols-2 mt-6 text-sm">
         {Object.values(props.data).map((item, index) => (
           <li
             key={"footer-item-" + index}

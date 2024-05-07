@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 
-const DefaultLink = (props: { text: string; className?: string }) => {
+const DefaultLink = (props: {
+  text: string;
+  className?: string;
+  link: string;
+}) => {
   return (
     <Link
-      to="login"
+      to={props.link}
       className={`btn-default btn-primary ring-default ${props.className}`}
     >
       {props.text}

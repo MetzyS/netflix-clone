@@ -169,6 +169,40 @@
       "signup": "Inscrivez-vous.",
       "captcha": "Cette page est protégée par Google reCAPTCHA pour nous assurer que vous n'êtes pas un robot.",
       "captchaLink": "En savoir plus."
+    },
+    "loginFooter": {
+      "1": {
+        "title": "FAQ",
+        "link": "/"
+      },
+      "2": {
+        "title": "Boutique Shop",
+        "link": "/"
+      },
+      "3": {
+        "title": "Conditions d'utilisation",
+        "link": "/"
+      },
+      "4": {
+        "title": "Préférences de cookies",
+        "link": "/"
+      },
+      "5": {
+        "title": "Centre d'aide",
+        "link": "/"
+      },
+      "6": {
+        "title": "Confidentialité",
+        "link": "/"
+      },
+      "7": {
+        "title": "Mentions légales",
+        "link": "/"
+      },
+      "8": {
+        "title": "Choix liés à la pub",
+        "link": "/"
+      }
     }
   },
   "en": {
@@ -341,6 +375,40 @@
       "signup": "Sign up now.",
       "captcha": "This page is protected by Google reCAPTCHA to ensure you're not a bot.",
       "captchaLink": "Learn more."
+    },
+    "loginFooter": {
+      "1": {
+        "title": "FAQ",
+        "link": "/"
+      },
+      "2": {
+        "title": "Netflix Shop",
+        "link": "/"
+      },
+      "3": {
+        "title": "Terms of Use",
+        "link": "/"
+      },
+      "4": {
+        "title": "Cookie Preferences",
+        "link": "/"
+      },
+      "5": {
+        "title": "Help Center",
+        "link": "/"
+      },
+      "6": {
+        "title": "Privacy",
+        "link": "/"
+      },
+      "7": {
+        "title": "Corporate Information",
+        "link": "/"
+      },
+      "8": {
+        "title": "Ad Choices",
+        "link": "/"
+      }
     }
   }
 }

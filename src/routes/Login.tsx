@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { useDataContext } from "../layouts/RootLayout";
 import FadedBackground from "../components/Background/FadedBackground";
-import SignupHeader from "../components/Header/SignupHeader";
 import Input from "../components/Form/Input";
 import DefaultButton from "../components/ui/DefaultButton";
+import Footer from "../components/Herocard/Footer";
+import Header from "../components/Header/Header";
 
 const Login = () => {
   const { data } = useDataContext();
@@ -12,10 +13,10 @@ const Login = () => {
     <>
       <FadedBackground className="pb-4">
         <div className="max-w-[1024px] m-auto">
-          <SignupHeader />
-          <div className="px-6 xs:bg-black/70 xs:py-12 xs:px-20 xs:max-w-lg xs:rounded-lg xs:mx-auto">
+          <Header content={data.header} showButton={false} selectLang={false} />
+          <div className="px-6 bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto">
             <h1 className="text-3xl font-bold">{data.login.title}</h1>
-            <form action="" className="flex flex-col gap-4 mt-5">
+            <Form action="" className="flex flex-col gap-4 mt-5">
               <Input type="email" label={data.form.email} />
               <Input type="password" label={data.form.password} />
               <div>
@@ -45,7 +46,7 @@ const Login = () => {
                 />
                 <p className="">{data.login.rememberMe}</p>
               </label>
-            </form>
+            </Form>
             <p className="text-secondary my-8">
               {data.login.firstVisit}{" "}
               <Link to="/" className="font-bold text-white">
@@ -61,13 +62,14 @@ const Login = () => {
           </div>
         </div>
       </FadedBackground>
-      <footer className="px-4">
+      <footer className="px-4 mt-12">
         <p className="text-sm xs:hidden">
           {data.login.captcha}{" "}
           <a href="" className="text-blue-500 hover:underline">
             {data.login.captchaLink}
           </a>
         </p>
+        <Footer text={data.footerText} data={data.loginFooter} />
       </footer>
     </>
   );

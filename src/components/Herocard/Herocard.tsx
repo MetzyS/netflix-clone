@@ -13,7 +13,7 @@ const Herocard = (props: { lang: string; content: HeroDataType }) => {
     <>
       <div className="w-screen overflow-hidden pr-4">
         <FadedBackground className="pb-8">
-          <Header content={props.content.header} />
+          <Header content={props.content.header} link="/login" />
           <div className="max-w-[1024px] m-auto text-center">
             <div className="px-4">
               <h1 className="pt-10 px-4 text-3xl md:text-5xl font-bold leading-snug text-wrap max-w-full">
@@ -22,7 +22,7 @@ const Herocard = (props: { lang: string; content: HeroDataType }) => {
               <h2 className="text-lg mt-6 leading-snug">
                 {props.content.subtitle}
               </h2>
-              <RegisterForm data={props.content.form} />
+              <RegisterForm data={props.content.form} to="/signup" />
             </div>
           </div>
         </FadedBackground>
@@ -42,7 +42,7 @@ const Herocard = (props: { lang: string; content: HeroDataType }) => {
           <Separation />
         </div>
         <div>
-          <RegisterForm data={props.content.form} />
+          <RegisterForm data={props.content.form} to="/signup" />
           <Separation />
         </div>
       </div>

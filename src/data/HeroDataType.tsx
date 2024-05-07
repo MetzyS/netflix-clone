@@ -23,6 +23,12 @@ type Footer = {
 };
 type FooterMap = Record<string, Footer>;
 
+type LoginFooter = {
+  title: string;
+  link: string;
+};
+type LoginFooterMap = Record<string, LoginFooter>;
+
 type HeroDataType = {
   header: {
     button: string;
@@ -57,6 +63,7 @@ type HeroDataType = {
     captcha: string;
     captchaLink: string;
   };
+  loginFooter: LoginFooterMap;
 };
 
 export default HeroDataType;
