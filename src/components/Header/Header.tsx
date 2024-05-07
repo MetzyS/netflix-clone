@@ -10,6 +10,7 @@ const Header = (props: {
   selectLang?: boolean;
   showButton?: boolean;
   link?: string;
+  className?: string;
 }) => {
   let selectLang;
   if (props.selectLang == undefined || props.selectLang == true) {
@@ -33,7 +34,11 @@ const Header = (props: {
   }
   return (
     <>
-      <header className="flex flex-wrap items-center relative p-6 justify-between gap-2 bg-white/0">
+      <header
+        className={`flex flex-wrap items-center relative p-6 justify-between gap-2 bg-white/0 ${
+          props.className ? props.className : ""
+        }`}
+      >
         <Link to="/">
           <Logo className="w-24 lg:w-40 py-1" />
         </Link>
