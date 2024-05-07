@@ -2,15 +2,22 @@ import { IoLanguage } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useDataContext } from "../../layouts/RootLayout";
 const SelectLang = (props: {
-  // handleChangeLang: (value: string) => void;
   showText?: boolean;
-  // lang: string;
+  bg?: string;
+  selectTextColor?: string;
+  borderColor?: string;
 }) => {
   const { lang, handleChangeLang } = useDataContext();
   return (
     <>
       <div className="justify-center items-center rounded-md transition-none ring-default">
-        <div className="flex justify-center items-center gap-2 rounded-md text-white border-white/30 border relative bg-zinc-950/35 backdrop-blur-md">
+        <div
+          className={`flex justify-center items-center gap-2 rounded-md ${
+            props.selectTextColor ? props.selectTextColor : " text-white "
+          } ${props.bg ? props.bg : " bg-zinc-950/35 "} border ${
+            props.borderColor ? props.borderColor : "border-white/30"
+          } relative backdrop-blur-md`}
+        >
           <div className="absolute left-2.5">
             <IoLanguage className="size-4 text-white" />
           </div>

@@ -209,6 +209,41 @@
       "firstStepTitle": "Complétez la configuration de votre compte",
       "firstStepDesc": "Netflix est personnalisé selon vos goûts. Créez un mot de passe pour commencer à regarder Netflix.",
       "firstButton": "Suivant"
+    },
+    "signupFooterText": "Des questions ? Appelez le (+33) 0805-543-063",
+    "signupFooter": {
+      "1": {
+        "title": "FAQ",
+        "link": "/"
+      },
+      "2": {
+        "title": "Centre d'aide",
+        "link": "/"
+      },
+      "3": {
+        "title": "Boutique Netflix",
+        "link": "/"
+      },
+      "4": {
+        "title": "Conditions d'utilisation",
+        "link": "/"
+      },
+      "5": {
+        "title": "Confidentialité",
+        "link": "/"
+      },
+      "6": {
+        "title": "Préférences de cookies",
+        "link": "/"
+      },
+      "7": {
+        "title": "Mentions légales",
+        "link": "/"
+      },
+      "8": {
+        "title": "Choix liés à la pub",
+        "link": "/"
+      }
     }
   },
   "en": {
@@ -421,6 +456,41 @@
       "firstStepTitle": "Finish setting up your account",
       "firstStepDesc": "Netflix is personalized for you. Create a password to start watching Netflix.",
       "firstButton": "Next"
+    },
+    "signupFooterText": "Questions? Contact us.",
+    "signupFooter": {
+      "1": {
+        "title": "FAQ",
+        "link": "/"
+      },
+      "2": {
+        "title": "Help Center",
+        "link": "/"
+      },
+      "3": {
+        "title": "Netflix Shop",
+        "link": "/"
+      },
+      "4": {
+        "title": "Terms of Use",
+        "link": "/"
+      },
+      "5": {
+        "title": "Privacy",
+        "link": "/"
+      },
+      "6": {
+        "title": "Cookie Preferences",
+        "link": "/"
+      },
+      "7": {
+        "title": "Corporate Information",
+        "link": "/"
+      },
+      "8": {
+        "title": "Ad Choices",
+        "link": "/"
+      }
     }
   }
 }

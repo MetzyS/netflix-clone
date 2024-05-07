@@ -43,7 +43,15 @@ const Signup = () => {
         </button>
       </div>
       <div>
-        <Footer data={data.footer} text={data.footerText} />
+        <Footer
+          data={data.signupFooter}
+          text={data.signupFooterText}
+          selectBg="bg-white"
+          selectTextColor="text-neutral-600"
+          className="bg-[#f3f3f3] border-t border-t-black/10"
+          textColor="text-black"
+          selectBorderColor="border-black/30"
+        />
       </div>
     </>
   );

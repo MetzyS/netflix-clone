@@ -3,12 +3,19 @@ import SelectLang from "../ui/SelectLang";
 const Footer = (props: {
   text: string;
   data: Record<string, { title: string; link: string }>;
+  selectBg?: string;
+  selectTextColor?: string;
+  className?: string;
+  textColor?: string;
+  selectBorderColor?: string;
 }) => {
   return (
-    <footer className="p-6">
+    <footer className={`p-6 ${props.className ? props.className : undefined}`}>
       <a
         href="mailto:contact@metzys.net"
-        className="text-left text-secondary hover:underline"
+        className={`text-left ${
+          props.textColor ? props.textColor : "text-secondary"
+        } hover:underline`}
       >
         {props.text}
       </a>
@@ -20,7 +27,11 @@ const Footer = (props: {
           >
             <a
               href={item.link}
-              className="hover:text-neutral-200 text-secondary underline "
+              className={`${
+                props.textColor
+                  ? props.textColor
+                  : "hover:text-neutral-200 text-secondary"
+              } underline `}
             >
               {item.title}
             </a>
@@ -28,7 +39,15 @@ const Footer = (props: {
         ))}
       </ul>
       <div className="w-32 my-6">
-        <SelectLang />
+        <SelectLang
+          bg={props.selectBg ? props.selectBg : undefined}
+          selectTextColor={
+            props.selectTextColor ? props.selectTextColor : undefined
+          }
+          borderColor={
+            props.selectBorderColor ? props.selectBorderColor : undefined
+          }
+        />
       </div>
     </footer>
   );

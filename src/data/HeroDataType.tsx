@@ -70,6 +70,8 @@ type HeroDataType = {
     firstStepDesc: string;
     firstButton: string;
   };
+  signupFooterText: string;
+  signupFooter: FooterMap;
 };
 
 export default HeroDataType;
