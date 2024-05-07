@@ -1,14 +1,10 @@
 import Herocard from "../components/Herocard/Herocard";
 import { useDataContext } from "../layouts/RootLayout";
 const Root = () => {
-  const { lang, handleChangeLang, data } = useDataContext();
+  const { lang, data } = useDataContext();
   return (
     <>
-      <Herocard
-        handleChangeLang={handleChangeLang}
-        lang={lang}
-        content={data}
-      />
+      <Herocard lang={lang} content={data} />
     </>
   );
 };

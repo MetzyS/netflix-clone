@@ -2,15 +2,13 @@ import SelectLang from "../ui/SelectLang";
 
 const Footer = (props: {
   text: string;
-  lang: string;
   data: Record<string, { title: string; link: string }>;
-  handleChangeLang: (value: string) => void;
 }) => {
   return (
     <footer className="p-6">
       <a
         href="mailto:contact@metzys.net"
-        className="text-left underline text-neutral-400"
+        className="text-left underline text-secondary"
       >
         {props.text}
       </a>
@@ -22,7 +20,7 @@ const Footer = (props: {
           >
             <a
               href={item.link}
-              className="hover:text-neutral-200 text-neutral-400 underline "
+              className="hover:text-neutral-200 text-secondary underline "
             >
               {item.title}
             </a>
@@ -30,11 +28,7 @@ const Footer = (props: {
         ))}
       </ul>
       <div className="w-32 my-6">
-        <SelectLang
-          handleChangeLang={props.handleChangeLang}
-          showText={true}
-          lang={props.lang}
-        />
+        <SelectLang />
       </div>
     </footer>
   );

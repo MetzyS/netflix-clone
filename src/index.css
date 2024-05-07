@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  .text-secondary {
+    @apply text-neutral-400;
+  }
   .ring-default {
     @apply ring-2 ring-transparent focus-within:ring-offset-2 focus-within:ring-offset-black focus-within:ring-white;
   }

@@ -8,20 +8,12 @@ import Separation from "../ui/Separation";
 import FadedBackground from "../Background/FadedBackground";
 import Header from "../Header/Header";
 
-const Herocard = (props: {
-  lang: string;
-  content: HeroDataType;
-  handleChangeLang: (value: string) => void;
-}) => {
+const Herocard = (props: { lang: string; content: HeroDataType }) => {
   return (
     <>
       <div className="w-screen overflow-hidden pr-4">
         <FadedBackground className="pb-8">
-          <Header
-            lang={props.lang}
-            content={props.content.header}
-            handleChangeLang={props.handleChangeLang}
-          />
+          <Header content={props.content.header} />
           <div className="max-w-[1024px] m-auto text-center">
             <div className="px-4">
               <h1 className="pt-10 px-4 text-3xl md:text-5xl font-bold leading-snug text-wrap max-w-full">
@@ -54,12 +46,7 @@ const Herocard = (props: {
           <Separation />
         </div>
       </div>
-      <Footer
-        data={props.content.footer}
-        text={props.content.footerText}
-        handleChangeLang={props.handleChangeLang}
-        lang={props.lang}
-      />
+      <Footer data={props.content.footer} text={props.content.footerText} />
     </>
   );
 };
