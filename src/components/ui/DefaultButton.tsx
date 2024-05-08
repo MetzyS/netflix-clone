@@ -6,6 +6,7 @@ const DefaultButton = (props: {
   className?: string;
   onClick?: () => void;
   primary?: boolean;
+  type?: "submit" | "reset" | "button" | undefined;
 }) => {
   let primary;
   let className;
@@ -21,6 +22,7 @@ const DefaultButton = (props: {
   }
   return (
     <button
+      type={props.type ? props.type : "button"}
       className={
         `${
           primary ? "btn-default btn-primary " : "btn-default btn-secondary "

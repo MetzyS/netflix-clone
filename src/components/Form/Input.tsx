@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
-const Input = (props: { label: string; type: string; for?: string }) => {
+const Input = (props: {
+  label: string;
+  type: string;
+  for?: string;
+  onChange?: (value: string) => void;
+}) => {
   const [isFocus, setIsFocus] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
 
@@ -12,6 +17,12 @@ const Input = (props: { label: string; type: string; for?: string }) => {
       setIsEmpty(true);
     } else {
       setIsEmpty(false);
+    }
+  };
+
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    if (props.onChange) {
+      props.onChange(e.currentTarget.value);
     }
   };
 
@@ -43,7 +54,10 @@ const Input = (props: { label: string; type: string; for?: string }) => {
         className="pt-4 bg-transparent border-none outline-none autofill-transparent"
         onFocus={handleInputFocus}
         onBlur={handleInputFocus}
-        onChange={handleEmptyInput}
+        onChange={(e) => {
+          handleChange(e);
+          handleEmptyInput(e);
+        }}
       />
     </div>
   );

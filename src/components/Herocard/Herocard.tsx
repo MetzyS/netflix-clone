@@ -12,6 +12,7 @@ const Herocard = (props: {
   lang: string;
   content: HeroDataType;
   handleChangeBg: (value: boolean) => void;
+  onChangeForm: (value: string) => void;
 }) => {
   props.handleChangeBg(false);
   return (
@@ -31,7 +32,11 @@ const Herocard = (props: {
               <h2 className="text-lg mt-6 leading-snug">
                 {props.content.subtitle}
               </h2>
-              <RegisterForm data={props.content.form} to="/signup" />
+              <RegisterForm
+                data={props.content.form}
+                to="/signup"
+                onChange={props.onChangeForm}
+              />
             </div>
           </div>
         </FadedBackground>
@@ -51,7 +56,11 @@ const Herocard = (props: {
           <Separation />
         </div>
         <div>
-          <RegisterForm data={props.content.form} to="/signup" />
+          <RegisterForm
+            data={props.content.form}
+            to="/signup"
+            onChange={props.onChangeForm}
+          />
           <Separation />
         </div>
       </div>

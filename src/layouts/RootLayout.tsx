@@ -4,13 +4,16 @@ import HeroDataType from "../data/HeroDataType";
 export type ContextType = {
   lang: string;
   data: HeroDataType;
+  userEmail: string;
   handleChangeLang: (value: string) => void;
   handleChangeBg: (value: boolean) => void;
+  handleUserEmail: (value: string) => void;
 };
 const RootLayout = (props: { data: any }) => {
   const [lang, setLang] = useState<string>("fr");
   const [data, setData] = useState(props.data.fr);
   const [bgWhite, setBgWhite] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
   const handleChangeLang = (value: string) => {
     setLang(value);
     switch (value) {
@@ -33,6 +36,10 @@ const RootLayout = (props: { data: any }) => {
       document.body.classList.remove("bg-white");
     }
   };
+
+  const handleUserEmail = (value: string) => {
+    setUserEmail(value);
+  };
   return (
     <>
       <main className={bgWhite ? "bg-white" : undefined}>
@@ -42,6 +49,8 @@ const RootLayout = (props: { data: any }) => {
               lang,
               handleChangeLang,
               handleChangeBg,
+              handleUserEmail,
+              userEmail,
               data,
             } satisfies ContextType
           }
