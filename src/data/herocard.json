@@ -206,10 +206,14 @@
       }
     },
     "signup": {
+      "stepWord": ["étape", "sur"],
       "maxStep": "3",
       "firstStepTitle": "Complétez la configuration de votre compte.",
       "firstStepDesc": "Netflix est personnalisé selon vos goûts. Créez un mot de passe pour commencer à regarder Netflix.",
-      "firstButton": "Suivant"
+      "firstButton": "Suivant",
+      "secondStepTitle": "Créez un mot de passe pour activer votre abonnement",
+      "secondStepDesc": "Plus que quelques étapes et c'est fini !\nPlus rien à remplir.",
+      "secondStepCheckbox": "Oui, envoyez-moi les offres spéciales de Netflix par e-mail."
     },
     "signupFooterText": "Des questions ? Appelez le (+33) 0805-543-063",
     "signupFooter": {
@@ -454,10 +458,14 @@
       }
     },
     "signup": {
+      "stepWord": ["step", "of"],
       "maxStep": "3",
       "firstStepTitle": "Finish setting up your account.",
       "firstStepDesc": "Netflix is personalized for you. Create a password to start watching Netflix.",
-      "firstButton": "Next"
+      "firstButton": "Next",
+      "secondStepTitle": "Create a password to start your membership",
+      "secondStepDesc": "Just a few more steps and you're done!\nWe hate paperwork, too.",
+      "secondStepCheckbox": "Yes, please email me Netflix special offers."
     },
     "signupFooterText": "Questions? Contact us.",
     "signupFooter": {

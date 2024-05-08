@@ -3,6 +3,7 @@ import { useDataContext } from "../layouts/RootLayout";
 import Footer from "../components/Herocard/Footer";
 import FirstStepForm from "../components/Signup/FirstStepForm";
 import { useState } from "react";
+import SignupForm from "../components/Form/SignupForm";
 
 const Signup = () => {
   const { data, userEmail, handleChangeBg } = useDataContext();
@@ -22,11 +23,13 @@ const Signup = () => {
         showButton={false}
         transparentButton={true}
       />
-      <div className="max-w-[340px] m-auto sm:text-center text-black mb-32 px-8">
+      <div className="text-black mb-32 px-8">
         {formStep == 0 && (
-          <FirstStepForm data={data} onClick={handleFormStep} />
+          <FirstStepForm data={data.signup} onClick={handleFormStep} />
         )}
-        {formStep == 1 && <input type="email" value={userEmail} />}
+        {formStep == 1 && (
+          <SignupForm data={data.signup} userEmail={userEmail} />
+        )}
       </div>
       <div>
         <Footer
@@ -37,6 +40,7 @@ const Signup = () => {
           className="bg-[#f3f3f3] border-t border-t-black/10"
           textColor="text-black"
           selectBorderColor="border-black/30"
+          showLangText={true}
         />
       </div>
     </div>

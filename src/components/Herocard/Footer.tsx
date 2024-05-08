@@ -9,6 +9,7 @@ const Footer = (props: {
   textColor?: string;
   selectBorderColor?: string;
   underline?: boolean;
+  showLangText?: boolean;
 }) => {
   return (
     <footer className={`p-6 ${props.className ? props.className : undefined}`}>
@@ -48,6 +49,7 @@ const Footer = (props: {
           borderColor={
             props.selectBorderColor ? props.selectBorderColor : undefined
           }
+          showText={props.showLangText ? props.showLangText : undefined}
         />
       </div>
     </footer>

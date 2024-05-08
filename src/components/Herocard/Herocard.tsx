@@ -1,4 +1,4 @@
-import HeroDataType from "../../data/HeroDataType";
+import HeroDataType from "../../data/DataType";
 import RegisterForm from "./RegisterForm";
 import OfferAd from "./OfferAd";
 import Card from "./Card";

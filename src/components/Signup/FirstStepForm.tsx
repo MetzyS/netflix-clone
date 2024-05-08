@@ -1,24 +1,24 @@
-import HeroDataType from "../../data/HeroDataType";
+import { Signup } from "../../data/DataType";
 import SingupDevices from "../../assets/signupDevices.png";
 
-const FirstStepForm = (props: { data: HeroDataType; onClick: () => void }) => {
+const FirstStepForm = (props: { data: Signup; onClick: () => void }) => {
+  console.log(props.data);
   return (
-    <>
+    <div className="max-w-[340px] m-auto sm:text-center">
       <img
         src={SingupDevices}
         alt=""
         className="mt-[100px] mb-10 mx-auto max-w-[250px]"
       />
-      <p className="mt-4 text-sm step mb-4 text-neutral-800">
-        ÉTAPE <span className="font-semibold">1</span> SUR{" "}
-        <span className="font-semibold">{props.data.signup.maxStep}</span>
+      <p className="mt-4 text-xs step mb-4 text-neutral-800 uppercase">
+        {props.data.stepWord[0]} <span className="font-semibold">1</span>{" "}
+        {props.data.stepWord[1]}{" "}
+        <span className="font-semibold">{props.data.maxStep}</span>
       </p>
-      <div className="flex flex-col items-center">
-        <h1 className="font-semibold text-3xl mb-4 text-neutral-800">
-          {props.data.signup.firstStepTitle}
-        </h1>
-        <p className="text-lg max-w-[300px] text-neutral-800">
-          {props.data.signup.firstStepDesc}
+      <div className="flex flex-col">
+        <h1 className="signup-title">{props.data.firstStepTitle}</h1>
+        <p className="text-lg text-neutral-800 sm:text-center">
+          {props.data.firstStepDesc}
         </p>
       </div>
       <button
@@ -26,9 +26,9 @@ const FirstStepForm = (props: { data: HeroDataType; onClick: () => void }) => {
         className="py-3 w-full text-white text-2xl rounded-md bg-[#e50914] hover:bg-[#f6121d] my-6"
         onClick={props.onClick}
       >
-        {props.data.signup.firstButton}
+        {props.data.firstButton}
       </button>
-    </>
+    </div>
   );
 };
 

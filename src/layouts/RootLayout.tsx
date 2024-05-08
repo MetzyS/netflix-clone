@@ -1,6 +1,6 @@
 import { Outlet, useOutletContext } from "react-router-dom";
 import { useState } from "react";
-import HeroDataType from "../data/HeroDataType";
+import HeroDataType from "../data/DataType";
 export type ContextType = {
   lang: string;
   data: HeroDataType;

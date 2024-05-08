@@ -40,6 +40,10 @@
   .logo-default {
     @apply w-24 lg:w-40 py-1;
   }
+
+  .signup-title {
+    @apply font-semibold text-3xl mb-4 text-neutral-800;
+  }
 }
 
 @layer utilities {

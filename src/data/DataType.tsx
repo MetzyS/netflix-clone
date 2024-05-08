@@ -29,20 +29,33 @@ type LoginFooter = {
 };
 type LoginFooterMap = Record<string, LoginFooter>;
 
+export type Form = {
+  text: string;
+  email: string;
+  password: string;
+  button: string;
+  autocomplete: string;
+  errorEmail: string;
+};
+
+export type Signup = {
+  stepWord: [string, string];
+  maxStep: string;
+  firstStepTitle: string;
+  firstStepDesc: string;
+  firstButton: string;
+  secondStepTitle: string;
+  secondStepDesc: string;
+  secondStepCheckbox: string;
+};
+
 type HeroDataType = {
   header: {
     button: string;
   };
   title: string;
   subtitle: string;
-  form: {
-    text: string;
-    email: string;
-    password: string;
-    button: string;
-    autocomplete: string;
-    errorEmail: string;
-  };
+  form: Form;
   offer: {
     title: string;
     subtitle: string;
@@ -65,12 +78,7 @@ type HeroDataType = {
     captchaLink: string;
   };
   loginFooter: LoginFooterMap;
-  signup: {
-    maxStep: string;
-    firstStepTitle: string;
-    firstStepDesc: string;
-    firstButton: string;
-  };
+  signup: Signup;
   signupFooterText: string;
   signupFooter: FooterMap;
 };

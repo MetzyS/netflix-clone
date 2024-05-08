@@ -2,15 +2,10 @@ import { MdArrowForwardIos } from "react-icons/md";
 import DefaultButton from "../ui/DefaultButton";
 import Input from "../Form/Input";
 import { Form, FormMethod } from "react-router-dom";
+import { Form as FormType } from "../../data/DataType";
 
 const RegisterForm = (props: {
-  data: {
-    text: string;
-    email: string;
-    button: string;
-    autocomplete: string;
-    errorEmail: string;
-  };
+  data: FormType;
   to: string;
   method?: FormMethod;
   onChange?: (value: string) => void;
