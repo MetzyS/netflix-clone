@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Separation from "../ui/Separation";
 import FadedBackground from "../Background/FadedBackground";
 import Header from "../Header/Header";
+import { useEffect } from "react";
 
 const Herocard = (props: {
   lang: string;
@@ -14,7 +15,9 @@ const Herocard = (props: {
   handleChangeBg: (value: boolean) => void;
   onChangeForm: (value: string) => void;
 }) => {
-  props.handleChangeBg(false);
+  useEffect(() => {
+    props.handleChangeBg(false);
+  }, [props.handleChangeBg]);
   return (
     <>
       <div className="w-screen overflow-hidden pr-4">

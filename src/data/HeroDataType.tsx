@@ -41,6 +41,7 @@ type HeroDataType = {
     password: string;
     button: string;
     autocomplete: string;
+    errorEmail: string;
   };
   offer: {
     title: string;

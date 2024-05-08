@@ -6,6 +6,7 @@ const DefaultButton = (props: {
   className?: string;
   onClick?: () => void;
   primary?: boolean;
+  disabled?: boolean;
   type?: "submit" | "reset" | "button" | undefined;
 }) => {
   let primary;
@@ -29,6 +30,7 @@ const DefaultButton = (props: {
         }` + className
       }
       onClick={props.onClick}
+      disabled={props.disabled ? props.disabled : undefined}
     >
       {props.text}
       {props.icon && props.icon}

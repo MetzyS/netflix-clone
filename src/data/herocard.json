@@ -10,7 +10,8 @@
       "email": "Adresse e-mail",
       "password": "Mot de passe",
       "button": "Commencer",
-      "autocomplete": "Adresse e-mail"
+      "autocomplete": "Adresse e-mail",
+      "errorEmail": "Veuillez saisir une adresse e-mail valide."
     },
     "offer": {
       "title": "Le Netflix que vous aimez pour juste 5,99€.",
@@ -257,7 +258,8 @@
       "email": "Email address",
       "password": "Password",
       "button": "Get started",
-      "autocomplete": "Email address"
+      "autocomplete": "Email address",
+      "errorEmail": "Please enter a valid email address."
     },
     "offer": {
       "title": "The Netflix you love for just EUR 5.99.",

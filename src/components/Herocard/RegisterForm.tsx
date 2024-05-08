@@ -9,6 +9,7 @@ const RegisterForm = (props: {
     email: string;
     button: string;
     autocomplete: string;
+    errorEmail: string;
   };
   to: string;
   method?: FormMethod;
@@ -23,6 +24,7 @@ const RegisterForm = (props: {
             type="email"
             label={props.data.email}
             onChange={props.onChange ? props.onChange : undefined}
+            errorEmail={props.data.errorEmail}
           />
           <DefaultButton
             type="submit"
