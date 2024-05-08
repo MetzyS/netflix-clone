@@ -8,6 +8,7 @@ const Footer = (props: {
   className?: string;
   textColor?: string;
   selectBorderColor?: string;
+  underline?: boolean;
 }) => {
   return (
     <footer className={`p-6 ${props.className ? props.className : undefined}`}>
@@ -31,7 +32,7 @@ const Footer = (props: {
                 props.textColor
                   ? props.textColor
                   : "hover:text-neutral-200 text-secondary"
-              } underline `}
+              } ${props.underline ? "underline" : "hover:underline"} `}
             >
               {item.title}
             </a>

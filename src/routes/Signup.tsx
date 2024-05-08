@@ -11,13 +11,13 @@ const Signup = () => {
       <Header
         content={data.header}
         selectLang={false}
-        className="border-b border-neutral-200"
+        className="border-b border-neutral-200 px-4 py-1"
         link="/login"
-        logoClassname="w-36 lg:w-40"
+        logoClassname="w-20 md:w-36 lg:w-40"
         showButton={false}
         transparentButton={true}
       />
-      <div className="max-w-[340px] m-auto text-center text-black pt-6 mb-32">
+      <div className="max-w-[340px] m-auto sm:text-center text-black mb-32 px-8">
         <img
           src={SingupDevices}
           alt=""

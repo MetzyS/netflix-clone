@@ -45,7 +45,7 @@ const Header = (props: {
   return (
     <>
       <header
-        className={`flex flex-wrap items-center relative p-6 justify-between gap-2 bg-white/0 ${
+        className={`flex flex-wrap items-center relative justify-between gap-2 bg-white/0 ${
           props.className ? props.className : ""
         }`}
       >
