@@ -40,6 +40,7 @@ const Input = (props: {
   const handleValidate = (e: FormEvent<HTMLInputElement>) => {
     if (props.type == "email") {
       setIsValid(emailValidation(e.currentTarget.value));
+      // console.log(emailValidation(e.currentTarget.value));
     }
   };
 
@@ -100,9 +101,14 @@ const Input = (props: {
         />
       </div>
       {!isValid && isValid != undefined && props.errorEmail && (
-        <p className="sm:absolute pt-2 text-sm flex items-center gap-2 text-left text-red-500">
-          {" "}
-          <RxCrossCircled className="size-5" />
+        <p
+          className={`${
+            props.white ? "" : "sm:absolute"
+          } pt-2 text-sm text-red-500`}
+        >
+          <span>
+            <RxCrossCircled className="inline mr-1 size-4" />
+          </span>
           {props.errorEmail}
         </p>
       )}

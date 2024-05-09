@@ -18,10 +18,18 @@ const SignupForm = (props: {
           {props.data.secondStepTitle}
         </h1>
         <p className="text-lg leading-tight">{props.data.secondStepDesc}</p>
-        <form action="" className="mt-6">
+        <form action="" className="flex flex-col mt-6 gap-3">
           <Input
             label={props.inputData.email}
+            errorEmail={props.inputData.errorEmail}
             type="email"
+            value={props.userEmail}
+            white={true}
+            autocomplete="off"
+          />
+          <Input
+            label={props.inputData.password}
+            type="password"
             value={props.userEmail}
             white={true}
             autocomplete="off"
