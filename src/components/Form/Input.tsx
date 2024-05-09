@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
 import { emailValidation } from "./InputValidation";
 
@@ -8,16 +8,39 @@ const Input = (props: {
   for?: string;
   errorEmail?: string;
   onChange?: (value: string) => void;
+  value?: string;
+  white?: boolean;
+  autocomplete?: string;
 }) => {
+  let inputColor: string;
+  let inputRing: string;
+
+  props.white
+    ? ((inputColor = "input-white"), (inputRing = "ring-white"))
+    : ((inputColor = "input-dark"), (inputRing = "ring-default"));
   const [isFocus, setIsFocus] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isValid, setIsValid] = useState<Boolean | undefined>(undefined);
+  const [value, setValue] = useState<string | undefined>(props.value);
 
+  useEffect(() => {
+    if (value != undefined && value != "") {
+      setIsEmpty(false);
+    }
+  }, [value]);
+
+  const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    if (props.onChange) {
+      setValue(e.currentTarget.value);
+      props.onChange(e.currentTarget.value);
+    } else {
+      setValue(e.currentTarget.value);
+    }
+  };
   const handleValidate = (e: FormEvent<HTMLInputElement>) => {
     if (props.type == "email") {
       setIsValid(emailValidation(e.currentTarget.value));
     }
-    console.log(isValid);
   };
 
   const handleInputFocus = () => {
@@ -31,22 +54,16 @@ const Input = (props: {
     }
   };
 
-  const handleChange = (e: FormEvent<HTMLInputElement>) => {
-    if (props.onChange) {
-      props.onChange(e.currentTarget.value);
-    }
-  };
-
   return (
     <div className="w-full relative">
       <div
         className={`relative flex flex-col border ${
           !isValid && isValid != undefined
             ? "border-red-600"
+            : isValid
+            ? "border-green-600"
             : "border-neutral-500"
-        } ${
-          isValid && "border-green-600"
-        } rounded-md bg-blue-300/15 px-4 py-1  sm:w-full justify-center ring-default group/input backdrop-blur-[2px]`}
+        } rounded-md ${inputColor} px-4 py-1  sm:w-full justify-center ${inputRing} group/input backdrop-blur-[2px]`}
       >
         {isEmpty ? (
           <label
@@ -67,9 +84,10 @@ const Input = (props: {
         )}
 
         <input
+          value={value}
           type={props.type}
           name={props.type}
-          autoComplete={props.type}
+          autoComplete={props.autocomplete}
           required
           className="pt-4 bg-transparent border-none outline-none autofill-transparent"
           onFocus={handleInputFocus}

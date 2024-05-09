@@ -28,7 +28,11 @@ const Signup = () => {
           <FirstStepForm data={data.signup} onClick={handleFormStep} />
         )}
         {formStep == 1 && (
-          <SignupForm data={data.signup} userEmail={userEmail} />
+          <SignupForm
+            data={data.signup}
+            userEmail={userEmail}
+            inputData={data.form}
+          />
         )}
       </div>
       <div>
