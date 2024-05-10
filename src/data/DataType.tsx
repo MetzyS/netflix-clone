@@ -48,6 +48,8 @@ export type Signup = {
   secondStepTitle: string;
   secondStepDesc: string;
   secondStepCheckbox: string;
+  secondStepBackTitle: string;
+  secondStepBackDesc: string;
 };
 
 type HeroDataType = {

@@ -34,6 +34,11 @@ const Input = (props: {
   const [isValid, setIsValid] = useState<Boolean | undefined>(undefined);
   const [value, setValue] = useState<string | undefined>(props.value);
 
+  props.value != "" &&
+    props.value != undefined &&
+    props.onChange &&
+    props.onChange(props.value);
+
   useEffect(() => {
     if (value != undefined && value != "") {
       setIsEmpty(false);
@@ -53,8 +58,6 @@ const Input = (props: {
         setIsValid(emailValidation(e.currentTarget.value));
         break;
       case "password":
-        console.log("password: " + e.currentTarget.value);
-        console.log(passwordValidation(e.currentTarget.value));
         setIsValid(passwordValidation(e.currentTarget.value));
     }
   };

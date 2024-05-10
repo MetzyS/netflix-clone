@@ -1,11 +1,30 @@
+import { FormEvent, useState } from "react";
 import { Form as FormType, Signup } from "../../data/DataType";
-import Input from "./Input";
+import Input from "../Form/Input";
+import { Form } from "react-router-dom";
 
 const SignupForm = (props: {
   data: Signup;
   userEmail: string;
   inputData: FormType;
+  isCreated: boolean;
+  handleCreateAccount: (value: boolean) => void;
+  onSubmit: (newData: { email: string; password: string }) => void;
 }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChangeEmail = (value: string) => {
+    setEmail(value);
+  };
+  const handleChangePassword = (value: string) => {
+    setPassword(value);
+  };
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(email, password);
+    props.onSubmit({ email: email, password: password });
+  };
   return (
     <>
       <div className="flex flex-col mt-12 text-left max-w-[440px] m-auto">
@@ -18,7 +37,15 @@ const SignupForm = (props: {
           {props.data.secondStepTitle}
         </h1>
         <p className="text-lg leading-tight">{props.data.secondStepDesc}</p>
-        <form action="" className="flex flex-col mt-6 gap-3">
+        <Form
+          action="/signup"
+          method="post"
+          className="flex flex-col mt-6 gap-3"
+          onSubmit={(e) => {
+            props.handleCreateAccount(true);
+            handleSubmit(e);
+          }}
+        >
           <Input
             type="email"
             label={props.inputData.email}
@@ -26,6 +53,7 @@ const SignupForm = (props: {
             value={props.userEmail}
             white={true}
             autocomplete="off"
+            onChange={handleChangeEmail}
           />
           <Input
             type="password"
@@ -34,6 +62,7 @@ const SignupForm = (props: {
             value=""
             white={true}
             autocomplete="off"
+            onChange={handleChangePassword}
           />
           <label htmlFor="mailinglist">
             <input
@@ -44,7 +73,13 @@ const SignupForm = (props: {
             />
             <span>{props.inputData.specialOfferEmailCheckbox}</span>
           </label>
-        </form>
+          <button
+            type="submit"
+            className="py-3 w-full text-white text-2xl rounded-md bg-[#e50914] hover:bg-[#f6121d] my-6"
+          >
+            {props.data.firstButton}
+          </button>
+        </Form>
       </div>
     </>
   );

@@ -2,15 +2,35 @@ import Header from "../components/Header/Header";
 import { useDataContext } from "../layouts/RootLayout";
 import Footer from "../components/Herocard/Footer";
 import FirstStepForm from "../components/Signup/FirstStepForm";
-import { useState } from "react";
-import SignupForm from "../components/Form/SignupForm";
+import { useEffect, useState } from "react";
+import SignupForm from "../components/Signup/SignupForm";
+import SignupBack from "../components/Signup/SignupBack";
 
 const Signup = () => {
-  const { data, userEmail, handleChangeBg } = useDataContext();
-  handleChangeBg(true);
+  const {
+    data,
+    userEmail,
+    handleUserEmail,
+    handleChangeBg,
+    handleCreateAccount,
+    isCreated,
+  } = useDataContext();
+  useEffect(() => {
+    handleChangeBg(true);
+  }, [handleChangeBg]);
   const [formStep, setFormStep] = useState(0);
-  const handleFormStep = () => {
-    setFormStep(1);
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleFormSubmit = (newData: { email: string; password: string }) => {
+    setUserData((prevData) => ({ ...prevData, ...newData }));
+    handleUserEmail(newData.email);
+    handleFormStep(2);
+    console.log(newData);
+  };
+  const handleFormStep = (value: number) => {
+    setFormStep(value);
   };
   return (
     <div className="transition-all">
@@ -25,13 +45,23 @@ const Signup = () => {
       />
       <div className="text-black mb-32 px-8">
         {formStep == 0 && (
-          <FirstStepForm data={data.signup} onClick={handleFormStep} />
+          <FirstStepForm data={data.signup} onClick={() => handleFormStep(1)} />
         )}
         {formStep == 1 && (
           <SignupForm
             data={data.signup}
             userEmail={userEmail}
             inputData={data.form}
+            isCreated={isCreated}
+            handleCreateAccount={handleCreateAccount}
+            onSubmit={handleFormSubmit}
+          />
+        )}
+        {formStep == 2 && (
+          <SignupBack
+            data={data.signup}
+            handleFormStep={handleFormStep}
+            userData={userData}
           />
         )}
       </div>

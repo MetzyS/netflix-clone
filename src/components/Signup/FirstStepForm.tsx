@@ -2,7 +2,6 @@ import { Signup } from "../../data/DataType";
 import SingupDevices from "../../assets/signupDevices.png";
 
 const FirstStepForm = (props: { data: Signup; onClick: () => void }) => {
-  console.log(props.data);
   return (
     <div className="max-w-[340px] m-auto sm:text-center">
       <img
