@@ -35,6 +35,15 @@ const SignupForm = (props: {
             white={true}
             autocomplete="off"
           />
+          <label htmlFor="mailinglist">
+            <input
+              type="checkbox"
+              name="mailinglist"
+              id="mailinglist"
+              className="mr-3 checkbox checkbox-white inline"
+            />
+            <span>{props.inputData.specialOfferEmailCheckbox}</span>
+          </label>
         </form>
       </div>
     </>

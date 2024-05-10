@@ -38,8 +38,16 @@
     @apply w-full max-w-[1024px] bg-neutral-800 px-6 py-5 text-lg border-t border-black;
   }
 
+  .checkbox {
+    @apply cursor-pointer relative appearance-none size-5 rounded-sm border;
+  }
+
   .checkbox-default {
-    @apply cursor-pointer relative appearance-none size-5 rounded-sm border border-neutral-500 hover:border-neutral-100 checked:bg-neutral-100 checked:border-neutral-100 checked:hover:bg-neutral-400 checked:hover:border-neutral-400;
+    @apply border-neutral-500 hover:border-neutral-100 checked:bg-neutral-100 checked:border-neutral-100 checked:hover:bg-neutral-400 checked:hover:border-neutral-400;
+  }
+
+  .checkbox-white {
+    @apply border-neutral-400 hover:border-black checked:bg-black checked:border-black checked:hover:bg-neutral-700 checked:hover:border-neutral-700;
   }
 
   .logo-default {
@@ -101,14 +109,21 @@ body {
   left: 50%;
   transform: translate(-50%, 50%);
 }
-.checkbox-default:checked:after {
+.checkbox:checked:after {
   content: "✔";
-  color: black;
   font-weight: bold;
   position: absolute;
   font-size: 1rem;
   top: -5%;
   left: 15%;
+}
+
+.checkbox-white:checked:after {
+  color: white;
+}
+
+.checkbox-default:checked:after {
+  color: black;
 }
 
 input:-webkit-autofill,

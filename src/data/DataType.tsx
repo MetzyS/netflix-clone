@@ -36,6 +36,7 @@ export type Form = {
   button: string;
   autocomplete: string;
   error: string[];
+  specialOfferEmailCheckbox: string;
 };
 
 export type Signup = {

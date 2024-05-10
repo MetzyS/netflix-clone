@@ -116,11 +116,7 @@ const Input = (props: {
         />
       </div>
       {!isValid && isValid != undefined && (
-        <p
-          className={`${
-            props.white ? "" : "sm:absolute"
-          } pt-2 text-sm text-red-500`}
-        >
+        <p className={`text-left pt-2 text-sm text-red-500`}>
           <span>
             <RxCrossCircled className="inline mr-1 size-4" />
           </span>

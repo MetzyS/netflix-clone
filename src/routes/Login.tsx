@@ -22,8 +22,16 @@ const Login = () => {
           <div className="px-6 bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto">
             <h1 className="text-3xl font-bold">{data.login.title}</h1>
             <Form action="" className="flex flex-col gap-4 mt-5">
-              <Input type="email" label={data.form.email} />
-              <Input type="password" label={data.form.password} />
+              <Input
+                type="email"
+                label={data.form.email}
+                error={data.form.error}
+              />
+              <Input
+                type="password"
+                label={data.form.password}
+                error={data.form.error}
+              />
               <div>
                 <DefaultButton
                   text={data.login.loginButton}
@@ -47,7 +55,7 @@ const Login = () => {
                   type="checkbox"
                   name="rememberMe"
                   id="rememberMe"
-                  className="mr-4 checkbox-default"
+                  className="mr-4 checkbox checkbox-default"
                 />
                 <p className="">{data.login.rememberMe}</p>
               </label>
