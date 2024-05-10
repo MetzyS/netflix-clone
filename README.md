@@ -1,3 +1,4 @@
-# ! Projet en cours (30/04/2024) !
+# Projet en cours..
 
-### actuellement: landing page mobile.
+Landing page ("/"): ok, <br/>
+Singup page ("/signup"): en cours
