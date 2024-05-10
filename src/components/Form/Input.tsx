@@ -54,7 +54,7 @@ const Input = (props: {
         break;
       case "password":
         console.log("password: " + e.currentTarget.value);
-        console.log(setIsValid(passwordValidation(e.currentTarget.value)));
+        console.log(passwordValidation(e.currentTarget.value));
         setIsValid(passwordValidation(e.currentTarget.value));
     }
   };
