@@ -15,33 +15,26 @@ const Header = (props: {
   className?: string;
   logoClassname?: string;
 }) => {
-  let selectLang;
+  let selectLang = false;
   if (props.selectLang == undefined || props.selectLang == true) {
     selectLang = true;
-  } else {
-    selectLang = false;
   }
 
-  let showButton;
+  let showButton = false;
   if (props.showButton == undefined || props.showButton == true) {
     showButton = true;
-  } else {
-    showButton = false;
   }
 
-  let link;
-  if (props.link == undefined || props.link == "") {
-    link = "/";
-  } else {
+  let link = "/";
+  if (props.link != undefined) {
     link = props.link;
   }
 
-  let logoClassname;
-  if (props.logoClassname == undefined || props.logoClassname == "") {
-    logoClassname = "logo-default";
-  } else {
+  let logoClassname = "logo-default";
+  if (props.logoClassname != undefined) {
     logoClassname = props.logoClassname;
   }
+
   return (
     <>
       <header
