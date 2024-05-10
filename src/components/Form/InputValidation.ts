@@ -5,3 +5,15 @@ export function emailValidation(value: string): boolean {
   }
   return isValid;
 }
+
+export function passwordValidation(value: string): boolean {
+  let isValid = false;
+  if (
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/i.test(
+      value
+    )
+  ) {
+    isValid = true;
+  }
+  return isValid;
+}

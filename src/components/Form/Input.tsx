@@ -1,23 +1,34 @@
 import { FormEvent, useEffect, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
-import { emailValidation } from "./InputValidation";
+import { emailValidation, passwordValidation } from "./InputValidation";
 
 const Input = (props: {
   label: string;
   type: string;
   for?: string;
-  errorEmail?: string;
+  error: string[];
   onChange?: (value: string) => void;
   value?: string;
   white?: boolean;
   autocomplete?: string;
 }) => {
-  let inputColor: string;
-  let inputRing: string;
+  // gestion couleur selon bg dark/white
+  let inputColor = "input-dark";
+  let inputRing = "ring-default";
+  if (props.white) (inputColor = "input-white"), (inputRing = "ring-white");
 
-  props.white
-    ? ((inputColor = "input-white"), (inputRing = "ring-white"))
-    : ((inputColor = "input-dark"), (inputRing = "ring-default"));
+  let errormessage;
+  switch (props.type) {
+    case "email":
+      errormessage = props.error[0];
+      break;
+    case "password":
+      errormessage = props.error[1];
+      break;
+    default:
+      errormessage = props.error[0];
+  }
+
   const [isFocus, setIsFocus] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isValid, setIsValid] = useState<Boolean | undefined>(undefined);
@@ -30,17 +41,21 @@ const Input = (props: {
   }, [value]);
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
+    setValue(e.currentTarget.value);
     if (props.onChange) {
-      setValue(e.currentTarget.value);
       props.onChange(e.currentTarget.value);
-    } else {
-      setValue(e.currentTarget.value);
     }
   };
+
   const handleValidate = (e: FormEvent<HTMLInputElement>) => {
-    if (props.type == "email") {
-      setIsValid(emailValidation(e.currentTarget.value));
-      // console.log(emailValidation(e.currentTarget.value));
+    switch (props.type) {
+      case "email":
+        setIsValid(emailValidation(e.currentTarget.value));
+        break;
+      case "password":
+        console.log("password: " + e.currentTarget.value);
+        console.log(setIsValid(passwordValidation(e.currentTarget.value)));
+        setIsValid(passwordValidation(e.currentTarget.value));
     }
   };
 
@@ -100,7 +115,7 @@ const Input = (props: {
           }}
         />
       </div>
-      {!isValid && isValid != undefined && props.errorEmail && (
+      {!isValid && isValid != undefined && (
         <p
           className={`${
             props.white ? "" : "sm:absolute"
@@ -109,7 +124,7 @@ const Input = (props: {
           <span>
             <RxCrossCircled className="inline mr-1 size-4" />
           </span>
-          {props.errorEmail}
+          {errormessage}
         </p>
       )}
     </div>

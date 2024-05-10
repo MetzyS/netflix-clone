@@ -35,7 +35,7 @@ export type Form = {
   password: string;
   button: string;
   autocomplete: string;
-  errorEmail: string;
+  error: string[];
 };
 
 export type Signup = {

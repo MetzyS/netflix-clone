@@ -19,7 +19,7 @@ const RegisterForm = (props: {
             type="email"
             label={props.data.email}
             onChange={props.onChange ? props.onChange : undefined}
-            errorEmail={props.data.errorEmail}
+            error={props.data.error}
           />
           <DefaultButton
             type="submit"
