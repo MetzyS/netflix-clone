@@ -1,17 +1,20 @@
 import { Outlet, useOutletContext } from "react-router-dom";
-import { useState } from "react";
-import HeroDataType from "../data/DataType";
-export type ContextType = {
-  lang: string;
-  data: HeroDataType;
-  userEmail: string;
-  isCreated: boolean;
-  handleChangeLang: (value: string) => void;
-  handleChangeBg: (value: boolean) => void;
-  handleUserEmail: (value: string) => void;
-  handleCreateAccount: (value: boolean) => void;
-};
+import { useEffect, useState } from "react";
+import { ContextType } from "../types/context";
+import { UserType } from "../types/user";
+
 const RootLayout = (props: { data: any }) => {
+  const [isConnected, setIsConnected] = useState(false);
+  const [user, setUser] = useState<UserType>();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setIsConnected(true);
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const [lang, setLang] = useState<string>("fr");
   const [data, setData] = useState(props.data.fr);
   const [bgWhite, setBgWhite] = useState(false);
@@ -46,7 +49,10 @@ const RootLayout = (props: { data: any }) => {
 
   const handleCreateAccount = (value: boolean) => {
     setIsCreated(value);
-    console.log(isCreated);
+  };
+
+  const handleConnected = (value: boolean) => {
+    setIsConnected(value);
   };
   return (
     <>
@@ -59,6 +65,8 @@ const RootLayout = (props: { data: any }) => {
               handleChangeBg,
               handleUserEmail,
               handleCreateAccount,
+              handleConnected,
+              isConnected,
               userEmail,
               isCreated,
               data,

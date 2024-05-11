@@ -1,17 +1,17 @@
-import HeroDataType from "../../data/DataType";
+import { useEffect } from "react";
+import DataType from "../../types/data";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import RegisterForm from "./RegisterForm";
 import OfferAd from "./OfferAd";
 import Card from "./Card";
 import Faq from "./Faq";
-import Footer from "./Footer";
 import Separation from "../ui/Separation";
 import FadedBackground from "../Background/FadedBackground";
-import Header from "../Header/Header";
-import { useEffect } from "react";
 
-const Herocard = (props: {
+const HeroPage = (props: {
   lang: string;
-  content: HeroDataType;
+  content: DataType;
   handleChangeBg: (value: boolean) => void;
   onChangeForm: (value: string) => void;
 }) => {
@@ -72,4 +72,4 @@ const Herocard = (props: {
   );
 };
 
-export default Herocard;
+export default HeroPage;

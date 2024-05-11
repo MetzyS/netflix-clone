@@ -1,8 +1,8 @@
-import Header from "../components/Header/Header";
 import { useDataContext } from "../layouts/RootLayout";
-import Footer from "../components/Herocard/Footer";
-import FirstStepForm from "../components/Signup/FirstStepForm";
 import { useEffect, useState } from "react";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import FirstStepForm from "../components/Signup/FirstStepForm";
 import SignupForm from "../components/Signup/SignupForm";
 import SignupBack from "../components/Signup/SignupBack";
 
@@ -57,7 +57,7 @@ const Signup = () => {
             onSubmit={handleFormSubmit}
           />
         )}
-        {formStep == 2 && (
+        {userData.email.length > 5 && userData.password.length >= 8 && (
           <SignupBack
             data={data.signup}
             handleFormStep={handleFormStep}

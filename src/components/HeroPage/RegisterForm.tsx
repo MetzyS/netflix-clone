@@ -2,7 +2,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 import DefaultButton from "../ui/DefaultButton";
 import Input from "../Form/Input";
 import { Form, FormMethod } from "react-router-dom";
-import { Form as FormType } from "../../data/DataType";
+import { Form as FormType } from "../../types/data";
 
 const RegisterForm = (props: {
   data: FormType;

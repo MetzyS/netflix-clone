@@ -1,4 +1,4 @@
-import { Signup } from "../../data/DataType";
+import { Signup } from "../../types/data";
 import SingupDevices from "../../assets/signupDevices.png";
 
 const FirstStepForm = (props: { data: Signup; onClick: () => void }) => {

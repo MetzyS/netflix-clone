@@ -13,6 +13,7 @@ const Input = (props: {
   autocomplete?: string;
 }) => {
   // gestion couleur selon bg dark/white
+  // let defaultValue = "";
   let inputColor = "input-dark";
   let inputRing = "ring-default";
   if (props.white) (inputColor = "input-white"), (inputRing = "ring-white");
@@ -32,7 +33,7 @@ const Input = (props: {
   const [isFocus, setIsFocus] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isValid, setIsValid] = useState<Boolean | undefined>(undefined);
-  const [value, setValue] = useState<string | undefined>(props.value);
+  const [value, setValue] = useState<string>(props.value ? props.value : "");
 
   props.value != "" &&
     props.value != undefined &&
@@ -103,7 +104,9 @@ const Input = (props: {
         )}
 
         <input
-          value={value}
+          value={value ? value : ""}
+          // value={value}
+          // value={defaultValue}
           type={props.type}
           name={props.type}
           autoComplete={props.autocomplete}

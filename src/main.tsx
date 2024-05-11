@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./routes/Root.tsx";
 import "./index.css";
+import Root from "./routes/Root.tsx";
 import ErrorPage from "./routes/ErrorPage.tsx";
 import Signup from "./routes/Signup.tsx";
 import Login from "./routes/Login.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
-import Data from "./data/herocard.json";
+import Data from "./data/data.json";
 
 const router = createBrowserRouter([
   {

@@ -1,20 +1,14 @@
 import { useState } from "react";
 import { IoAdd } from "react-icons/io5";
+import { FaqType } from "../../types/data";
 
-const Faq = (props: {
-  data: {
-    id: string;
-    question: string;
-    answer: string;
-  };
-}) => {
+const Faq = (props: { data: FaqType }) => {
   const [isHidden, setIsHidden] = useState(true);
   const handleHidden = () => {
     setIsHidden(!isHidden);
   };
-  // const answer = JSON.stringify(props.data.answer).replace(/\\n/g, "\n");
+
   const answer = props.data.answer.replace(/\\n/g, "\n");
-  // console.log(props.data);
   return (
     <div className="flex flex-col items-center px-6 mb-2">
       <button

@@ -1,4 +1,4 @@
-import { Signup } from "../../data/DataType";
+import { Signup } from "../../types/data";
 
 const SignupBack = (props: {
   data: Signup;

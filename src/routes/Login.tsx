@@ -3,7 +3,7 @@ import { useDataContext } from "../layouts/RootLayout";
 import FadedBackground from "../components/Background/FadedBackground";
 import Input from "../components/Form/Input";
 import DefaultButton from "../components/ui/DefaultButton";
-import Footer from "../components/Herocard/Footer";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
 const Login = () => {

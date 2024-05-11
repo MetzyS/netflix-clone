@@ -1,10 +1,10 @@
-import Herocard from "../components/Herocard/Herocard";
 import { useDataContext } from "../layouts/RootLayout";
+import HeroPage from "../components/HeroPage/HeroPage";
 const Root = () => {
   const { lang, data, handleChangeBg, handleUserEmail } = useDataContext();
   return (
     <>
-      <Herocard
+      <HeroPage
         lang={lang}
         content={data}
         handleChangeBg={handleChangeBg}

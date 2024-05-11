@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Form as FormType, Signup } from "../../data/DataType";
+import { Form as FormType, Signup } from "../../types/data";
 import Input from "../Form/Input";
 import { Form } from "react-router-dom";
 
