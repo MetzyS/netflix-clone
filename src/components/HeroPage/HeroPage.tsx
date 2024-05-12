@@ -12,6 +12,7 @@ import FadedBackground from "../Background/FadedBackground";
 const HeroPage = (props: {
   lang: string;
   content: DataType;
+  userEmail?: string;
   handleChangeBg: (value: boolean) => void;
   onChangeForm: (value: string) => void;
 }) => {
@@ -37,8 +38,10 @@ const HeroPage = (props: {
               </h2>
               <RegisterForm
                 data={props.content.form}
-                to="/signup"
+                // to="/signup"
+                to=""
                 onChange={props.onChangeForm}
+                userEmail={props.userEmail}
               />
             </div>
           </div>
@@ -63,6 +66,7 @@ const HeroPage = (props: {
             data={props.content.form}
             to="/signup"
             onChange={props.onChangeForm}
+            userEmail={props.userEmail}
           />
           <Separation />
         </div>

@@ -1,18 +1,37 @@
 import { MdArrowForwardIos } from "react-icons/md";
 import DefaultButton from "../ui/DefaultButton";
 import Input from "../Form/Input";
-import { Form, FormMethod } from "react-router-dom";
+import { Form, FormMethod, useNavigate } from "react-router-dom";
 import { Form as FormType } from "../../types/data";
+import { useDataContext } from "../../layouts/RootLayout";
+import { FormEvent } from "react";
 
 const RegisterForm = (props: {
   data: FormType;
   to: string;
   method?: FormMethod;
+  userEmail?: string;
   onChange?: (value: string) => void;
 }) => {
+  const navigate = useNavigate();
+  const { isLoading, handleSubmitRegister } = useDataContext();
+  const onSubmitFunc = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (props.userEmail) {
+      const test = await handleSubmitRegister(props.userEmail);
+      {
+        test ? navigate("/login") : navigate("/signup");
+      }
+    }
+  };
+
   return (
     <div className="mt-6 mx-auto px-8 max-w-[770px]">
-      <Form action={props.to} method={props.method ? props.method : undefined}>
+      <Form
+        action={props.to}
+        method={props.method ? props.method : undefined}
+        onSubmit={onSubmitFunc}
+      >
         <h3 className="text-base leading-normal">{props.data.text}</h3>
         <div className="flex flex-col sm:flex-row justify-center sm:justify-normal mt-4 gap-4">
           <Input
@@ -20,6 +39,8 @@ const RegisterForm = (props: {
             label={props.data.email}
             onChange={props.onChange ? props.onChange : undefined}
             error={props.data.error}
+            value={props.userEmail}
+            isLoading={isLoading}
           />
           <DefaultButton
             type="submit"

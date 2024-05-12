@@ -58,14 +58,17 @@ const RootLayout = (props: { data: any }) => {
     setIsConnected(value);
   };
 
-  const handleSubmitRegister = async (value: string) => {
+  const handleSubmitRegister = async (value: string): Promise<Boolean> => {
     // penser à créer component spin loader
     setIsLoading(true);
     const userExists = await checkEmail(value);
-    if (userExists) {
-      // gestion => l'email possède déjà un compte
-    }
+    // if (userExists) {
+    // console.log("user exist: " + userExists);
+    // gestion => l'email possède déjà un compte
+    // }
+    console.log("user exist: " + userExists);
     setIsLoading(false);
+    return userExists;
   };
   return (
     <>
@@ -80,6 +83,7 @@ const RootLayout = (props: { data: any }) => {
               handleCreateAccount,
               handleConnected,
               handleSubmitRegister,
+              isLoading,
               isConnected,
               userEmail,
               isCreated,

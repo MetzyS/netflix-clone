@@ -1,7 +1,8 @@
 import { useDataContext } from "../layouts/RootLayout";
 import HeroPage from "../components/HeroPage/HeroPage";
 const Root = () => {
-  const { lang, data, handleChangeBg, handleUserEmail } = useDataContext();
+  const { lang, data, userEmail, handleChangeBg, handleUserEmail } =
+    useDataContext();
   return (
     <>
       <HeroPage
@@ -9,6 +10,7 @@ const Root = () => {
         content={data}
         handleChangeBg={handleChangeBg}
         onChangeForm={handleUserEmail}
+        userEmail={userEmail}
       />
     </>
   );

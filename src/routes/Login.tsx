@@ -7,7 +7,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
 const Login = () => {
-  const { data, handleChangeBg } = useDataContext();
+  const { data, handleChangeBg, userEmail } = useDataContext();
   handleChangeBg(false);
   return (
     <>
@@ -26,6 +26,7 @@ const Login = () => {
                 type="email"
                 label={data.form.email}
                 error={data.form.error}
+                value={userEmail}
               />
               <Input
                 type="password"

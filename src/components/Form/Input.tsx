@@ -11,9 +11,9 @@ const Input = (props: {
   value?: string;
   white?: boolean;
   autocomplete?: string;
+  isLoading?: boolean;
 }) => {
   // gestion couleur selon bg dark/white
-  // let defaultValue = "";
   let inputColor = "input-dark";
   let inputRing = "ring-default";
   if (props.white) (inputColor = "input-white"), (inputRing = "ring-white");
@@ -75,61 +75,67 @@ const Input = (props: {
   };
 
   return (
-    <div className="w-full relative">
-      <div
-        className={`relative flex flex-col border ${
-          !isValid && isValid != undefined
-            ? "border-red-600"
-            : isValid
-            ? "border-green-600"
-            : "border-neutral-500"
-        } rounded-md ${inputColor} px-4 py-1  sm:w-full justify-center ${inputRing} group/input backdrop-blur-[2px]`}
-      >
-        {isEmpty ? (
-          <label
-            htmlFor={`input-${props.type}`}
-            className={`absolute pointer-events-none text-start text-gray-400 ${
-              isFocus ? "top-0 text-xs" : "top-2.5 text-base"
-            } `}
+    <>
+      {props.isLoading ? (
+        <div>LOADING</div>
+      ) : (
+        <div className="w-full relative">
+          <div
+            className={`relative flex flex-col border ${
+              !isValid && isValid != undefined
+                ? "border-red-600"
+                : isValid
+                ? "border-green-600"
+                : "border-neutral-500"
+            } rounded-md ${inputColor} px-4 py-1  sm:w-full justify-center ${inputRing} group/input backdrop-blur-[2px]`}
           >
-            {props.label}
-          </label>
-        ) : (
-          <label
-            htmlFor={`input-${props.type}`}
-            className={`absolute pointer-events-none text-start text-gray-400 top-0 text-xs`}
-          >
-            {props.label}
-          </label>
-        )}
+            {isEmpty ? (
+              <label
+                htmlFor={`input-${props.type}`}
+                className={`absolute pointer-events-none text-start text-gray-400 ${
+                  isFocus ? "top-0 text-xs" : "top-2.5 text-base"
+                } `}
+              >
+                {props.label}
+              </label>
+            ) : (
+              <label
+                htmlFor={`input-${props.type}`}
+                className={`absolute pointer-events-none text-start text-gray-400 top-0 text-xs`}
+              >
+                {props.label}
+              </label>
+            )}
 
-        <input
-          value={value ? value : ""}
-          // value={value}
-          // value={defaultValue}
-          type={props.type}
-          name={props.type}
-          autoComplete={props.autocomplete}
-          required
-          className="pt-4 bg-transparent border-none outline-none autofill-transparent"
-          onFocus={handleInputFocus}
-          onBlur={handleInputFocus}
-          onChange={(e) => {
-            handleChange(e);
-            handleEmptyInput(e);
-            handleValidate(e);
-          }}
-        />
-      </div>
-      {!isValid && isValid != undefined && (
-        <p className={`text-left pt-2 text-sm text-red-500`}>
-          <span>
-            <RxCrossCircled className="inline mr-1 size-4" />
-          </span>
-          {errormessage}
-        </p>
+            <input
+              value={value ? value : ""}
+              // value={value}
+              // value={defaultValue}
+              type={props.type}
+              name={props.type}
+              autoComplete={props.autocomplete}
+              required
+              className="pt-4 bg-transparent border-none outline-none autofill-transparent"
+              onFocus={handleInputFocus}
+              onBlur={handleInputFocus}
+              onChange={(e) => {
+                handleChange(e);
+                handleEmptyInput(e);
+                handleValidate(e);
+              }}
+            />
+          </div>
+          {!isValid && isValid != undefined && (
+            <p className={`text-left pt-2 text-sm text-red-500`}>
+              <span>
+                <RxCrossCircled className="inline mr-1 size-4" />
+              </span>
+              {errormessage}
+            </p>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 export default Input;
