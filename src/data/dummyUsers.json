@@ -1,0 +1,56 @@
+{
+  "0": {
+    "id": 0,
+    "email": "example@mail.com",
+    "username": "TheBingeWatcher",
+    "fullName": "John Doe",
+    "avatarUrl": "",
+    "profiles": {
+      "0": {
+        "id": 0,
+        "username": "Titi",
+        "avatarUrl": "",
+        "isAdult": false
+      },
+      "1": {
+        "id": 0,
+        "username": "Lulu",
+        "avatarUrl": "",
+        "isAdult": true
+      },
+      "2": {
+        "id": 0,
+        "username": "Nana",
+        "avatarUrl": "",
+        "isAdult": true
+      }
+    }
+  },
+  "1": {
+    "id": 0,
+    "email": "test@mail.com",
+    "username": "LedZepp",
+    "fullName": "Robert Plant",
+    "avatarUrl": "",
+    "profiles": {
+      "0": {
+        "id": 0,
+        "username": "JimmyPage",
+        "avatarUrl": "",
+        "isAdult": true
+      },
+      "1": {
+        "id": 0,
+        "username": "JohnBonham",
+        "avatarUrl": "",
+        "isAdult": true
+      },
+      "2": {
+        "id": 0,
+        "username": "JohnPaul",
+        "avatarUrl": "",
+        "isAdult": true
+      }
+    }
+  }
+}

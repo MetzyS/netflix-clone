@@ -2,6 +2,7 @@ import { Outlet, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserType } from "../types/user";
+import { checkEmail } from "../functions/checkEmail";
 
 const RootLayout = (props: { data: any }) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -20,6 +21,8 @@ const RootLayout = (props: { data: any }) => {
   const [bgWhite, setBgWhite] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [isCreated, setIsCreated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleChangeLang = (value: string) => {
     setLang(value);
     switch (value) {
@@ -54,6 +57,16 @@ const RootLayout = (props: { data: any }) => {
   const handleConnected = (value: boolean) => {
     setIsConnected(value);
   };
+
+  const handleSubmitRegister = async (value: string) => {
+    // penser à créer component spin loader
+    setIsLoading(true);
+    const userExists = await checkEmail(value);
+    if (userExists) {
+      // gestion => l'email possède déjà un compte
+    }
+    setIsLoading(false);
+  };
   return (
     <>
       <main className={bgWhite ? "bg-white" : undefined}>
@@ -66,6 +79,7 @@ const RootLayout = (props: { data: any }) => {
               handleUserEmail,
               handleCreateAccount,
               handleConnected,
+              handleSubmitRegister,
               isConnected,
               userEmail,
               isCreated,

@@ -11,4 +11,5 @@ export type ContextType = {
   handleUserEmail: (value: string) => void;
   handleCreateAccount: (value: boolean) => void;
   handleConnected: (value: boolean) => void;
+  handleSubmitRegister: (value: string) => void;
 };

@@ -1,10 +1,9 @@
 export type UserProfile = {
   id: number;
   username: string;
+  avatarUrl?: string;
   isAdult: boolean;
 };
-
-type UserProfileMap = Record<number, UserProfile>;
 
 export type UserType = {
   id: number;
@@ -12,5 +11,7 @@ export type UserType = {
   email: string;
   fullName: string;
   avatarUrl?: string;
-  profiles: UserProfileMap;
+  profiles: Record<number, UserProfile>;
 };
+
+export type Users = Record<string, UserType>;
