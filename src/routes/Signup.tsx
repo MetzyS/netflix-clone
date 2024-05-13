@@ -5,6 +5,8 @@ import Footer from "../components/Footer/Footer";
 import FirstStepForm from "../components/Signup/FirstStepForm";
 import SignupForm from "../components/Signup/SignupForm";
 import SignupBack from "../components/Signup/SignupBack";
+import FirstStepPlanDesc from "../components/Signup/FirstStep/FirstStepPlanDesc";
+import FirstStepPlanChoice from "../components/Signup/FirstStep/FirstStepPlanChoice";
 
 const Signup = () => {
   const {
@@ -14,6 +16,7 @@ const Signup = () => {
     handleChangeBg,
     handleCreateAccount,
     isCreated,
+    isConnected,
   } = useDataContext();
   useEffect(() => {
     handleChangeBg(true);
@@ -33,51 +36,67 @@ const Signup = () => {
     setFormStep(value);
   };
   return (
-    <div className="transition-all">
-      <Header
-        content={data.header}
-        selectLang={false}
-        className="border-b border-neutral-200 px-4 py-1 sm:py-3"
-        link="/login"
-        logoClassname="w-20 sm:w-40"
-        showButton={false}
-        transparentButton={true}
-      />
-      <div className="text-black mb-32 px-8">
-        {formStep == 0 && (
-          <FirstStepForm data={data.signup} onClick={() => handleFormStep(1)} />
-        )}
-        {formStep == 1 && (
-          <SignupForm
-            data={data.signup}
-            userEmail={userEmail}
-            inputData={data.form}
-            isCreated={isCreated}
-            handleCreateAccount={handleCreateAccount}
-            onSubmit={handleFormSubmit}
+    <>
+      {isConnected ? (
+        <div>Connected</div>
+      ) : (
+        <div className="transition-all">
+          <Header
+            content={data.header}
+            selectLang={false}
+            className="border-b border-neutral-200 px-4 py-1 sm:py-3"
+            link="/login"
+            logoClassname="w-20 sm:w-40"
+            showButton={false}
+            transparentButton={true}
           />
-        )}
-        {userData.email.length > 5 && userData.password.length >= 8 && (
-          <SignupBack
-            data={data.signup}
-            handleFormStep={handleFormStep}
-            userData={userData}
-          />
-        )}
-      </div>
-      <div>
-        <Footer
-          data={data.signupFooter}
-          text={data.signupFooterText}
-          selectBg="bg-white"
-          selectTextColor="text-neutral-600"
-          className="bg-[#f3f3f3] border-t border-t-black/10"
-          textColor="text-black"
-          selectBorderColor="border-black/30"
-          showLangText={true}
-        />
-      </div>
-    </div>
+          <div className="text-black mb-32 px-8">
+            {formStep == 0 && (
+              <FirstStepForm
+                data={data.signup}
+                onClick={() => handleFormStep(1)}
+              />
+            )}
+            {formStep == 1 && (
+              <SignupForm
+                data={data.signup}
+                userEmail={userEmail}
+                inputData={data.form}
+                isCreated={isCreated}
+                handleCreateAccount={handleCreateAccount}
+                onSubmit={handleFormSubmit}
+              />
+            )}
+            {userData.email.length > 5 &&
+              userData.password.length >= 8 &&
+              formStep == 2 && (
+                <FirstStepPlanDesc
+                  data={data.signup}
+                  handleFormStep={() => handleFormStep(3)}
+                />
+              )}
+            {formStep == 3 && (
+              <FirstStepPlanChoice
+                data={data.signup}
+                handleFormStep={() => handleFormStep(4)}
+              />
+            )}
+          </div>
+          <div>
+            <Footer
+              data={data.signupFooter}
+              text={data.signupFooterText}
+              selectBg="bg-white"
+              selectTextColor="text-neutral-600"
+              className="bg-[#f3f3f3] border-t border-t-black/10"
+              textColor="text-black"
+              selectBorderColor="border-black/30"
+              showLangText={true}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

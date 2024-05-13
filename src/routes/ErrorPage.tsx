@@ -9,8 +9,6 @@ const ErrorPage = () => {
     navigate("/");
   };
   document.body.classList.remove("bg-white");
-  // const { handleChangeBg } = useDataContext();
-  // handleChangeBg(false);
   return (
     <div className="w-screen overflow-hidden pr-4 min-h-screen">
       <div className="max-w-[1024px] m-auto text-center">

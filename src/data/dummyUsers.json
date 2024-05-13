@@ -5,6 +5,7 @@
     "username": "TheBingeWatcher",
     "fullName": "John Doe",
     "avatarUrl": "",
+    "authorization": 1,
     "profiles": {
       "0": {
         "id": 0,
@@ -32,6 +33,7 @@
     "username": "LedZepp",
     "fullName": "Robert Plant",
     "avatarUrl": "",
+    "authorization": 2,
     "profiles": {
       "0": {
         "id": 0,

@@ -215,9 +215,69 @@
       "firstStepTitle": "Complétez la configuration de votre compte.",
       "firstStepDesc": "Netflix est personnalisé selon vos goûts. Créez un mot de passe pour commencer à regarder Netflix.",
       "firstButton": "Suivant",
-      "secondStepTitle": "Créez un mot de passe pour activer votre abonnement",
-      "secondStepDesc": "Plus que quelques étapes et c'est fini !\nPlus rien à remplir.",
-      "secondStepCheckbox": "Oui, envoyez-moi les offres spéciales de Netflix par e-mail.",
+      "signupTitle": "Créez un mot de passe pour activer votre abonnement",
+      "signupDesc": "Plus que quelques étapes et c'est fini !\nPlus rien à remplir.",
+      "signupCheckbox": "Oui, envoyez-moi les offres spéciales de Netflix par e-mail.",
+      "firstStepPlanTitle": "Choisissez votre offre.",
+      "firstStepPlanDesc": [
+        "Sans engagement. Annulable à tout moment.",
+        "Du divertissement à volonté pour un prix très attractif.",
+        "Profitez de Netflix sur tous vos appareils."
+      ],
+      "firstStepPlanChoiceTitle": "Sélectionnez l'offre qui vous convient",
+      "firstStepPlanChoiceList": [
+        "Abonnement mensuel",
+        "Qualité vidéo et audio",
+        "Résolution",
+        "Audio spatial (son immersif)",
+        "Appareils pris en charge",
+        "Appareils que les personnes de votre foyer peuvent regarder en même temps",
+        "Appareils autorisés pour le téléchargement",
+        "Pubs"
+      ],
+      "firstStepPlanChoiceCards": {
+        "0": {
+          "title": "Premium",
+          "options": ["4K + HDR"],
+          "price": "19,99€",
+          "qualityDesc": "Optimale",
+          "resolution": "4K (Ultra HD) + HDR",
+          "spacialAudio": "Inclus",
+          "supportedDevices": ["TV, ordinateur, smartphone, tablette"],
+          "maxSimulDeviceCount": "4",
+          "downloadDevice": "6",
+          "ads": "Sans pub"
+        },
+        "1": {
+          "title": "Standard",
+          "options": ["1080p"],
+          "price": "13,49€",
+          "qualityDesc": "Bonne",
+          "resolution": "1080p (Full HD)",
+          "spacialAudio": "Non inclus",
+          "supportedDevices": ["TV, computer, smartphone, tablette"],
+          "maxSimulDeviceCount": "2",
+          "downloadDevice": "2",
+          "ads": "Sans pub"
+        },
+        "2": {
+          "title": "Standard avec pub",
+          "options": ["1080p"],
+          "price": "5.99€",
+          "qualityDesc": "Bonne",
+          "resolution": "1080p (Full HD)",
+          "spacialAudio": "Not included",
+          "supportedDevices": ["TV, computer, smartphone, tablette"],
+          "maxSimulDeviceCount": "2",
+          "downloadDevice": "2",
+          "ads": "Quelques courtes pubs"
+        }
+      },
+      "firstStepConditions": [
+        "En savoir plus sur l'offre avec pub. Si vous sélectionnez une offre avec pub, nous vous demanderons de fournir votre date de naissance pour personnaliser les publicités, ainsi qu'à d'autres fins conformes à la Déclaration de confidentialité de Netflix.",
+        "La disponibilité de la Full HD (1080p), de l'Ultra HD (4K) et de la HDR dépend de votre connexion Internet et des capacités de l'appareil. Tous les contenus ne sont pas disponibles dans toutes les résolutions. Pour en savoir plus, veuillez consulter les Conditions d'utilisation.",
+        "Seules les personnes qui vivent avec vous peuvent utiliser votre compte. Ajoutez un abonné supplémentaire avec l'offre Standard ou jusqu'à deux abonnés supplémentaires avec l'offre Premium. En savoir plus. Regardez Netflix en simultané sur 4 appareils différents avec l'offre Premium et sur 2 appareils différents avec les offres Standard et Standard avec pub."
+      ],
       "secondStepBackTitle": "Compte créé.",
       "secondStepBackDesc": "Utilisez cette adresse pour accéder à votre compte :"
     },
@@ -473,9 +533,69 @@
       "firstStepTitle": "Finish setting up your account.",
       "firstStepDesc": "Netflix is personalized for you. Create a password to start watching Netflix.",
       "firstButton": "Next",
-      "secondStepTitle": "Create a password to start your membership",
-      "secondStepDesc": "Just a few more steps and you're done!\nWe hate paperwork, too.",
-      "secondStepCheckbox": "Yes, please email me Netflix special offers.",
+      "signupTitle": "Create a password to start your membership",
+      "signupDesc": "Just a few more steps and you're done!\nWe hate paperwork, too.",
+      "signupCheckbox": "Yes, please email me Netflix special offers.",
+      "firstStepPlanTitle": "Choose your plan.",
+      "firstStepPlanDesc": [
+        "No commitments, cancel anytime.",
+        "Endless entertainment for one low price.",
+        "Enjoy Netflix on all your devices."
+      ],
+      "firstStepPlanChoiceTitle": "Choose the plan that’s right for you",
+      "firstStepPlanChoiceList": [
+        "Monthly price",
+        "Video and sound quality",
+        "Resolution",
+        "Spatial audio (immersive sound)",
+        "Supported devices",
+        "Devices your household can watch at the same time",
+        "Download devices",
+        "Ads"
+      ],
+      "firstStepPlanChoiceCards": {
+        "0": {
+          "title": "Premium",
+          "options": ["4K + HDR"],
+          "price": "EUR 19.99",
+          "qualityDesc": "Best",
+          "resolution": "4K (Ultra HD) + HDR",
+          "spacialAudio": "Included",
+          "supportedDevices": ["TV, computer, mobile phone, tablet"],
+          "maxSimulDeviceCount": "4",
+          "downloadDevice": "6",
+          "ads": "No ads"
+        },
+        "1": {
+          "title": "Standard",
+          "options": ["1080p"],
+          "price": "EUR 13.49",
+          "qualityDesc": "Good",
+          "resolution": "1080p (Full HD)",
+          "spacialAudio": "Not included",
+          "supportedDevices": ["TV, computer, mobile phone, tablet"],
+          "maxSimulDeviceCount": "2",
+          "downloadDevice": "2",
+          "ads": "No ads"
+        },
+        "2": {
+          "title": "Standard with ads",
+          "options": ["1080p"],
+          "price": "EUR 5.99",
+          "qualityDesc": "Good",
+          "resolution": "1080p (Full HD)",
+          "spacialAudio": "Not included",
+          "supportedDevices": ["TV, computer, mobile phone, tablet"],
+          "maxSimulDeviceCount": "2",
+          "downloadDevice": "2",
+          "ads": "A few short ads"
+        }
+      },
+      "firstStepConditions": [
+        "Learn more about an ad-supported plan. If you select an ad-supported plan, you will be required to provide your date of birth for ads personalization and other purposes consistent with the Netflix Privacy Statement.",
+        "Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See Terms of Use for more details.",
+        "Only people who live with you may use your account. Add 1 extra member with Standard or up to 2 with Premium. Learn more. Watch on 4 different devices at the same time with Premium and 2 with Standard or Standard with ads."
+      ],
       "secondStepBackTitle": "Account Created.",
       "secondStepBackDesc": "Use this email to access your account :"
     },

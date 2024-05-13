@@ -34,9 +34,9 @@ const SignupForm = (props: {
           <span className="font-semibold">{props.data.maxStep}</span>
         </p>
         <h1 className="signup-title mt-1 leading-10 font-bold">
-          {props.data.secondStepTitle}
+          {props.data.signupTitle}
         </h1>
-        <p className="text-lg leading-tight">{props.data.secondStepDesc}</p>
+        <p className="text-lg leading-tight">{props.data.signupDesc}</p>
         <Form
           action="/signup"
           method="post"

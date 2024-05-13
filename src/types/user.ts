@@ -12,6 +12,7 @@ export type UserType = {
   fullName: string;
   avatarUrl?: string;
   profiles: Record<number, UserProfile>;
+  authorization: number;
 };
 
 export type Users = Record<string, UserType>;

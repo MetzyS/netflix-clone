@@ -29,6 +29,19 @@ type LoginFooter = {
 };
 type LoginFooterMap = Record<string, LoginFooter>;
 
+type PlanCard = {
+  title: string;
+  options: string[];
+  price: string;
+  qualityDesc: string;
+  resolution: string;
+  spacialAudio: string;
+  supportedDevices: string[];
+  maxSimulDeviceCount: string;
+  downloadDevice: string;
+  ads: string;
+};
+
 export type Form = {
   text: string;
   email: string;
@@ -45,9 +58,15 @@ export type Signup = {
   firstStepTitle: string;
   firstStepDesc: string;
   firstButton: string;
-  secondStepTitle: string;
-  secondStepDesc: string;
-  secondStepCheckbox: string;
+  signupTitle: string;
+  signupDesc: string;
+  signupCheckbox: string;
+  firstStepPlanTitle: string;
+  firstStepPlanDesc: string[];
+  firstStepPlanChoiceTitle: string;
+  firstStepPlanChoiceList: string[];
+  firstStepPlanChoiceCards: Record<string, PlanCard>;
+  firstStepConditions: string[];
   secondStepBackTitle: string;
   secondStepBackDesc: string;
 };
