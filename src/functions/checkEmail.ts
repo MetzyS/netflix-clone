@@ -10,6 +10,6 @@ export async function checkEmail(email: string): Promise<boolean> {
         (user) => user.email === email
       );
       resolve(userExists);
-    }, 1500);
+    }, 1000);
   });
 }

@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
 import { emailValidation, passwordValidation } from "./InputValidation";
+import InputSpinner from "./InputSpinner";
 
 const Input = (props: {
   label: string;
@@ -77,7 +78,7 @@ const Input = (props: {
   return (
     <>
       {props.isLoading ? (
-        <div>LOADING</div>
+        <InputSpinner />
       ) : (
         <div className="w-full relative">
           <div

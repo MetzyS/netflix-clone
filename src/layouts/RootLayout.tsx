@@ -54,8 +54,8 @@ const RootLayout = (props: { data: any }) => {
     setIsCreated(value);
   };
 
-  const handleConnected = (value: boolean) => {
-    setIsConnected(value);
+  const handleConnected = () => {
+    setIsConnected(!isConnected);
   };
 
   const handleSubmitRegister = async (value: string): Promise<Boolean> => {
@@ -77,6 +77,7 @@ const RootLayout = (props: { data: any }) => {
           context={
             {
               lang,
+              user,
               handleChangeLang,
               handleChangeBg,
               handleUserEmail,
