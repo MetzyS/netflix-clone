@@ -1,7 +1,7 @@
 import { Outlet, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
-import { UserType } from "../types/user";
+import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../functions/checkEmail";
 
 const RootLayout = (props: { data: any }) => {
@@ -54,12 +54,27 @@ const RootLayout = (props: { data: any }) => {
     setIsCreated(value);
   };
 
+  const handleCreateUser = (values: {
+    key: keyof UserType;
+    value: string | number | UserProfile;
+  }) => {
+    setUser((prevUser: UserType | undefined) => {
+      if (!prevUser) return prevUser;
+      return { ...prevUser, [values.key]: values.value };
+    });
+    console.log(user);
+    // const storedUser = localStorage.getItem("user");
+    // if (!storedUser) {
+    // setIsConnected(true);
+    // setUser(JSON.parse(storedUser));
+    // }
+  };
+
   const handleConnected = () => {
     setIsConnected(!isConnected);
   };
 
   const handleSubmitRegister = async (value: string): Promise<Boolean> => {
-    // penser à créer component spin loader
     setIsLoading(true);
     const userExists = await checkEmail(value);
     // if (userExists) {
@@ -84,6 +99,7 @@ const RootLayout = (props: { data: any }) => {
               handleCreateAccount,
               handleConnected,
               handleSubmitRegister,
+              handleCreateUser,
               isLoading,
               isConnected,
               userEmail,

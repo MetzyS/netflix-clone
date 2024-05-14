@@ -1,5 +1,5 @@
 import DataType from "./data";
-import { UserType } from "./user";
+import { UserProfile, UserType } from "./user";
 
 export type ContextType = {
   lang: string;
@@ -9,6 +9,10 @@ export type ContextType = {
   isCreated: boolean;
   isConnected: boolean;
   isLoading: boolean;
+  handleCreateUser: (values: {
+    key: keyof UserType;
+    value: string | number | UserProfile;
+  }) => void;
   handleChangeLang: (value: string) => void;
   handleChangeBg: (value: boolean) => void;
   handleUserEmail: (value: string) => void;

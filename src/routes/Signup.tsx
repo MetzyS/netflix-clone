@@ -15,6 +15,7 @@ const Signup = () => {
     handleUserEmail,
     handleChangeBg,
     handleCreateAccount,
+    handleCreateUser,
     isCreated,
     isConnected,
   } = useDataContext();
@@ -29,6 +30,8 @@ const Signup = () => {
   const handleFormSubmit = (newData: { email: string; password: string }) => {
     setUserData((prevData) => ({ ...prevData, ...newData }));
     handleUserEmail(newData.email);
+    handleCreateUser({ key: "email", value: newData.email });
+    handleCreateUser({ key: "password", value: newData.password });
     handleFormStep(2);
     console.log(newData);
   };
@@ -80,6 +83,11 @@ const Signup = () => {
                 data={data.signup}
                 handleFormStep={() => handleFormStep(4)}
               />
+            )}
+            {formStep == 4 && (
+              <div>
+                <span>4</span>
+              </div>
             )}
           </div>
           <div>
