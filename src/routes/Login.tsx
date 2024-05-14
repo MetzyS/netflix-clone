@@ -15,15 +15,15 @@ const Login = () => {
         <div>Connected</div>
       ) : (
         <>
-          <FadedBackground className="pb-4">
-            <div className="max-w-[1024px] m-auto">
+          <FadedBackground className="pb-4 w-screen">
+            <div className="m-auto">
               <Header
                 content={data.header}
                 showButton={false}
                 selectLang={false}
                 className="p-6"
               />
-              <div className="px-6 bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto">
+              <div className="px-6 max-w-[1024px] bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto">
                 <h1 className="text-3xl font-bold">{data.login.title}</h1>
                 <Form action="" className="flex flex-col gap-4 mt-5">
                   <Input

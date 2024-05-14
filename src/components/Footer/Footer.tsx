@@ -13,52 +13,43 @@ const Footer = (props: {
   showLangText?: boolean;
 }) => {
   return (
-    <footer className={`p-6 ${props.className ? props.className : undefined}`}>
-      <a
-        href="mailto:contact@metzys.net"
-        className={`text-left ${
-          props.textColor ? props.textColor : "text-secondary"
-        } hover:underline`}
-      >
-        {props.text}
-      </a>
-      <ul className="grid grid-cols-2 mt-6 text-sm">
-        {Object.values(props.data).map((item, index) => (
-          <FaqButton
-            key={"footer-item-" + index}
-            item={item}
-            index={index}
-            textColor={props.textColor}
-            underline={props.underline}
+    <footer
+      className={`p-6 w-screen ${
+        props.className ? props.className : undefined
+      }`}
+    >
+      <div className="max-w-[1300px] m-auto">
+        <a
+          href="mailto:contact@metzys.net"
+          className={`text-left ${
+            props.textColor ? props.textColor : "text-secondary"
+          } hover:underline`}
+        >
+          {props.text}
+        </a>
+        <ul className="grid grid-cols-2 mt-6 text-sm lg:grid-cols-4">
+          {Object.values(props.data).map((item, index) => (
+            <FaqButton
+              key={"footer-item-" + index}
+              item={item}
+              index={index}
+              textColor={props.textColor}
+              underline={props.underline}
+            />
+          ))}
+        </ul>
+        <div className="w-32 my-6">
+          <SelectLang
+            bg={props.selectBg ? props.selectBg : undefined}
+            selectTextColor={
+              props.selectTextColor ? props.selectTextColor : undefined
+            }
+            borderColor={
+              props.selectBorderColor ? props.selectBorderColor : undefined
+            }
+            showText={props.showLangText ? props.showLangText : undefined}
           />
-          //   <li
-          //   key={"footer-item-" + index}
-          //   className="flex items-center flex-wrap p-0 mt-4"
-          // >
-          //   <a
-          //     href={item.link}
-          //     className={`${
-          //       props.textColor
-          //         ? props.textColor
-          //         : "hover:text-neutral-200 text-secondary"
-          //     } ${props.underline ? "underline" : "hover:underline"} `}
-          //   >
-          //     {item.title}
-          //   </a>
-          // </li>
-        ))}
-      </ul>
-      <div className="w-32 my-6">
-        <SelectLang
-          bg={props.selectBg ? props.selectBg : undefined}
-          selectTextColor={
-            props.selectTextColor ? props.selectTextColor : undefined
-          }
-          borderColor={
-            props.selectBorderColor ? props.selectBorderColor : undefined
-          }
-          showText={props.showLangText ? props.showLangText : undefined}
-        />
+        </div>
       </div>
     </footer>
   );
