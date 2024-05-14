@@ -18,9 +18,9 @@ const FirstStepPlanChoice = (props: {
       {isConnected ? (
         <div>Connected</div>
       ) : (
-        <div className="flex flex-col mt-6 text-left max-w-[440px] m-auto">
+        <div className="flex flex-col mt-6 text-left max-w-[500px] m-auto">
           <p className="text-neutral-800 uppercase text-xs mt-6">
-            {props.data.stepWord[0]} <span className="font-semibold">1</span>{" "}
+            {props.data.stepWord[0]} <span className="font-semibold">2</span>{" "}
             {props.data.stepWord[1]}{" "}
             <span className="font-semibold">{props.data.maxStep}</span>
           </p>
@@ -55,18 +55,21 @@ const FirstStepPlanChoice = (props: {
             )}
           </div>
           <ul className="mt-4">
-            {Object.values(props.data.firstStepPlanChoiceList).map(
-              (item, index) => (
+            {Object.values(props.data.firstStepPlanChoiceCards[isSelected])
+              .slice(2)
+              .map((item, index) => (
                 <li
-                  className="flex justify-between py-3 border-b"
+                  className="flex justify-between py-3 border-b border-b-neutral-300"
                   key={"planDescList-" + index}
                 >
-                  <span className="text-xs font-semibold text-neutral-500">
+                  <span className="text-xs font-semibold text-neutral-600 flex-wrap basis-48">
+                    {props.data.firstStepPlanChoiceList[index]}
+                  </span>
+                  <span className="text-right text-neutral-600 font-semibold">
                     {item}
                   </span>
                 </li>
-              )
-            )}
+              ))}
           </ul>
         </div>
       )}
