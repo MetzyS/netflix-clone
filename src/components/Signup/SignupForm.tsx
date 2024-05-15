@@ -22,7 +22,6 @@ const SignupForm = (props: {
   };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, password);
     props.onSubmit({ email: email, password: password });
   };
   return (

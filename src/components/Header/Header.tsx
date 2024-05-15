@@ -3,11 +3,12 @@ import DefaultLink from "../ui/DefaultLink";
 import Logo from "../ui/Logo";
 import SelectLang from "../ui/SelectLang";
 import TransparentLink from "../ui/TransparentLink";
+import { useDataContext } from "../../layouts/RootLayout";
+import DefaultButton from "../ui/DefaultButton";
+import { Header as HeaderType } from "../../types/data";
 
 const Header = (props: {
-  content: {
-    button: string;
-  };
+  content: HeaderType;
   selectLang?: boolean;
   showButton?: boolean;
   transparentButton?: boolean;
@@ -15,6 +16,7 @@ const Header = (props: {
   className?: string;
   logoClassname?: string;
 }) => {
+  const { isConnected, handleConnected } = useDataContext();
   let selectLang = false;
   if (props.selectLang == undefined || props.selectLang == true) {
     selectLang = true;
@@ -54,7 +56,14 @@ const Header = (props: {
               className="py-1 px-4 text-base"
             />
           )}
-          {showButton && (
+          {showButton && isConnected ? (
+            <DefaultButton
+              primary={true}
+              className="ring-default py-1 px-4 text-base"
+              text={props.content.disconnect}
+              onClick={() => handleConnected(false)}
+            />
+          ) : (
             <DefaultLink
               link={link}
               text={props.content.button}

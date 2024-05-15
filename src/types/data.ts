@@ -1,3 +1,8 @@
+export type Header = {
+  button: string;
+  disconnect: string;
+};
+
 type Description = {
   id: string;
   title: string;
@@ -72,9 +77,7 @@ export type Signup = {
 };
 
 type DataType = {
-  header: {
-    button: string;
-  };
+  header: Header;
   title: string;
   subtitle: string;
   form: Form;

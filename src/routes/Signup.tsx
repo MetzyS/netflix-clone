@@ -30,10 +30,12 @@ const Signup = () => {
   const handleFormSubmit = (newData: { email: string; password: string }) => {
     setUserData((prevData) => ({ ...prevData, ...newData }));
     handleUserEmail(newData.email);
-    handleCreateUser({ key: "email", value: newData.email });
-    handleCreateUser({ key: "password", value: newData.password });
+    handleCreateUser([
+      { key: "email", value: newData.email },
+      { key: "password", value: newData.password },
+    ]);
+    // handleCreateUser({ key: "password", value: newData.password });
     handleFormStep(2);
-    console.log(newData);
   };
   const handleFormStep = (value: number) => {
     setFormStep(value);
@@ -43,7 +45,7 @@ const Signup = () => {
       {isConnected ? (
         <div>Connected</div>
       ) : (
-        <div className="transition-all">
+        <div className="transition-all w-screen">
           <Header
             content={data.header}
             selectLang={false}

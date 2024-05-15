@@ -1,7 +1,8 @@
 {
   "fr": {
     "header": {
-      "button": "S'identifier"
+      "button": "S'identifier",
+      "disconnect": "Se déconnecter"
     },
     "title": "Films et séries en illimité, et bien plus",
     "subtitle": "Où que vous soyez. Annulez à tout moment.",
@@ -319,7 +320,8 @@
   },
   "en": {
     "header": {
-      "button": "Sign In"
+      "button": "Sign In",
+      "disconnect": "Sign Out"
     },
     "title": "Unlimited movies, TV shows, and more",
     "subtitle": "Watch anywhere. Cancel anytime.",

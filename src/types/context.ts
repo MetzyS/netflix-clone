@@ -9,10 +9,16 @@ export type ContextType = {
   isCreated: boolean;
   isConnected: boolean;
   isLoading: boolean;
-  handleCreateUser: (values: {
-    key: keyof UserType;
-    value: string | number | UserProfile;
-  }) => void;
+  // handleCreateUser: (values: {
+  //   key: keyof UserType;
+  //   value: string | number | UserProfile;
+  // }) => void;
+  handleCreateUser: (
+    values: Array<{
+      key: keyof UserType;
+      value: string | number | UserProfile;
+    }>
+  ) => void;
   handleChangeLang: (value: string) => void;
   handleChangeBg: (value: boolean) => void;
   handleUserEmail: (value: string) => void;

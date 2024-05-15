@@ -1,5 +1,6 @@
 import { useDataContext } from "../layouts/RootLayout";
 import HeroPage from "../components/HeroPage/HeroPage";
+import ShowMovies from "../components/ShowMovies/ShowMovies";
 const Root = () => {
   const {
     lang,
@@ -10,10 +11,13 @@ const Root = () => {
     handleChangeBg,
     handleUserEmail,
   } = useDataContext();
+  const test = localStorage.getItem("user");
+  console.log(test);
+  console.log(isConnected);
   return (
     <>
       {isConnected ? (
-        <div>IS CONNECTED</div>
+        <ShowMovies lang={lang} content={data} />
       ) : (
         <HeroPage
           lang={lang}

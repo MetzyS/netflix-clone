@@ -6,13 +6,23 @@ import { checkEmail } from "../functions/checkEmail";
 
 const RootLayout = (props: { data: any }) => {
   const [isConnected, setIsConnected] = useState(false);
-  const [user, setUser] = useState<UserType>();
-
+  const [user, setUser] = useState<UserType>({
+    authorization: 0,
+    email: "",
+    fullName: "",
+    password: "",
+    profiles: {},
+    username: "",
+    avatarUrl: "",
+  });
+  // console.log(localStorage.getItem("user"));
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setIsConnected(true);
       setUser(JSON.parse(storedUser));
+      setIsConnected(true);
+    } else {
+      setIsConnected(false);
     }
   }, []);
 
@@ -54,23 +64,29 @@ const RootLayout = (props: { data: any }) => {
     setIsCreated(value);
   };
 
-  const handleCreateUser = (values: {
-    key: keyof UserType;
-    value: string | number | UserProfile;
-  }) => {
-    setUser((prevUser: UserType | undefined) => {
-      if (!prevUser) return prevUser;
-      return { ...prevUser, [values.key]: values.value };
-    });
-    console.log(user);
-    // const storedUser = localStorage.getItem("user");
-    // if (!storedUser) {
-    // setIsConnected(true);
-    // setUser(JSON.parse(storedUser));
-    // }
+  const handleCreateUser = (
+    values: Array<{
+      key: keyof UserType;
+      value: string | number | UserProfile;
+    }>
+  ) => {
+    values.map((item) =>
+      setUser((prevUser: UserType) => {
+        const updatedUser = { ...prevUser, [item.key]: item.value };
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setIsCreated(true);
+        setIsConnected(true);
+        return updatedUser;
+      })
+    );
+    console.log(localStorage.getItem("user"));
   };
 
   const handleConnected = () => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      localStorage.removeItem("user");
+    }
     setIsConnected(!isConnected);
   };
 
