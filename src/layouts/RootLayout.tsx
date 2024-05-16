@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../functions/checkEmail";
+import DataType from "../types/data";
 
-const RootLayout = (props: { data: any }) => {
+const RootLayout = (props: { data: Record<string, DataType> }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [user, setUser] = useState<UserType>({
     authorization: 0,
@@ -15,6 +16,7 @@ const RootLayout = (props: { data: any }) => {
     username: "",
     avatarUrl: "",
   });
+  // const dummyUser: <UserType> =
   // console.log(localStorage.getItem("user"));
   useEffect(() => {
     const storedUser = localStorage.getItem("user");

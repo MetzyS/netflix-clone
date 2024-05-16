@@ -58,7 +58,7 @@ export type Form = {
 };
 
 export type Signup = {
-  stepWord: [string, string];
+  stepWord: string[];
   maxStep: string;
   firstStepTitle: string;
   firstStepDesc: string;
