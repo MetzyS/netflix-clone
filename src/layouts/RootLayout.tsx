@@ -74,6 +74,14 @@ const RootLayout = (props: { data: any }) => {
       setUser((prevUser: UserType) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
         localStorage.setItem("user", JSON.stringify(updatedUser));
+        if (item.key === "email" && typeof item.value == "string") {
+          console.log("Emaillllll");
+          const username = item.value.split("@");
+          const updatedUsername = username[0];
+          let update = { ...prevUser, username: updatedUsername };
+          localStorage.setItem("user", JSON.stringify(update));
+          return update;
+        }
         setIsCreated(true);
         setIsConnected(true);
         return updatedUser;

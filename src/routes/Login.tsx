@@ -1,14 +1,34 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import { useDataContext } from "../layouts/RootLayout";
 import FadedBackground from "../components/Background/FadedBackground";
 import Input from "../components/Form/Input";
 import DefaultButton from "../components/ui/DefaultButton";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
+import { FormEvent, useState } from "react";
 
 const Login = () => {
-  const { data, handleChangeBg, userEmail, isConnected } = useDataContext();
+  const { data, handleChangeBg, userEmail, isConnected, handleCreateUser } =
+    useDataContext();
   handleChangeBg(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmail = (email: string) => {
+    setEmail(email);
+  };
+  const handlePassword = (password: string) => {
+    setPassword(password);
+    // console.log(password);
+  };
+
+  const handleLogin = (email: string, password: string) => {
+    console.log("submitted");
+    handleCreateUser([
+      { key: "email", value: email },
+      { key: "password", value: password },
+    ]);
+  };
   return (
     <>
       {isConnected ? (
@@ -25,20 +45,28 @@ const Login = () => {
               />
               <div className="px-6 max-w-[1024px] bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto">
                 <h1 className="text-3xl font-bold">{data.login.title}</h1>
-                <Form action="" className="flex flex-col gap-4 mt-5">
+                <Form
+                  // method="post"
+                  action="/"
+                  className="flex flex-col gap-4 mt-5"
+                  onSubmit={() => handleLogin(email, password)}
+                >
                   <Input
                     type="email"
                     label={data.form.email}
                     error={data.form.error}
                     value={userEmail}
+                    onChange={handleEmail}
                   />
                   <Input
                     type="password"
                     label={data.form.password}
                     error={data.form.error}
+                    onChange={handlePassword}
                   />
                   <div>
                     <DefaultButton
+                      type="submit"
                       text={data.login.loginButton}
                       primary={true}
                       className="w-full"
