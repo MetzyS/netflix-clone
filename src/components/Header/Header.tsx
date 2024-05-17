@@ -49,14 +49,13 @@ const Header = (props: {
         </Link>
         <div className="flex items-center gap-2">
           {selectLang && <SelectLang />}
-          {props.transparentButton && (
+          {props.transparentButton ? (
             <TransparentLink
               link={link}
               text={props.content.button}
               className="py-1 px-4 text-base"
             />
-          )}
-          {showButton && isConnected ? (
+          ) : showButton && isConnected ? (
             <DefaultButton
               primary={true}
               className="ring-default py-1 px-4 text-base"

@@ -256,7 +256,7 @@
           "qualityDesc": "Bonne",
           "resolution": "1080p (Full HD)",
           "spacialAudio": "Non inclus",
-          "supportedDevices": ["TV, computer, smartphone, tablette"],
+          "supportedDevices": ["TV, ordinateur, smartphone, tablette"],
           "maxSimulDeviceCount": "2",
           "downloadDevice": "2",
           "ads": "Sans pub"
@@ -268,7 +268,7 @@
           "qualityDesc": "Bonne",
           "resolution": "1080p (Full HD)",
           "spacialAudio": "Not included",
-          "supportedDevices": ["TV, computer, smartphone, tablette"],
+          "supportedDevices": ["TV, ordinateur, smartphone, tablette"],
           "maxSimulDeviceCount": "2",
           "downloadDevice": "2",
           "ads": "Quelques courtes pubs"

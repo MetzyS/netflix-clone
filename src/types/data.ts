@@ -34,7 +34,7 @@ type LoginFooter = {
 };
 type LoginFooterMap = Record<string, LoginFooter>;
 
-type PlanCard = {
+export type PlanCard = {
   title: string;
   options: string[];
   price: string;

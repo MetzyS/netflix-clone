@@ -64,6 +64,10 @@
   .input-dark {
     @apply bg-blue-300/15 text-white;
   }
+
+  .ul-plan {
+    @apply lg:p-2 basis-full lg:border lg:border-neutral-300 lg:rounded-xl hover:border-neutral-400 cursor-pointer;
+  }
 }
 
 @layer utilities {
