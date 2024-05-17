@@ -4,6 +4,7 @@ import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../functions/checkEmail";
 import DataType from "../types/data";
+import { userIsConnected } from "../hooks/UserIsCreatingAccount/UserIsConnected";
 
 const RootLayout = (props: { data: Record<string, DataType> }) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -77,7 +78,6 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
         localStorage.setItem("user", JSON.stringify(updatedUser));
         if (item.key === "email" && typeof item.value == "string") {
-          console.log("Emaillllll");
           const username = item.value.split("@");
           const updatedUsername = username[0];
           let update = { ...prevUser, username: updatedUsername };
@@ -92,12 +92,20 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
     console.log(localStorage.getItem("user"));
   };
 
-  const handleConnected = () => {
-    const user = localStorage.getItem("user");
+  const handleDisconnect = () => {
+    const user = userIsConnected();
     if (user) {
       localStorage.removeItem("user");
     }
-    setIsConnected(!isConnected);
+    setIsConnected(false);
+  };
+
+  const handleConnect = () => {
+    const user = userIsConnected();
+    if (user) {
+      localStorage.removeItem("user");
+    }
+    setIsConnected(false);
   };
 
   const handleSubmitRegister = async (value: string): Promise<Boolean> => {
@@ -123,7 +131,8 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
               handleChangeBg,
               handleUserEmail,
               handleCreateAccount,
-              handleConnected,
+              handleDisconnect,
+              handleConnect,
               handleSubmitRegister,
               handleCreateUser,
               isLoading,

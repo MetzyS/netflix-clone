@@ -23,6 +23,7 @@ export type ContextType = {
   handleChangeBg: (value: boolean) => void;
   handleUserEmail: (value: string) => void;
   handleCreateAccount: (value: boolean) => void;
-  handleConnected: (value: boolean) => void;
+  handleDisconnect: (value: boolean) => void;
+  handleConnect: (value: boolean) => void;
   handleSubmitRegister: (value: string) => Promise<Boolean>;
 };
