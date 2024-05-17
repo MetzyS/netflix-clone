@@ -1,6 +1,7 @@
 import { useDataContext } from "../layouts/RootLayout";
 import HeroPage from "../components/HeroPage/HeroPage";
 import ShowMovies from "../components/ShowMovies/ShowMovies";
+import { checkUserRegisterStep } from "../hooks/UserIsCreatingAccount/creatingAccount";
 const Root = () => {
   const {
     lang,
@@ -14,6 +15,9 @@ const Root = () => {
   const test = localStorage.getItem("user");
   console.log(test);
   console.log(isConnected);
+  const tested = checkUserRegisterStep();
+  console.log(tested);
+
   return (
     <>
       {isConnected ? (

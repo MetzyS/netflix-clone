@@ -5,6 +5,7 @@ import { Form, FormMethod, useNavigate } from "react-router-dom";
 import { Form as FormType } from "../../types/data";
 import { useDataContext } from "../../layouts/RootLayout";
 import { FormEvent } from "react";
+import { UserType } from "../../types/user";
 
 const RegisterForm = (props: {
   data: FormType;
@@ -25,6 +26,19 @@ const RegisterForm = (props: {
     }
   };
 
+  let parsedUser: UserType;
+  let registerStep: number | undefined | null;
+  const { isCreatingAccount } = useDataContext();
+  if (isCreatingAccount) {
+    let user: string | UserType | null = localStorage.getItem("user");
+    if (user) {
+      parsedUser = JSON.parse(user);
+      if (parsedUser.registerStep) {
+        registerStep = parsedUser.registerStep;
+        console.log("register step: " + registerStep);
+      }
+    }
+  }
   return (
     <div className="mt-6 mx-auto px-8 max-w-[770px]">
       <Form

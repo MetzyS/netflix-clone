@@ -5,6 +5,10 @@ import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../functions/checkEmail";
 import DataType from "../types/data";
 import { userIsConnected } from "../hooks/UserIsCreatingAccount/userIsConnected";
+import {
+  checkIfUserIsCreatingAccount,
+  checkUserRegisterStep,
+} from "../hooks/UserIsCreatingAccount/creatingAccount";
 
 const RootLayout = (props: { data: Record<string, DataType> }) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -16,6 +20,7 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
     profiles: {},
     username: "",
     avatarUrl: "",
+    registerStep: 0,
   });
   // const dummyUser: <UserType> =
   // console.log(localStorage.getItem("user"));
@@ -35,6 +40,16 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   const [userEmail, setUserEmail] = useState("");
   const [isCreated, setIsCreated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCreatingAccount, setIsCreatingAccount] = useState<boolean>(
+    (): boolean => {
+      return checkIfUserIsCreatingAccount();
+    }
+  );
+  const [registerStep, setRegisterStep] = useState<number | undefined>(
+    (): number | undefined => {
+      return checkUserRegisterStep();
+    }
+  );
 
   const handleChangeLang = (value: string) => {
     setLang(value);
@@ -67,6 +82,7 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
 
   const handleCreateAccount = (value: boolean) => {
     setIsCreated(value);
+    sessionStorage.setItem("isCreating", "true");
   };
 
   const handleCreateUser = (
@@ -75,6 +91,8 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
       value: string | number | UserProfile;
     }>
   ) => {
+    setIsCreated(true);
+    setIsConnected(true);
     values.map((item) =>
       setUser((prevUser: UserType) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
@@ -86,8 +104,6 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
           localStorage.setItem("user", JSON.stringify(update));
           return update;
         }
-        setIsCreated(true);
-        setIsConnected(true);
         return updatedUser;
       })
     );
@@ -119,7 +135,9 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   };
   return (
     <>
-      <main className={bgWhite ? "bg-white" : undefined}>
+      <main
+        className={`w-screen h-full flex-grow ${bgWhite ? "bg-white" : ""}`}
+      >
         <Outlet
           context={
             {
@@ -133,8 +151,10 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
               handleConnect,
               handleSubmitRegister,
               handleCreateUser,
+              registerStep,
               isLoading,
               isConnected,
+              isCreatingAccount,
               userEmail,
               isCreated,
               data,

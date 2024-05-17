@@ -10,6 +10,7 @@ export type UserType = {
   password: string;
   fullName: string;
   avatarUrl?: string;
+  registerStep: number;
   profiles: Record<number, UserProfile>;
   authorization: number;
 };

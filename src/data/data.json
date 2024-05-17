@@ -16,7 +16,8 @@
         "Veuillez saisir une adresse e-mail valide.",
         "Le mot de passe doit comporter entre 8 et 15 caractères"
       ],
-      "specialOfferEmailCheckbox": "Oui, envoyez-moi les offres spéciales de Netflix par e-mail."
+      "specialOfferEmailCheckbox": "Oui, envoyez-moi les offres spéciales de Netflix par e-mail.",
+      "finishSignup": "Terminer l'inscription"
     },
     "offer": {
       "title": "Le Netflix que vous aimez pour juste 5,99€.",
@@ -335,7 +336,8 @@
         "Please enter a valid email address.",
         "Password should be between 8 and 15 characters."
       ],
-      "specialOfferEmailCheckbox": "Yes, please email me Netflix special offers."
+      "specialOfferEmailCheckbox": "Yes, please email me Netflix special offers.",
+      "finishSignup": "Finish Sign Up"
     },
     "offer": {
       "title": "The Netflix you love for just EUR 5.99.",

@@ -34,8 +34,8 @@ const Login = () => {
       {isConnected ? (
         <div>Connected</div>
       ) : (
-        <>
-          <FadedBackground className="pb-4 w-screen">
+        <div className="h-screen flex flex-col">
+          <FadedBackground className="pb-4 w-screen flex-grow">
             <div className="m-auto">
               <Header
                 content={data.header}
@@ -43,7 +43,7 @@ const Login = () => {
                 selectLang={false}
                 className="p-6"
               />
-              <div className="px-6 max-w-[1024px] bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto">
+              <div className="px-6 max-w-[1024px] bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto h-[700px]">
                 <h1 className="text-3xl font-bold">{data.login.title}</h1>
                 <Form
                   // method="post"
@@ -117,7 +117,7 @@ const Login = () => {
             </p>
             <Footer text={data.footerText} data={data.loginFooter} />
           </footer>
-        </>
+        </div>
       )}
     </>
   );

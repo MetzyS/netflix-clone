@@ -5,11 +5,30 @@
  * "isCreating" localStorage
  * @returns boolean
  */
-export const checkIfUserIsCreatingAccount = (): Boolean => {
+export const checkIfUserIsCreatingAccount = (): boolean => {
   let isCreating: boolean;
   const creationStorage = sessionStorage.getItem("isCreating");
   creationStorage ? (isCreating = true) : (isCreating = false);
   return isCreating;
+};
+/**
+ * Check à quelle étape de l'inscription l'utilisateur s'est arrêté.
+ * undefined = aucune info enregistrée
+ * @returns number | undefined
+ */
+export const checkUserRegisterStep = (): number | undefined => {
+  let step: number | undefined = 0;
+  // const isCreating = sessionStorage.getItem("isCreating");
+  // isCreating
+  //   ? () => {
+  const userDataRaw = localStorage.getItem("user");
+  let parsedUserData;
+  if (userDataRaw) {
+    parsedUserData = JSON.parse(userDataRaw);
+    console.log("parsed user data = " + parsedUserData);
+    step = parsedUserData.registerStep;
+  }
+  return step;
 };
 
 /**
@@ -26,6 +45,7 @@ export const checkIfUserIsCreatingAccount = (): Boolean => {
 export const storeUserAccountCreationInfo = (
   email: string,
   password: string,
+  registerStep: number,
   plan?: number
 ) => {
   plan
@@ -40,6 +60,7 @@ export const storeUserAccountCreationInfo = (
           authorization: plan,
           profiles: {},
           avatarUrl: "",
+          registerStep: registerStep,
         };
         sessionStorage.setItem("user", JSON.stringify(userInfos));
         sessionStorage.setItem("isCreating", "false");
@@ -55,6 +76,7 @@ export const storeUserAccountCreationInfo = (
           authorization: undefined,
           profiles: {},
           avatarUrl: "",
+          registerStep: registerStep,
         };
         sessionStorage.setItem("user", JSON.stringify(userInfos));
         sessionStorage.setItem("isCreating", "true");

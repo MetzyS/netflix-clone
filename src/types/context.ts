@@ -9,6 +9,8 @@ export type ContextType = {
   isCreated: boolean;
   isConnected: boolean;
   isLoading: boolean;
+  isCreatingAccount: boolean;
+  registerStep: number | undefined;
   // handleCreateUser: (values: {
   //   key: keyof UserType;
   //   value: string | number | UserProfile;

@@ -18,6 +18,7 @@ const Signup = () => {
     handleCreateUser,
     isCreated,
     isConnected,
+    registerStep,
   } = useDataContext();
   useEffect(() => {
     handleChangeBg(true);
@@ -33,29 +34,32 @@ const Signup = () => {
     handleCreateUser([
       { key: "email", value: newData.email },
       { key: "password", value: newData.password },
+      { key: "registerStep", value: 2 },
     ]);
-    // handleCreateUser({ key: "password", value: newData.password });
     handleFormStep(2);
   };
   const handleFormStep = (value: number) => {
     setFormStep(value);
   };
+
+  let currentStep = registerStep;
+  // console.log(registerStep);
   return (
     <>
       {/* {isConnected ? (
         <div>Connected</div>
       ) : ( */}
-      <div className="transition-all w-screen">
+      <div className="transition-all w-screen flex flex-col min-h-screen">
         <Header
           content={data.header}
           selectLang={false}
-          className="border-b border-neutral-200 px-4 py-1 sm:py-3"
+          className="border-b border-neutral-200 px-4 py-1 sm:py-3 w-full"
           link="/login"
           logoClassname="w-20 sm:w-40"
           showButton={false}
           transparentButton={true}
         />
-        <div className="text-black mb-32 px-6 lg:px-8">
+        <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
           {formStep == 0 && (
             <FirstStepForm
               data={data.signup}
@@ -77,13 +81,19 @@ const Signup = () => {
             formStep == 2 && (
               <FirstStepPlanDesc
                 data={data.signup}
-                handleFormStep={() => handleFormStep(3)}
+                handleFormStep={() => {
+                  handleFormStep(3);
+                  handleCreateUser([{ key: "registerStep", value: 3 }]);
+                }}
               />
             )}
           {formStep == 3 && (
             <FirstStepPlanChoice
               data={data.signup}
-              handleFormStep={() => handleFormStep(4)}
+              handleFormStep={() => {
+                handleFormStep(4);
+                handleCreateUser([{ key: "registerStep", value: 4 }]);
+              }}
             />
           )}
           {formStep == 4 && (

@@ -16,7 +16,7 @@ const Header = (props: {
   className?: string;
   logoClassname?: string;
 }) => {
-  const { isConnected, handleConnect } = useDataContext();
+  const { isConnected, handleDisconnect } = useDataContext();
   let selectLang = false;
   if (props.selectLang == undefined || props.selectLang == true) {
     selectLang = true;
@@ -40,7 +40,7 @@ const Header = (props: {
   return (
     <>
       <header
-        className={`flex flex-wrap items-center relative max-w-[1800px] m-auto justify-between gap-2 bg-white/0 ${
+        className={`flex flex-wrap items-center relative m-auto justify-between gap-2 bg-white/0 ${
           props.className ? props.className : ""
         }`}
       >
@@ -60,7 +60,7 @@ const Header = (props: {
               primary={true}
               className="ring-default py-1 px-4 text-base"
               text={props.content.disconnect}
-              onClick={() => handleConnect()}
+              onClick={() => handleDisconnect()}
             />
           ) : (
             <DefaultLink
