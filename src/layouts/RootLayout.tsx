@@ -4,7 +4,7 @@ import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../functions/checkEmail";
 import DataType from "../types/data";
-import { userIsConnected } from "../hooks/UserIsCreatingAccount/UserIsConnected";
+import { userIsConnected } from "../hooks/UserIsCreatingAccount/userIsConnected";
 
 const RootLayout = (props: { data: Record<string, DataType> }) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -101,11 +101,7 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   };
 
   const handleConnect = () => {
-    const user = userIsConnected();
-    if (user) {
-      localStorage.removeItem("user");
-    }
-    setIsConnected(false);
+    setIsConnected(true);
   };
 
   const handleSubmitRegister = async (value: string): Promise<Boolean> => {
@@ -115,7 +111,7 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
     // console.log("user exist: " + userExists);
     // gestion => l'email possède déjà un compte
     // }
-    console.log("user exist: " + userExists);
+    // console.log("user exist: " + userExists);
     setIsLoading(false);
     return userExists;
   };

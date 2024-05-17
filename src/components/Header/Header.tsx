@@ -16,7 +16,7 @@ const Header = (props: {
   className?: string;
   logoClassname?: string;
 }) => {
-  const { isConnected, handleConnected } = useDataContext();
+  const { isConnected, handleConnect } = useDataContext();
   let selectLang = false;
   if (props.selectLang == undefined || props.selectLang == true) {
     selectLang = true;
@@ -60,7 +60,7 @@ const Header = (props: {
               primary={true}
               className="ring-default py-1 px-4 text-base"
               text={props.content.disconnect}
-              onClick={() => handleConnected(false)}
+              onClick={() => handleConnect()}
             />
           ) : (
             <DefaultLink
