@@ -52,11 +52,13 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
 
   const handleChangeBg = (value: boolean) => {
     setBgWhite(value);
-    if (value) {
-      document.body.classList.add("bg-white");
-    } else {
-      document.body.classList.remove("bg-white");
-    }
+    value
+      ? () => {
+          document.body.classList.add("bg-white");
+        }
+      : () => {
+          document.body.classList.remove("bg-white");
+        };
   };
 
   const handleUserEmail = (value: string) => {
