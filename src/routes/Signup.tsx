@@ -4,9 +4,9 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import FirstStepForm from "../components/Signup/FirstStepForm";
 import SignupForm from "../components/Signup/SignupForm";
-import SignupBack from "../components/Signup/SignupBack";
 import FirstStepPlanDesc from "../components/Signup/FirstStep/FirstStepPlanDesc";
 import FirstStepPlanChoice from "../components/Signup/FirstStep/FirstStepPlanChoice";
+import { UserType } from "../types/user";
 
 const Signup = () => {
   const {
@@ -16,12 +16,23 @@ const Signup = () => {
     handleChangeBg,
     handleCreateAccount,
     handleCreateUser,
+    isCreatingAccount,
     isCreated,
-    isConnected,
-    registerStep,
   } = useDataContext();
   useEffect(() => {
     handleChangeBg(true);
+    let parsedUser: UserType;
+    let registerStep: number | undefined | null;
+    if (isCreatingAccount) {
+      let user: string | UserType | null = localStorage.getItem("user");
+      if (user) {
+        parsedUser = JSON.parse(user);
+        if (parsedUser.registerStep) {
+          registerStep = parsedUser.registerStep;
+          setFormStep(registerStep);
+        }
+      }
+    }
   }, [handleChangeBg]);
   const [formStep, setFormStep] = useState(0);
   const [userData, setUserData] = useState({
@@ -36,14 +47,16 @@ const Signup = () => {
       { key: "password", value: newData.password },
       { key: "registerStep", value: 2 },
     ]);
+    handleCreateAccount(true);
     handleFormStep(2);
   };
   const handleFormStep = (value: number) => {
     setFormStep(value);
   };
 
-  let currentStep = registerStep;
+  // let currentStep = registerStep;
   // console.log(registerStep);
+  // Recup infos si utilisateur est en cours de création
   return (
     <>
       {/* {isConnected ? (

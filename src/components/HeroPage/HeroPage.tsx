@@ -15,10 +15,12 @@ const HeroPage = (props: {
   userEmail?: string;
   handleChangeBg: (value: boolean) => void;
   onChangeForm: (value: string) => void;
+  isCreatingAccount: boolean;
 }) => {
   useEffect(() => {
     props.handleChangeBg(false);
   }, [props.handleChangeBg]);
+  // console.log(isCreatingAccount);
   return (
     <>
       <div className="w-screen overflow-hidden pr-4">
@@ -42,6 +44,7 @@ const HeroPage = (props: {
                 to=""
                 onChange={props.onChangeForm}
                 userEmail={props.userEmail}
+                isCreatingAccount={props.isCreatingAccount}
               />
             </div>
           </div>
@@ -67,6 +70,7 @@ const HeroPage = (props: {
             to="/signup"
             onChange={props.onChangeForm}
             userEmail={props.userEmail}
+            isCreatingAccount={props.isCreatingAccount}
           />
           <Separation />
         </div>

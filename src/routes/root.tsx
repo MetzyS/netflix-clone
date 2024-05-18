@@ -9,19 +9,20 @@ const Root = () => {
     user,
     userEmail,
     isConnected,
+    isCreatingAccount,
     handleChangeBg,
     handleUserEmail,
   } = useDataContext();
   const test = localStorage.getItem("user");
-  console.log(test);
-  console.log(isConnected);
+  console.log("user: " + test);
+  console.log("is creating: " + isCreatingAccount);
   const tested = checkUserRegisterStep();
-  console.log(tested);
+  console.log("register step: " + tested);
 
   return (
     <>
-      {isConnected ? (
-        <ShowMovies lang={lang} content={data} />
+      {isConnected && !isCreatingAccount ? (
+        <ShowMovies lang={lang} content={data} user={user} />
       ) : (
         <HeroPage
           lang={lang}
@@ -29,6 +30,7 @@ const Root = () => {
           handleChangeBg={handleChangeBg}
           onChangeForm={handleUserEmail}
           userEmail={userEmail}
+          isCreatingAccount={isCreatingAccount}
         />
       )}
     </>

@@ -1,4 +1,4 @@
-import { Outlet, useOutletContext } from "react-router-dom";
+import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
@@ -11,8 +11,7 @@ import {
 } from "../hooks/UserIsCreatingAccount/creatingAccount";
 
 const RootLayout = (props: { data: Record<string, DataType> }) => {
-  const [isConnected, setIsConnected] = useState(false);
-  const [user, setUser] = useState<UserType>({
+  const defaultUser: UserType = {
     authorization: 0,
     email: "",
     fullName: "",
@@ -21,9 +20,9 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
     username: "",
     avatarUrl: "",
     registerStep: 0,
-  });
-  // const dummyUser: <UserType> =
-  // console.log(localStorage.getItem("user"));
+  };
+  const [isConnected, setIsConnected] = useState(false);
+  const [user, setUser] = useState<UserType>(defaultUser);
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -81,8 +80,11 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   };
 
   const handleCreateAccount = (value: boolean) => {
-    setIsCreated(value);
-    sessionStorage.setItem("isCreating", "true");
+    value
+      ? (setIsCreatingAccount(value),
+        localStorage.setItem("isCreating", "true"))
+      : (setIsCreatingAccount(false),
+        localStorage.setItem("isCreating", "false"));
   };
 
   const handleCreateUser = (
@@ -113,7 +115,9 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   const handleDisconnect = () => {
     const user = userIsConnected();
     if (user) {
-      localStorage.removeItem("user");
+      clearUser();
+      const navigate = useNavigate();
+      navigate("/");
     }
     setIsConnected(false);
   };
@@ -125,14 +129,21 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   const handleSubmitRegister = async (value: string): Promise<Boolean> => {
     setIsLoading(true);
     const userExists = await checkEmail(value);
-    // if (userExists) {
-    // console.log("user exist: " + userExists);
-    // gestion => l'email possède déjà un compte
-    // }
-    // console.log("user exist: " + userExists);
     setIsLoading(false);
     return userExists;
   };
+
+  const clearUser = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("isCreating");
+    setUserEmail("");
+    setIsCreated(false);
+    setIsCreatingAccount(false);
+    setUser(defaultUser);
+    setIsConnected(false);
+    setRegisterStep(undefined);
+  };
+
   return (
     <>
       <main

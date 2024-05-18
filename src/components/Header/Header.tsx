@@ -6,6 +6,7 @@ import TransparentLink from "../ui/TransparentLink";
 import { useDataContext } from "../../layouts/RootLayout";
 import DefaultButton from "../ui/DefaultButton";
 import { Header as HeaderType } from "../../types/data";
+import TransparentButton from "../ui/TransparentButton";
 
 const Header = (props: {
   content: HeaderType;
@@ -50,11 +51,19 @@ const Header = (props: {
         <div className="flex items-center gap-2">
           {selectLang && <SelectLang />}
           {props.transparentButton ? (
-            <TransparentLink
-              link={link}
-              text={props.content.button}
-              className="py-1 px-4 text-base"
-            />
+            isConnected ? (
+              <TransparentButton
+                onClick={() => handleDisconnect()}
+                text={props.content.disconnect}
+                className="py-1 px-4 text-base"
+              />
+            ) : (
+              <TransparentLink
+                link={link}
+                text={props.content.button}
+                className="py-1 px-4 text-base"
+              />
+            )
           ) : showButton && isConnected ? (
             <DefaultButton
               primary={true}

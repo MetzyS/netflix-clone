@@ -7,7 +7,7 @@
  */
 export const checkIfUserIsCreatingAccount = (): boolean => {
   let isCreating: boolean;
-  const creationStorage = sessionStorage.getItem("isCreating");
+  const creationStorage = localStorage.getItem("isCreating");
   creationStorage ? (isCreating = true) : (isCreating = false);
   return isCreating;
 };
@@ -18,9 +18,6 @@ export const checkIfUserIsCreatingAccount = (): boolean => {
  */
 export const checkUserRegisterStep = (): number | undefined => {
   let step: number | undefined = 0;
-  // const isCreating = sessionStorage.getItem("isCreating");
-  // isCreating
-  //   ? () => {
   const userDataRaw = localStorage.getItem("user");
   let parsedUserData;
   if (userDataRaw) {
@@ -62,8 +59,8 @@ export const storeUserAccountCreationInfo = (
           avatarUrl: "",
           registerStep: registerStep,
         };
-        sessionStorage.setItem("user", JSON.stringify(userInfos));
-        sessionStorage.setItem("isCreating", "false");
+        localStorage.setItem("user", JSON.stringify(userInfos));
+        localStorage.setItem("isCreating", "false");
       }
     : () => {
         const userEmail = email.split("@");
@@ -78,7 +75,7 @@ export const storeUserAccountCreationInfo = (
           avatarUrl: "",
           registerStep: registerStep,
         };
-        sessionStorage.setItem("user", JSON.stringify(userInfos));
-        sessionStorage.setItem("isCreating", "true");
+        localStorage.setItem("user", JSON.stringify(userInfos));
+        localStorage.setItem("isCreating", "true");
       };
 };
