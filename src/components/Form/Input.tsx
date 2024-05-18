@@ -13,6 +13,7 @@ const Input = (props: {
   white?: boolean;
   autocomplete?: string;
   isLoading?: boolean;
+  errorPositionAbsolute?: boolean;
 }) => {
   // gestion couleur selon bg dark/white
   let inputColor = "input-dark";
@@ -127,7 +128,11 @@ const Input = (props: {
             />
           </div>
           {!isValid && isValid != undefined && (
-            <p className={`text-left pt-2 text-sm text-red-500`}>
+            <p
+              className={`${
+                props.errorPositionAbsolute && "sm:absolute"
+              } text-left pt-2 text-sm text-red-500`}
+            >
               <span>
                 <RxCrossCircled className="inline mr-1 size-4" />
               </span>

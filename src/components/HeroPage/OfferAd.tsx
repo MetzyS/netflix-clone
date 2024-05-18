@@ -8,7 +8,7 @@ const OfferAd = (props: {
   };
 }) => {
   return (
-    <div className="mt-4 mb-14 pb-6 pt-12 sm:pt-4 rounded-lg px-8 radial-gradient relative mx-6 sm:flex sm:gap-6 sm:mx-auto sm:w-5/6">
+    <div className="mt-4 mb-14 pb-6 pt-12 sm:pt-4 rounded-lg px-8 radial-gradient relative mx-6 sm:flex sm:gap-6 sm:mx-auto sm:w-5/6 sm:justify-center">
       <svg width="96" height="96" fill="none" className="offer-icon">
         <path
           d="M48 95.213c26.51 0 48-3.875 48-8.656 0-4.78-21.49-8.655-48-8.655S0 81.777 0 86.557c0 4.78 21.49 8.656 48 8.656Z"
@@ -532,11 +532,13 @@ const OfferAd = (props: {
         </defs>
       </svg>
       <div>
-        <p className="text-lg font-semibold text-left">{props.content.title}</p>
+        <p className="text-lg md:text-xl font-semibold text-left">
+          {props.content.title}
+        </p>
         <p className="text-base text-left">{props.content.subtitle}</p>
         <a
           href=""
-          className="flex gap-4 items-center mt-2 text-blue-500 text-base font-semibold underline"
+          className="flex gap-4 items-center mt-2 text-blue-400 text-base font-semibold underline"
         >
           {props.content.linkText}
           <MdArrowForwardIos />

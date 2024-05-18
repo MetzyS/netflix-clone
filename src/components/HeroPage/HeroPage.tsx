@@ -32,10 +32,10 @@ const HeroPage = (props: {
           />
           <div className="max-w-[1024px] m-auto text-center">
             <div className="px-4">
-              <h1 className="pt-10 px-4 text-3xl md:text-5xl font-bold leading-snug text-wrap max-w-full">
+              <h1 className="pt-10 md:pt-24 lg:pt-40 px-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-wrap max-w-full">
                 {props.content.title}
               </h1>
-              <h2 className="text-lg mt-6 leading-snug">
+              <h2 className="text-lg lg:text-2xl mt-6 leading-snug">
                 {props.content.subtitle}
               </h2>
               <RegisterForm
@@ -55,14 +55,14 @@ const HeroPage = (props: {
             <Card data={item} key={"card-" + index} lang={props.lang} />
           ))}
         </div>
-        <div>
+        <div className="mb-12">
           <h3 className="w-full max-w-[1024px] text-3xl text-center font-bold mb-6 px-6 mx-auto">
             {props.content.faqTitle}
           </h3>
           {Object.values(props.content.faq).map((item, index) => (
             <Faq data={item} key={"faq-" + index} />
           ))}
-          <Separation />
+          {/* <Separation /> */}
         </div>
         <div>
           <RegisterForm

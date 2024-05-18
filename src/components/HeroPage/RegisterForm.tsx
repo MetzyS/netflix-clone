@@ -47,12 +47,15 @@ const RegisterForm = (props: {
         action={props.to}
         method={props.method ? props.method : undefined}
         onSubmit={onSubmitFunc}
+        className="md:mb-8 max-w-[600px] m-auto"
       >
-        <h3 className="text-base leading-normal">{props.data.text}</h3>
+        <h3 className="text-lg lg:text-xl leading-normal text-center">
+          {props.data.text}
+        </h3>
         <div
           className={`flex flex-col sm:flex-row justify-center ${
             isCreatingAccount ? "" : "sm:justify-normal"
-          }  mt-4 gap-4`}
+          } mt-4 gap-4`}
         >
           {isCreatingAccount ? (
             ""
@@ -64,6 +67,7 @@ const RegisterForm = (props: {
               error={props.data.error}
               value={props.userEmail}
               isLoading={isLoading}
+              errorPositionAbsolute={true}
             />
           )}
 

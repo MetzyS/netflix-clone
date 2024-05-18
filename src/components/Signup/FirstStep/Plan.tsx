@@ -12,7 +12,7 @@ const Plan = (props: {
     <ul
       className={`ul-plan ${
         props.isSelected === props.index
-          ? "lg:shadow-lg lg:shadow-black/40"
+          ? "lg:shadow-lg lg:shadow-black/40 border-neutral-400"
           : ""
       }`}
       onClick={() => props.handleSelected(props.index)}
@@ -49,7 +49,7 @@ const Plan = (props: {
           </div>
         </div>
       </li>
-      <div className="hidden lg:block">
+      <div className="hidden lg:block p-4">
         {Object.values(props.data.firstStepPlanChoiceCards[props.index])
           .slice(2)
           .map((item, index) => (
@@ -57,10 +57,10 @@ const Plan = (props: {
               className="flex lg:flex-col justify-between flex-1 items-center lg:items-start py-3 border-b border-b-neutral-300 last-of-type:border-b-0"
               key={"planDescList-" + index}
             >
-              <span className="text-sm font-semibold text-neutral-600 flex-wrap flex-[0_0_40%]">
+              <span className="text-[0.8rem] font-semibold text-neutral-500 flex-wrap flex-[0_0_40%]">
                 {props.data.firstStepPlanChoiceList[index]}
               </span>
-              <span className="text-right lg:text-left text-neutral-600 font-semibold text-sm last-of-type:text-base">
+              <span className="text-right lg:text-left text-neutral-700 font-semibold text-sm last-of-type:text-base">
                 {item}
               </span>
             </li>

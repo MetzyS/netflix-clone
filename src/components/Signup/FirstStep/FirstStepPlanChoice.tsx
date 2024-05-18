@@ -12,13 +12,13 @@ const FirstStepPlanChoice = (props: {
   };
   return (
     <>
-      <div className="flex flex-col mt-6 text-left max-w-[500px] lg:max-w-[1100px] m-auto">
+      <div className="flex flex-col lg:mt-1 text-left max-w-[500px] lg:max-w-[1100px] m-auto">
         <p className="text-neutral-800 uppercase text-xs mt-6">
           {props.data.stepWord[0]} <span className="font-semibold">2</span>{" "}
           {props.data.stepWord[1]}{" "}
           <span className="font-semibold">{props.data.maxStep}</span>
         </p>
-        <h1 className="signup-title mt-1 leading-10 font-semibold">
+        <h1 className="signup-title mt-1 leading-10">
           {props.data.firstStepPlanChoiceTitle}
         </h1>
         <div className="flex gap-3 w-full">

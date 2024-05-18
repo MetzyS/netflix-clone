@@ -55,7 +55,7 @@
   }
 
   .signup-title {
-    @apply font-semibold text-3xl mb-4 text-neutral-800;
+    @apply font-semibold text-3xl lg:text-[2rem] mb-4 text-neutral-800;
   }
 
   .input-white {
