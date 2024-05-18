@@ -10,6 +10,7 @@ import { UserType } from "../types/user";
 
 const Signup = () => {
   const {
+    user,
     data,
     isConnected,
     userEmail,
@@ -36,26 +37,42 @@ const Signup = () => {
     }
   }, [handleChangeBg]);
   const [formStep, setFormStep] = useState(0);
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
-  const handleFormSubmit = (newData: { email: string; password: string }) => {
+  const handleFormStep = (value: number) => {
+    setFormStep(value);
+  };
+
+  const [userData, setUserData] = useState(() =>
+    user
+      ? user
+      : {
+          email: "",
+          password: "",
+          authorization: 0,
+        }
+  );
+  const handleFormSubmit = (newData: {
+    email: string;
+    password: string;
+    authorization: number;
+  }) => {
     setUserData((prevData) => ({ ...prevData, ...newData }));
     handleUserEmail(newData.email);
     handleCreateUser([
       { key: "email", value: newData.email },
       { key: "password", value: newData.password },
+      { key: "authorization", value: newData.authorization },
       { key: "registerStep", value: 2 },
     ]);
     handleCreateAccount(true);
     handleFormStep(2);
   };
-  const handleFormStep = (value: number) => {
-    setFormStep(value);
+
+  const handlePlanChoiceSubmit = (selectedPlan: number) => {
+    handleCreateUser([{ key: "registerStep", value: 4 }]);
+    handleCreateUser([{ key: "authorization", value: selectedPlan }]);
+    setUserData((prevData) => ({ ...prevData, authorization: selectedPlan }));
   };
 
-  // Recup infos si utilisateur est en cours de création
   return (
     <>
       {isConnected && !isCreatingAccount ? (
@@ -102,15 +119,17 @@ const Signup = () => {
             {formStep == 3 && (
               <FirstStepPlanChoice
                 data={data.signup}
-                handleFormStep={() => {
-                  handleFormStep(4);
-                  handleCreateUser([{ key: "registerStep", value: 4 }]);
-                }}
+                handleSubmit={handlePlanChoiceSubmit}
               />
             )}
             {formStep == 4 && (
               <div>
-                <span className="text-black">4</span>
+                <span className="text-black">Form step: {formStep}</span>
+                {userData && (
+                  <span className="text-black">
+                    User: {JSON.stringify(userData)}
+                  </span>
+                )}
               </div>
             )}
           </div>

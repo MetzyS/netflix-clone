@@ -22,7 +22,6 @@ export const checkUserRegisterStep = (): number | undefined => {
   let parsedUserData;
   if (userDataRaw) {
     parsedUserData = JSON.parse(userDataRaw);
-    console.log("parsed user data = " + parsedUserData);
     step = parsedUserData.registerStep;
   }
   return step;

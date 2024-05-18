@@ -4,11 +4,13 @@ import Plan from "./Plan";
 
 const FirstStepPlanChoice = (props: {
   data: Signup;
-  handleFormStep: () => void;
+  handleSubmit: (selectedPlan: number) => void;
 }) => {
   const [isSelected, setIsSelected] = useState(0);
+  const [selectedPlan, setSelectedPlan] = useState(0);
   const handleSelected = (value: number) => {
     setIsSelected(value);
+    setSelectedPlan(value + 1);
   };
   return (
     <>
@@ -30,6 +32,7 @@ const FirstStepPlanChoice = (props: {
                 item={item}
                 data={props.data}
                 handleSelected={handleSelected}
+                key={"plan-" + (index + 1)}
               />
             )
           )}
@@ -64,7 +67,7 @@ const FirstStepPlanChoice = (props: {
             <button
               type="button"
               className="py-3 w-full max-w-[600px] text-white text-2xl rounded-md bg-[#f6121d] hover:bg-[#e50914] my-6 font-semibold"
-              onClick={props.handleFormStep}
+              onClick={() => props.handleSubmit(selectedPlan)}
             >
               {props.data.firstButton}
             </button>

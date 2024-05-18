@@ -8,19 +8,23 @@ import Card from "./Card";
 import Faq from "./Faq";
 import Separation from "../ui/Separation";
 import FadedBackground from "../Background/FadedBackground";
+import { useDataContext } from "../../layouts/RootLayout";
 
 const HeroPage = (props: {
   lang: string;
   content: DataType;
   userEmail?: string;
   handleChangeBg: (value: boolean) => void;
-  onChangeForm: (value: string) => void;
+  // onChangeForm: (value: string) => void;
   isCreatingAccount: boolean;
 }) => {
   useEffect(() => {
     props.handleChangeBg(false);
   }, [props.handleChangeBg]);
-  // console.log(isCreatingAccount);
+  const { handleUserEmail } = useDataContext();
+  const onChangeForm = (value: string) => {
+    handleUserEmail(value);
+  };
   return (
     <>
       <div className="w-screen overflow-hidden pr-4">
@@ -42,7 +46,7 @@ const HeroPage = (props: {
                 data={props.content.form}
                 // to="/signup"
                 to=""
-                onChange={props.onChangeForm}
+                onChange={onChangeForm}
                 userEmail={props.userEmail}
                 isCreatingAccount={props.isCreatingAccount}
               />
@@ -68,7 +72,7 @@ const HeroPage = (props: {
           <RegisterForm
             data={props.content.form}
             to="/signup"
-            onChange={props.onChangeForm}
+            onChange={onChangeForm}
             userEmail={props.userEmail}
             isCreatingAccount={props.isCreatingAccount}
           />

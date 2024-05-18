@@ -5,8 +5,8 @@
  * @param email string
  * @returns string
  */
-const createUsernameFromEmail = (email: string): string => {
+export const createUsernameFromEmail = (email: string): string => {
   const userEmail = email.split("@");
-  const username = userEmail[0];
+  const username = userEmail[0].toLocaleLowerCase();
   return username;
 };

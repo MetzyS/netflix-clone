@@ -18,7 +18,7 @@ export type ContextType = {
   handleCreateUser: (
     values: Array<{
       key: keyof UserType;
-      value: string | number | UserProfile;
+      value: string | number | UserProfile | {};
     }>
   ) => void;
   handleChangeLang: (value: string) => void;

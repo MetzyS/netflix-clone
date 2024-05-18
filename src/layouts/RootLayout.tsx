@@ -9,6 +9,7 @@ import {
   checkIfUserIsCreatingAccount,
   checkUserRegisterStep,
 } from "../hooks/UserIsCreatingAccount/creatingAccount";
+import { createUsernameFromEmail } from "../hooks/UserIsCreatingAccount/createUsernameFromEmail";
 
 const RootLayout = (props: { data: Record<string, DataType> }) => {
   const defaultUser: UserType = {
@@ -21,8 +22,13 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
     avatarUrl: "",
     registerStep: 0,
   };
+  const savedUser = localStorage.getItem("user");
+  const navigate = useNavigate();
   const [isConnected, setIsConnected] = useState(false);
-  const [user, setUser] = useState<UserType>(defaultUser);
+  const [user, setUser] = useState<UserType>(
+    savedUser ? JSON.parse(savedUser) : defaultUser
+  );
+  console.log(user);
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -90,7 +96,7 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   const handleCreateUser = (
     values: Array<{
       key: keyof UserType;
-      value: string | number | UserProfile;
+      value: string | number | UserProfile | {};
     }>
   ) => {
     setIsCreated(true);
@@ -100,8 +106,7 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
         localStorage.setItem("user", JSON.stringify(updatedUser));
         if (item.key === "email" && typeof item.value == "string") {
-          const username = item.value.split("@");
-          const updatedUsername = username[0];
+          const updatedUsername = createUsernameFromEmail(item.value);
           let update = { ...prevUser, username: updatedUsername };
           localStorage.setItem("user", JSON.stringify(update));
           return update;
@@ -109,14 +114,12 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
         return updatedUser;
       })
     );
-    console.log(localStorage.getItem("user"));
   };
 
   const handleDisconnect = () => {
     const user = userIsConnected();
     if (user) {
       clearUser();
-      const navigate = useNavigate();
       navigate("/");
     }
     setIsConnected(false);
@@ -134,14 +137,14 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   };
 
   const clearUser = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("isCreating");
-    setUserEmail("");
+    setUser(defaultUser);
+    setUserEmail(defaultUser.email);
+    setRegisterStep(undefined);
     setIsCreated(false);
     setIsCreatingAccount(false);
-    setUser(defaultUser);
     setIsConnected(false);
-    setRegisterStep(undefined);
+    localStorage.removeItem("user");
+    localStorage.removeItem("isCreating");
   };
 
   return (

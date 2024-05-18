@@ -6,6 +6,8 @@ import DefaultButton from "../components/ui/DefaultButton";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { FormEvent, useState } from "react";
+import { createUsernameFromEmail } from "../hooks/UserIsCreatingAccount/createUsernameFromEmail";
+import { UserProfile } from "../types/user";
 
 const Login = () => {
   const { data, handleChangeBg, userEmail, isConnected, handleCreateUser } =
@@ -19,14 +21,17 @@ const Login = () => {
   };
   const handlePassword = (password: string) => {
     setPassword(password);
-    // console.log(password);
   };
 
   const handleLogin = (email: string, password: string) => {
-    console.log("submitted");
     handleCreateUser([
       { key: "email", value: email },
       { key: "password", value: password },
+      { key: "authorization", value: 1 },
+      { key: "profiles", value: {} },
+      { key: "avatarUrl", value: "" },
+      { key: "username", value: createUsernameFromEmail(email) },
+      { key: "fullName", value: "" },
     ]);
   };
   return (

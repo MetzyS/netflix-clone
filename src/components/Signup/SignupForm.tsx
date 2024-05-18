@@ -9,7 +9,11 @@ const SignupForm = (props: {
   inputData: FormType;
   isCreated: boolean;
   handleCreateAccount: (value: boolean) => void;
-  onSubmit: (newData: { email: string; password: string }) => void;
+  onSubmit: (newData: {
+    email: string;
+    password: string;
+    authorization: number;
+  }) => void;
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +26,7 @@ const SignupForm = (props: {
   };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.onSubmit({ email: email, password: password });
+    props.onSubmit({ email: email, password: password, authorization: 0 });
   };
   return (
     <>
