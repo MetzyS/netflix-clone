@@ -12,7 +12,8 @@ export type UserType = {
   avatarUrl?: string;
   registerStep: number;
   profiles: Record<number, UserProfile>;
-  authorization: number;
+  authorization: boolean;
+  plan: number;
 };
 
 export type Users = Record<string, UserType>;

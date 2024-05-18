@@ -13,7 +13,8 @@ import { createUsernameFromEmail } from "../hooks/UserIsCreatingAccount/createUs
 
 const RootLayout = (props: { data: Record<string, DataType> }) => {
   const defaultUser: UserType = {
-    authorization: 0,
+    plan: 0,
+    authorization: false,
     email: "",
     fullName: "",
     password: "",

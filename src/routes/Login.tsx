@@ -1,13 +1,12 @@
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { useDataContext } from "../layouts/RootLayout";
 import FadedBackground from "../components/Background/FadedBackground";
 import Input from "../components/Form/Input";
 import DefaultButton from "../components/ui/DefaultButton";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { createUsernameFromEmail } from "../hooks/UserIsCreatingAccount/createUsernameFromEmail";
-import { UserProfile } from "../types/user";
 
 const Login = () => {
   const { data, handleChangeBg, userEmail, isConnected, handleCreateUser } =
@@ -27,7 +26,8 @@ const Login = () => {
     handleCreateUser([
       { key: "email", value: email },
       { key: "password", value: password },
-      { key: "authorization", value: 1 },
+      { key: "authorization", value: true },
+      { key: "plan", value: 1 },
       { key: "profiles", value: {} },
       { key: "avatarUrl", value: "" },
       { key: "username", value: createUsernameFromEmail(email) },

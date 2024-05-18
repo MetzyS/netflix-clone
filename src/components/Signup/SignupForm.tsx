@@ -12,7 +12,8 @@ const SignupForm = (props: {
   onSubmit: (newData: {
     email: string;
     password: string;
-    authorization: number;
+    authorization: boolean;
+    plan: number;
   }) => void;
 }) => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,12 @@ const SignupForm = (props: {
   };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.onSubmit({ email: email, password: password, authorization: 0 });
+    props.onSubmit({
+      email: email,
+      password: password,
+      authorization: false,
+      plan: 0,
+    });
   };
   return (
     <>

@@ -47,13 +47,15 @@ const Signup = () => {
       : {
           email: "",
           password: "",
-          authorization: 0,
+          authorization: false,
+          plan: 0,
         }
   );
   const handleFormSubmit = (newData: {
     email: string;
     password: string;
-    authorization: number;
+    authorization: boolean;
+    plan: number;
   }) => {
     setUserData((prevData) => ({ ...prevData, ...newData }));
     handleUserEmail(newData.email);
@@ -69,8 +71,14 @@ const Signup = () => {
 
   const handlePlanChoiceSubmit = (selectedPlan: number) => {
     handleCreateUser([{ key: "registerStep", value: 4 }]);
-    handleCreateUser([{ key: "authorization", value: selectedPlan }]);
-    setUserData((prevData) => ({ ...prevData, authorization: selectedPlan }));
+    handleCreateUser([{ key: "authorization", value: false }]);
+    handleCreateUser([{ key: "plan", value: selectedPlan }]);
+    setUserData((prevData) => ({ ...prevData, plan: selectedPlan }));
+  };
+
+  const handleSubmitPayment = () => {
+    handleCreateUser([{ key: "authorization", value: true }]);
+    setUserData((prevData) => ({ ...prevData, authorization: true }));
   };
 
   return (
