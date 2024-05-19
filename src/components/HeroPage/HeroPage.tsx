@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import DataType from "../../types/data";
+import LangType from "../../types/data";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import OfferAd from "./OfferAd";
@@ -10,7 +10,7 @@ import FadedBackground from "../Background/FadedBackground";
 import FormRegister from "./FormRegister";
 import { useDataContext } from "../../layouts/RootLayout";
 
-const HeroPage = (props: { lang: string; content: DataType }) => {
+const HeroPage = (props: { lang: string; content: LangType }) => {
   const { handleChangeBg } = useDataContext();
   useEffect(() => {
     handleChangeBg(false);

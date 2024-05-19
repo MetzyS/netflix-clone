@@ -281,7 +281,22 @@
         "Seules les personnes qui vivent avec vous peuvent utiliser votre compte. Ajoutez un abonné supplémentaire avec l'offre Standard ou jusqu'à deux abonnés supplémentaires avec l'offre Premium. En savoir plus. Regardez Netflix en simultané sur 4 appareils différents avec l'offre Premium et sur 2 appareils différents avec les offres Standard et Standard avec pub."
       ],
       "secondStepBackTitle": "Compte créé.",
-      "secondStepBackDesc": "Utilisez cette adresse pour accéder à votre compte :"
+      "secondStepBackDesc": "Utilisez cette adresse pour accéder à votre compte :",
+      "paymentStep": {
+        "title": "Choisissez comment payer",
+        "desc": "Votre paiement est sécurisé et vous pouvez modifier votre mode de paiement à tout moment.",
+        "subDesc": [
+          "Sécurité et tranquilité d'esprit.",
+          "Facilement annulable en ligne."
+        ],
+        "encrypted": "Chiffré de bout en bout",
+        "paymentTypes": {
+          "creditCard": "Carte de crédit ou de débit",
+          "mobileBill": "Ajouter à la facture mobile",
+          "paypal": "PayPal",
+          "giftCode": "Code cadeau"
+        }
+      }
     },
     "signupFooterText": "Des questions ? Appelez le (+33) 0805-543-063",
     "signupFooter": {
@@ -601,7 +616,19 @@
         "Only people who live with you may use your account. Add 1 extra member with Standard or up to 2 with Premium. Learn more. Watch on 4 different devices at the same time with Premium and 2 with Standard or Standard with ads."
       ],
       "secondStepBackTitle": "Account Created.",
-      "secondStepBackDesc": "Use this email to access your account :"
+      "secondStepBackDesc": "Use this email to access your account :",
+      "paymentStep": {
+        "title": "Choose how to pay",
+        "desc": "Your payment is encrypted and you can change how you pay anytime.",
+        "subDesc": ["Secure for peace of mind.", "Cancel easily online."],
+        "encrypted": "End-to-end encrypted",
+        "paymentTypes": {
+          "creditCard": "Credit or Debit Card",
+          "mobileBill": "Add to mobile bill",
+          "paypal": "PayPal",
+          "giftCode": "Gift Code"
+        }
+      }
     },
     "signupFooterText": "Questions? Contact us.",
     "signupFooter": {

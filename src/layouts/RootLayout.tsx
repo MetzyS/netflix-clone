@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
-import DataType from "../types/data";
+import LangType from "../types/data";
 import { userIsConnected } from "../helpers/userIsConnected";
 import {
   checkIfUserIsCreatingAccount,
@@ -11,7 +11,7 @@ import {
 } from "../helpers/creatingAccount";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 
-const RootLayout = (props: { data: Record<string, DataType> }) => {
+const RootLayout = (props: { data: Record<string, LangType> }) => {
   const defaultUser: UserType = {
     plan: 0,
     authorization: false,

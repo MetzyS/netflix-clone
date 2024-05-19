@@ -58,6 +58,21 @@ export type Form = {
   finishSignup: string;
 };
 
+type PaymentChoice = {
+  creditCard: string;
+  mobileBill: string;
+  paypal: string;
+  giftCode: string;
+};
+
+export type Payment = {
+  title: string;
+  desc: string;
+  subDesc: string[];
+  encrypted: string;
+  paymentTypes: PaymentChoice;
+};
+
 export type Signup = {
   stepWord: string[];
   maxStep: string;
@@ -75,9 +90,10 @@ export type Signup = {
   firstStepConditions: string[];
   secondStepBackTitle: string;
   secondStepBackDesc: string;
+  paymentStep: Payment;
 };
 
-type DataType = {
+export type LangType = {
   header: Header;
   title: string;
   subtitle: string;
@@ -109,4 +125,4 @@ type DataType = {
   signupFooter: FooterMap;
 };
 
-export default DataType;
+export default LangType;

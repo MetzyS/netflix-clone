@@ -1,10 +1,10 @@
 import Header from "../Header/Header";
-import DataType from "../../types/data";
+import LangType from "../../types/data";
 import { UserType } from "../../types/user";
 
 const ShowMovies = (props: {
   lang: string;
-  content: DataType;
+  content: LangType;
   user: UserType | undefined;
 }) => {
   return (
