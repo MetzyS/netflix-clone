@@ -7,6 +7,7 @@ import SignupForm from "../components/Signup/SignupForm";
 import FirstStepPlanDesc from "../components/Signup/FirstStep/FirstStepPlanDesc";
 import FirstStepPlanChoice from "../components/Signup/FirstStep/FirstStepPlanChoice";
 import { UserType } from "../types/user";
+import PaymentChoice from "../components/Signup/Payment/PaymentChoice";
 
 const Signup = () => {
   const {
@@ -115,14 +116,19 @@ const Signup = () => {
               />
             )}
             {formStep == 4 && (
-              <div>
-                <span className="text-black">Form step: {formStep}</span>
-                {user && (
-                  <span className="text-black">
-                    User: {JSON.stringify(user)}
-                  </span>
-                )}
-              </div>
+              <PaymentChoice
+                data={data.signup.paymentStep}
+                steps={data.signup.stepWord}
+                maxStep={data.signup.maxStep}
+              />
+              // <div>
+              //   <span className="text-black">Form step: {formStep}</span>
+              //   {user && (
+              //     <span className="text-black">
+              //       User: {JSON.stringify(user)}
+              //     </span>
+              //   )}
+              // </div>
             )}
           </div>
           <div>
