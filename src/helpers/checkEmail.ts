@@ -1,4 +1,4 @@
-import dummyUsers from "../data/dummyUsers.json";
+import dummyUsers from "../constants/dummyUsers.json";
 import { Users } from "../types/user";
 
 const dummyUser: Users = dummyUsers;

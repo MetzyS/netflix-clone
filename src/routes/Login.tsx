@@ -6,7 +6,7 @@ import DefaultButton from "../components/ui/DefaultButton";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { useState } from "react";
-import { createUsernameFromEmail } from "../hooks/UserIsCreatingAccount/createUsernameFromEmail";
+import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 
 const Login = () => {
   const { data, handleChangeBg, userEmail, isConnected, handleCreateUser } =

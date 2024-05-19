@@ -2,14 +2,14 @@ import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
-import { checkEmail } from "../functions/checkEmail";
+import { checkEmail } from "../helpers/checkEmail";
 import DataType from "../types/data";
-import { userIsConnected } from "../hooks/UserIsCreatingAccount/userIsConnected";
+import { userIsConnected } from "../helpers/userIsConnected";
 import {
   checkIfUserIsCreatingAccount,
   checkUserRegisterStep,
-} from "../hooks/UserIsCreatingAccount/creatingAccount";
-import { createUsernameFromEmail } from "../hooks/UserIsCreatingAccount/createUsernameFromEmail";
+} from "../helpers/creatingAccount";
+import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 
 const RootLayout = (props: { data: Record<string, DataType> }) => {
   const defaultUser: UserType = {

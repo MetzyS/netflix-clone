@@ -90,7 +90,7 @@ const Signup = () => {
           <Header
             content={data.header}
             selectLang={false}
-            className="border-b border-neutral-200 px-4 py-1 sm:py-3 w-full"
+            className="border-b border-neutral-200 px-4 py-1 sm:py-6 w-full"
             link="/login"
             logoClassname="w-20 sm:w-40"
             showButton={false}

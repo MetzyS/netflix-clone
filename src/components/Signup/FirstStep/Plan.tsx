@@ -23,7 +23,7 @@ const Plan = (props: {
           className={`relative basis-full h-28 lg:h-max lg:pb-8 border border-neutral-300 rounded-xl pt-4 lg:pt-2 px-2.5 cursor-pointer ${
             props.isSelected == props.index
               ? "bg-plan-" + props.index + " shadow-md text-white"
-              : "bg-transparent lg:bg-zinc-100"
+              : "bg-transparent"
           }`}
         >
           <h2 className="text-sm font-bold lg:text-lg lg:-mb-2">
@@ -60,7 +60,7 @@ const Plan = (props: {
               <span className="text-[0.8rem] font-semibold text-neutral-500 flex-wrap flex-[0_0_40%]">
                 {props.data.firstStepPlanChoiceList[index]}
               </span>
-              <span className="text-right lg:text-left text-neutral-700 font-semibold text-sm last-of-type:text-base">
+              <span className="text-right lg:text-left text-neutral-700 font-medium text-sm last-of-type:text-base">
                 {item}
               </span>
             </li>
