@@ -5,7 +5,7 @@ import Profiles from "./Animations/Profiles";
 import Tv from "./Animations/Tv";
 
 const Card = (props: {
-  data: {
+  content: {
     id: string;
     title: string;
     text: string;
@@ -17,17 +17,17 @@ const Card = (props: {
 }) => {
   let animation;
   const backupAnimationUrl = "videos/video-devices-1.m4v";
-  switch (props.data.id) {
+  switch (props.content.id) {
     case "0":
-      if (props.data.videoUrl) {
-        animation = <Tv videoUrl={props.data.videoUrl} />;
+      if (props.content.videoUrl) {
+        animation = <Tv videoUrl={props.content.videoUrl} />;
       } else {
         animation = <Tv videoUrl={backupAnimationUrl} />;
       }
       break;
     case "1":
-      if (props.data.videoUrl) {
-        animation = <Devices videoUrl={props.data.videoUrl} />;
+      if (props.content.videoUrl) {
+        animation = <Devices videoUrl={props.content.videoUrl} />;
       } else {
         animation = <Devices videoUrl={backupAnimationUrl} />;
       }
@@ -40,12 +40,12 @@ const Card = (props: {
       }
       break;
     case "3":
-      if (props.data.downloadText && props.data.downloadMovieTitle) {
+      if (props.content.downloadText && props.content.downloadMovieTitle) {
         animation = (
           <Download
             lang={props.lang}
-            title={props.data.downloadMovieTitle}
-            text={props.data.downloadText}
+            title={props.content.downloadMovieTitle}
+            text={props.content.downloadText}
           />
         );
       } else {
@@ -57,8 +57,8 @@ const Card = (props: {
       }
       break;
     default:
-      if (props.data.videoUrl) {
-        animation = <Tv videoUrl={props.data.videoUrl} />;
+      if (props.content.videoUrl) {
+        animation = <Tv videoUrl={props.content.videoUrl} />;
       } else {
         animation = <Tv videoUrl={backupAnimationUrl} />;
       }
@@ -67,8 +67,8 @@ const Card = (props: {
   return (
     <div className="flex flex-col my-6 text-center items-center">
       <div className="mb-10 px-8 self-center">
-        <h2 className="text-3xl font-bold leading-10">{props.data.title}</h2>
-        <p className="leading-6 mt-4">{props.data.text}</p>
+        <h2 className="text-3xl font-bold leading-10">{props.content.title}</h2>
+        <p className="leading-6 mt-4">{props.content.text}</p>
       </div>
       <div className="max-w-[620px] px-5 relative">{animation}</div>
       <Separation />

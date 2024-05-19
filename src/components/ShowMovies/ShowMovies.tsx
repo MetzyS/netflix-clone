@@ -12,6 +12,7 @@ const ShowMovies = (props: {
       <div className="w-screen overflow-hidden pr-4">
         <Header content={props.content.header} className="p-6" />
       </div>
+      <span>ShowMovies</span>
     </>
   );
 };

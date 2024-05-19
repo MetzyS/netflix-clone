@@ -2,13 +2,13 @@ import { useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { FaqType } from "../../types/data";
 
-const Faq = (props: { data: FaqType }) => {
+const Faq = (props: { content: FaqType }) => {
   const [isHidden, setIsHidden] = useState(true);
   const handleHidden = () => {
     setIsHidden(!isHidden);
   };
 
-  const answer = props.data.answer.replace(/\\n/g, "\n");
+  const answer = props.content.answer.replace(/\\n/g, "\n");
   return (
     <div className="flex flex-col items-center px-6 mb-2">
       <button
@@ -16,7 +16,7 @@ const Faq = (props: { data: FaqType }) => {
         className="bg-neutral-800 hover:bg-neutral-700 px-6 py-5 w-full max-w-[1024px] text-lg flex text-left items-center gap-2 justify-between"
         onClick={handleHidden}
       >
-        <span className="flex flex-wrap">{props.data.question}</span>
+        <span className="flex flex-wrap">{props.content.question}</span>
         <span>
           {isHidden ? (
             <IoAdd className="size-8" />

@@ -125,10 +125,11 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
         localStorage.setItem("user", JSON.stringify(updatedUser));
         if (item.key === "email" && typeof item.value != "string") {
-          const updatedUsername = createUsernameFromEmail(item.value);
+          const updatedUsername = createUsernameFromEmail(
+            item.value.toString()
+          );
           let update = { ...updatedUser, username: updatedUsername };
           localStorage.setItem("user", JSON.stringify(update));
-          // console.log("erreur ici");
           return update;
         }
         return updatedUser;

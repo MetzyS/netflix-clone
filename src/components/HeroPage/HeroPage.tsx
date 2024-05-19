@@ -40,7 +40,7 @@ const HeroPage = (props: { lang: string; content: DataType }) => {
         <OfferAd content={props.content.offer} />
         <div>
           {Object.values(props.content.description).map((item, index) => (
-            <Card data={item} key={"card-" + index} lang={props.lang} />
+            <Card content={item} key={"card-" + index} lang={props.lang} />
           ))}
         </div>
         <div className="mb-12">
@@ -48,7 +48,7 @@ const HeroPage = (props: { lang: string; content: DataType }) => {
             {props.content.faqTitle}
           </h3>
           {Object.values(props.content.faq).map((item, index) => (
-            <Faq data={item} key={"faq-" + index} />
+            <Faq content={item} key={"faq-" + index} />
           ))}
         </div>
         <div>
