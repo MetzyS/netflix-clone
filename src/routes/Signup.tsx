@@ -21,43 +21,26 @@ const Signup = () => {
     isCreatingAccount,
     isCreated,
   } = useDataContext();
+  let userzzz: string | UserType | null = localStorage.getItem("user");
+  console.log("userzz: " + userzzz);
+  console.log("user: " + JSON.stringify(user));
+
   useEffect(() => {
     handleChangeBg(true);
-    let parsedUser: UserType;
-    let registerStep: number | undefined | null;
-    if (isCreatingAccount) {
-      let user: string | UserType | null = localStorage.getItem("user");
-      if (user) {
-        parsedUser = JSON.parse(user);
-        if (parsedUser.registerStep) {
-          registerStep = parsedUser.registerStep;
-          setFormStep(registerStep);
-        }
-      }
-    }
+    isCreatingAccount && user!.registerStep && setFormStep(user!.registerStep);
   }, [handleChangeBg]);
+
   const [formStep, setFormStep] = useState(0);
   const handleFormStep = (value: number) => {
     setFormStep(value);
   };
 
-  const [userData, setUserData] = useState(() =>
-    user
-      ? user
-      : {
-          email: "",
-          password: "",
-          authorization: false,
-          plan: 0,
-        }
-  );
   const handleFormSubmit = (newData: {
     email: string;
     password: string;
     authorization: boolean;
     plan: number;
   }) => {
-    setUserData((prevData) => ({ ...prevData, ...newData }));
     handleUserEmail(newData.email);
     handleCreateUser([
       { key: "email", value: newData.email },
@@ -65,6 +48,7 @@ const Signup = () => {
       { key: "authorization", value: newData.authorization },
       { key: "registerStep", value: 2 },
     ]);
+    console.log(newData);
     handleCreateAccount(true);
     handleFormStep(2);
   };
@@ -73,12 +57,12 @@ const Signup = () => {
     handleCreateUser([{ key: "registerStep", value: 4 }]);
     handleCreateUser([{ key: "authorization", value: false }]);
     handleCreateUser([{ key: "plan", value: selectedPlan }]);
-    setUserData((prevData) => ({ ...prevData, plan: selectedPlan }));
+    // console.log(userData);
   };
 
   const handleSubmitPayment = () => {
     handleCreateUser([{ key: "authorization", value: true }]);
-    setUserData((prevData) => ({ ...prevData, authorization: true }));
+    // setUserData((prevData) => ({ ...prevData, authorization: true }));
   };
 
   return (
@@ -113,8 +97,8 @@ const Signup = () => {
                 onSubmit={handleFormSubmit}
               />
             )}
-            {userData.email.length > 5 &&
-              userData.password.length >= 8 &&
+            {user!.email.length > 5 &&
+              user!.password.length >= 8 &&
               formStep == 2 && (
                 <FirstStepPlanDesc
                   data={data.signup}
@@ -133,9 +117,9 @@ const Signup = () => {
             {formStep == 4 && (
               <div>
                 <span className="text-black">Form step: {formStep}</span>
-                {userData && (
+                {user && (
                   <span className="text-black">
-                    User: {JSON.stringify(userData)}
+                    User: {JSON.stringify(user)}
                   </span>
                 )}
               </div>

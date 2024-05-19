@@ -25,11 +25,12 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   };
   const savedUser = localStorage.getItem("user");
   const navigate = useNavigate();
+  // console.log("rootlayout: " + savedUser);
   const [isConnected, setIsConnected] = useState(false);
   const [user, setUser] = useState<UserType>(
     savedUser ? JSON.parse(savedUser) : defaultUser
   );
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -43,7 +44,8 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
   const [lang, setLang] = useState<string>("fr");
   const [data, setData] = useState(props.data.fr);
   const [bgWhite, setBgWhite] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState(user.email);
+  const [userPassword, setUserPassword] = useState(user.password);
   const [isCreated, setIsCreated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isCreatingAccount, setIsCreatingAccount] = useState<boolean>(
@@ -82,8 +84,20 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
         };
   };
 
-  const handleUserEmail = (value: string) => {
-    setUserEmail(value);
+  /**
+   * Met à jour state user & userEmail
+   * @param email string
+   */
+  const handleUserEmail = (email: string) => {
+    setUserEmail(email);
+    setUser((prevUser: UserType) => {
+      const update = { ...prevUser, ["email"]: email };
+      return update;
+    });
+  };
+
+  const handleUserPassword = (password: string) => {
+    setUserPassword(password);
   };
 
   const handleCreateAccount = (value: boolean) => {
@@ -94,6 +108,10 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
         localStorage.setItem("isCreating", "false"));
   };
 
+  /**
+   * Met à jour "user" dans localStorage + state
+   * @param values [key: "keyName", value: "value"]
+   */
   const handleCreateUser = (
     values: Array<{
       key: keyof UserType;
@@ -106,10 +124,11 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
       setUser((prevUser: UserType) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
         localStorage.setItem("user", JSON.stringify(updatedUser));
-        if (item.key === "email" && typeof item.value == "string") {
+        if (item.key === "email" && typeof item.value != "string") {
           const updatedUsername = createUsernameFromEmail(item.value);
-          let update = { ...prevUser, username: updatedUsername };
+          let update = { ...updatedUser, username: updatedUsername };
           localStorage.setItem("user", JSON.stringify(update));
+          // console.log("erreur ici");
           return update;
         }
         return updatedUser;
@@ -130,6 +149,11 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
     setIsConnected(true);
   };
 
+  /**
+   * Simule un call API (1sec de delai => isLoading)
+   * @param value string (email)
+   * @returns
+   */
   const handleSubmitRegister = async (value: string): Promise<Boolean> => {
     setIsLoading(true);
     const userExists = await checkEmail(value);
@@ -166,11 +190,13 @@ const RootLayout = (props: { data: Record<string, DataType> }) => {
               handleConnect,
               handleSubmitRegister,
               handleCreateUser,
+              handleUserPassword,
               registerStep,
               isLoading,
               isConnected,
               isCreatingAccount,
               userEmail,
+              userPassword,
               isCreated,
               data,
             } satisfies ContextType

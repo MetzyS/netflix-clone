@@ -2,29 +2,24 @@ import { useEffect } from "react";
 import DataType from "../../types/data";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import RegisterForm from "./RegisterForm";
 import OfferAd from "./OfferAd";
 import Card from "./Card";
 import Faq from "./Faq";
 import Separation from "../ui/Separation";
 import FadedBackground from "../Background/FadedBackground";
+import FormRegister from "./FormRegister";
 import { useDataContext } from "../../layouts/RootLayout";
 
 const HeroPage = (props: {
   lang: string;
   content: DataType;
-  userEmail?: string;
-  handleChangeBg: (value: boolean) => void;
-  // onChangeForm: (value: string) => void;
   isCreatingAccount: boolean;
 }) => {
+  const { handleChangeBg } = useDataContext();
   useEffect(() => {
-    props.handleChangeBg(false);
-  }, [props.handleChangeBg]);
-  const { handleUserEmail } = useDataContext();
-  const onChangeForm = (value: string) => {
-    handleUserEmail(value);
-  };
+    handleChangeBg(false);
+  }, [handleChangeBg]);
+
   return (
     <>
       <div className="w-screen overflow-hidden pr-4">
@@ -42,14 +37,7 @@ const HeroPage = (props: {
               <h2 className="text-lg lg:text-2xl mt-6 leading-snug">
                 {props.content.subtitle}
               </h2>
-              <RegisterForm
-                data={props.content.form}
-                // to="/signup"
-                to=""
-                onChange={onChangeForm}
-                userEmail={props.userEmail}
-                isCreatingAccount={props.isCreatingAccount}
-              />
+              <FormRegister to="" method="post" />
             </div>
           </div>
         </FadedBackground>
@@ -66,16 +54,9 @@ const HeroPage = (props: {
           {Object.values(props.content.faq).map((item, index) => (
             <Faq data={item} key={"faq-" + index} />
           ))}
-          {/* <Separation /> */}
         </div>
         <div>
-          <RegisterForm
-            data={props.content.form}
-            to="/signup"
-            onChange={onChangeForm}
-            userEmail={props.userEmail}
-            isCreatingAccount={props.isCreatingAccount}
-          />
+          <FormRegister to="" method="post" />
           <Separation />
         </div>
       </div>

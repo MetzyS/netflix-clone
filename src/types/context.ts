@@ -6,6 +6,7 @@ export type ContextType = {
   user: UserType | undefined;
   data: DataType;
   userEmail: string;
+  userPassword: string;
   isCreated: boolean;
   isConnected: boolean;
   isLoading: boolean;
@@ -23,7 +24,8 @@ export type ContextType = {
   ) => void;
   handleChangeLang: (value: string) => void;
   handleChangeBg: (value: boolean) => void;
-  handleUserEmail: (value: string) => void;
+  handleUserEmail: (email: string) => void;
+  handleUserPassword: (password: string) => void;
   handleCreateAccount: (value: boolean) => void;
   handleDisconnect: () => void;
   handleConnect: () => void;
