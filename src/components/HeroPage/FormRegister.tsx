@@ -4,14 +4,15 @@ import DefaultButton from "../ui/DefaultButton";
 import { Form, useNavigate } from "react-router-dom";
 import Input from "../Form/Input";
 import { FormEvent, useState } from "react";
+import { Form as FormType } from "../../types/data";
 
 const FormRegister = (props: {
+  content: FormType;
   to: string;
   method: "get" | "post" | "put" | "delete" | "patch";
 }) => {
   const {
     user,
-    data,
     isLoading,
     userEmail,
     isCreatingAccount,
@@ -41,7 +42,7 @@ const FormRegister = (props: {
           className="md:mb-8 max-w-[600px] m-auto"
         >
           <h3 className="text-lg lg:text-xl leading-normal text-center">
-            {data.form.text}
+            {props.content.text}
           </h3>
           <div
             className={`flex flex-col sm:flex-row justify-center ${
@@ -53,10 +54,10 @@ const FormRegister = (props: {
             ) : (
               <Input
                 type="email"
-                label={data.form.email}
+                label={props.content.email}
                 onChange={handleChangeInputEmail}
-                error={data.form.error}
-                value={userEmail}
+                error={props.content.error}
+                value={email}
                 isLoading={isLoading}
                 errorPositionAbsolute={true}
               />
@@ -68,7 +69,7 @@ const FormRegister = (props: {
                 onClick={() => {
                   navigate("/signup");
                 }}
-                text={data.form.finishSignup}
+                text={props.content.finishSignup}
                 primary={true}
                 className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
                 icon={<MdArrowForwardIos className="size-5" />}
@@ -76,7 +77,7 @@ const FormRegister = (props: {
             ) : (
               <DefaultButton
                 type="submit"
-                text={data.form.button}
+                text={props.content.button}
                 primary={true}
                 className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
                 icon={<MdArrowForwardIos className="size-5" />}

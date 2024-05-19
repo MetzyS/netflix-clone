@@ -8,8 +8,8 @@ const Input = (props: {
   type: string;
   for?: string;
   error: string[];
-  onChange?: (value: string) => void;
-  value?: string;
+  onChange: (value: string) => void;
+  value: string;
   white?: boolean;
   autocomplete?: string;
   isLoading?: boolean;
@@ -35,24 +35,25 @@ const Input = (props: {
   const [isFocus, setIsFocus] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isValid, setIsValid] = useState<Boolean | undefined>(undefined);
-  const [value, setValue] = useState<string>(props.value ? props.value : "");
+  // const [value, setValue] = useState<string>(props.value ? props.value : "");
 
-  props.value != "" &&
-    props.value != undefined &&
-    props.onChange &&
-    props.onChange(props.value);
+  // props.value != "" &&
+  //   props.value != undefined &&
+  //   props.onChange &&
+  //   props.onChange(props.value);
 
   useEffect(() => {
-    if (value != undefined && value != "") {
+    if (props.value != undefined && props.value != "") {
       setIsEmpty(false);
     }
-  }, [value]);
+  }, [props.value]);
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value);
-    if (props.onChange) {
-      props.onChange(e.currentTarget.value);
-    }
+    props.onChange(e.currentTarget.value);
+    // setValue(e.currentTarget.value);
+    // } else {
+    // setValue(e.currentTarget.value);
+    // }
   };
 
   const handleValidate = (e: FormEvent<HTMLInputElement>) => {
@@ -110,7 +111,7 @@ const Input = (props: {
             )}
 
             <input
-              value={value ? value : ""}
+              value={props.value}
               // value={value}
               // value={defaultValue}
               type={props.type}

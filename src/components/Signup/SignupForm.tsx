@@ -16,7 +16,7 @@ const SignupForm = (props: {
     plan: number;
   }) => void;
 }) => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(props.userEmail);
   const [password, setPassword] = useState("");
 
   const handleChangeEmail = (value: string) => {
@@ -59,7 +59,7 @@ const SignupForm = (props: {
             type="email"
             label={props.inputData.email}
             error={props.inputData.error}
-            value={props.userEmail}
+            value={email}
             white={true}
             autocomplete="off"
             onChange={handleChangeEmail}
@@ -68,7 +68,7 @@ const SignupForm = (props: {
             type="password"
             label={props.inputData.password}
             error={props.inputData.error}
-            value=""
+            value={password}
             white={true}
             autocomplete="off"
             onChange={handleChangePassword}

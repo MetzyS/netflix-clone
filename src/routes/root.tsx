@@ -9,11 +9,7 @@ const Root = () => {
       {isConnected && !isCreatingAccount ? (
         <ShowMovies lang={lang} content={data} user={user} />
       ) : (
-        <HeroPage
-          lang={lang}
-          content={data}
-          isCreatingAccount={isCreatingAccount}
-        />
+        <HeroPage lang={lang} content={data} />
       )}
     </>
   );

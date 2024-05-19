@@ -10,11 +10,7 @@ import FadedBackground from "../Background/FadedBackground";
 import FormRegister from "./FormRegister";
 import { useDataContext } from "../../layouts/RootLayout";
 
-const HeroPage = (props: {
-  lang: string;
-  content: DataType;
-  isCreatingAccount: boolean;
-}) => {
+const HeroPage = (props: { lang: string; content: DataType }) => {
   const { handleChangeBg } = useDataContext();
   useEffect(() => {
     handleChangeBg(false);
@@ -37,7 +33,7 @@ const HeroPage = (props: {
               <h2 className="text-lg lg:text-2xl mt-6 leading-snug">
                 {props.content.subtitle}
               </h2>
-              <FormRegister to="" method="post" />
+              <FormRegister content={props.content.form} to="" method="post" />
             </div>
           </div>
         </FadedBackground>
@@ -56,7 +52,7 @@ const HeroPage = (props: {
           ))}
         </div>
         <div>
-          <FormRegister to="" method="post" />
+          <FormRegister content={props.content.form} to="" method="post" />
           <Separation />
         </div>
       </div>
