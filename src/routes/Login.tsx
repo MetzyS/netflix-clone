@@ -10,10 +10,13 @@ import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, data, handleChangeBg, isConnected, handleCreateUser } =
-    useDataContext();
+  const { user, data, handleChangeBg, handleCreateUser } = useDataContext();
   useEffect(() => {
-    user && user.authorization && navigate("/");
+    // l'utilisateur n'a pas fini de s'inscrire => signup
+    user && user.registerStep != 0 && navigate("/signup");
+
+    // l'utilisateur à terminé l'inscription / est déjà connecté => index
+    user && user.authorization == true && navigate("/");
   }, [user]);
   handleChangeBg(false);
   const [email, setEmail] = useState(user ? user.email : "");
