@@ -305,10 +305,10 @@
           "allowCardCheckbox": "Allow processing with Cartes Bancaires",
           "confirmationCheckbox": "Permettre le traitement de la transaction via la marque CB si disponible",
           "confirmationButton": "Activer mon abonnement payant",
-          "errorMessageCCNumber": "Please enter a card number.",
-          "errorMessageExpDate": "Please enter an expiration date.",
-          "errorMessageCVV": "Please enter a CVV.",
-          "errorMessageName": "Name is required."
+          "errorMessageCCNumber": "Veuillez saisir un numéro de carte bancaire valide.",
+          "errorMessageExpDate": "Veuillez saisir une date d'expiration valide.",
+          "errorMessageCVV": "Veuillez saisir un cryptogramme valide.",
+          "errorMessageName": "Le nom est obligatoire."
         },
         "mobileOption": {
           "title": "Configurez la facturation via votre opérateur mobile",

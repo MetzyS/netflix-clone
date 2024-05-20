@@ -13,7 +13,7 @@ const InputCreditCard = (props: {
 }): ReactElement => {
   const [isFocus, setIsFocus] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
-  const [isValid, setIsValid] = useState<Boolean | undefined>(undefined);
+  const [isValid, setIsValid] = useState<boolean | undefined>(undefined);
 
   const handleValidate = (e: ChangeEvent<HTMLInputElement>) => {
     setIsValid(creditCardValidation(e.target.value));

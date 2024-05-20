@@ -9,8 +9,8 @@ const CreditCard = (props: {
   maxStep: string;
 }): ReactElement => {
   return (
-    <div className="max-w-[500px] m-auto sm:text-center mt-2">
-      <div>
+    <>
+      <div className="max-w-[500px] m-auto sm:text-center mt-2">
         <p className="text-neutral-800 uppercase text-xs mt-2">
           {props.steps[0]} <span className="font-bold">3</span> {props.steps[1]}{" "}
           <span className="font-bold">{props.maxStep}</span>
@@ -23,7 +23,7 @@ const CreditCard = (props: {
         ))}
       </div>
       <FormCard content={props.content} />
-    </div>
+    </>
   );
 };
 export default CreditCard;

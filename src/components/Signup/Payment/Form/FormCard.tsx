@@ -32,7 +32,7 @@ const FormCard = (props: { content: CreditCardOption }): ReactElement => {
 
   return (
     <Form>
-      <div>
+      <>
         <InputCreditCard
           content={props.content}
           value={CreditCardNumber}
@@ -47,7 +47,7 @@ const FormCard = (props: { content: CreditCardOption }): ReactElement => {
           inputColor={inputColor}
           inputRing={inputRing}
         />
-      </div>
+      </>
     </Form>
   );
 };

@@ -9,8 +9,6 @@ import Login from "./routes/Login.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import Lang from "./constants/lang.json";
 
-console.log(Lang);
-
 const router = createBrowserRouter([
   {
     path: "/",

@@ -1,27 +1,42 @@
 export function emailValidation(value: string): boolean {
-  let isValid = false;
   if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    isValid = true;
+    return true;
   }
-  return isValid;
+  return false;
 }
 
 export function passwordValidation(value: string): boolean {
-  let isValid = false;
   if (
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/g.test(
       value
     )
   ) {
-    isValid = true;
+    return true;
   }
-  return isValid;
+  return false;
 }
 
 export function creditCardValidation(value: string): boolean {
-  let isValid = false;
-  if (/^\b(?:3[47]\d|(?:4\d|5[1-5]|65)\d{2}|6011)\d{12}\b/g.test(value)) {
-    isValid = true;
+  if (/^\b(?:4[47]\d|(?:4\d|5[1-5]|65)\d{2}|6011)\d{12}\b/g.test(value)) {
+    return true;
   }
-  return isValid;
+  return false;
+}
+
+export function expdateValidation(value: string): boolean {
+  // const year = new Date().getFullYear();
+  // const thisYear = year.toString().slice(2, 4);
+  // const maxYear = Number(year.toString().slice(2, 4)) + 25;
+
+  if (/^(0[1-9]|1[012])[\/][0-9]{2}$/g.test(value)) {
+    return true;
+  }
+  return false;
+}
+
+export function cvvValidation(value: string): boolean {
+  if (/^[0-9]{3}$/g.test(value)) {
+    return true;
+  }
+  return false;
 }
