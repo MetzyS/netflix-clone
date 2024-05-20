@@ -74,6 +74,7 @@ export type CreditCardOption = {
   allowCardCheckbox: string;
   confirmationCheckbox: string;
   confirmationButton: string;
+  errorMessageConfirmation: string;
   errorMessageCCNumber: string;
   errorMessageExpDate: string;
   errorMessageCVV: string;

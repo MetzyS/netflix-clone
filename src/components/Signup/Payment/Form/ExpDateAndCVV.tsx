@@ -54,7 +54,7 @@ const ExpDateAndCVV = (props: {
   };
 
   return (
-    <div className="flex gap-2.5 w-full">
+    <div className="flex gap-2.5 w-full mb-3">
       <>
         {/* input exp date */}
         <div className="relative mt-3 flex-grow basis-1/2">

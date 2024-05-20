@@ -50,6 +50,14 @@
     @apply border-neutral-400 hover:border-black checked:bg-black checked:border-black checked:hover:bg-neutral-700 checked:hover:border-neutral-700;
   }
 
+  .checkbox-blue {
+    @apply cursor-pointer relative appearance-none size-5 rounded-sm border border-neutral-400 hover:border-blue-600 checked:bg-white checked:border-blue-600 checked:hover:bg-blue-100 checked:hover:border-blue-700;
+  }
+
+  .checkbox-error {
+    @apply border-red-800;
+  }
+
   .logo-default {
     @apply w-24 lg:w-40 py-1;
   }
@@ -118,16 +126,28 @@ body {
   transform: translate(-50%, 50%);
 }
 .checkbox:checked:after {
-  content: "✔";
+  content: "L";
+  transform: rotate(45deg) scaleX(-1);
   font-weight: bold;
   position: absolute;
   font-size: 1rem;
-  top: -5%;
-  left: 15%;
+  top: -10%;
+  left: 32%;
 }
 
 .checkbox-white:checked:after {
   color: white;
+}
+
+.checkbox-blue:checked:after {
+  content: "L";
+  transform: rotate(45deg) scaleX(-1);
+  font-weight: bold;
+  position: absolute;
+  font-size: 1.5rem;
+  top: 5%;
+  left: 30%;
+  color: rgb(37 99 235);
 }
 
 .checkbox-default:checked:after {

@@ -13,6 +13,7 @@ import PaymentChoiceBlock from "./PaymentChoiceBlock";
 import Logo from "../../ui/Logo";
 import { useState } from "react";
 import CreditCard from "./Choices/CreditCard";
+import BackButton from "../BackButton";
 
 const PaymentChoice = (props: {
   data: Payment;
@@ -82,13 +83,14 @@ const PaymentChoice = (props: {
       )}
       {selectedPayment == 0 && (
         <>
-          <button
+          {/* <button
             onClick={() => handleSelectedPayment(undefined)}
             className="my-6"
           >
             Retour
-          </button>
+          </button> */}
           <CreditCard
+            backButtonFunc={() => handleSelectedPayment(undefined)}
             content={props.data.creditCardOption}
             steps={props.steps}
             maxStep={props.maxStep}
