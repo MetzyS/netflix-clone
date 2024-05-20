@@ -15,8 +15,8 @@ const PaymentChoiceBlock = (props: {
       <div className="flex flex-wrap items-center">
         <span className="text-base mb-0.5 ml-4">{props.text}</span>
         <div className="flex gap-2 mx-4 mr-12">
-          {props.icons.map((item) => (
-            <>{item}</>
+          {props.icons.map((item, index) => (
+            <span key={"pcb-" + index}>{item}</span>
           ))}
         </div>
         <span className="absolute right-2">

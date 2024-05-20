@@ -65,12 +65,52 @@ type PaymentChoice = {
   giftCode: string;
 };
 
+export type CreditCardOption = {
+  title: string;
+  cardNumber: string;
+  expDate: string;
+  cvv: string;
+  nameOnCard: string;
+  allowCardCheckbox: string;
+  confirmationCheckbox: string;
+  confirmationButton: string;
+  errorMessageCCNumber: string;
+  errorMessageExpDate: string;
+  errorMessageCVV: string;
+  errorMessageName: string;
+};
+
+export type MobileOption = {
+  title: string;
+  desc: string;
+  secDesc: string;
+  numberInput: string;
+  confirmationButton: string;
+  descButton: string;
+};
+
+export type PaypalOption = {
+  title: string;
+  desc: string;
+  confirmationButton: string;
+};
+
+export type NetflixGiftCard = {
+  title: string;
+  pinInput: string;
+  confirmationButton: string;
+};
+
 export type Payment = {
   title: string;
   desc: string;
   subDesc: string[];
   encrypted: string;
   paymentTypes: PaymentChoice;
+  creditCardOption: CreditCardOption;
+  mobileOption: MobileOption;
+  paypalOption: PaypalOption;
+  netflixGiftCard: NetflixGiftCard;
 };
 
 export type Signup = {

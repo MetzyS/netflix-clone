@@ -1,15 +1,14 @@
 import { ReactElement } from "react";
-import { CreditCardOption } from "../../../../types/data";
-import FormCard from "../Form/FormCard";
+import { MobileOption } from "../../../../types/data";
 
-const CreditCard = (props: {
-  content: CreditCardOption;
+const Mobile = (props: {
+  content: MobileOption;
   icons: ReactElement[];
   steps: string[];
   maxStep: string;
 }): ReactElement => {
   return (
-    <div className="max-w-[500px] m-auto sm:text-center mt-2">
+    <div className="max-w-[500px] m-auto sm:text-center">
       <div>
         <p className="text-neutral-800 uppercase text-xs mt-2">
           {props.steps[0]} <span className="font-bold">3</span> {props.steps[1]}{" "}
@@ -18,12 +17,11 @@ const CreditCard = (props: {
         <h1 className="signup-title mt-1 leading-10">{props.content.title}</h1>
       </div>
       <div className="flex gap-1">
-        {props.icons.map((item, index) => (
-          <span key={"cardIcon-" + index}>{item}</span>
+        {props.icons.map((item) => (
+          <>{item}</>
         ))}
       </div>
-      <FormCard content={props.content} />
     </div>
   );
 };
-export default CreditCard;
+export default Mobile;

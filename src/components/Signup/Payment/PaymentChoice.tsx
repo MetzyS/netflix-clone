@@ -12,6 +12,7 @@ import { FaCcAmex } from "react-icons/fa6";
 import PaymentChoiceBlock from "./PaymentChoiceBlock";
 import Logo from "../../ui/Logo";
 import { useState } from "react";
+import CreditCard from "./Choices/CreditCard";
 
 const PaymentChoice = (props: {
   data: Payment;
@@ -72,6 +73,7 @@ const PaymentChoice = (props: {
                   icons={creditCardIcons[index]}
                   onClick={handleSelectedPayment}
                   index={index}
+                  key={"paymentchoiceblock-" + index}
                 />
               ))}
             </div>
@@ -80,10 +82,18 @@ const PaymentChoice = (props: {
       )}
       {selectedPayment == 0 && (
         <>
-          <button onClick={() => handleSelectedPayment(undefined)}>
+          <button
+            onClick={() => handleSelectedPayment(undefined)}
+            className="my-6"
+          >
             Retour
           </button>
-          <div>selected : CB</div>
+          <CreditCard
+            content={props.data.creditCardOption}
+            steps={props.steps}
+            maxStep={props.maxStep}
+            icons={creditCardIcons[0]}
+          />
         </>
       )}
       {selectedPayment == 1 && (

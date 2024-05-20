@@ -17,3 +17,11 @@ export function passwordValidation(value: string): boolean {
   }
   return isValid;
 }
+
+export function creditCardValidation(value: string): boolean {
+  let isValid = false;
+  if (/^\b(?:3[47]\d|(?:4\d|5[1-5]|65)\d{2}|6011)\d{12}\b/g.test(value)) {
+    isValid = true;
+  }
+  return isValid;
+}

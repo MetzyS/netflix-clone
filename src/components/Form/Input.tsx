@@ -50,10 +50,6 @@ const Input = (props: {
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     props.onChange(e.currentTarget.value);
-    // setValue(e.currentTarget.value);
-    // } else {
-    // setValue(e.currentTarget.value);
-    // }
   };
 
   const handleValidate = (e: FormEvent<HTMLInputElement>) => {
@@ -111,6 +107,7 @@ const Input = (props: {
             )}
 
             <input
+              maxLength={19}
               value={props.value}
               // value={value}
               // value={defaultValue}

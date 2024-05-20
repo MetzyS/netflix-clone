@@ -295,6 +295,38 @@
           "mobileBill": "Ajouter à la facture mobile",
           "paypal": "PayPal",
           "giftCode": "Code cadeau"
+        },
+        "creditCardOption": {
+          "title": "Configurez votre carte de paiement",
+          "cardNumber": "Numéro de carte",
+          "expDate": "Date d'expiration",
+          "cvv": "Cryptogramme",
+          "nameOnCard": "Nom figurant sur la carte",
+          "allowCardCheckbox": "Allow processing with Cartes Bancaires",
+          "confirmationCheckbox": "Permettre le traitement de la transaction via la marque CB si disponible",
+          "confirmationButton": "Activer mon abonnement payant",
+          "errorMessageCCNumber": "Please enter a card number.",
+          "errorMessageExpDate": "Please enter an expiration date.",
+          "errorMessageCVV": "Please enter a CVV.",
+          "errorMessageName": "Name is required."
+        },
+        "mobileOption": {
+          "title": "Configurez la facturation via votre opérateur mobile",
+          "desc": "Votre abonnement Netflix sera ajouté à votre facture de téléphone mobile.",
+          "secDesc": "Votre numéro sera également utilisé en cas d'oubli de votre mot de passe ou pour des messages importants à propos de votre compte. Des frais de SMS peuvent s'appliquer.",
+          "numberInput": "Numéro de mobile",
+          "confirmationButton": "Vérifier le numéro de téléphone",
+          "descButton": "Nous vous enverrons un code par SMS pour vérifier ce numéro."
+        },
+        "paypalOption": {
+          "title": "Configurez votre paiement via PayPal",
+          "desc": "Pour terminer l'inscription, cliquez sur le bouton Continuer vers PayPal et identifiez-vous sur PayPal avec votre adresse e-mail et votre mot de passe.",
+          "confirmationButton": "Continuer vers PayPal"
+        },
+        "netflixGiftCard": {
+          "title": "Saisissez votre code cadeau",
+          "pinInput": "Code ou PIN de la carte cadeau",
+          "confirmationButton": "Utiliser le code cadeau"
         }
       }
     },
@@ -627,6 +659,38 @@
           "mobileBill": "Add to mobile bill",
           "paypal": "PayPal",
           "giftCode": "Gift Code"
+        },
+        "creditCardOption": {
+          "title": "Set up your credit or debit card",
+          "cardNumber": "Card Number",
+          "expDate": "Expiration date",
+          "cvv": "CVV",
+          "nameOnCard": "Name on card",
+          "allowCardCheckbox": "Allow processing with Cartes Bancaires",
+          "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
+          "confirmationButton": "Start Paid Membership",
+          "errorMessageCCNumber": "Please enter a card number.",
+          "errorMessageExpDate": "Please enter an expiration date.",
+          "errorMessageCVV": "Please enter a CVV.",
+          "errorMessageName": "Name is required."
+        },
+        "mobileOption": {
+          "title": "Set up billing through your mobile carrier",
+          "desc": "Your Netflix membership will be added to your mobile phone bill.",
+          "secDesc": "Your number will also be used if you forget your password and for important account messages. SMS fees may apply.",
+          "numberInput": "Mobile number",
+          "confirmationButton": "Verify Phone Number",
+          "descButton": "We'll text a code to verify your number."
+        },
+        "paypalOption": {
+          "title": "Set up your PayPal",
+          "desc": "To finish signup, click the Continue to PayPal button and log in to PayPal using your email and password.",
+          "confirmationButton": "Continue to PayPal"
+        },
+        "netflixGiftCard": {
+          "title": "Enter your gift code",
+          "pinInput": "Gift Card Pin or Code",
+          "confirmationButton": "Redeem Gift Code"
         }
       }
     },
