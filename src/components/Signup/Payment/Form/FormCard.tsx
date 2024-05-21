@@ -1,12 +1,6 @@
 import { Form } from "react-router-dom";
 import { CreditCardOption } from "../../../../types/data";
-import {
-  ChangeEvent,
-  FormEvent,
-  InputHTMLAttributes,
-  ReactElement,
-  useState,
-} from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
 import ExpDateAndCVV from "./ExpDateAndCVV";
 import InputCreditCard from "./InputCreditCard";
 import { Inputs, InputsBooleanValues } from "../../../../types/inputs";

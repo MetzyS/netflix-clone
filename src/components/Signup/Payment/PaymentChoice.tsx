@@ -14,21 +14,31 @@ import Logo from "../../ui/Logo";
 import { useState } from "react";
 import CreditCard from "./Choices/CreditCard";
 import BackButton from "../BackButton";
+import { useDataContext } from "../../../layouts/RootLayout";
+import Container from "./Container";
+import Mobile from "./Choices/Mobile";
 
 const PaymentChoice = (props: {
   data: Payment;
   steps: string[];
   maxStep: string;
 }) => {
+  const { handleCreateUser } = useDataContext();
   // 0 => CB, 1 => mobile, 2 => paypal, 3 => carte netflix
   const [selectedPayment, setSelectedPayment] = useState<number | undefined>(
     undefined
   );
+  const backToPlanChoice = () => {
+    handleCreateUser([
+      { key: "plan", value: 0 },
+      { key: "registerStep", value: "3" },
+    ]);
+  };
   const handleSelectedPayment = (value: number | undefined) => {
     setSelectedPayment(value);
   };
   const paymentIconStyle = "w-10 h-8 border";
-  const creditCardIcons = [
+  const paymentIcons = [
     [
       <SiVisa className={`text-blue-800 ${paymentIconStyle}`} />,
       <MastercardIcon className={paymentIconStyle} />,
@@ -46,8 +56,12 @@ const PaymentChoice = (props: {
   return (
     <>
       {selectedPayment == undefined && (
-        <div className="max-w-[500px] m-auto sm:text-center">
-          <div className="py-12">
+        <Container className="sm:text-center">
+          <BackButton
+            onClick={backToPlanChoice}
+            className="size-6 hover:text-red-600"
+          />
+          <div className="py-6">
             <HiOutlineLockClosed className="text-red-600 rounded-full border-2 border-red-600 size-10 p-1.5 sm:m-auto" />
           </div>
           <p className="text-neutral-800 uppercase text-xs mt-2">
@@ -71,7 +85,7 @@ const PaymentChoice = (props: {
               {Object.values(props.data.paymentTypes).map((item, index) => (
                 <PaymentChoiceBlock
                   text={item}
-                  icons={creditCardIcons[index]}
+                  icons={paymentIcons[index]}
                   onClick={handleSelectedPayment}
                   index={index}
                   key={"paymentchoiceblock-" + index}
@@ -79,31 +93,28 @@ const PaymentChoice = (props: {
               ))}
             </div>
           </div>
-        </div>
+        </Container>
       )}
       {selectedPayment == 0 && (
         <>
-          {/* <button
-            onClick={() => handleSelectedPayment(undefined)}
-            className="my-6"
-          >
-            Retour
-          </button> */}
           <CreditCard
             backButtonFunc={() => handleSelectedPayment(undefined)}
             content={props.data.creditCardOption}
             steps={props.steps}
             maxStep={props.maxStep}
-            icons={creditCardIcons[0]}
+            icons={paymentIcons[0]}
           />
         </>
       )}
       {selectedPayment == 1 && (
         <>
-          <button onClick={() => handleSelectedPayment(undefined)}>
-            Retour
-          </button>
-          <div>selected : mobile</div>
+          <Mobile
+            backButtonFunc={() => handleSelectedPayment(undefined)}
+            content={props.data.mobileOption}
+            steps={props.steps}
+            maxStep={props.maxStep}
+            icons={paymentIcons[1]}
+          />
         </>
       )}
       {selectedPayment == 2 && (

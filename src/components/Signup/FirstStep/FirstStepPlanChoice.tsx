@@ -7,7 +7,7 @@ const FirstStepPlanChoice = (props: {
   handleSubmit: (selectedPlan: number) => void;
 }) => {
   const [isSelected, setIsSelected] = useState(0);
-  const [selectedPlan, setSelectedPlan] = useState(0);
+  const [selectedPlan, setSelectedPlan] = useState(1);
   const handleSelected = (value: number) => {
     setIsSelected(value);
     setSelectedPlan(value + 1);
