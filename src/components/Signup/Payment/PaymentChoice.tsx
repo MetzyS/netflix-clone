@@ -17,6 +17,8 @@ import BackButton from "../BackButton";
 import { useDataContext } from "../../../layouts/RootLayout";
 import Container from "./Container";
 import Mobile from "./Choices/Mobile";
+import Paypal from "./Choices/Paypal";
+import GiftCard from "./Choices/GiftCard";
 
 const PaymentChoice = (props: {
   data: Payment;
@@ -125,18 +127,24 @@ const PaymentChoice = (props: {
       )}
       {selectedPayment == 2 && (
         <>
-          <button onClick={() => handleSelectedPayment(undefined)}>
-            Retour
-          </button>
-          <div>selected : paypal</div>
+          <Paypal
+            backButtonFunc={() => handleSelectedPayment(undefined)}
+            content={props.data.paypalOption}
+            steps={props.steps}
+            maxStep={props.maxStep}
+            handleChangePlan={handleChangePlan}
+          />
         </>
       )}
       {selectedPayment == 3 && (
         <>
-          <button onClick={() => handleSelectedPayment(undefined)}>
-            Retour
-          </button>
-          <div>selected : netflix</div>
+          <GiftCard
+            backButtonFunc={() => handleSelectedPayment(undefined)}
+            content={props.data.netflixGiftCard}
+            steps={props.steps}
+            maxStep={props.maxStep}
+            handleChangePlan={handleChangePlan}
+          />
         </>
       )}
     </>
