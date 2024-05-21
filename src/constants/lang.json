@@ -319,18 +319,25 @@
           "desc": "Votre abonnement Netflix sera ajouté à votre facture de téléphone mobile.",
           "secDesc": "Votre numéro sera également utilisé en cas d'oubli de votre mot de passe ou pour des messages importants à propos de votre compte. Des frais de SMS peuvent s'appliquer.",
           "numberInput": "Numéro de mobile",
+          "errorMessageInput": "Un numéro de mobile valide est obligatoire.",
           "confirmationButton": "Vérifier le numéro de téléphone",
+          "confirmationCheckbox": "Vous acceptez que votre abonnement commence immédiatement et reconnaissez que vous perdez ainsi votre droit de rétractation.",
+          "errorMessageConfirmation": "Vous devez confirmer que vous avez lu et que vous acceptez les Conditions d'utilisation pour continuer.",
           "descButton": "Nous vous enverrons un code par SMS pour vérifier ce numéro."
         },
         "paypalOption": {
           "title": "Configurez votre paiement via PayPal",
           "desc": "Pour terminer l'inscription, cliquez sur le bouton Continuer vers PayPal et identifiez-vous sur PayPal avec votre adresse e-mail et votre mot de passe.",
-          "confirmationButton": "Continuer vers PayPal"
+          "confirmationButton": "Continuer vers PayPal",
+          "confirmationCheckbox": "Vous acceptez que votre abonnement commence immédiatement et reconnaissez que vous perdez ainsi votre droit de rétractation.",
+          "errorMessageConfirmation": "Vous devez confirmer que vous avez lu et que vous acceptez les Conditions d'utilisation pour continuer."
         },
         "netflixGiftCard": {
           "title": "Saisissez votre code cadeau",
           "pinInput": "Code ou PIN de la carte cadeau",
-          "confirmationButton": "Utiliser le code cadeau"
+          "confirmationButton": "Utiliser le code cadeau",
+          "confirmationCheckbox": "Vous acceptez que votre abonnement commence immédiatement et reconnaissez que vous perdez ainsi votre droit de rétractation.",
+          "errorMessageConfirmation": "Vous devez confirmer que vous avez lu et que vous acceptez les Conditions d'utilisation pour continuer."
         }
       }
     },
@@ -687,18 +694,25 @@
           "desc": "Your Netflix membership will be added to your mobile phone bill.",
           "secDesc": "Your number will also be used if you forget your password and for important account messages. SMS fees may apply.",
           "numberInput": "Mobile number",
+          "errorMessageInput": "A valid mobile phone number is required",
           "confirmationButton": "Verify Phone Number",
+          "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
+          "errorMessageConfirmation": "You must acknowledge that you have read and agree to the Terms of Use to continue.",
           "descButton": "We'll text a code to verify your number."
         },
         "paypalOption": {
           "title": "Set up your PayPal",
           "desc": "To finish signup, click the Continue to PayPal button and log in to PayPal using your email and password.",
-          "confirmationButton": "Continue to PayPal"
+          "confirmationButton": "Continue to PayPal",
+          "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
+          "errorMessageConfirmation": "You must acknowledge that you have read and agree to the Terms of Use to continue."
         },
         "netflixGiftCard": {
           "title": "Enter your gift code",
           "pinInput": "Gift Card Pin or Code",
-          "confirmationButton": "Redeem Gift Code"
+          "confirmationButton": "Redeem Gift Code",
+          "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
+          "errorMessageConfirmation": "You must acknowledge that you have read and agree to the Terms of Use to continue."
         }
       }
     },

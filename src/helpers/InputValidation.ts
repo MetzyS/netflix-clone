@@ -49,3 +49,12 @@ export function nameValidation(value: string): boolean {
   }
   return false;
 }
+
+export function mobileValidation(value: string): boolean {
+  if (value.length == 10) {
+    if (/^[0-9]+$/g.test(value)) {
+      return true;
+    }
+  }
+  return false;
+}

@@ -26,13 +26,16 @@ const Mobile = (props: {
           </h1>
         </div>
         <div className="flex gap-1">
-          {props.icons.map((item) => (
-            <>{item}</>
+          {props.icons.map((item, index) => (
+            <span key={`icon-${index}`}>{item}</span>
           ))}
         </div>
         <p className="my-4">{props.content.desc}</p>
         <p className="mb-6">{props.content.secDesc}</p>
-        <FormMobile handleChangePlan={props.handleChangePlan} />
+        <FormMobile
+          handleChangePlan={props.handleChangePlan}
+          content={props.content}
+        />
       </Container>
     </>
   );

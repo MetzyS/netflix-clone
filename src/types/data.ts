@@ -87,7 +87,10 @@ export type MobileOption = {
   desc: string;
   secDesc: string;
   numberInput: string;
+  errorMessageInput: string;
   confirmationButton: string;
+  confirmationCheckbox: string;
+  errorMessageConfirmation: string;
   descButton: string;
 };
 
@@ -95,12 +98,16 @@ export type PaypalOption = {
   title: string;
   desc: string;
   confirmationButton: string;
+  errorMessageConfirmation: string;
+  confirmationCheckbox: string;
 };
 
 export type NetflixGiftCard = {
   title: string;
   pinInput: string;
   confirmationButton: string;
+  confirmationCheckbox: string;
+  errorMessageConfirmation: string;
 };
 
 export type Payment = {

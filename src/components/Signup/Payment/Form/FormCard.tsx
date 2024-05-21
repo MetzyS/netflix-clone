@@ -14,9 +14,6 @@ const FormCard = (props: {
   handleChangePlan: () => void;
 }): ReactElement => {
   const { handleCreateUser } = useDataContext();
-  const handleSubmit = (e: SubmitEvent) => {
-    e.preventDefault();
-  };
   let inputColor = "input-white";
   let inputRing = "ring-white";
   const [creditCardNumber, setCreditCardNumber] = useState<string>("");
@@ -33,6 +30,9 @@ const FormCard = (props: {
   );
 
   const [errorStyle, setErrorStyle] = useState<string>("");
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault();
+  };
   const handleChangeCreditCardNumber = (
     e: ChangeEvent<HTMLInputElement>,
     value: string
@@ -53,7 +53,6 @@ const FormCard = (props: {
   const handleConfirmation = (e: ChangeEvent<HTMLInputElement>) => {
     setConfirmation(e.target.checked);
     e.target.checked ? setErrorStyle("") : setErrorStyle("checkbox-error");
-    console.log(e.target.checked);
   };
 
   return (
