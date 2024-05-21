@@ -35,12 +35,6 @@ const Input = (props: {
   const [isFocus, setIsFocus] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isValid, setIsValid] = useState<Boolean | undefined>(undefined);
-  // const [value, setValue] = useState<string>(props.value ? props.value : "");
-
-  // props.value != "" &&
-  //   props.value != undefined &&
-  //   props.onChange &&
-  //   props.onChange(props.value);
 
   useEffect(() => {
     if (props.value != undefined && props.value != "") {
@@ -107,10 +101,8 @@ const Input = (props: {
             )}
 
             <input
-              maxLength={19}
+              maxLength={props.type === "email" ? undefined : 15}
               value={props.value}
-              // value={value}
-              // value={defaultValue}
               type={props.type}
               name={props.type}
               autoComplete={props.autocomplete}

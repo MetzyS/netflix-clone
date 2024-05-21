@@ -1,5 +1,6 @@
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { PlanCard, Signup } from "../../../types/data";
+import { KeyboardEvent } from "react";
 
 const Plan = (props: {
   isSelected: number;
@@ -8,8 +9,16 @@ const Plan = (props: {
   data: Signup;
   handleSelected: (value: number) => void;
 }) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLUListElement>) => {
+    console.log(e.key);
+    if (e.key === "Enter") {
+      props.handleSelected(props.index);
+    }
+  };
   return (
     <ul
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
       className={`ul-plan ${
         props.isSelected === props.index
           ? "lg:shadow-lg lg:shadow-black/40 border-neutral-400"
