@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
-import LangType from "../types/data";
+import LangType, { PlanCard } from "../types/data";
 import { userIsConnected } from "../helpers/userIsConnected";
 import {
   checkIfUserIsCreatingAccount,
@@ -72,6 +72,8 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
         setData(props.data.fr);
     }
   };
+
+  const plans: Record<string, PlanCard> = data.signup.firstStepPlanChoiceCards;
 
   const handleChangeBg = (value: boolean) => {
     setBgWhite(value);
@@ -183,6 +185,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
             {
               lang,
               user,
+              plans,
               handleChangeLang,
               handleChangeBg,
               handleUserEmail,

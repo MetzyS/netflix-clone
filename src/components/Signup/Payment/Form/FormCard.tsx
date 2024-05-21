@@ -3,11 +3,13 @@ import { CreditCardOption } from "../../../../types/data";
 import { ChangeEvent, ReactElement, useState } from "react";
 import ExpDateAndCVV from "./ExpDateAndCVV";
 import InputCreditCard from "./InputCreditCard";
-import { Inputs, InputsBooleanValues } from "../../../../types/inputs";
-import { useDataContext } from "../../../../layouts/RootLayout";
+import { Inputs } from "../../../../types/inputs";
+import PlanPicker from "./PlanPicker";
 
-const FormCard = (props: { content: CreditCardOption }): ReactElement => {
-  const { user, handleCreateUser } = useDataContext();
+const FormCard = (props: {
+  content: CreditCardOption;
+  handleChangePlan: () => void;
+}): ReactElement => {
   let inputColor = "input-white";
   let inputRing = "ring-white";
   const [CreditCardNumber, setCreditCardNumber] = useState<string>("");
@@ -18,6 +20,7 @@ const FormCard = (props: { content: CreditCardOption }): ReactElement => {
   const [confirmation, setConfirmation] = useState<boolean | undefined>(
     undefined
   );
+
   const [errorStyle, setErrorStyle] = useState<string>("");
   const handleChangeCreditCardNumber = (
     e: ChangeEvent<HTMLInputElement>,
@@ -34,10 +37,6 @@ const FormCard = (props: { content: CreditCardOption }): ReactElement => {
       ...prevState,
       [key]: e.target.value,
     }));
-  };
-
-  const handleChangePlan = () => {
-    handleCreateUser([{ key: "registerStep", value: 3 }]);
   };
 
   const handleConfirmation = (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,21 +75,7 @@ const FormCard = (props: { content: CreditCardOption }): ReactElement => {
             {props.content.allowCardCheckbox}
           </span>
         </label>
-        <div className="bg-neutral-100 flex items-center justify-between p-4 rounded-lg mt-3">
-          <div className="flex flex-col">
-            <span className="font-semibold">19,99€/mois</span>
-            <span className="text-neutral-500">Premium</span>
-          </div>
-          <div>
-            <button
-              type="button"
-              className="text-blue-600 font-semibold hover:underline"
-              onClick={handleChangePlan}
-            >
-              Changer
-            </button>
-          </div>
-        </div>
+        <PlanPicker onClick={props.handleChangePlan} />
         <div className="w-11/12 m-auto flex flex-col gap-4 mt-4">
           {!confirmation && confirmation != undefined && (
             <p className="text-red-800">

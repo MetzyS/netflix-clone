@@ -10,6 +10,7 @@ const CreditCard = (props: {
   steps: string[];
   maxStep: string;
   backButtonFunc: () => void;
+  handleChangePlan: () => void;
 }): ReactElement => {
   return (
     <>
@@ -25,7 +26,10 @@ const CreditCard = (props: {
             <span key={"cardIcon-" + index}>{item}</span>
           ))}
         </div>
-        <FormCard content={props.content} />
+        <FormCard
+          content={props.content}
+          handleChangePlan={props.handleChangePlan}
+        />
       </Container>
     </>
   );

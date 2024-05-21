@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { MobileOption } from "../../../../types/data";
 import Container from "../Container";
 import BackButton from "../../BackButton";
-import FormPaypal from "../Form/FormPaypal";
+import FormMobile from "../Form/FormMobile";
 
 const Mobile = (props: {
   content: MobileOption;
@@ -10,6 +10,7 @@ const Mobile = (props: {
   steps: string[];
   maxStep: string;
   backButtonFunc: () => void;
+  handleChangePlan: () => void;
 }): ReactElement => {
   return (
     <>
@@ -31,7 +32,7 @@ const Mobile = (props: {
         </div>
         <p className="my-4">{props.content.desc}</p>
         <p className="mb-6">{props.content.secDesc}</p>
-        <FormPaypal />
+        <FormMobile handleChangePlan={props.handleChangePlan} />
       </Container>
     </>
   );

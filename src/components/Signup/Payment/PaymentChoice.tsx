@@ -53,6 +53,10 @@ const PaymentChoice = (props: {
     [<PaypalIcon className={`${paymentIconStyle} p-1`} />],
     [<Logo className={`w-15 h-6 p-1 border`} />],
   ];
+
+  const handleChangePlan = () => {
+    handleCreateUser([{ key: "registerStep", value: 3 }]);
+  };
   return (
     <>
       {selectedPayment == undefined && (
@@ -103,6 +107,7 @@ const PaymentChoice = (props: {
             steps={props.steps}
             maxStep={props.maxStep}
             icons={paymentIcons[0]}
+            handleChangePlan={handleChangePlan}
           />
         </>
       )}
@@ -114,6 +119,7 @@ const PaymentChoice = (props: {
             steps={props.steps}
             maxStep={props.maxStep}
             icons={paymentIcons[1]}
+            handleChangePlan={handleChangePlan}
           />
         </>
       )}

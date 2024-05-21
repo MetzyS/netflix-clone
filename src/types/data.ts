@@ -38,6 +38,7 @@ export type PlanCard = {
   title: string;
   options: string[];
   price: string;
+  occurence: string;
   qualityDesc: string;
   resolution: string;
   spacialAudio: string;

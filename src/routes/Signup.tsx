@@ -6,7 +6,6 @@ import FirstStepForm from "../components/Signup/FirstStepForm";
 import SignupForm from "../components/Signup/SignupForm";
 import FirstStepPlanDesc from "../components/Signup/FirstStep/FirstStepPlanDesc";
 import FirstStepPlanChoice from "../components/Signup/FirstStep/FirstStepPlanChoice";
-import { UserType } from "../types/user";
 import PaymentChoice from "../components/Signup/Payment/PaymentChoice";
 
 const Signup = () => {
@@ -22,9 +21,6 @@ const Signup = () => {
     isCreatingAccount,
     isCreated,
   } = useDataContext();
-  let userzzz: string | UserType | null = localStorage.getItem("user");
-  console.log("userzz: " + userzzz);
-  console.log("user: " + JSON.stringify(user));
 
   useEffect(() => {
     handleChangeBg(true);
