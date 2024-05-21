@@ -312,7 +312,7 @@
           "errorMessageCCNumber": "Veuillez saisir un numéro de carte bancaire valide.",
           "errorMessageExpDate": "Veuillez saisir une date d'expiration valide.",
           "errorMessageCVV": "Veuillez saisir un cryptogramme valide.",
-          "errorMessageName": "Le nom est obligatoire."
+          "errorMessageName": "Veuillez saisir un nom valide."
         },
         "mobileOption": {
           "title": "Configurez la facturation via votre opérateur mobile",
@@ -680,7 +680,7 @@
           "errorMessageCCNumber": "Please enter a card number.",
           "errorMessageExpDate": "Please enter an expiration date.",
           "errorMessageCVV": "Please enter a CVV.",
-          "errorMessageName": "Name is required."
+          "errorMessageName": "Please enter a valid name."
         },
         "mobileOption": {
           "title": "Set up billing through your mobile carrier",

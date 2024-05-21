@@ -1,6 +1,9 @@
 import { FormEvent, useEffect, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
-import { emailValidation, passwordValidation } from "./InputValidation";
+import {
+  emailValidation,
+  passwordValidation,
+} from "../../helpers/InputValidation";
 import InputSpinner from "./InputSpinner";
 
 const Input = (props: {

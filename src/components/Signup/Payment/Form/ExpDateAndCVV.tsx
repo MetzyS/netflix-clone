@@ -4,7 +4,7 @@ import { CreditCardOption } from "../../../../types/data";
 import {
   cvvValidation,
   expdateValidation,
-} from "../../../Form/InputValidation";
+} from "../../../../helpers/InputValidation";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { RxCrossCircled } from "react-icons/rx";
 

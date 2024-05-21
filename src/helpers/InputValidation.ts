@@ -40,3 +40,12 @@ export function cvvValidation(value: string): boolean {
   }
   return false;
 }
+
+export function nameValidation(value: string): boolean {
+  if (value.length >= 2 && value.length <= 50) {
+    if (/^[a-zA-Z ]+$/g.test(value)) {
+      return true;
+    }
+  }
+  return false;
+}

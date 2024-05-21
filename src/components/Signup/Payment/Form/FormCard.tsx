@@ -5,18 +5,29 @@ import ExpDateAndCVV from "./ExpDateAndCVV";
 import InputCreditCard from "./InputCreditCard";
 import { Inputs } from "../../../../types/inputs";
 import PlanPicker from "./PlanPicker";
+import DefaultButton from "../../../ui/DefaultButton";
+import { useDataContext } from "../../../../layouts/RootLayout";
+import InputName from "./InputName";
 
 const FormCard = (props: {
   content: CreditCardOption;
   handleChangePlan: () => void;
 }): ReactElement => {
+  const { handleCreateUser } = useDataContext();
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault();
+  };
   let inputColor = "input-white";
   let inputRing = "ring-white";
-  const [CreditCardNumber, setCreditCardNumber] = useState<string>("");
-  const [CreditCardDetails, setCreditCardDetails] = useState<Inputs>({
+  const [creditCardNumber, setCreditCardNumber] = useState<string>("");
+  const [creditCardDetails, setCreditCardDetails] = useState<Inputs>({
     expdate: "",
     cvv: "",
   });
+  const [name, setName] = useState<string>("");
+  const handleChangeName = (value: string) => {
+    setName(value);
+  };
   const [confirmation, setConfirmation] = useState<boolean | undefined>(
     undefined
   );
@@ -50,15 +61,22 @@ const FormCard = (props: {
       <div className="max-w-[500px] m-auto">
         <InputCreditCard
           content={props.content}
-          value={CreditCardNumber}
+          value={creditCardNumber}
           onChange={handleChangeCreditCardNumber}
           inputColor={inputColor}
           inputRing={inputRing}
         />
         <ExpDateAndCVV
           content={props.content}
-          value={CreditCardDetails}
+          value={creditCardDetails}
           onChange={handleChangeCreditCardDetails}
+          inputColor={inputColor}
+          inputRing={inputRing}
+        />
+        <InputName
+          content={props.content}
+          value={name}
+          onChange={handleChangeName}
           inputColor={inputColor}
           inputRing={inputRing}
         />
@@ -93,6 +111,7 @@ const FormCard = (props: {
                 id="confirmation"
                 className={`mr-3 checkbox-blue ${errorStyle} size-full`}
                 onChange={handleConfirmation}
+                required
               />
             </div>
             <span className="flex select-none">
@@ -100,6 +119,15 @@ const FormCard = (props: {
             </span>
           </label>
         </div>
+        <DefaultButton
+          type="submit"
+          text={props.content.confirmationButton}
+          primary={true}
+          className="mt-12 w-full py-4 text-2xl "
+          onClick={() => {
+            console.log(handleSubmit);
+          }}
+        />
       </div>
     </Form>
   );

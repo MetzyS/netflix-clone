@@ -1,26 +1,25 @@
-import { ChangeEvent, ReactElement, useState } from "react";
-import { GoCreditCard } from "react-icons/go";
-import { RxCrossCircled } from "react-icons/rx";
+import { ChangeEvent, useState } from "react";
+import { nameValidation } from "../../../../helpers/InputValidation";
 import { CreditCardOption } from "../../../../types/data";
-import { creditCardValidation } from "../../../../helpers/InputValidation";
+import { RxCrossCircled } from "react-icons/rx";
 
-const InputCreditCard = (props: {
+const InputName = (props: {
   content: CreditCardOption;
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>, changeValue: string) => void;
+  onChange: (value: string) => void;
   inputColor: string;
   inputRing: string;
-}): ReactElement => {
-  const [isFocus, setIsFocus] = useState(false);
+}) => {
+  const [isValid, setIsValid] = useState<undefined | boolean>(undefined);
   const [isEmpty, setIsEmpty] = useState(true);
-  const [isValid, setIsValid] = useState<boolean | undefined>(undefined);
-
-  const handleValidate = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsValid(creditCardValidation(e.target.value));
-  };
+  const [isFocus, setIsFocus] = useState(false);
 
   const handleInputFocus = () => {
     setIsFocus(!isFocus);
+  };
+
+  const handleValidate = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsValid(nameValidation(e.target.value));
   };
 
   const handleEmptyInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -32,7 +31,7 @@ const InputCreditCard = (props: {
   };
 
   return (
-    <div className="w-full relative mt-3">
+    <div className="w-full relative my-3">
       <div
         className={`relative flex flex-col border ${
           !isValid && isValid != undefined
@@ -40,57 +39,55 @@ const InputCreditCard = (props: {
             : isValid
             ? "border-green-600"
             : "border-neutral-500"
-        } rounded-md ${props.inputColor} px-4 py-2  sm:w-full justify-center ${
+        } rounded-md ${props.inputColor} px-4 py-2 w-full justify-center ${
           props.inputRing
         } group/input backdrop-blur-[2px]`}
       >
         {isEmpty ? (
           <label
-            htmlFor="input-creditcard"
+            htmlFor="input-name"
             className={`absolute pointer-events-none text-start text-gray-400 ${
               isFocus ? "top-1.5 text-xs" : "top-3.5 text-base"
             } `}
           >
-            {props.content.cardNumber}
+            {props.content.nameOnCard}
           </label>
         ) : (
           <label
-            htmlFor="input-creditcard"
+            htmlFor="input-name"
             className={`absolute pointer-events-none text-start text-gray-400 top-1.5 text-xs`}
           >
-            {props.content.cardNumber}
+            {props.content.nameOnCard}
           </label>
         )}
-
         <input
           value={props.value}
-          type="tel"
+          type="text"
           name="input-creditcard"
           autoComplete="off"
           required
-          className="pt-4 pr-10 bg-transparent border-none outline-none autofill-transparent"
+          className="pt-4 pr-10 bg-transparent border-none outline-none autofill-transparent uppercase"
+          minLength={2}
+          maxLength={50}
           onFocus={handleInputFocus}
           onBlur={handleInputFocus}
           onChange={(e) => {
-            props.onChange(e, e.target.value);
+            props.onChange(e.target.value);
             handleEmptyInput(e);
             handleValidate(e);
           }}
         />
-        <span className="absolute right-5">
-          <GoCreditCard className="size-6 text-neutral-500" />
-        </span>
       </div>
       {!isValid && isValid != undefined && (
         <p className={`text-left pt-2 text-sm text-red-600`}>
           <span>
             <RxCrossCircled className="inline mr-1 size-4" />
           </span>
-          {props.content.errorMessageCCNumber}
+          {props.content.errorMessageName}
         </p>
       )}
     </div>
   );
 };
 
-export default InputCreditCard;
+export default InputName;
