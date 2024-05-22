@@ -62,7 +62,6 @@ const InputExpDateAndCVV = (props: {
     e: React.ChangeEvent<HTMLInputElement>,
     key: keyof Inputs
   ): void => {
-    console.log(e.target.value);
     if (e.target.value == null || e.target.value == "") {
       setIsEmpty((prevState) => ({ ...prevState, [key]: true }));
     } else {
@@ -172,7 +171,7 @@ const InputExpDateAndCVV = (props: {
               name="input-cvv"
               autoComplete="off"
               required
-              className="pt-4 bg-transparent border-none outline-none autofill-transparent w-3/5"
+              className="pt-4 bg-transparent border-none outline-none autofill-transparent w-3/5 no-number-scrollbar"
               onFocus={() => handleInputFocus("cvv")}
               onBlur={() => handleInputFocus("cvv")}
               onChange={(e) => {

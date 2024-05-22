@@ -45,7 +45,6 @@ const Signup = () => {
       { key: "authorization", value: newData.authorization },
       { key: "registerStep", value: 2 },
     ]);
-    console.log(newData);
     handleCreateAccount(true);
     handleFormStep(2);
   };
@@ -54,7 +53,6 @@ const Signup = () => {
     handleCreateUser([{ key: "registerStep", value: 4 }]);
     handleCreateUser([{ key: "authorization", value: false }]);
     handleCreateUser([{ key: "plan", value: selectedPlan }]);
-    // console.log(userData);
   };
 
   const handleSubmitPayment = () => {

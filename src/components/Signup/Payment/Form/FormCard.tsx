@@ -32,7 +32,6 @@ const FormCard = (props: {
       ...prevState,
       [key]: value,
     }));
-    console.log(inputsAreValid);
   };
 
   useEffect(() => {
