@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Signup } from "../../../types/data";
 import Plan from "./Plan";
+import DefaultContainer from "../../ui/DefaultContainer";
 
 const FirstStepPlanChoice = (props: {
   data: Signup;
@@ -14,7 +15,7 @@ const FirstStepPlanChoice = (props: {
   };
   return (
     <>
-      <div className="flex flex-col lg:mt-1 text-left max-w-[500px] lg:max-w-[1100px] m-auto">
+      <DefaultContainer className="flex flex-col lg:mt-1 text-left max-w-[500px] lg:max-w-[1100px] m-auto">
         <p className="text-neutral-800 uppercase text-xs mt-6">
           {props.data.stepWord[0]} <span className="font-semibold">2</span>{" "}
           {props.data.stepWord[1]}{" "}
@@ -73,7 +74,7 @@ const FirstStepPlanChoice = (props: {
             </button>
           </div>
         </div>
-      </div>
+      </DefaultContainer>
     </>
   );
 };

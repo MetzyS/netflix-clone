@@ -7,6 +7,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { useEffect, useState } from "react";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
+import DefaultContainer from "../components/ui/DefaultContainer";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -43,7 +44,8 @@ const Login = () => {
   };
   return (
     <>
-      <div className="h-screen flex flex-col">
+      <DefaultContainer className="h-screen flex flex-col">
+        {/* <div className="h-screen flex flex-col"> */}
         <FadedBackground className="pb-4 w-screen flex-grow">
           <div className="m-auto">
             <Header
@@ -129,7 +131,8 @@ const Login = () => {
           </p>
           <Footer text={data.footerText} data={data.loginFooter} />
         </footer>
-      </div>
+        {/* </div> */}
+      </DefaultContainer>
     </>
   );
 };

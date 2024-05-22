@@ -1,6 +1,7 @@
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { IoMdCheckmark } from "react-icons/io";
 import { Signup } from "../../../types/data";
+import DefaultContainer from "../../ui/DefaultContainer";
 
 const FirstStepPlanDesc = (props: {
   data: Signup;
@@ -8,7 +9,7 @@ const FirstStepPlanDesc = (props: {
 }) => {
   return (
     <>
-      <div className="flex flex-col mt-24 text-left max-w-[440px] m-auto">
+      <DefaultContainer className="flex flex-col mt-24 text-left max-w-[440px] m-auto">
         <span>
           <IoIosCheckmarkCircleOutline className="size-14 text-red-600" />
         </span>
@@ -37,7 +38,7 @@ const FirstStepPlanDesc = (props: {
         >
           {props.data.firstButton}
         </button>
-      </div>
+      </DefaultContainer>
     </>
   );
 };

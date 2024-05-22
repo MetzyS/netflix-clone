@@ -9,6 +9,7 @@ import Separation from "../ui/Separation";
 import FadedBackground from "../Background/FadedBackground";
 import FormRegister from "./FormRegister";
 import { useDataContext } from "../../layouts/RootLayout";
+import DefaultContainer from "../ui/DefaultContainer";
 
 const HeroPage = (props: { lang: string; content: LangType }) => {
   const { handleChangeBg } = useDataContext();
@@ -18,7 +19,8 @@ const HeroPage = (props: { lang: string; content: LangType }) => {
 
   return (
     <>
-      <div className="w-screen overflow-hidden pr-4">
+      <DefaultContainer className="w-screen overflow-hidden pr-4">
+        {/* <div className="w-screen overflow-hidden pr-4"> */}
         <FadedBackground className="pb-8">
           <Header
             content={props.content.header}
@@ -55,7 +57,9 @@ const HeroPage = (props: { lang: string; content: LangType }) => {
           <FormRegister content={props.content.form} to="" method="post" />
           <Separation />
         </div>
-      </div>
+        {/* </div> */}
+      </DefaultContainer>
+
       <Footer data={props.content.footer} text={props.content.footerText} />
     </>
   );

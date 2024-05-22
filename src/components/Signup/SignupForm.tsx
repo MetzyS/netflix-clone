@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { Form as FormType, Signup } from "../../types/data";
 import Input from "../Form/Input";
 import { Form } from "react-router-dom";
+import DefaultContainer from "../ui/DefaultContainer";
 
 const SignupForm = (props: {
   data: Signup;
@@ -22,7 +23,7 @@ const SignupForm = (props: {
     email: boolean;
     password: boolean;
   }>({
-    email: false,
+    email: props.userEmail ? true : false,
     password: false,
   });
   const [isDisabled, setIsDisabled] = useState(true);
@@ -59,7 +60,7 @@ const SignupForm = (props: {
 
   return (
     <>
-      <div className="flex flex-col mt-12 text-left max-w-[440px] m-auto">
+      <DefaultContainer className="flex flex-col mt-12 text-left max-w-[440px] m-auto">
         <p className="text-neutral-800 uppercase text-xs">
           {props.data.stepWord[0]} <span className="font-semibold">1</span>{" "}
           {props.data.stepWord[1]}{" "}
@@ -115,7 +116,7 @@ const SignupForm = (props: {
             {props.data.firstButton}
           </button>
         </Form>
-      </div>
+      </DefaultContainer>
     </>
   );
 };

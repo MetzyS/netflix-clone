@@ -117,14 +117,6 @@ const Signup = () => {
                 steps={data.signup.stepWord}
                 maxStep={data.signup.maxStep}
               />
-              // <div>
-              //   <span className="text-black">Form step: {formStep}</span>
-              //   {user && (
-              //     <span className="text-black">
-              //       User: {JSON.stringify(user)}
-              //     </span>
-              //   )}
-              // </div>
             )}
           </div>
           <div>
