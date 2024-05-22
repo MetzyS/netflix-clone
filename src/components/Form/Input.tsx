@@ -17,6 +17,7 @@ const Input = (props: {
   autocomplete?: string;
   isLoading?: boolean;
   errorPositionAbsolute?: boolean;
+  customFunc?: (key: string, value: boolean) => void;
 }) => {
   // gestion couleur selon bg dark/white
   let inputColor = "input-dark";
@@ -53,9 +54,18 @@ const Input = (props: {
     switch (props.type) {
       case "email":
         setIsValid(emailValidation(e.currentTarget.value));
+        if (props.customFunc) {
+          props.customFunc("email", emailValidation(e.currentTarget.value));
+        }
         break;
       case "password":
         setIsValid(passwordValidation(e.currentTarget.value));
+        if (props.customFunc) {
+          props.customFunc(
+            "password",
+            passwordValidation(e.currentTarget.value)
+          );
+        }
     }
   };
 

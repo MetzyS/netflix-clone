@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Inputs } from "../../../../types/inputs";
 import { CreditCardOption } from "../../../../types/data";
 import {
@@ -8,12 +8,15 @@ import {
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { RxCrossCircled } from "react-icons/rx";
 
-const ExpDateAndCVV = (props: {
+const InputExpDateAndCVV = (props: {
   content: CreditCardOption;
   value: Inputs;
   onChange: (e: ChangeEvent<HTMLInputElement>, key: keyof Inputs) => void;
   inputColor: string;
   inputRing: string;
+  handleValidInput: (key: string, value: boolean) => void;
+  togglePopup: () => void;
+  closePopup: () => void;
 }) => {
   const [isFocus, setIsFocus] = useState({ expdate: false, cvv: false });
   const [isEmpty, setIsEmpty] = useState({ expdate: true, cvv: true });
@@ -21,6 +24,20 @@ const ExpDateAndCVV = (props: {
     expdate: undefined,
     cvv: undefined,
   });
+
+  useEffect(() => {
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.code == "Escape") {
+        props.closePopup();
+      }
+    });
+
+    if (isValid.expdate == true && isValid.cvv == true) {
+      props.handleValidInput("datecvv", true);
+    } else {
+      props.handleValidInput("datecvv", false);
+    }
+  }, [isValid]);
 
   const handleValidateDate = (e: ChangeEvent<HTMLInputElement>) => {
     setIsValid((prevState) => ({
@@ -166,7 +183,7 @@ const ExpDateAndCVV = (props: {
             />
             <button
               type="button"
-              onClick={() => console.log("click")}
+              onClick={props.togglePopup}
               className="absolute right-5"
             >
               <AiOutlineQuestionCircle className="size-6 text-neutral-500" />
@@ -183,27 +200,7 @@ const ExpDateAndCVV = (props: {
         </div>
       </>
     </div>
-    // <div className="flex">
-    //   <div className="border flex-grow">
-    //     <input type="tel" className="w-full" />
-    //   </div>
-    //   <div className="border flex-grow">
-    //     <input type="tel" className="w-full" />
-    //   </div>
-    // </div>
-    // <div className="flex gap-2 w-full">
-    //   <input
-    //     type="tel"
-    //     className="basis-full w-full"
-    //     onChange={(e) => props.onChange(e, "expdate")}
-    //   />
-    //   <input
-    //     type="tel"
-    //     className="basis-full w-full"
-    //     onChange={(e) => props.onChange(e, "cvv")}
-    //   />
-    // </div>
   );
 };
 
-export default ExpDateAndCVV;
+export default InputExpDateAndCVV;

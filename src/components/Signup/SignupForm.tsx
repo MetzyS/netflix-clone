@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Form as FormType, Signup } from "../../types/data";
 import Input from "../Form/Input";
 import { Form } from "react-router-dom";
@@ -18,7 +18,22 @@ const SignupForm = (props: {
 }) => {
   const [email, setEmail] = useState(props.userEmail);
   const [password, setPassword] = useState("");
+  const [inputsAreValid, setInputsAreValid] = useState<{
+    email: boolean;
+    password: boolean;
+  }>({
+    email: false,
+    password: false,
+  });
+  const [isDisabled, setIsDisabled] = useState(true);
 
+  useEffect(() => {
+    if (inputsAreValid.email == true && inputsAreValid.password == true) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [inputsAreValid]);
   const handleChangeEmail = (value: string) => {
     setEmail(value);
   };
@@ -34,6 +49,14 @@ const SignupForm = (props: {
       plan: 0,
     });
   };
+
+  const handleValidInputs = (key: string, value: boolean) => {
+    setInputsAreValid((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
+  };
+
   return (
     <>
       <div className="flex flex-col mt-12 text-left max-w-[440px] m-auto">
@@ -63,6 +86,7 @@ const SignupForm = (props: {
             white={true}
             autocomplete="off"
             onChange={handleChangeEmail}
+            customFunc={handleValidInputs}
           />
           <Input
             type="password"
@@ -72,6 +96,7 @@ const SignupForm = (props: {
             white={true}
             autocomplete="off"
             onChange={handleChangePassword}
+            customFunc={handleValidInputs}
           />
           <label htmlFor="mailinglist">
             <input
@@ -85,6 +110,7 @@ const SignupForm = (props: {
           <button
             type="submit"
             className="py-3 w-full text-white text-2xl rounded-md bg-[#e50914] hover:bg-[#f6121d] my-6"
+            disabled={isDisabled}
           >
             {props.data.firstButton}
           </button>

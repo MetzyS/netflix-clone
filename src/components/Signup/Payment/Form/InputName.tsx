@@ -9,6 +9,7 @@ const InputName = (props: {
   onChange: (value: string) => void;
   inputColor: string;
   inputRing: string;
+  handleValidInput: (key: string, value: boolean) => void;
 }) => {
   const [isValid, setIsValid] = useState<undefined | boolean>(undefined);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -19,7 +20,9 @@ const InputName = (props: {
   };
 
   const handleValidate = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsValid(nameValidation(e.target.value));
+    const isValid = nameValidation(e.target.value);
+    setIsValid(isValid);
+    props.handleValidInput("name", isValid);
   };
 
   const handleEmptyInput = (e: React.ChangeEvent<HTMLInputElement>): void => {

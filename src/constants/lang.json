@@ -312,7 +312,8 @@
           "errorMessageCCNumber": "Veuillez saisir un numéro de carte bancaire valide.",
           "errorMessageExpDate": "Veuillez saisir une date d'expiration valide.",
           "errorMessageCVV": "Veuillez saisir un cryptogramme valide.",
-          "errorMessageName": "Veuillez saisir un nom valide."
+          "errorMessageName": "Veuillez saisir un nom valide.",
+          "cvvPopupText": "Le cryptogramme (CVV) de votre carte correspond au numéro à 3 ou 4 chiffres situé au recto ou au verso de la carte."
         },
         "mobileOption": {
           "title": "Configurez la facturation via votre opérateur mobile",
@@ -687,7 +688,8 @@
           "errorMessageCCNumber": "Please enter a card number.",
           "errorMessageExpDate": "Please enter an expiration date.",
           "errorMessageCVV": "Please enter a CVV.",
-          "errorMessageName": "Please enter a valid name."
+          "errorMessageName": "Please enter a valid name.",
+          "cvvPopupText": "Your card's security code (CVV) is the 3 or 4 digit number located on the front or back of most cards."
         },
         "mobileOption": {
           "title": "Set up billing through your mobile carrier",

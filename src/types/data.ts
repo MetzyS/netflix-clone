@@ -80,6 +80,7 @@ export type CreditCardOption = {
   errorMessageExpDate: string;
   errorMessageCVV: string;
   errorMessageName: string;
+  cvvPopupText: string;
 };
 
 export type MobileOption = {
