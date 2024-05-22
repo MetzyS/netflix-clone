@@ -28,7 +28,25 @@ export function creditCardValidation(value: string): boolean {
 }
 
 export function expdateValidation(value: string): boolean {
+  const fullDate = new Date();
+  const month = fullDate.getMonth() + 1;
+  const year = Number(fullDate.getFullYear().toString().slice(-2));
+  console.log("month: " + month);
+  console.log(year);
+  const splitUserInput = value.split("/");
+  console.log(splitUserInput);
+  if (Number(splitUserInput[1]) < year) {
+    // Année invalide
+    return false;
+  } else if (
+    Number(splitUserInput[1]) == year &&
+    Number(splitUserInput[0]) < month
+  ) {
+    // Année valide mais mois invalide
+    return false;
+  }
   if (/^(0[1-9]|1[012])[\/][0-9]{2}$/g.test(value)) {
+    // regex "XX/XX"
     return true;
   }
   return false;

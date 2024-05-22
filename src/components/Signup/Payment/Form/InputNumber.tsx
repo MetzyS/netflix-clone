@@ -1,9 +1,7 @@
-import { GoCreditCard } from "react-icons/go";
 import { RxCrossCircled } from "react-icons/rx";
 import { MobileOption } from "../../../../types/data";
 import { ChangeEvent, useState } from "react";
 import { mobileValidation } from "../../../../helpers/InputValidation";
-import { GiFrance } from "react-icons/gi";
 import France from "../CustomIcons/France";
 
 const InputNumber = (props: {
