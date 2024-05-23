@@ -4,11 +4,13 @@ import { ChangeEvent, ReactElement, useState } from "react";
 import InputNumber from "./InputNumber";
 import { MobileOption } from "../../../../types/data";
 import DefaultButton from "../../../ui/DefaultButton";
+import InputSpinner from "../../../Form/InputSpinner";
 
 const FormMobile = (props: {
   content: MobileOption;
   handleChangePlan: () => void;
   handleSubmitPayment: () => void;
+  isLoading: boolean;
 }): ReactElement => {
   let inputColor = "input-white";
   let inputRing = "ring-white";
@@ -17,10 +19,6 @@ const FormMobile = (props: {
     undefined
   );
   const [errorStyle, setErrorStyle] = useState<string>("");
-
-  const handleSubmit = (e: SubmitEvent) => {
-    e.preventDefault();
-  };
 
   const handleChangeNumber = (value: string) => {
     setNumber(value);
@@ -57,7 +55,7 @@ const FormMobile = (props: {
               type="checkbox"
               name="confirmation"
               id="confirmation"
-              className={`mr-3 checkbox-blue ${errorStyle} size-full`}
+              className={`mr-3 checkbox-blue ${errorStyle} w-7 h-7`}
               onChange={handleConfirmation}
               required
             />
@@ -67,16 +65,16 @@ const FormMobile = (props: {
           </span>
         </label>
       </div>
-      <DefaultButton
-        type="submit"
-        text={props.content.confirmationButton}
-        primary={true}
-        className="mt-12 w-full py-4 text-2xl "
-        onClick={() => {
-          console.log(handleSubmit);
-        }}
-      />
-      {/* </div> */}
+      {props.isLoading ? (
+        <InputSpinner bg="text-white" className="mt-16" />
+      ) : (
+        <DefaultButton
+          type="submit"
+          text={props.content.confirmationButton}
+          primary={true}
+          className="mt-12 w-full py-4 text-2xl "
+        />
+      )}
     </Form>
   );
 };

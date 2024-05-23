@@ -4,6 +4,7 @@ import Container from "../Container";
 import BackButton from "../../BackButton";
 import PlanPicker from "../Form/PlanPicker";
 import DefaultButton from "../../../ui/DefaultButton";
+import InputSpinner from "../../../Form/InputSpinner";
 
 const Paypal = (props: {
   content: PaypalOption;
@@ -29,13 +30,17 @@ const Paypal = (props: {
         </div>
         <PlanPicker onClick={props.handleChangePlan} />
         <p className="my-4">{props.content.desc}</p>
-        <DefaultButton
-          type="button"
-          text={props.content.confirmationButton}
-          primary={true}
-          className="mt-4 w-full py-4 text-2xl "
-          onClick={props.handleSubmitPayment}
-        />
+        {props.isLoading ? (
+          <InputSpinner bg="text-white" className="mt-16" />
+        ) : (
+          <DefaultButton
+            type="button"
+            text={props.content.confirmationButton}
+            primary={true}
+            className="mt-4 w-full py-4 text-2xl "
+            onClick={props.handleSubmitPayment}
+          />
+        )}
       </Container>
     </>
   );

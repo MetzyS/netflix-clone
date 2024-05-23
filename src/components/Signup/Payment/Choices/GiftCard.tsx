@@ -5,6 +5,7 @@ import BackButton from "../../BackButton";
 import PlanPicker from "../Form/PlanPicker";
 import DefaultButton from "../../../ui/DefaultButton";
 import InputGiftCard from "../Form/InputGiftCard";
+import InputSpinner from "../../../Form/InputSpinner";
 
 const GiftCard = (props: {
   content: NetflixGiftCard;
@@ -15,9 +16,6 @@ const GiftCard = (props: {
   handleChangePlan: () => void;
   handleSubmitPayment: () => void;
 }): ReactElement => {
-  const handleSubmit = (e: SubmitEvent) => {
-    e.preventDefault();
-  };
   return (
     <>
       <Container>
@@ -33,14 +31,17 @@ const GiftCard = (props: {
         </div>
         <InputGiftCard />
         <PlanPicker onClick={props.handleChangePlan} />
-        {/* <p className="my-4">{props.content.desc}</p> */}
-        <DefaultButton
-          type="button"
-          text={props.content.confirmationButton}
-          primary={true}
-          className="mt-4 w-full py-4 text-2xl "
-          onClick={props.handleSubmitPayment}
-        />
+        {props.isLoading ? (
+          <InputSpinner bg="text-white" className="mt-16" />
+        ) : (
+          <DefaultButton
+            type="button"
+            text={props.content.confirmationButton}
+            primary={true}
+            className="mt-4 w-full py-4 text-2xl "
+            onClick={props.handleSubmitPayment}
+          />
+        )}
       </Container>
     </>
   );

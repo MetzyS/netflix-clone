@@ -149,7 +149,7 @@ const FormCard = (props: {
                 type="checkbox"
                 name="confirmation"
                 id="confirmation"
-                className={`mr-3 checkbox-blue ${errorStyle} size-full`}
+                className={`mr-3 checkbox-blue ${errorStyle} w-7 h-7`}
                 onChange={handleConfirmation}
                 required
               />

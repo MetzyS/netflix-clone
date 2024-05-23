@@ -38,6 +38,7 @@ const Mobile = (props: {
           handleChangePlan={props.handleChangePlan}
           content={props.content}
           handleSubmitPayment={props.handleSubmitPayment}
+          isLoading={props.isLoading}
         />
       </Container>
     </>
