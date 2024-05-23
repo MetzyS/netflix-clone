@@ -6,6 +6,7 @@ export type ContextType = {
   user: UserType | undefined;
   data: LangType;
   plans: Record<string, PlanCard>;
+  isRegistered: boolean;
   userEmail: string;
   userPassword: string;
   isCreated: boolean;
@@ -17,6 +18,7 @@ export type ContextType = {
   //   key: keyof UserType;
   //   value: string | number | UserProfile;
   // }) => void;
+  setIsRegistered: (value: boolean) => void;
   handleCreateUser: (
     values: Array<{
       key: keyof UserType;

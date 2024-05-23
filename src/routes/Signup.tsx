@@ -7,6 +7,7 @@ import SignupForm from "../components/Signup/SignupForm";
 import FirstStepPlanDesc from "../components/Signup/FirstStep/FirstStepPlanDesc";
 import FirstStepPlanChoice from "../components/Signup/FirstStep/FirstStepPlanChoice";
 import PaymentChoice from "../components/Signup/Payment/PaymentChoice";
+import { Navigate } from "react-router-dom";
 
 const Signup = () => {
   const {
@@ -18,6 +19,7 @@ const Signup = () => {
     handleChangeBg,
     handleCreateAccount,
     handleCreateUser,
+    setIsRegistered,
     isCreatingAccount,
     isCreated,
   } = useDataContext();
@@ -56,11 +58,13 @@ const Signup = () => {
     handleCreateUser([{ key: "plan", value: selectedPlan }]);
   };
 
-  const test = async (): Promise<boolean> => {
+  const endRegister = async (): Promise<boolean> => {
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
         handleCreateUser([{ key: "authorization", value: true }]);
+        handleCreateUser([{ key: "registered", value: true }]);
         handleCreateAccount(false);
+        setIsRegistered(true);
         resolve(true);
       }, 1500);
     });
@@ -68,7 +72,7 @@ const Signup = () => {
 
   const handleSubmitPayment = async (): Promise<boolean> => {
     setIsLoading(true);
-    const submit = await test();
+    const submit = await endRegister();
     setIsLoading(false);
     return submit;
   };
@@ -76,7 +80,7 @@ const Signup = () => {
   return (
     <>
       {isConnected && !isCreatingAccount ? (
-        <div>Connected</div>
+        <Navigate to="/" />
       ) : (
         <div className="transition-all w-screen flex flex-col min-h-screen">
           <Header

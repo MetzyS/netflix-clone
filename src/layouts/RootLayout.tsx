@@ -22,11 +22,15 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     username: "",
     avatarUrl: "",
     registerStep: 0,
+    registered: false,
   };
   const savedUser = localStorage.getItem("user");
   const navigate = useNavigate();
-  // console.log("rootlayout: " + savedUser);
+  // console.log("rootlayout: " + JSON.parse(savedUser!));
   const [isConnected, setIsConnected] = useState(false);
+  const [isRegistered, setIsRegistered] = useState<boolean>(
+    savedUser ? JSON.parse(savedUser).registered : false
+  );
   const [user, setUser] = useState<UserType>(
     savedUser ? JSON.parse(savedUser) : defaultUser
   );
@@ -171,6 +175,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     setIsCreated(false);
     setIsCreatingAccount(false);
     setIsConnected(false);
+    setIsRegistered(false);
     localStorage.removeItem("user");
     localStorage.removeItem("isCreating");
   };
@@ -195,7 +200,9 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
               handleSubmitRegister,
               handleCreateUser,
               handleUserPassword,
+              setIsRegistered,
               registerStep,
+              isRegistered,
               isLoading,
               isConnected,
               isCreatingAccount,

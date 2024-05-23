@@ -14,6 +14,7 @@ export type UserType = {
   profiles: Record<number, UserProfile>;
   authorization: boolean;
   plan: number;
+  registered: boolean;
 };
 
 export type Users = Record<string, UserType>;
