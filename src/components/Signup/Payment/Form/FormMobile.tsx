@@ -8,6 +8,7 @@ import DefaultButton from "../../../ui/DefaultButton";
 const FormMobile = (props: {
   content: MobileOption;
   handleChangePlan: () => void;
+  handleSubmitPayment: () => void;
 }): ReactElement => {
   let inputColor = "input-white";
   let inputRing = "ring-white";
@@ -32,7 +33,7 @@ const FormMobile = (props: {
   };
 
   return (
-    <Form>
+    <Form onSubmit={props.handleSubmitPayment}>
       <InputNumber
         content={props.content}
         onChange={handleChangeNumber}

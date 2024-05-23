@@ -6,17 +6,18 @@ import InputCreditCard from "./InputCreditCard";
 import { Inputs } from "../../../../types/inputs";
 import PlanPicker from "./PlanPicker";
 import DefaultButton from "../../../ui/DefaultButton";
-import { useDataContext } from "../../../../layouts/RootLayout";
 import InputName from "./InputName";
 import { GrClose } from "react-icons/gr";
 import VisaCVV from "../../../../assets/visa_cvv.png";
 import AmexCVV from "../../../../assets/amex_cvv.png";
+import InputSpinner from "../../../Form/InputSpinner";
 
 const FormCard = (props: {
   content: CreditCardOption;
+  isLoading: boolean;
   handleChangePlan: () => void;
+  handleSubmitPayment: () => void;
 }): ReactElement => {
-  const { handleCreateUser } = useDataContext();
   let inputColor = "input-white";
   let inputRing = "ring-white";
 
@@ -68,9 +69,6 @@ const FormCard = (props: {
   );
 
   const [errorStyle, setErrorStyle] = useState<string>("");
-  const handleSubmit = (e: SubmitEvent) => {
-    e.preventDefault();
-  };
   const handleChangeCreditCardNumber = (
     e: ChangeEvent<HTMLInputElement>,
     value: string
@@ -94,7 +92,7 @@ const FormCard = (props: {
   };
 
   return (
-    <Form>
+    <Form onSubmit={props.handleSubmitPayment}>
       <div className="max-w-[500px] m-auto">
         <InputCreditCard
           content={props.content}
@@ -161,16 +159,17 @@ const FormCard = (props: {
             </span>
           </label>
         </div>
-        <DefaultButton
-          type="submit"
-          text={props.content.confirmationButton}
-          primary={true}
-          className="mt-12 w-full py-4 text-2xl disabled:cursor-default"
-          onClick={() => {
-            console.log(handleSubmit);
-          }}
-          disabled={isDisabled}
-        />
+        {props.isLoading ? (
+          <InputSpinner bg="text-white" className="mt-16" />
+        ) : (
+          <DefaultButton
+            type="submit"
+            text={props.content.confirmationButton}
+            primary={true}
+            className="mt-12 w-full py-4 text-2xl disabled:cursor-default"
+            disabled={isDisabled}
+          />
+        )}
       </div>
       {showPopup && (
         <div className="fixed top-0 bottom-0 right-0 left-0 bg-white/95 z-30">

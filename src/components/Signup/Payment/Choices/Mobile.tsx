@@ -9,8 +9,10 @@ const Mobile = (props: {
   icons: ReactElement[];
   steps: string[];
   maxStep: string;
+  isLoading: boolean;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
+  handleSubmitPayment: () => void;
 }): ReactElement => {
   return (
     <>
@@ -35,6 +37,7 @@ const Mobile = (props: {
         <FormMobile
           handleChangePlan={props.handleChangePlan}
           content={props.content}
+          handleSubmitPayment={props.handleSubmitPayment}
         />
       </Container>
     </>

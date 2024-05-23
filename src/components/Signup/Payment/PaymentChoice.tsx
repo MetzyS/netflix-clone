@@ -25,6 +25,8 @@ const PaymentChoice = (props: {
   data: Payment;
   steps: string[];
   maxStep: string;
+  isLoading: boolean;
+  handleSubmitPayment: () => void;
 }) => {
   const { handleCreateUser } = useDataContext();
   // 0 => CB, 1 => mobile, 2 => paypal, 3 => carte netflix
@@ -113,6 +115,8 @@ const PaymentChoice = (props: {
               maxStep={props.maxStep}
               icons={paymentIcons[0]}
               handleChangePlan={handleChangePlan}
+              handleSubmitPayment={props.handleSubmitPayment}
+              isLoading={props.isLoading}
             />
           </>
         )}
@@ -125,6 +129,8 @@ const PaymentChoice = (props: {
               maxStep={props.maxStep}
               icons={paymentIcons[1]}
               handleChangePlan={handleChangePlan}
+              handleSubmitPayment={props.handleSubmitPayment}
+              isLoading={props.isLoading}
             />
           </>
         )}
@@ -136,6 +142,8 @@ const PaymentChoice = (props: {
               steps={props.steps}
               maxStep={props.maxStep}
               handleChangePlan={handleChangePlan}
+              handleSubmitPayment={props.handleSubmitPayment}
+              isLoading={props.isLoading}
             />
           </>
         )}
@@ -147,6 +155,8 @@ const PaymentChoice = (props: {
               steps={props.steps}
               maxStep={props.maxStep}
               handleChangePlan={handleChangePlan}
+              handleSubmitPayment={props.handleSubmitPayment}
+              isLoading={props.isLoading}
             />
           </>
         )}

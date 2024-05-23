@@ -9,12 +9,11 @@ const Paypal = (props: {
   content: PaypalOption;
   steps: string[];
   maxStep: string;
+  isLoading: boolean;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
+  handleSubmitPayment: () => void;
 }): ReactElement => {
-  const handleSubmit = (e: SubmitEvent) => {
-    e.preventDefault();
-  };
   return (
     <>
       <Container>
@@ -35,9 +34,7 @@ const Paypal = (props: {
           text={props.content.confirmationButton}
           primary={true}
           className="mt-4 w-full py-4 text-2xl "
-          onClick={() => {
-            console.log(handleSubmit);
-          }}
+          onClick={props.handleSubmitPayment}
         />
       </Container>
     </>

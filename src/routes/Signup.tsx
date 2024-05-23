@@ -28,6 +28,7 @@ const Signup = () => {
   }, [handleChangeBg]);
 
   const [formStep, setFormStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const handleFormStep = (value: number) => {
     setFormStep(value);
   };
@@ -55,9 +56,21 @@ const Signup = () => {
     handleCreateUser([{ key: "plan", value: selectedPlan }]);
   };
 
-  const handleSubmitPayment = () => {
-    handleCreateUser([{ key: "authorization", value: true }]);
-    // setUserData((prevData) => ({ ...prevData, authorization: true }));
+  const test = async (): Promise<boolean> => {
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        handleCreateUser([{ key: "authorization", value: true }]);
+        handleCreateAccount(false);
+        resolve(true);
+      }, 1500);
+    });
+  };
+
+  const handleSubmitPayment = async (): Promise<boolean> => {
+    setIsLoading(true);
+    const submit = await test();
+    setIsLoading(false);
+    return submit;
   };
 
   return (
@@ -114,6 +127,8 @@ const Signup = () => {
                 data={data.signup.paymentStep}
                 steps={data.signup.stepWord}
                 maxStep={data.signup.maxStep}
+                handleSubmitPayment={handleSubmitPayment}
+                isLoading={isLoading}
               />
             )}
           </div>
