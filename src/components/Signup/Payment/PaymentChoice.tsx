@@ -27,6 +27,7 @@ const PaymentChoice = (props: {
   maxStep: string;
   isLoading: boolean;
   handleSubmitPayment: () => void;
+  handleFormStep: (value: number) => void;
 }) => {
   const { handleCreateUser } = useDataContext();
   // 0 => CB, 1 => mobile, 2 => paypal, 3 => carte netflix
@@ -38,6 +39,7 @@ const PaymentChoice = (props: {
       { key: "plan", value: 0 },
       { key: "registerStep", value: "3" },
     ]);
+    props.handleFormStep(3);
   };
   const handleSelectedPayment = (value: number | undefined) => {
     setSelectedPayment(value);

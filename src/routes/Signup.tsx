@@ -69,6 +69,7 @@ const Signup = () => {
     handleCreateUser([{ key: "registerStep", value: 4 }]);
     handleCreateUser([{ key: "authorization", value: false }]);
     handleCreateUser([{ key: "plan", value: selectedPlan }]);
+    handleFormStep(4);
   };
 
   const endRegister = async (): Promise<boolean> => {
@@ -137,6 +138,7 @@ const Signup = () => {
                 maxStep={data.signup.maxStep}
                 handleSubmitPayment={handleSubmitPayment}
                 isLoading={isLoading}
+                handleFormStep={handleFormStep}
               />
             )}
           </div>

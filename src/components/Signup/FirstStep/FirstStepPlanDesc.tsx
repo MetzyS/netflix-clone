@@ -9,9 +9,9 @@ const FirstStepPlanDesc = (props: {
 }) => {
   return (
     <>
-      <DefaultContainer className="flex flex-col mt-24 text-left max-w-[440px] m-auto">
+      <DefaultContainer className="flex flex-col mt-16 text-left sm:text-center max-w-[440px] m-auto">
         <span>
-          <IoIosCheckmarkCircleOutline className="size-14 text-red-600" />
+          <IoIosCheckmarkCircleOutline className="size-14 text-red-600 sm:mx-auto" />
         </span>
         <p className="text-neutral-800 uppercase text-xs mt-6">
           {props.data.stepWord[0]} <span className="font-semibold">1</span>{" "}

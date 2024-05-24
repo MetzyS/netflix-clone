@@ -6,7 +6,7 @@ const TransparentButton = (props: {
   return (
     <button
       type="button"
-      className={`btn-default btn-transparent ring-default text-xl font-semibold text-neutral-800 ${props.className}`}
+      className={`btn-default btn-transparent ring-default font-semibold text-neutral-800 ${props.className}`}
       onClick={props.onClick}
     >
       {props.text}

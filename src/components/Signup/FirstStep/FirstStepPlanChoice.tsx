@@ -15,7 +15,7 @@ const FirstStepPlanChoice = (props: {
   };
   return (
     <>
-      <DefaultContainer className="flex flex-col lg:mt-1 text-left max-w-[500px] lg:max-w-[1100px] m-auto">
+      <DefaultContainer className="flex flex-col text-left max-w-[500px] lg:max-w-[1100px] m-auto">
         <p className="text-neutral-800 uppercase text-xs mt-6">
           {props.data.stepWord[0]} <span className="font-semibold">2</span>{" "}
           {props.data.stepWord[1]}{" "}
@@ -58,7 +58,7 @@ const FirstStepPlanChoice = (props: {
         <div className="mt-1 lg:mt-6">
           {Object.values(props.data.firstStepConditions).map((item, index) => (
             <p
-              className="text-sm text-neutral-600 my-4"
+              className="text-xs text-neutral-600 my-2 leading-tight"
               key={"condition-" + index}
             >
               {item}

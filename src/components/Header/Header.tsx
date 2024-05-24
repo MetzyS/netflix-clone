@@ -72,20 +72,20 @@ const Header = (props: {
             <TransparentButton
               onClick={props.handleDisconnect}
               text={content.disconnect}
-              className="py-1 px-4 text-base"
+              className={`py-1 px-4 text-base lg:text-xl`}
             />
           ) : (
             <TransparentLink
               link={link}
               text={content.button}
-              className="py-1 px-4 text-base"
+              className={`py-1 px-4`}
             />
           )
         ) : showBtn ? (
           props.isConnected ? (
             <DefaultButton
               primary={true}
-              className="ring-default py-1 px-4 text-base"
+              className={`ring-default py-1 px-4 text-base lg:text-xl`}
               text={content.disconnect}
               onClick={props.handleDisconnect}
             />
@@ -93,7 +93,7 @@ const Header = (props: {
             <DefaultLink
               link="/login"
               text={content.button}
-              className="py-1 px-4 text-base"
+              className={`py-1 px-4 text-base lg:text-xl`}
             />
           )
         ) : (

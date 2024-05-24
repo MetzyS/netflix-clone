@@ -5,7 +5,6 @@ import DefaultContainer from "../ui/DefaultContainer";
 const FirstStepForm = (props: { data: Signup; onClick: () => void }) => {
   return (
     <DefaultContainer className="max-w-[340px] m-auto sm:text-center">
-      {/* <div className="max-w-[340px] m-auto sm:text-center"> */}
       <img
         src={SingupDevices}
         alt=""
@@ -29,7 +28,6 @@ const FirstStepForm = (props: { data: Signup; onClick: () => void }) => {
       >
         {props.data.firstButton}
       </button>
-      {/* </div> */}
     </DefaultContainer>
   );
 };
