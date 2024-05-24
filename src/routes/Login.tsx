@@ -4,22 +4,22 @@ import FadedBackground from "../components/Background/FadedBackground";
 import Input from "../components/Form/Input";
 import DefaultButton from "../components/ui/DefaultButton";
 import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
 import { useEffect, useState } from "react";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import DefaultContainer from "../components/ui/DefaultContainer";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, data, handleChangeBg, handleCreateUser } = useDataContext();
+  const { user, data, handleChangeBg, handleCreateUser, handleShowHeaderBtn } =
+    useDataContext();
   useEffect(() => {
+    handleChangeBg(false);
+    handleShowHeaderBtn(false);
     // l'utilisateur n'a pas fini de s'inscrire => signup
     user && user.registerStep != 0 && navigate("/signup");
-
     // l'utilisateur à terminé l'inscription / est déjà connecté => index
     user && user.authorization == true && navigate("/");
   }, [user]);
-  handleChangeBg(false);
   const [email, setEmail] = useState(user ? user.email : "");
   const [password, setPassword] = useState(user ? user.password : "");
 
@@ -46,13 +46,13 @@ const Login = () => {
     <>
       <DefaultContainer className="h-screen flex flex-col">
         <FadedBackground className="pb-4 w-screen flex-grow">
-          <div className="m-auto">
-            <Header
+          <div className="m-auto pt-10">
+            {/* <Header
               content={data.header}
               showButton={false}
               selectLang={false}
               className="p-6"
-            />
+            /> */}
             <div className="px-6 max-w-[1024px] bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto h-[700px]">
               <h1 className="text-3xl font-bold">{data.login.title}</h1>
               <Form

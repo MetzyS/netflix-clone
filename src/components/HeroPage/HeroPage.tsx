@@ -11,9 +11,10 @@ import { useDataContext } from "../../layouts/RootLayout";
 import DefaultContainer from "../ui/DefaultContainer";
 
 const HeroPage = (props: { lang: string; content: LangType }) => {
-  const { handleChangeBg } = useDataContext();
+  const { handleChangeBg, handleShowHeaderBtn } = useDataContext();
   useEffect(() => {
     handleChangeBg(false);
+    handleShowHeaderBtn(true);
   }, [handleChangeBg]);
 
   return (
@@ -22,7 +23,7 @@ const HeroPage = (props: { lang: string; content: LangType }) => {
         <FadedBackground className="pb-8">
           <div className="max-w-[1024px] m-auto text-center">
             <div className="px-4">
-              <h1 className="pt-10 md:pt-24 lg:pt-40 px-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-wrap max-w-full">
+              <h1 className="pt-32 sm:pt-40 md:pt-48 lg:pt-72 px-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-wrap max-w-full">
                 {props.content.title}
               </h1>
               <h2 className="text-lg lg:text-2xl mt-6 leading-snug">

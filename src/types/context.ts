@@ -14,10 +14,14 @@ export type ContextType = {
   isLoading: boolean;
   isCreatingAccount: boolean;
   registerStep: number | undefined;
-  // handleCreateUser: (values: {
-  //   key: keyof UserType;
-  //   value: string | number | UserProfile;
-  // }) => void;
+  // header handlers
+  handleShowHeaderBtn: (value: boolean) => void;
+  handleHeaderBg: (value: string) => void;
+  handleFixedHeader: (value: boolean) => void;
+  handleResizeOnScroll: (value: boolean) => void;
+  handleShowSelectLang: (value: boolean) => void;
+  handleTransparentBtn: (value: boolean) => void;
+  // user handlers
   setIsRegistered: (value: boolean) => void;
   handleCreateUser: (
     values: Array<{

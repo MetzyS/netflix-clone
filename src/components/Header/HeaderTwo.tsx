@@ -23,7 +23,8 @@ const HeaderTwo = (props: {
   handleDisconnect: () => void;
   handleChangeLang: (lang: string) => void;
 }) => {
-  //   console.log(props.isConnected);
+  console.log(props.showButton);
+  console.log(props.showButton);
   const { content, isLoading, error } = useLocale("Header", props.lang);
   const [smallHeader, setSmallHeader] = useState(false);
 
@@ -84,19 +85,23 @@ const HeaderTwo = (props: {
               className="py-1 px-4 text-base"
             />
           )
-        ) : props.showButton && props.isConnected ? (
-          <DefaultButton
-            primary={true}
-            className="ring-default py-1 px-4 text-base"
-            text={content.disconnect}
-            onClick={props.handleDisconnect}
-          />
+        ) : props.showButton ? (
+          props.isConnected ? (
+            <DefaultButton
+              primary={true}
+              className="ring-default py-1 px-4 text-base"
+              text={content.disconnect}
+              onClick={props.handleDisconnect}
+            />
+          ) : (
+            <DefaultLink
+              link="/login"
+              text={content.button}
+              className="py-1 px-4 text-base"
+            />
+          )
         ) : (
-          <DefaultLink
-            link="/login"
-            text={content.button}
-            className="py-1 px-4 text-base"
-          />
+          <></>
         )}
       </div>
     </header>

@@ -10,7 +10,6 @@ import {
   checkUserRegisterStep,
 } from "../helpers/creatingAccount";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
-import Header from "../components/Header/Header";
 import HeaderTwo from "../components/Header/HeaderTwo";
 
 const RootLayout = (props: { data: Record<string, LangType> }) => {
@@ -28,7 +27,6 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
   };
   const savedUser = localStorage.getItem("user");
   const navigate = useNavigate();
-  // console.log("rootlayout: " + JSON.parse(savedUser!));
   const [isConnected, setIsConnected] = useState<boolean>(() =>
     userIsConnected()
   );
@@ -69,14 +67,37 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     }
   );
 
-  // State gestion style header
-  const [showHeaderBtn, setShowHeaderBtn] = useState(() => userIsConnected());
+  // Header: State gestion style
+  const [showHeaderBtn, setShowHeaderBtn] = useState(false);
+  const [showSelectLang, setShowSelectLang] = useState(true);
   const [headerBg, setHeaderBg] = useState("bg-transparent");
   const [fixedHeader, setFixedHeader] = useState(false);
   const [headerResizeOnScroll, setHeaderResizeOnScroll] = useState(false);
+  const [transparentBtn, setTransparentBtn] = useState(false);
 
+  // Header: State handlers
   const handleShowHeaderBtn = (value: boolean) => {
     setShowHeaderBtn(value);
+  };
+
+  const handleShowSelectLang = (value: boolean) => {
+    setShowSelectLang(value);
+  };
+
+  const handleHeaderBg = (value: string) => {
+    setHeaderBg(value);
+  };
+
+  const handleFixedHeader = (value: boolean) => {
+    setFixedHeader(value);
+  };
+
+  const handleResizeOnScroll = (value: boolean) => {
+    setHeaderResizeOnScroll(value);
+  };
+
+  const handleTransparentBtn = (value: boolean) => {
+    setTransparentBtn(value);
   };
 
   const handleChangeLang = (value: string) => {
@@ -206,9 +227,9 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
         <HeaderTwo
           selectLang={true}
           showButton={showHeaderBtn}
-          transparentButton={false}
+          transparentButton={transparentBtn}
           lang={lang}
-          isConnected={true}
+          isConnected={isConnected}
           handleDisconnect={handleDisconnect}
           handleChangeLang={handleChangeLang}
           bg={headerBg}
@@ -231,6 +252,12 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
               handleCreateUser,
               handleUserPassword,
               setIsRegistered,
+              handleShowHeaderBtn,
+              handleHeaderBg,
+              handleFixedHeader,
+              handleResizeOnScroll,
+              handleShowSelectLang,
+              handleTransparentBtn,
               registerStep,
               isRegistered,
               isLoading,
