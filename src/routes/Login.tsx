@@ -10,11 +10,11 @@ import DefaultContainer from "../components/ui/DefaultContainer";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, data, handleChangeBg, handleCreateUser, handleShowHeaderBtn } =
+  const { user, data, handleChangeBg, handleCreateUser, handleHeaderStyle } =
     useDataContext();
   useEffect(() => {
     handleChangeBg(false);
-    handleShowHeaderBtn(false);
+    handleHeaderStyle([{ key: "showBtn", value: false }]);
     // l'utilisateur n'a pas fini de s'inscrire => signup
     user && user.registerStep != 0 && navigate("/signup");
     // l'utilisateur à terminé l'inscription / est déjà connecté => index

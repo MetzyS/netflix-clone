@@ -79,7 +79,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     resizeOnScroll: false,
     transparentBtn: false,
     link: "/",
-    logoClassName: "",
+    logoClassName: "logo-default",
   };
 
   // Manipulation Header (style)

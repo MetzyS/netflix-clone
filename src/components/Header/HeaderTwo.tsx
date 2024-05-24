@@ -11,6 +11,7 @@ import { HeaderStyle } from "../../types/headerStyle";
 
 const HeaderTwo = (props: {
   headerStyle: HeaderStyle;
+
   isConnected: boolean;
   lang: string;
   handleDisconnect: () => void;
@@ -24,8 +25,8 @@ const HeaderTwo = (props: {
     fixed,
     resizeOnScroll,
     transparentBtn,
-    link,
     logoClassName,
+    link,
   } = props.headerStyle;
 
   const { content, isLoading, error } = useLocale("Header", props.lang);
@@ -46,6 +47,7 @@ const HeaderTwo = (props: {
     console.error(error.message);
     return <></>;
   }
+
   return (
     <header
       className={`${
