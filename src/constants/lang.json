@@ -338,7 +338,7 @@
           "pinInput": "Code ou PIN de la carte cadeau",
           "confirmationButton": "Utiliser le code cadeau",
           "confirmationCheckbox": "Vous acceptez que votre abonnement commence immédiatement et reconnaissez que vous perdez ainsi votre droit de rétractation.",
-          "errorMessageConfirmation": "Vous devez confirmer que vous avez lu et que vous acceptez les Conditions d'utilisation pour continuer."
+          "errorMessageConfirmation": "Le code ou PIN de la carte cadeau doit comporter entre 4 et 60 caractères."
         }
       }
     },
@@ -714,7 +714,7 @@
           "pinInput": "Gift Card Pin or Code",
           "confirmationButton": "Redeem Gift Code",
           "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
-          "errorMessageConfirmation": "You must acknowledge that you have read and agree to the Terms of Use to continue."
+          "errorMessageConfirmation": "Gift Card Pin or Code should be between 4 and 60 characters."
         }
       }
     },

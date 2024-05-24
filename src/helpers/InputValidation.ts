@@ -69,10 +69,15 @@ export function nameValidation(value: string): boolean {
 }
 
 export function mobileValidation(value: string): boolean {
-  if (value.length == 10) {
-    if (/^[0-9]+$/g.test(value)) {
-      return true;
-    }
+  if (value.length == 10 && /^[0-9]+$/g.test(value)) {
+    return true;
+  }
+  return false;
+}
+
+export function giftCardValidate(value: string): boolean {
+  if (value.length > 4 && value.length < 60 && /^[0-9]+$/g.test(value)) {
+    return true;
   }
   return false;
 }

@@ -16,6 +16,8 @@ const GiftCard = (props: {
   handleChangePlan: () => void;
   handleSubmitPayment: () => void;
 }): ReactElement => {
+  let inputColor = "input-white";
+  let inputRing = "ring-white";
   return (
     <>
       <Container>
@@ -29,7 +31,11 @@ const GiftCard = (props: {
             {props.content.title}
           </h1>
         </div>
-        <InputGiftCard />
+        <InputGiftCard
+          content={props.content}
+          inputColor={inputColor}
+          inputRing={inputRing}
+        />
         <PlanPicker onClick={props.handleChangePlan} />
         {props.isLoading ? (
           <InputSpinner bg="text-white" className="mt-16" />
