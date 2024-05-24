@@ -18,6 +18,21 @@ const Header = (props: {
   logoClassname?: string;
 }) => {
   const { isConnected, handleDisconnect } = useDataContext();
+  // useEffect(() => {
+  //   const test = import(`./locales/${lang}.json`).then((response) =>
+  //     setContent(response)
+  //   );
+  // }, [lang]);
+  // const test = useLocale("Header", lang);
+  // console.log(test);
+
+  // const [content, setContent] = useState();
+  // console.log(content);
+
+  // const test = useLocale("./locales/en.json", "en");
+  // console.log(test);
+  // const test = useLocation().pathname;
+
   let selectLang = false;
   if (props.selectLang == undefined || props.selectLang == true) {
     selectLang = true;

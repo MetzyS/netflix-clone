@@ -45,7 +45,6 @@ const Login = () => {
   return (
     <>
       <DefaultContainer className="h-screen flex flex-col">
-        {/* <div className="h-screen flex flex-col"> */}
         <FadedBackground className="pb-4 w-screen flex-grow">
           <div className="m-auto">
             <Header
@@ -131,7 +130,6 @@ const Login = () => {
           </p>
           <Footer text={data.footerText} data={data.loginFooter} />
         </footer>
-        {/* </div> */}
       </DefaultContainer>
     </>
   );

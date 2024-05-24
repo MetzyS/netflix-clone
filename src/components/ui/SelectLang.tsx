@@ -1,13 +1,14 @@
 import { IoLanguage } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { useDataContext } from "../../layouts/RootLayout";
 const SelectLang = (props: {
   showText?: boolean;
   bg?: string;
   selectTextColor?: string;
   borderColor?: string;
+  lang: string;
+  handleChangeLang: (lang: string) => void;
 }) => {
-  const { lang, handleChangeLang } = useDataContext();
+  // const { lang, handleChangeLang } = useDataContext();
   return (
     <>
       <div className="justify-center items-center rounded-md transition-none ring-default">
@@ -27,9 +28,9 @@ const SelectLang = (props: {
             className={`border-none py-1.5 backdrop:blur-md outline-none appearance-none w-0 ${
               props.showText ? "w-full" : ""
             } px-8 z-10 font-semibold sm:w-full bg-transparent`}
-            value={lang}
+            value={props.lang}
             onChange={(e) => {
-              handleChangeLang(e.target.value);
+              props.handleChangeLang(e.target.value);
             }}
           >
             <option value="fr" className="select-default">

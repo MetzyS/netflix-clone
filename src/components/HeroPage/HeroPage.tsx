@@ -20,7 +20,6 @@ const HeroPage = (props: { lang: string; content: LangType }) => {
   return (
     <>
       <DefaultContainer className="w-screen overflow-hidden pr-4">
-        {/* <div className="w-screen overflow-hidden pr-4"> */}
         <FadedBackground className="pb-8">
           <Header
             content={props.content.header}
@@ -57,7 +56,6 @@ const HeroPage = (props: { lang: string; content: LangType }) => {
           <FormRegister content={props.content.form} to="" method="post" />
           <Separation />
         </div>
-        {/* </div> */}
       </DefaultContainer>
 
       <Footer data={props.content.footer} text={props.content.footerText} />

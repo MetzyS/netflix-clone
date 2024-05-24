@@ -10,6 +10,8 @@ import {
   checkUserRegisterStep,
 } from "../helpers/creatingAccount";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
+import Header from "../components/Header/Header";
+import HeaderTwo from "../components/Header/HeaderTwo";
 
 const RootLayout = (props: { data: Record<string, LangType> }) => {
   const defaultUser: UserType = {
@@ -27,7 +29,9 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
   const savedUser = localStorage.getItem("user");
   const navigate = useNavigate();
   // console.log("rootlayout: " + JSON.parse(savedUser!));
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState<boolean>(() =>
+    userIsConnected()
+  );
   const [isRegistered, setIsRegistered] = useState<boolean>(
     savedUser ? JSON.parse(savedUser).registered : false
   );
@@ -45,8 +49,10 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     }
   }, []);
 
+  // State gestion langage
   const [lang, setLang] = useState<string>("fr");
   const [data, setData] = useState(props.data.fr);
+
   const [bgWhite, setBgWhite] = useState(false);
   const [userEmail, setUserEmail] = useState(user.email);
   const [userPassword, setUserPassword] = useState(user.password);
@@ -62,6 +68,16 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
       return checkUserRegisterStep();
     }
   );
+
+  // State gestion style header
+  const [showHeaderBtn, setShowHeaderBtn] = useState(() => userIsConnected());
+  const [headerBg, setHeaderBg] = useState("bg-transparent");
+  const [fixedHeader, setFixedHeader] = useState(false);
+  const [headerResizeOnScroll, setHeaderResizeOnScroll] = useState(false);
+
+  const handleShowHeaderBtn = (value: boolean) => {
+    setShowHeaderBtn(value);
+  };
 
   const handleChangeLang = (value: string) => {
     setLang(value);
@@ -126,6 +142,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
   ) => {
     setIsCreated(true);
     setIsConnected(true);
+    handleShowHeaderBtn(true);
     values.map((item) =>
       setUser((prevUser: UserType) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
@@ -169,6 +186,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
   };
 
   const clearUser = () => {
+    handleShowHeaderBtn(false);
     setUser(defaultUser);
     setUserEmail(defaultUser.email);
     setRegisterStep(undefined);
@@ -185,6 +203,18 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
       <main
         className={`w-screen h-full flex-grow ${bgWhite ? "bg-white" : ""}`}
       >
+        <HeaderTwo
+          selectLang={true}
+          showButton={showHeaderBtn}
+          transparentButton={false}
+          lang={lang}
+          isConnected={true}
+          handleDisconnect={handleDisconnect}
+          handleChangeLang={handleChangeLang}
+          bg={headerBg}
+          fixed={fixedHeader}
+          resizeOnScroll={headerResizeOnScroll}
+        />
         <Outlet
           context={
             {
