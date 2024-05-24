@@ -8,4 +8,5 @@ export type HeaderStyle = {
   transparentBtn: boolean;
   link: string;
   logoClassName: string;
+  signupHeader: boolean;
 };

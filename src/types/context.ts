@@ -1,5 +1,5 @@
 import LangType, { PlanCard } from "./data";
-import { HeaderStyle } from "./headerStyle";
+import { HeaderStyle } from "./headerstyle";
 import { UserProfile, UserType } from "./user";
 
 export type ContextType = {

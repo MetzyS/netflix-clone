@@ -1,6 +1,9 @@
 import { ReactElement, useState, useEffect } from "react";
 
-const Container = (props: { className?: string; children: ReactElement[] }) => {
+const Container = (props: {
+  className?: string;
+  children: ReactElement[] | ReactElement;
+}) => {
   const [transition, setTransition] = useState("opacity-0");
   useEffect(() => {
     setTransition("opacity-100");

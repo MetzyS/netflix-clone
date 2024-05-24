@@ -27,7 +27,7 @@ const Signup = () => {
   useEffect(() => {
     // Header style
     handleHeaderStyle([
-      { key: "showSelectLang", value: "false" },
+      { key: "showSelectLang", value: false },
       {
         key: "className",
         value: "border-b border-neutral-200 px-4 py-1 sm:py-6 w-full",
@@ -94,7 +94,7 @@ const Signup = () => {
       {isConnected && !isCreatingAccount ? (
         <Navigate to="/" />
       ) : (
-        <div className="transition-all w-screen flex flex-col min-h-screen">
+        <div className="transition-all w-screen flex flex-col min-h-screen pt-20 sm:pt-32">
           <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
             {formStep == 0 && (
               <FirstStepForm

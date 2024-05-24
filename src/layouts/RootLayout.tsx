@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
-import LangType, { Header, PlanCard } from "../types/data";
+import LangType, { PlanCard } from "../types/data";
 import { userIsConnected } from "../helpers/userIsConnected";
 import {
   checkIfUserIsCreatingAccount,
   checkUserRegisterStep,
 } from "../helpers/creatingAccount";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
-import HeaderTwo from "../components/Header/HeaderTwo";
-import { HeaderStyle } from "../types/headerStyle";
+import HeaderTwo from "../components/Header/Header";
+import { HeaderStyle } from "../types/headerstyle";
 
 const RootLayout = (props: { data: Record<string, LangType> }) => {
   const defaultUser: UserType = {
@@ -80,6 +80,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     transparentBtn: false,
     link: "/",
     logoClassName: "logo-default",
+    signupHeader: true,
   };
 
   // Manipulation Header (style)

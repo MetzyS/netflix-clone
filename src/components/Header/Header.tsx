@@ -1,87 +1,105 @@
 import { Link } from "react-router-dom";
-import DefaultLink from "../ui/DefaultLink";
+import { useLocale } from "../../hooks/useLocale";
 import Logo from "../ui/Logo";
 import SelectLang from "../ui/SelectLang";
-import TransparentLink from "../ui/TransparentLink";
-import { useDataContext } from "../../layouts/RootLayout";
-import DefaultButton from "../ui/DefaultButton";
-import { Header as HeaderType } from "../../types/data";
 import TransparentButton from "../ui/TransparentButton";
+import TransparentLink from "../ui/TransparentLink";
+import DefaultButton from "../ui/DefaultButton";
+import DefaultLink from "../ui/DefaultLink";
+import { useEffect, useState } from "react";
+import { HeaderStyle } from "../../types/headerstyle";
 
 const Header = (props: {
-  content: HeaderType;
-  selectLang?: boolean;
-  showButton?: boolean;
-  transparentButton?: boolean;
-  link?: string;
-  className?: string;
-  logoClassname?: string;
+  headerStyle: HeaderStyle;
+
+  isConnected: boolean;
+  lang: string;
+  handleDisconnect: () => void;
+  handleChangeLang: (lang: string) => void;
 }) => {
-  const { isConnected, handleDisconnect } = useDataContext();
+  const {
+    showBtn,
+    showSelectLang,
+    background,
+    className,
+    fixed,
+    resizeOnScroll,
+    transparentBtn,
+    logoClassName,
+    link,
+  } = props.headerStyle;
 
-  let selectLang = false;
-  if (props.selectLang == undefined || props.selectLang == true) {
-    selectLang = true;
+  const { content, isLoading, error } = useLocale("Header", props.lang);
+  const [smallHeader, setSmallHeader] = useState(false);
+
+  useEffect(() => {
+    if (resizeOnScroll) {
+      window.addEventListener("scroll", () => {
+        setSmallHeader(window.scrollY > 200);
+      });
+    }
+  }, []);
+
+  if (isLoading) {
+    return <></>;
   }
-
-  let showButton = false;
-  if (props.showButton == undefined || props.showButton == true) {
-    showButton = true;
-  }
-
-  let link = "/";
-  if (props.link != undefined) {
-    link = props.link;
-  }
-
-  let logoClassname = "logo-default";
-  if (props.logoClassname != undefined) {
-    logoClassname = props.logoClassname;
+  if (error) {
+    console.error(error.message);
+    return <></>;
   }
 
   return (
-    <>
-      <header
-        className={`flex flex-wrap items-center relative m-auto justify-between gap-2 bg-white/0 max-w-[1600px] ${
-          props.className ? props.className : ""
-        }`}
-      >
-        <Link to="/">
-          <Logo className={`${logoClassname}`} />
-        </Link>
-        <div className="flex items-center gap-2">
-          {selectLang && <SelectLang />}
-          {props.transparentButton ? (
-            isConnected ? (
-              <TransparentButton
-                onClick={handleDisconnect}
-                text={props.content.disconnect}
-                className="py-1 px-4 text-base"
-              />
-            ) : (
-              <TransparentLink
-                link={link}
-                text={props.content.button}
-                className="py-1 px-4 text-base"
-              />
-            )
-          ) : showButton && isConnected ? (
+    <header
+      className={`${
+        fixed ? "fixed" : "absolute"
+      } z-20 top-0 left-0 right-0 flex flex-wrap items-center m-auto justify-between gap-2 ${background} max-w-[1600px] px-6 ${
+        smallHeader ? "py-2" : "py-6"
+      } ${className ? className : ""}`}
+    >
+      <Link to="/">
+        <Logo className={`${logoClassName}`} />
+      </Link>
+      <div className="flex items-center gap-2">
+        {showSelectLang && (
+          <SelectLang
+            handleChangeLang={props.handleChangeLang}
+            lang={props.lang}
+          />
+        )}
+        {transparentBtn ? (
+          props.isConnected ? (
+            <TransparentButton
+              onClick={props.handleDisconnect}
+              text={content.disconnect}
+              className="py-1 px-4 text-base"
+            />
+          ) : (
+            <TransparentLink
+              link={link}
+              text={content.button}
+              className="py-1 px-4 text-base"
+            />
+          )
+        ) : showBtn ? (
+          props.isConnected ? (
             <DefaultButton
               primary={true}
               className="ring-default py-1 px-4 text-base"
-              text={props.content.disconnect}
-              onClick={handleDisconnect}
+              text={content.disconnect}
+              onClick={props.handleDisconnect}
             />
           ) : (
             <DefaultLink
-              link={link}
-              text={props.content.button}
+              link="/login"
+              text={content.button}
               className="py-1 px-4 text-base"
             />
-          )}
-        </div>
-      </header>
-    </>
+          )
+        ) : (
+          <></>
+        )}
+      </div>
+    </header>
   );
 };
 
