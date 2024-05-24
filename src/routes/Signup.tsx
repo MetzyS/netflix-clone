@@ -1,6 +1,5 @@
 import { useDataContext } from "../layouts/RootLayout";
 import { useEffect, useState } from "react";
-import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import FirstStepForm from "../components/Signup/FirstStepForm";
 import SignupForm from "../components/Signup/SignupForm";
@@ -15,6 +14,11 @@ const Signup = () => {
     data,
     isConnected,
     userEmail,
+    handleShowHeaderSelectLang,
+    handleHeaderClassname,
+    handleHeaderLogoClassname,
+    handleShowHeaderBtn,
+    handleHeaderTransparentBtn,
     handleUserEmail,
     handleChangeBg,
     handleCreateAccount,
@@ -25,6 +29,15 @@ const Signup = () => {
   } = useDataContext();
 
   useEffect(() => {
+    // Header style
+    handleShowHeaderSelectLang(false);
+    handleHeaderClassname(
+      "border-b border-neutral-200 px-4 py-1 sm:py-6 w-full"
+    );
+    handleHeaderLogoClassname("w-20 sm:w-40");
+    handleShowHeaderBtn(true);
+    handleHeaderTransparentBtn(true);
+
     handleChangeBg(true);
     isCreatingAccount && user!.registerStep && setFormStep(user!.registerStep);
   }, [handleChangeBg]);
@@ -83,7 +96,7 @@ const Signup = () => {
         <Navigate to="/" />
       ) : (
         <div className="transition-all w-screen flex flex-col min-h-screen">
-          <Header
+          {/* <Header
             content={data.header}
             selectLang={false}
             className="border-b border-neutral-200 px-4 py-1 sm:py-6 w-full"
@@ -91,7 +104,7 @@ const Signup = () => {
             logoClassname="w-20 sm:w-40"
             showButton={false}
             transparentButton={true}
-          />
+          /> */}
           <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
             {formStep == 0 && (
               <FirstStepForm

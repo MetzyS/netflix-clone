@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
-import LangType, { PlanCard } from "../types/data";
+import LangType, { Header, PlanCard } from "../types/data";
 import { userIsConnected } from "../helpers/userIsConnected";
 import {
   checkIfUserIsCreatingAccount,
@@ -11,6 +11,7 @@ import {
 } from "../helpers/creatingAccount";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import HeaderTwo from "../components/Header/HeaderTwo";
+import { HeaderStyle } from "../types/headerStyle";
 
 const RootLayout = (props: { data: Record<string, LangType> }) => {
   const defaultUser: UserType = {
@@ -68,37 +69,40 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
   );
 
   // Header: State gestion style
-  const [showHeaderBtn, setShowHeaderBtn] = useState(false);
-  const [showSelectLang, setShowSelectLang] = useState(true);
-  const [headerBg, setHeaderBg] = useState("bg-transparent");
-  const [fixedHeader, setFixedHeader] = useState(false);
-  const [headerResizeOnScroll, setHeaderResizeOnScroll] = useState(false);
-  const [transparentBtn, setTransparentBtn] = useState(false);
 
-  // Header: State handlers
-  const handleShowHeaderBtn = (value: boolean) => {
-    setShowHeaderBtn(value);
+  const defaultHeaderStyle: HeaderStyle = {
+    showBtn: true,
+    showSelectLang: true,
+    background: "bg-transparent",
+    className: "",
+    fixed: false,
+    resizeOnScroll: false,
+    transparentBtn: false,
+    link: "/",
+    logoClassName: "",
   };
 
-  const handleShowHeaderSelectLang = (value: boolean) => {
-    setShowSelectLang(value);
+  // Manipulation Header (style)
+  const [headerStyle, setHeaderStyle] = useState(defaultHeaderStyle);
+
+  const handleHeaderStyle = (
+    values: Array<{
+      key: keyof HeaderStyle;
+      value: string | boolean;
+    }>
+  ) => {
+    values.map((item) => {
+      setHeaderStyle((prevState: HeaderStyle) => {
+        const update = { ...prevState, [item.key]: item.value };
+        return update;
+      });
+    });
   };
 
-  const handleHeaderBg = (value: string) => {
-    setHeaderBg(value);
+  const resetHeaderStyle = () => {
+    setHeaderStyle(defaultHeaderStyle);
   };
-
-  const handleFixedHeader = (value: boolean) => {
-    setFixedHeader(value);
-  };
-
-  const handleResizeOnScroll = (value: boolean) => {
-    setHeaderResizeOnScroll(value);
-  };
-
-  const handleHeaderTransparentBtn = (value: boolean) => {
-    setTransparentBtn(value);
-  };
+  // Fin manipulation Header
 
   const handleChangeLang = (value: string) => {
     setLang(value);
@@ -163,7 +167,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
   ) => {
     setIsCreated(true);
     setIsConnected(true);
-    handleShowHeaderBtn(true);
+    handleHeaderStyle([{ key: "showBtn", value: "true" }]);
     values.map((item) =>
       setUser((prevUser: UserType) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
@@ -207,7 +211,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
   };
 
   const clearUser = () => {
-    handleShowHeaderBtn(false);
+    resetHeaderStyle();
     setUser(defaultUser);
     setUserEmail(defaultUser.email);
     setRegisterStep(undefined);
@@ -225,16 +229,11 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
         className={`w-screen h-full flex-grow ${bgWhite ? "bg-white" : ""}`}
       >
         <HeaderTwo
-          selectLang={true}
-          showButton={showHeaderBtn}
-          transparentButton={transparentBtn}
+          headerStyle={headerStyle}
           lang={lang}
           isConnected={isConnected}
           handleDisconnect={handleDisconnect}
           handleChangeLang={handleChangeLang}
-          bg={headerBg}
-          fixed={fixedHeader}
-          resizeOnScroll={headerResizeOnScroll}
         />
         <Outlet
           context={
@@ -252,12 +251,8 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
               handleCreateUser,
               handleUserPassword,
               setIsRegistered,
-              handleShowHeaderBtn,
-              handleHeaderBg,
-              handleFixedHeader,
-              handleResizeOnScroll,
-              handleShowHeaderSelectLang,
-              handleHeaderTransparentBtn,
+              resetHeaderStyle,
+              handleHeaderStyle,
               registerStep,
               isRegistered,
               isLoading,

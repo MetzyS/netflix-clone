@@ -11,10 +11,10 @@ import { useDataContext } from "../../layouts/RootLayout";
 import DefaultContainer from "../ui/DefaultContainer";
 
 const HeroPage = (props: { lang: string; content: LangType }) => {
-  const { handleChangeBg, handleShowHeaderBtn } = useDataContext();
+  const { handleChangeBg, resetHeaderStyle } = useDataContext();
   useEffect(() => {
+    resetHeaderStyle();
     handleChangeBg(false);
-    handleShowHeaderBtn(true);
   }, [handleChangeBg]);
 
   return (

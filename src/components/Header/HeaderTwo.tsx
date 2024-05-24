@@ -7,29 +7,32 @@ import TransparentLink from "../ui/TransparentLink";
 import DefaultButton from "../ui/DefaultButton";
 import DefaultLink from "../ui/DefaultLink";
 import { useEffect, useState } from "react";
+import { HeaderStyle } from "../../types/headerStyle";
 
 const HeaderTwo = (props: {
-  selectLang: boolean;
-  showButton: boolean;
-  transparentButton: boolean;
-  link?: string;
-  className?: string;
-  logoClassname?: string;
+  headerStyle: HeaderStyle;
   isConnected: boolean;
   lang: string;
-  bg: string;
-  resizeOnScroll: boolean;
-  fixed: boolean;
   handleDisconnect: () => void;
   handleChangeLang: (lang: string) => void;
 }) => {
-  console.log(props.showButton);
-  console.log(props.showButton);
+  const {
+    showBtn,
+    showSelectLang,
+    background,
+    className,
+    fixed,
+    resizeOnScroll,
+    transparentBtn,
+    link,
+    logoClassName,
+  } = props.headerStyle;
+
   const { content, isLoading, error } = useLocale("Header", props.lang);
   const [smallHeader, setSmallHeader] = useState(false);
 
   useEffect(() => {
-    if (props.resizeOnScroll) {
+    if (resizeOnScroll) {
       window.addEventListener("scroll", () => {
         setSmallHeader(window.scrollY > 200);
       });
@@ -43,35 +46,25 @@ const HeaderTwo = (props: {
     console.error(error.message);
     return <></>;
   }
-  let logoClassname = "logo-default";
-  let link = "/";
-  if (props.logoClassname != undefined) {
-    logoClassname = props.logoClassname;
-  }
-  if (props.link != undefined) {
-    link = props.link;
-  }
   return (
     <header
       className={`${
-        props.fixed ? "fixed" : "absolute"
-      } z-20 top-0 left-0 right-0 flex flex-wrap items-center m-auto justify-between gap-2 ${
-        props.bg
-      } max-w-[1600px] px-6 ${smallHeader ? "py-2" : "py-6"} ${
-        props.className ? props.className : ""
-      }`}
+        fixed ? "fixed" : "absolute"
+      } z-20 top-0 left-0 right-0 flex flex-wrap items-center m-auto justify-between gap-2 ${background} max-w-[1600px] px-6 ${
+        smallHeader ? "py-2" : "py-6"
+      } ${className ? className : ""}`}
     >
       <Link to="/">
-        <Logo className={`${logoClassname}`} />
+        <Logo className={`${logoClassName}`} />
       </Link>
       <div className="flex items-center gap-2">
-        {props.selectLang && (
+        {showSelectLang && (
           <SelectLang
             handleChangeLang={props.handleChangeLang}
             lang={props.lang}
           />
         )}
-        {props.transparentButton ? (
+        {transparentBtn ? (
           props.isConnected ? (
             <TransparentButton
               onClick={props.handleDisconnect}
@@ -81,11 +74,11 @@ const HeaderTwo = (props: {
           ) : (
             <TransparentLink
               link={link}
-              text={content.content}
+              text={content.button}
               className="py-1 px-4 text-base"
             />
           )
-        ) : props.showButton ? (
+        ) : showBtn ? (
           props.isConnected ? (
             <DefaultButton
               primary={true}

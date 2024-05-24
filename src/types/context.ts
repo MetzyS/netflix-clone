@@ -1,4 +1,5 @@
 import LangType, { PlanCard } from "./data";
+import { HeaderStyle } from "./headerStyle";
 import { UserProfile, UserType } from "./user";
 
 export type ContextType = {
@@ -14,13 +15,15 @@ export type ContextType = {
   isLoading: boolean;
   isCreatingAccount: boolean;
   registerStep: number | undefined;
-  // header handlers
-  handleShowHeaderBtn: (value: boolean) => void;
-  handleHeaderBg: (value: string) => void;
-  handleFixedHeader: (value: boolean) => void;
-  handleResizeOnScroll: (value: boolean) => void;
-  handleShowHeaderSelectLang: (value: boolean) => void;
-  handleHeaderTransparentBtn: (value: boolean) => void;
+  // header manipulation handler
+  resetHeaderStyle: () => void;
+  handleHeaderStyle: (
+    values: Array<{
+      key: keyof HeaderStyle;
+      value: string | boolean;
+    }>
+  ) => void;
+
   // user handlers
   setIsRegistered: (value: boolean) => void;
   handleCreateUser: (
