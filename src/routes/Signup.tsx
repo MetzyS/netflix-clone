@@ -40,7 +40,7 @@ const Signup = () => {
 
     handleChangeBg(true);
     isCreatingAccount && user!.registerStep && setFormStep(user!.registerStep);
-  }, [handleChangeBg]);
+  }, []);
 
   const [formStep, setFormStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
