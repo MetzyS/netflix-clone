@@ -80,7 +80,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     transparentBtn: false,
     link: "/",
     logoClassName: "logo-default",
-    signupHeader: true,
+    signupHeader: false,
   };
 
   // Manipulation Header (style)
@@ -254,6 +254,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
               setIsRegistered,
               resetHeaderStyle,
               handleHeaderStyle,
+              headerStyle,
               registerStep,
               isRegistered,
               isLoading,

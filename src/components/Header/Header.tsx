@@ -27,6 +27,7 @@ const Header = (props: {
     transparentBtn,
     logoClassName,
     link,
+    signupHeader,
   } = props.headerStyle;
 
   const { content, isLoading, error } = useLocale("Header", props.lang);
@@ -38,7 +39,7 @@ const Header = (props: {
         setSmallHeader(window.scrollY > 200);
       });
     }
-  }, []);
+  }, [props.headerStyle]);
 
   if (isLoading) {
     return <></>;
@@ -53,8 +54,8 @@ const Header = (props: {
       className={`${
         fixed ? "fixed" : "absolute"
       } z-20 top-0 left-0 right-0 flex flex-wrap items-center m-auto justify-between gap-2 ${background} max-w-[1600px] px-6 ${
-        smallHeader ? "py-2" : "py-6"
-      } ${className ? className : ""}`}
+        smallHeader ? "py-2" : ""
+      } ${signupHeader ? "" : "py-6"} ${className ? className : ""}`}
     >
       <Link to="/">
         <Logo className={`${logoClassName}`} />

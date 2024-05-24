@@ -15,7 +15,7 @@ const HeroPage = (props: { lang: string; content: LangType }) => {
   useEffect(() => {
     resetHeaderStyle();
     handleChangeBg(false);
-  }, [handleChangeBg]);
+  }, []);
 
   return (
     <>

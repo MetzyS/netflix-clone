@@ -35,6 +35,7 @@ const Signup = () => {
       { key: "logoClassName", value: "w-20 sm:w-40" },
       { key: "showBtn", value: true },
       { key: "transparentBtn", value: true },
+      { key: "signupHeader", value: true },
     ]);
 
     handleChangeBg(true);

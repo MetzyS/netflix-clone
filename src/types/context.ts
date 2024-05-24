@@ -15,6 +15,7 @@ export type ContextType = {
   isLoading: boolean;
   isCreatingAccount: boolean;
   registerStep: number | undefined;
+  headerStyle: HeaderStyle;
   // header manipulation handler
   resetHeaderStyle: () => void;
   handleHeaderStyle: (
