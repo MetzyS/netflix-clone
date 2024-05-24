@@ -101,7 +101,7 @@ const HeaderTwo = (props: {
           />
         ) : (
           <DefaultLink
-            link={link}
+            link="/login"
             text={content.button}
             className="py-1 px-4 text-base"
           />

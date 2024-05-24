@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import LangType from "../../types/data";
-import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import OfferAd from "./OfferAd";
 import Card from "./Card";
@@ -21,11 +20,6 @@ const HeroPage = (props: { lang: string; content: LangType }) => {
     <>
       <DefaultContainer className="w-screen overflow-hidden pr-4">
         <FadedBackground className="pb-8">
-          <Header
-            content={props.content.header}
-            link="/login"
-            className="p-6"
-          />
           <div className="max-w-[1024px] m-auto text-center">
             <div className="px-4">
               <h1 className="pt-10 md:pt-24 lg:pt-40 px-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-wrap max-w-full">
