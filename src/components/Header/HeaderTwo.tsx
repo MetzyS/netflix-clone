@@ -6,7 +6,6 @@ import TransparentButton from "../ui/TransparentButton";
 import TransparentLink from "../ui/TransparentLink";
 import DefaultButton from "../ui/DefaultButton";
 import DefaultLink from "../ui/DefaultLink";
-import InputSpinner from "../Form/InputSpinner";
 import { useEffect, useState } from "react";
 
 const HeaderTwo = (props: {
@@ -37,18 +36,11 @@ const HeaderTwo = (props: {
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="flex max-w-[1600px] m-auto">
-        <InputSpinner />
-      </div>
-    );
+    return <></>;
   }
   if (error) {
-    return (
-      <div className="w-screen">
-        <p className="m-auto">Error: {error.message}</p>
-      </div>
-    );
+    console.error(error.message);
+    return <></>;
   }
   let logoClassname = "logo-default";
   let link = "/";
