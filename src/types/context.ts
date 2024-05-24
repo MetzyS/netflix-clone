@@ -19,8 +19,8 @@ export type ContextType = {
   handleHeaderBg: (value: string) => void;
   handleFixedHeader: (value: boolean) => void;
   handleResizeOnScroll: (value: boolean) => void;
-  handleShowSelectLang: (value: boolean) => void;
-  handleTransparentBtn: (value: boolean) => void;
+  handleShowHeaderSelectLang: (value: boolean) => void;
+  handleHeaderTransparentBtn: (value: boolean) => void;
   // user handlers
   setIsRegistered: (value: boolean) => void;
   handleCreateUser: (

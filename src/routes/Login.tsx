@@ -46,13 +46,7 @@ const Login = () => {
     <>
       <DefaultContainer className="h-screen flex flex-col">
         <FadedBackground className="pb-4 w-screen flex-grow">
-          <div className="m-auto pt-10">
-            {/* <Header
-              content={data.header}
-              showButton={false}
-              selectLang={false}
-              className="p-6"
-            /> */}
+          <div className="m-auto pt-32 sm:pt-24">
             <div className="px-6 max-w-[1024px] bg-transparent sm:bg-black/70 sm:py-12 sm:px-20 sm:max-w-lg sm:rounded-lg sm:mx-auto h-[700px]">
               <h1 className="text-3xl font-bold">{data.login.title}</h1>
               <Form

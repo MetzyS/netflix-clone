@@ -80,7 +80,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     setShowHeaderBtn(value);
   };
 
-  const handleShowSelectLang = (value: boolean) => {
+  const handleShowHeaderSelectLang = (value: boolean) => {
     setShowSelectLang(value);
   };
 
@@ -96,7 +96,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
     setHeaderResizeOnScroll(value);
   };
 
-  const handleTransparentBtn = (value: boolean) => {
+  const handleHeaderTransparentBtn = (value: boolean) => {
     setTransparentBtn(value);
   };
 
@@ -256,8 +256,8 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
               handleHeaderBg,
               handleFixedHeader,
               handleResizeOnScroll,
-              handleShowSelectLang,
-              handleTransparentBtn,
+              handleShowHeaderSelectLang,
+              handleHeaderTransparentBtn,
               registerStep,
               isRegistered,
               isLoading,
