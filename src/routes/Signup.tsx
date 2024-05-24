@@ -14,11 +14,7 @@ const Signup = () => {
     data,
     isConnected,
     userEmail,
-    handleShowHeaderSelectLang,
-    handleHeaderClassname,
-    handleHeaderLogoClassname,
-    handleShowHeaderBtn,
-    handleHeaderTransparentBtn,
+    handleHeaderStyle,
     handleUserEmail,
     handleChangeBg,
     handleCreateAccount,
@@ -30,13 +26,16 @@ const Signup = () => {
 
   useEffect(() => {
     // Header style
-    handleShowHeaderSelectLang(false);
-    handleHeaderClassname(
-      "border-b border-neutral-200 px-4 py-1 sm:py-6 w-full"
-    );
-    handleHeaderLogoClassname("w-20 sm:w-40");
-    handleShowHeaderBtn(true);
-    handleHeaderTransparentBtn(true);
+    handleHeaderStyle([
+      { key: "showSelectLang", value: "false" },
+      {
+        key: "className",
+        value: "border-b border-neutral-200 px-4 py-1 sm:py-6 w-full",
+      },
+      { key: "logoClassName", value: "w-20 sm:w-40" },
+      { key: "showBtn", value: true },
+      { key: "transparentBtn", value: true },
+    ]);
 
     handleChangeBg(true);
     isCreatingAccount && user!.registerStep && setFormStep(user!.registerStep);
@@ -96,15 +95,6 @@ const Signup = () => {
         <Navigate to="/" />
       ) : (
         <div className="transition-all w-screen flex flex-col min-h-screen">
-          {/* <Header
-            content={data.header}
-            selectLang={false}
-            className="border-b border-neutral-200 px-4 py-1 sm:py-6 w-full"
-            link="/login"
-            logoClassname="w-20 sm:w-40"
-            showButton={false}
-            transparentButton={true}
-          /> */}
           <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
             {formStep == 0 && (
               <FirstStepForm
