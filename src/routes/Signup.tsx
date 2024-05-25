@@ -24,7 +24,7 @@ const Signup = () => {
     handleCreateUser,
     setIsRegistered,
     isCreatingAccount,
-    isCreated,
+    isRegistered,
   } = useDataContext();
 
   const { content, isLoading }: SignUpLocaleType = useLocale("Signup", lang);
@@ -82,6 +82,7 @@ const Signup = () => {
       setTimeout(() => {
         handleCreateUser([{ key: "authorization", value: true }]);
         handleCreateUser([{ key: "registered", value: true }]);
+        // handleCreateUser([{ key: "isCreatingAccount", value: false }]);
         handleCreateAccount(false);
         setIsRegistered(true);
         resolve(true);
@@ -122,7 +123,7 @@ const Signup = () => {
                     data={content.signup}
                     userEmail={userEmail}
                     inputData={content.form}
-                    isCreated={isCreated}
+                    isRegistered={isRegistered}
                     handleCreateAccount={handleCreateAccount}
                     onSubmit={handleFormSubmit}
                   />

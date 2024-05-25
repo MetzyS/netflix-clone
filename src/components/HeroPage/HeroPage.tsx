@@ -12,7 +12,8 @@ import FormRegister from "./FormRegister";
 import DefaultContainer from "../ui/DefaultContainer";
 
 const HeroPage = () => {
-  const { lang, isCreatingAccount } = useDataContext();
+  const { lang, isCreatingAccount, accountIsConfigured, isRegistered } =
+    useDataContext();
   const { content, isLoading }: HeroPageLocaleType = useLocale(
     "HeroPage",
     lang
@@ -49,6 +50,8 @@ const HeroPage = () => {
                     to=""
                     method="post"
                     isCreatingAccount={isCreatingAccount}
+                    isConfigured={accountIsConfigured}
+                    isRegistered={isRegistered}
                   />
                 </div>
               </div>
@@ -78,6 +81,8 @@ const HeroPage = () => {
                 method="post"
                 isCreatingAccount={isCreatingAccount}
                 bottom={true}
+                isConfigured={accountIsConfigured}
+                isRegistered={isRegistered}
               />
               <Separation />
             </div>

@@ -57,6 +57,7 @@ export type Form = {
   error: string[];
   specialOfferEmailCheckbox: string;
   finishSignup: string;
+  finishSettingup: string;
 };
 
 type PaymentChoice = {

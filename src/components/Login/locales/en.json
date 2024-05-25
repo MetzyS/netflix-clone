@@ -1,0 +1,55 @@
+{
+  "login": {
+    "title": "Sign In",
+    "loginButton": "Sign In",
+    "codeButton": "Use a Sign-In Code",
+    "passwordForgot": "Forgot password?",
+    "rememberMe": "Remember me",
+    "firstVisit": "New to Netflix?",
+    "signup": "Sign up now.",
+    "captcha": "This page is protected by Google reCAPTCHA to ensure you're not a bot.",
+    "captchaLink": "Learn more."
+  },
+  "form": {
+    "email": "Email address",
+    "password": "Password",
+    "error": [
+      "Please enter a valid email address.",
+      "Password should be between 8 and 15 characters."
+    ]
+  },
+  "loginFooter": {
+    "1": {
+      "title": "FAQ",
+      "link": "/"
+    },
+    "2": {
+      "title": "Netflix Shop",
+      "link": "/"
+    },
+    "3": {
+      "title": "Terms of Use",
+      "link": "/"
+    },
+    "4": {
+      "title": "Cookie Preferences",
+      "link": "/"
+    },
+    "5": {
+      "title": "Help Center",
+      "link": "/"
+    },
+    "6": {
+      "title": "Privacy",
+      "link": "/"
+    },
+    "7": {
+      "title": "Corporate Information",
+      "link": "/"
+    },
+    "8": {
+      "title": "Ad Choices",
+      "link": "/"
+    }
+  }
+}

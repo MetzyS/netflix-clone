@@ -8,7 +8,7 @@ const SignupForm = (props: {
   data: Signup;
   userEmail: string;
   inputData: FormType;
-  isCreated: boolean;
+  isRegistered: boolean;
   handleCreateAccount: (value: boolean) => void;
   onSubmit: (newData: {
     email: string;

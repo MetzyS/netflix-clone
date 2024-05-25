@@ -12,6 +12,8 @@ const FormRegister = (props: {
   method: "get" | "post" | "put" | "delete" | "patch";
   isCreatingAccount: boolean;
   bottom?: boolean;
+  isConfigured: boolean;
+  isRegistered: boolean;
 }) => {
   const { user, isLoading, userEmail, handleSubmitRegister, handleUserEmail } =
     useDataContext();
@@ -75,14 +77,26 @@ const FormRegister = (props: {
                 className="flex gap-3 text-xl items-center justify-between min-w-fit pl-6 self-center md:text-2xl"
                 icon={<MdArrowForwardIos className="size-5" />}
               />
+            ) : props.isRegistered && !props.isConfigured ? (
+              // Compte enregistré mais pas configuré
+              <></>
             ) : (
-              <DefaultButton
-                type="submit"
-                text={props.content.button}
-                primary={true}
-                className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
-                icon={<MdArrowForwardIos className="size-5" />}
-              />
+              // <DefaultButton
+              //   type="submit"
+              //   text={props.content.finishSettingup}
+              //   primary={true}
+              //   className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
+              //   icon={<MdArrowForwardIos className="size-5" />}
+              // />
+              <></> && (
+                <DefaultButton
+                  type="submit"
+                  text={props.content.button}
+                  primary={true}
+                  className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
+                  icon={<MdArrowForwardIos className="size-5" />}
+                />
+              )
             )}
           </div>
         </Form>

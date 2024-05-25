@@ -12,7 +12,8 @@
       "Le mot de passe doit comporter entre 8 et 15 caractères"
     ],
     "specialOfferEmailCheckbox": "Oui, envoyez-moi les offres spéciales de Netflix par e-mail.",
-    "finishSignup": "Terminer l'inscription"
+    "finishSignup": "Terminer l'inscription",
+    "finishSettingup": "Terminer la configuration"
   },
   "offer": {
     "title": "Le Netflix que vous aimez pour juste 5,99€.",

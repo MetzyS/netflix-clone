@@ -12,7 +12,8 @@
       "Password should be between 8 and 15 characters."
     ],
     "specialOfferEmailCheckbox": "Yes, please email me Netflix special offers.",
-    "finishSignup": "Finish Sign Up"
+    "finishSignup": "Finish Sign Up",
+    "finishSettingup": "Finish Setting Up"
   },
   "offer": {
     "title": "The Netflix you love for just EUR 5.99.",

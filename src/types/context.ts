@@ -1,22 +1,35 @@
-// import LangType, { PlanCard } from "./data";
 import { HeaderStyle } from "./headerstyle";
 import { UserProfile, UserType } from "./user";
 
 export type ContextType = {
+  // infos user
   lang: string;
   user: UserType | undefined;
-  // data: LangType;
-  // plans: Record<string, PlanCard>;
   isRegistered: boolean;
   userEmail: string;
   userPassword: string;
-  isCreated: boolean;
   isConnected: boolean;
   isLoading: boolean;
   isCreatingAccount: boolean;
   registerStep: number | undefined;
   headerStyle: HeaderStyle;
-  // header manipulation handler
+  accountIsConfigured: boolean;
+
+  // handlers user
+  handleCreateUser: (
+    values: Array<{
+      key: keyof UserType;
+      value: string | number | UserProfile | {};
+    }>
+  ) => void;
+  setIsRegistered: (value: boolean) => void;
+  handleChangeLang: (value: string) => void;
+  handleUserEmail: (email: string) => void;
+  handleUserPassword: (password: string) => void;
+  handleCreateAccount: (value: boolean) => void;
+  handleSubmitRegister: (value: string) => Promise<Boolean>;
+
+  // handlers style
   resetHeaderStyle: () => void;
   handleHeaderStyle: (
     values: Array<{
@@ -24,21 +37,9 @@ export type ContextType = {
       value: string | boolean;
     }>
   ) => void;
-
-  // user handlers
-  setIsRegistered: (value: boolean) => void;
-  handleCreateUser: (
-    values: Array<{
-      key: keyof UserType;
-      value: string | number | UserProfile | {};
-    }>
-  ) => void;
-  handleChangeLang: (value: string) => void;
   handleChangeBg: (value: boolean) => void;
-  handleUserEmail: (email: string) => void;
-  handleUserPassword: (password: string) => void;
-  handleCreateAccount: (value: boolean) => void;
+
+  // handlers connexion
   handleDisconnect: () => void;
   handleConnect: () => void;
-  handleSubmitRegister: (value: string) => Promise<Boolean>;
 };

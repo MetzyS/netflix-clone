@@ -15,6 +15,7 @@ export type UserType = {
   authorization: boolean;
   plan: number;
   registered: boolean;
+  isConfigured: boolean;
 };
 
 export type Users = Record<string, UserType>;

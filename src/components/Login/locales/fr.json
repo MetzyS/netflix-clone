@@ -1,0 +1,55 @@
+{
+  "login": {
+    "title": "S'identifier",
+    "loginButton": "S'identifier",
+    "codeButton": "Utiliser un code d'identification",
+    "passwordForgot": "Mot de passe oublié?",
+    "rememberMe": "Se souvenir de moi",
+    "firstVisit": "Première visite sur Netflix?",
+    "signup": "Inscrivez-vous.",
+    "captcha": "Cette page est protégée par Google reCAPTCHA pour nous assurer que vous n'êtes pas un robot.",
+    "captchaLink": "En savoir plus."
+  },
+  "form": {
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "error": [
+      "Veuillez saisir une adresse e-mail valide.",
+      "Le mot de passe doit comporter entre 8 et 15 caractères"
+    ]
+  },
+  "loginFooter": {
+    "1": {
+      "title": "FAQ",
+      "link": "/"
+    },
+    "2": {
+      "title": "Boutique Shop",
+      "link": "/"
+    },
+    "3": {
+      "title": "Conditions d'utilisation",
+      "link": "/"
+    },
+    "4": {
+      "title": "Préférences de cookies",
+      "link": "/"
+    },
+    "5": {
+      "title": "Centre d'aide",
+      "link": "/"
+    },
+    "6": {
+      "title": "Confidentialité",
+      "link": "/"
+    },
+    "7": {
+      "title": "Mentions légales",
+      "link": "/"
+    },
+    "8": {
+      "title": "Choix liés à la pub",
+      "link": "/"
+    }
+  }
+}

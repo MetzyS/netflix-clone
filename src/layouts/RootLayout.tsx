@@ -1,9 +1,8 @@
 import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
-// import LangType, { PlanCard } from "../types/data";
 import { userIsConnected } from "../helpers/userIsConnected";
 import {
   checkIfUserIsCreatingAccount,
@@ -13,7 +12,8 @@ import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import HeaderTwo from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
 
-const RootLayout = (props: {}) => {
+const RootLayout = () => {
+  // Paramètres et infos utilisateur
   const defaultUser: UserType = {
     plan: 0,
     authorization: false,
@@ -25,37 +25,27 @@ const RootLayout = (props: {}) => {
     avatarUrl: "",
     registerStep: 0,
     registered: false,
+    isConfigured: false,
   };
   const savedUser = localStorage.getItem("user");
   const navigate = useNavigate();
   const [isConnected, setIsConnected] = useState<boolean>(() =>
     userIsConnected()
   );
-  const [isRegistered, setIsRegistered] = useState<boolean>(
-    savedUser ? JSON.parse(savedUser).registered : false
-  );
   const [user, setUser] = useState<UserType>(
     savedUser ? JSON.parse(savedUser) : defaultUser
   );
-  // console.log(user);
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsConnected(true);
-    } else {
-      setIsConnected(false);
-    }
-  }, []);
+  const [isRegistered, setIsRegistered] = useState<boolean>(user.registered);
 
+  const [accountIsConfigured, setAccountIsConfigured] = useState<boolean>(
+    user.isConfigured
+  );
   // State gestion langage
   const [lang, setLang] = useState<string>("fr");
-  // const [data, setData] = useState(props.data.fr);
 
   const [bgWhite, setBgWhite] = useState(false);
   const [userEmail, setUserEmail] = useState(user.email);
   const [userPassword, setUserPassword] = useState(user.password);
-  const [isCreated, setIsCreated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isCreatingAccount, setIsCreatingAccount] = useState<boolean>(
     (): boolean => {
@@ -83,9 +73,9 @@ const RootLayout = (props: {}) => {
     signupHeader: false,
   };
 
-  // Manipulation Header (style)
+  // Manipulation style
+  // -- Header
   const [headerStyle, setHeaderStyle] = useState(defaultHeaderStyle);
-
   const handleHeaderStyle = (
     values: Array<{
       key: keyof HeaderStyle;
@@ -103,24 +93,7 @@ const RootLayout = (props: {}) => {
   const resetHeaderStyle = () => {
     setHeaderStyle(defaultHeaderStyle);
   };
-  // Fin manipulation Header
-
-  const handleChangeLang = (value: string) => {
-    setLang(value);
-    // switch (value) {
-    //   case "fr":
-    //     setData(props.data.fr);
-    //     break;
-    //   case "en":
-    //     setData(props.data.en);
-    //     break;
-    //   default:
-    //     setData(props.data.fr);
-    // }
-  };
-
-  // const plans: Record<string, PlanCard> = data.signup.firstStepPlanChoiceCards;
-
+  // -- Background true: blanc, false: noir
   const handleChangeBg = (value: boolean) => {
     setBgWhite(value);
     value
@@ -130,6 +103,12 @@ const RootLayout = (props: {}) => {
       : () => {
           document.body.classList.remove("bg-white");
         };
+  };
+  // Fin manipulation style
+
+  // Handler changement langue, "fr" / "en"
+  const handleChangeLang = (value: string) => {
+    setLang(value);
   };
 
   /**
@@ -166,7 +145,7 @@ const RootLayout = (props: {}) => {
       value: string | number | UserProfile | {};
     }>
   ) => {
-    setIsCreated(true);
+    setIsRegistered(true);
     setIsConnected(true);
     handleHeaderStyle([{ key: "showBtn", value: "true" }]);
     values.map((item) =>
@@ -216,7 +195,6 @@ const RootLayout = (props: {}) => {
     setUser(defaultUser);
     setUserEmail(defaultUser.email);
     setRegisterStep(undefined);
-    setIsCreated(false);
     setIsCreatingAccount(false);
     setIsConnected(false);
     setIsRegistered(false);
@@ -241,7 +219,6 @@ const RootLayout = (props: {}) => {
             {
               lang,
               user,
-              // plans,
               handleChangeLang,
               handleChangeBg,
               handleUserEmail,
@@ -262,8 +239,7 @@ const RootLayout = (props: {}) => {
               isCreatingAccount,
               userEmail,
               userPassword,
-              isCreated,
-              // data,
+              accountIsConfigured,
             } satisfies ContextType
           }
         />
