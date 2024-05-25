@@ -3,7 +3,7 @@ export type Header = {
   disconnect: string;
 };
 
-type Description = {
+export type HeroDescription = {
   id: string;
   title: string;
   text: string;
@@ -12,7 +12,7 @@ type Description = {
   downloadText?: string;
 };
 
-type DescriptionMap = Record<string, Description>;
+type DescriptionMap = Record<string, HeroDescription>;
 
 export type FaqType = {
   id: string;
@@ -143,6 +143,11 @@ export type Signup = {
   paymentStep: Payment;
 };
 
+export type FooterType = {
+  footerText: string;
+  footer: FooterMap;
+};
+
 export type LangType = {
   header: Header;
   title: string;
@@ -173,6 +178,20 @@ export type LangType = {
   signup: Signup;
   signupFooterText: string;
   signupFooter: FooterMap;
+};
+
+export type HeroPageType = {
+  title: string;
+  subtitle: string;
+  form: Form;
+  offer: {
+    title: string;
+    subtitle: string;
+    linkText: string;
+  };
+  description: Record<string, HeroDescription>;
+  faqTitle: string;
+  faq: Record<string, FaqType>;
 };
 
 export default LangType;

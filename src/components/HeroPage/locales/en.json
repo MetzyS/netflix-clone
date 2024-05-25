@@ -1,3 +1,81 @@
 {
-  "header": "hey"
+  "title": "Unlimited movies, TV shows, and more",
+  "subtitle": "Watch anywhere. Cancel anytime.",
+  "form": {
+    "text": "Ready to watch? Enter your email address or mobile number to create or restart your membership.",
+    "email": "Email address",
+    "password": "Password",
+    "button": "Get started",
+    "autocomplete": "Email address",
+    "error": [
+      "Please enter a valid email address.",
+      "Password should be between 8 and 15 characters."
+    ],
+    "specialOfferEmailCheckbox": "Yes, please email me Netflix special offers.",
+    "finishSignup": "Finish Sign Up"
+  },
+  "offer": {
+    "title": "The Netflix you love for just EUR 5.99.",
+    "subtitle": "Get the Standard with ads plan.",
+    "linkText": "Learn More"
+  },
+  "description": {
+    "0": {
+      "id": "0",
+      "title": "Enjoy on your TV",
+      "text": "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
+      "videoUrl": "videos/video-tv-0.m4v"
+    },
+    "1": {
+      "id": "1",
+      "title": "Watch everywhere",
+      "text": "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
+      "videoUrl": "videos/video-devices-1.m4v"
+    },
+    "2": {
+      "id": "2",
+      "title": "Create profiles for kids",
+      "text": "Send kids on adventures with their favorite characters in a space made just for them—free with your membership."
+    },
+    "3": {
+      "id": "3",
+      "title": "Download your shows to watch offline",
+      "text": "Watch on a plane, train, or submarine…",
+      "downloadMovieTitle": "Stranger Things",
+      "downloadText": "Downloading..."
+    }
+  },
+  "faqTitle": "Frequently Asked Questions",
+  "faq": {
+    "0": {
+      "id": "0",
+      "question": "What is Netflix ?",
+      "answer": "Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.\n\nYou can watch as much as you want, whenever you want – all for one low monthly price. There's always something new to discover and new TV shows and movies are added every week!"
+    },
+    "1": {
+      "id": "1",
+      "question": "How much does Netflix cost ?",
+      "answer": "Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from EUR 5.99 to EUR 19.99 a month. No extra costs, no contracts."
+    },
+    "2": {
+      "id": "2",
+      "question": "Where can I watch ?",
+      "answer": "Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device that offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.\\n\\nYou can also download your favorite shows with the iOS, Android, or Windows 10 app. Use downloads to watch while you're on the go and without an internet connection. Take Netflix with you anywhere."
+    },
+    "3": {
+      "id": "3",
+      "question": "How do I cancel ?",
+      "answer": "Netflix is flexible. There are no pesky contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime."
+    },
+    "4": {
+      "id": "4",
+      "question": "What can I watch on Netflix ?",
+      "answer": "Netflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Netflix originals, and more. Watch as much as you want, anytime you want."
+    },
+    "5": {
+      "id": "5",
+      "question": "Is Netflix good for kids ?",
+      "answer": "The Netflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and movies in their own space.\\n\\nKids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see."
+    }
+  }
 }
