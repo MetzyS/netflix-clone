@@ -10,15 +10,11 @@ const FormRegister = (props: {
   content: FormType;
   to: string;
   method: "get" | "post" | "put" | "delete" | "patch";
+  isCreatingAccount: boolean;
+  bottom?: boolean;
 }) => {
-  const {
-    user,
-    isLoading,
-    userEmail,
-    isCreatingAccount,
-    handleSubmitRegister,
-    handleUserEmail,
-  } = useDataContext();
+  const { user, isLoading, userEmail, handleSubmitRegister, handleUserEmail } =
+    useDataContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState(user ? user.email : "");
   const onSubmitFunc = async (e: FormEvent<HTMLFormElement>, email: string) => {
@@ -41,15 +37,20 @@ const FormRegister = (props: {
           onSubmit={(e) => onSubmitFunc(e, email)}
           className="md:mb-8 max-w-[600px] m-auto"
         >
-          <h3 className="text-lg lg:text-xl leading-normal text-center">
+          <h3
+            className={`text-lg lg:text-xl leading-normal text-center ${
+              !props.bottom ? props.isCreatingAccount && "hidden" : ""
+            }`}
+          >
             {props.content.text}
           </h3>
+
           <div
             className={`flex flex-col sm:flex-row justify-center ${
-              isCreatingAccount ? "" : "sm:justify-normal"
+              props.isCreatingAccount ? "" : "sm:justify-normal"
             } mt-4 gap-4`}
           >
-            {isCreatingAccount ? (
+            {props.isCreatingAccount ? (
               ""
             ) : (
               <Input
@@ -63,7 +64,7 @@ const FormRegister = (props: {
               />
             )}
 
-            {isCreatingAccount ? (
+            {props.isCreatingAccount ? (
               <DefaultButton
                 type="button"
                 onClick={() => {
@@ -71,7 +72,7 @@ const FormRegister = (props: {
                 }}
                 text={props.content.finishSignup}
                 primary={true}
-                className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
+                className="flex gap-3 text-xl items-center justify-between min-w-fit pl-6 self-center md:text-2xl"
                 icon={<MdArrowForwardIos className="size-5" />}
               />
             ) : (

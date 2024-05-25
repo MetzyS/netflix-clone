@@ -12,7 +12,7 @@ import FormRegister from "./FormRegister";
 import DefaultContainer from "../ui/DefaultContainer";
 
 const HeroPage = () => {
-  const { lang } = useDataContext();
+  const { lang, isCreatingAccount } = useDataContext();
   const { content, isLoading }: HeroPageLocaleType = useLocale(
     "HeroPage",
     lang
@@ -32,14 +32,24 @@ const HeroPage = () => {
           <DefaultContainer className="w-screen overflow-hidden pr-4">
             <FadedBackground className="pb-8">
               <div className="max-w-[1024px] m-auto text-center">
-                <div className="px-4">
-                  <h1 className="pt-32 sm:pt-40 md:pt-48 lg:pt-72 px-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-wrap max-w-full">
+                <div className="px-6 pt-36 sm:pt-44 md:pt-52 lg:pt-72">
+                  {isCreatingAccount && (
+                    <span className="text-lg font-semibold lg:text-2xl">
+                      Ravis de vous revoir !
+                    </span>
+                  )}
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-wrap max-w-full">
                     {content.title}
                   </h1>
                   <h2 className="text-lg lg:text-2xl mt-6 leading-snug">
                     {content.subtitle}
                   </h2>
-                  <FormRegister content={content.form} to="" method="post" />
+                  <FormRegister
+                    content={content.form}
+                    to=""
+                    method="post"
+                    isCreatingAccount={isCreatingAccount}
+                  />
                 </div>
               </div>
             </FadedBackground>
@@ -62,7 +72,13 @@ const HeroPage = () => {
             </div>
 
             <div>
-              <FormRegister content={content.form} to="" method="post" />
+              <FormRegister
+                content={content.form}
+                to=""
+                method="post"
+                isCreatingAccount={isCreatingAccount}
+                bottom={true}
+              />
               <Separation />
             </div>
           </DefaultContainer>
