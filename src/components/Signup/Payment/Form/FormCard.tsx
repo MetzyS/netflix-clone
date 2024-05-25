@@ -16,7 +16,7 @@ const FormCard = (props: {
   content: CreditCardOption;
   isLoading: boolean;
   handleChangePlan: () => void;
-  handleSubmitPayment: () => void;
+  handleActivate: () => void;
 }): ReactElement => {
   let inputColor = "input-white";
   let inputRing = "ring-white";
@@ -92,7 +92,7 @@ const FormCard = (props: {
   };
 
   return (
-    <Form onSubmit={props.handleSubmitPayment}>
+    <Form onSubmit={props.handleActivate}>
       <div className="max-w-[500px] m-auto">
         <InputCreditCard
           content={props.content}

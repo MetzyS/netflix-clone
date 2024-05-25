@@ -26,8 +26,8 @@ const PaymentChoice = (props: {
   steps: string[];
   maxStep: string;
   isLoading: boolean;
-  handleSubmitPayment: () => void;
   handleFormStep: (value: number) => void;
+  handleActivate: () => void;
 }) => {
   const { handleCreateUser } = useDataContext();
   // 0 => CB, 1 => mobile, 2 => paypal, 3 => carte netflix
@@ -117,7 +117,7 @@ const PaymentChoice = (props: {
               maxStep={props.maxStep}
               icons={paymentIcons[0]}
               handleChangePlan={handleChangePlan}
-              handleSubmitPayment={props.handleSubmitPayment}
+              handleActivate={props.handleActivate}
               isLoading={props.isLoading}
             />
           </>
@@ -131,7 +131,7 @@ const PaymentChoice = (props: {
               maxStep={props.maxStep}
               icons={paymentIcons[1]}
               handleChangePlan={handleChangePlan}
-              handleSubmitPayment={props.handleSubmitPayment}
+              handleActivate={props.handleActivate}
               isLoading={props.isLoading}
             />
           </>
@@ -144,7 +144,7 @@ const PaymentChoice = (props: {
               steps={props.steps}
               maxStep={props.maxStep}
               handleChangePlan={handleChangePlan}
-              handleSubmitPayment={props.handleSubmitPayment}
+              handleActivate={props.handleActivate}
               isLoading={props.isLoading}
             />
           </>
@@ -157,7 +157,7 @@ const PaymentChoice = (props: {
               steps={props.steps}
               maxStep={props.maxStep}
               handleChangePlan={handleChangePlan}
-              handleSubmitPayment={props.handleSubmitPayment}
+              handleActivate={props.handleActivate}
               isLoading={props.isLoading}
             />
           </>

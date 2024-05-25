@@ -3,6 +3,7 @@ import { CreditCardOption } from "../../../../types/data";
 import FormCard from "../Form/FormCard";
 import BackButton from "../../BackButton";
 import Container from "../Container";
+import Processing from "../Processing/Processing";
 
 const CreditCard = (props: {
   content: CreditCardOption;
@@ -12,11 +13,12 @@ const CreditCard = (props: {
   isLoading: boolean;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
-  handleSubmitPayment: () => void;
+  handleActivate: () => void;
 }): ReactElement => {
   return (
     <>
       <Container>
+        {/* <Processing handleSubmitPayment={props.handleSubmitPayment} /> */}
         <BackButton onClick={props.backButtonFunc} />
         <p className="text-neutral-800 uppercase text-xs mt-2">
           {props.steps[0]} <span className="font-bold">3</span> {props.steps[1]}{" "}
@@ -31,7 +33,7 @@ const CreditCard = (props: {
         <FormCard
           content={props.content}
           handleChangePlan={props.handleChangePlan}
-          handleSubmitPayment={props.handleSubmitPayment}
+          handleActivate={props.handleActivate}
           isLoading={props.isLoading}
         />
       </Container>

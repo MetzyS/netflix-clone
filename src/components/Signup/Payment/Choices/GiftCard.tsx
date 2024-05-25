@@ -14,7 +14,7 @@ const GiftCard = (props: {
   isLoading: boolean;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
-  handleSubmitPayment: () => void;
+  handleActivate: () => void;
 }): ReactElement => {
   let inputColor = "input-white";
   let inputRing = "ring-white";
@@ -45,7 +45,7 @@ const GiftCard = (props: {
             text={props.content.confirmationButton}
             primary={true}
             className="mt-4 w-full py-4 text-2xl "
-            onClick={props.handleSubmitPayment}
+            onClick={props.handleActivate}
           />
         )}
       </Container>

@@ -13,7 +13,7 @@ const Paypal = (props: {
   isLoading: boolean;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
-  handleSubmitPayment: () => void;
+  handleActivate: () => void;
 }): ReactElement => {
   return (
     <>
@@ -38,7 +38,7 @@ const Paypal = (props: {
             text={props.content.confirmationButton}
             primary={true}
             className="mt-4 w-full py-4 text-2xl "
-            onClick={props.handleSubmitPayment}
+            onClick={props.handleActivate}
           />
         )}
       </Container>

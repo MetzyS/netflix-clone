@@ -7,6 +7,7 @@ import FirstStepPlanDesc from "../components/Signup/FirstStep/FirstStepPlanDesc"
 import FirstStepPlanChoice from "../components/Signup/FirstStep/FirstStepPlanChoice";
 import PaymentChoice from "../components/Signup/Payment/PaymentChoice";
 import { Navigate } from "react-router-dom";
+import Processing from "../components/Signup/Payment/Processing/Processing";
 
 const Signup = () => {
   const {
@@ -84,6 +85,10 @@ const Signup = () => {
     });
   };
 
+  const handleActivate = () => {
+    handleFormStep(5);
+  };
+
   const handleSubmitPayment = async (): Promise<boolean> => {
     setIsLoading(true);
     const submit = await endRegister();
@@ -136,10 +141,13 @@ const Signup = () => {
                 data={data.signup.paymentStep}
                 steps={data.signup.stepWord}
                 maxStep={data.signup.maxStep}
-                handleSubmitPayment={handleSubmitPayment}
+                handleActivate={handleActivate}
                 isLoading={isLoading}
                 handleFormStep={handleFormStep}
               />
+            )}
+            {formStep == 5 && (
+              <Processing handleSubmitPayment={handleSubmitPayment} />
             )}
           </div>
           <div>

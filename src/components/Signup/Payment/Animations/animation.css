@@ -1,0 +1,83 @@
+.pop-animation {
+  animation-delay: 1s;
+  animation: scale 0.3s forwards;
+}
+
+.pop-border-animation {
+  animation-delay: 1s;
+  animation: border 0.3s forwards;
+}
+
+.animation-opacity {
+  animation-delay: 1s;
+  animation: opacity 0.8s forwards;
+}
+
+.animation-bounce {
+  animation-delay: 1s;
+  animation: bounceeeee 0.5s 3 forwards;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  1% {
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(0);
+  }
+  90% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes border {
+  0% {
+    border-width: 35px;
+  }
+
+  80% {
+    border-width: 35px;
+  }
+
+  99% {
+    border-width: 1px;
+  }
+  100% {
+    border-width: 0px;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  1% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceeeee {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: translateY(5%);
+  }
+}

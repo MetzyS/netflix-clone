@@ -12,7 +12,7 @@ const Mobile = (props: {
   isLoading: boolean;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
-  handleSubmitPayment: () => void;
+  handleActivate: () => void;
 }): ReactElement => {
   return (
     <>
@@ -37,7 +37,7 @@ const Mobile = (props: {
         <FormMobile
           handleChangePlan={props.handleChangePlan}
           content={props.content}
-          handleSubmitPayment={props.handleSubmitPayment}
+          handleActivate={props.handleActivate}
           isLoading={props.isLoading}
         />
       </Container>

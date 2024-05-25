@@ -9,7 +9,7 @@ import InputSpinner from "../../../Form/InputSpinner";
 const FormMobile = (props: {
   content: MobileOption;
   handleChangePlan: () => void;
-  handleSubmitPayment: () => void;
+  handleActivate: () => void;
   isLoading: boolean;
 }): ReactElement => {
   let inputColor = "input-white";
@@ -31,7 +31,7 @@ const FormMobile = (props: {
   };
 
   return (
-    <Form onSubmit={props.handleSubmitPayment}>
+    <Form onSubmit={props.handleActivate}>
       <InputNumber
         content={props.content}
         onChange={handleChangeNumber}
