@@ -8,11 +8,13 @@ import FirstStepPlanChoice from "../components/Signup/FirstStep/FirstStepPlanCho
 import PaymentChoice from "../components/Signup/Payment/PaymentChoice";
 import { Navigate } from "react-router-dom";
 import Processing from "../components/Signup/Payment/Processing/Processing";
+import { useLocale } from "../hooks/useLocale";
+import { SignUpLocaleType } from "../types/useLocaleTypes/ImportedLocaleTypes";
 
 const Signup = () => {
   const {
     user,
-    data,
+    lang,
     isConnected,
     userEmail,
     handleHeaderStyle,
@@ -24,6 +26,8 @@ const Signup = () => {
     isCreatingAccount,
     isCreated,
   } = useDataContext();
+
+  const { content, isLoading }: SignUpLocaleType = useLocale("Signup", lang);
 
   useEffect(() => {
     // Header style
@@ -44,7 +48,7 @@ const Signup = () => {
   }, []);
 
   const [formStep, setFormStep] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [paymentIsLoading, setPaymentIsLoading] = useState(false);
   const handleFormStep = (value: number) => {
     setFormStep(value);
   };
@@ -90,79 +94,83 @@ const Signup = () => {
   };
 
   const handleSubmitPayment = async (): Promise<boolean> => {
-    setIsLoading(true);
+    setPaymentIsLoading(true);
     const submit = await endRegister();
-    setIsLoading(false);
+    setPaymentIsLoading(false);
     return submit;
   };
 
   return (
     <>
-      {isConnected && !isCreatingAccount ? (
-        <Navigate to="/" />
+      {isLoading ? (
+        <></>
       ) : (
-        <div className="transition-all w-screen flex flex-col min-h-screen pt-20 sm:pt-32">
-          <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
-            {formStep == 0 && (
-              <FirstStepForm
-                data={data.signup}
-                onClick={() => handleFormStep(1)}
-              />
-            )}
-            {formStep == 1 && (
-              <SignupForm
-                data={data.signup}
-                userEmail={userEmail}
-                inputData={data.form}
-                isCreated={isCreated}
-                handleCreateAccount={handleCreateAccount}
-                onSubmit={handleFormSubmit}
-              />
-            )}
-            {user!.email.length > 5 &&
-              user!.password.length >= 8 &&
-              formStep == 2 && (
-                <FirstStepPlanDesc
-                  data={data.signup}
-                  handleFormStep={() => {
-                    handleFormStep(3);
-                    handleCreateUser([{ key: "registerStep", value: 3 }]);
-                  }}
+        <>
+          {isConnected && !isCreatingAccount ? (
+            <Navigate to="/" />
+          ) : (
+            <div className="transition-all w-screen flex flex-col min-h-screen pt-20 sm:pt-32">
+              <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
+                {formStep == 0 && (
+                  <FirstStepForm
+                    data={content.signup}
+                    onClick={() => handleFormStep(1)}
+                  />
+                )}
+                {formStep == 1 && (
+                  <SignupForm
+                    data={content.signup}
+                    userEmail={userEmail}
+                    inputData={content.form}
+                    isCreated={isCreated}
+                    handleCreateAccount={handleCreateAccount}
+                    onSubmit={handleFormSubmit}
+                  />
+                )}
+                {user!.email.length > 5 &&
+                  user!.password.length >= 8 &&
+                  formStep == 2 && (
+                    <FirstStepPlanDesc
+                      data={content.signup}
+                      handleFormStep={() => {
+                        handleFormStep(3);
+                        handleCreateUser([{ key: "registerStep", value: 3 }]);
+                      }}
+                    />
+                  )}
+                {formStep == 3 && (
+                  <FirstStepPlanChoice
+                    data={content.signup}
+                    handleSubmit={handlePlanChoiceSubmit}
+                  />
+                )}
+                {formStep == 4 && (
+                  <PaymentChoice
+                    data={content.signup.paymentStep}
+                    steps={content.signup.stepWord}
+                    maxStep={content.signup.maxStep}
+                    handleActivate={handleActivate}
+                    isLoading={isLoading}
+                    handleFormStep={handleFormStep}
+                  />
+                )}
+                {formStep == 5 && (
+                  <Processing handleSubmitPayment={handleSubmitPayment} />
+                )}
+              </div>
+              <div>
+                <Footer
+                  selectBg="bg-white"
+                  selectTextColor="text-neutral-600"
+                  className="bg-[#f3f3f3] border-t border-t-black/10"
+                  textColor="text-black"
+                  selectBorderColor="border-black/30"
+                  showLangText={true}
                 />
-              )}
-            {formStep == 3 && (
-              <FirstStepPlanChoice
-                data={data.signup}
-                handleSubmit={handlePlanChoiceSubmit}
-              />
-            )}
-            {formStep == 4 && (
-              <PaymentChoice
-                data={data.signup.paymentStep}
-                steps={data.signup.stepWord}
-                maxStep={data.signup.maxStep}
-                handleActivate={handleActivate}
-                isLoading={isLoading}
-                handleFormStep={handleFormStep}
-              />
-            )}
-            {formStep == 5 && (
-              <Processing handleSubmitPayment={handleSubmitPayment} />
-            )}
-          </div>
-          <div>
-            <Footer
-              data={data.signupFooter}
-              text={data.signupFooterText}
-              selectBg="bg-white"
-              selectTextColor="text-neutral-600"
-              className="bg-[#f3f3f3] border-t border-t-black/10"
-              textColor="text-black"
-              selectBorderColor="border-black/30"
-              showLangText={true}
-            />
-          </div>
-        </div>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </>
   );

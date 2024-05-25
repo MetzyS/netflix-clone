@@ -1,3 +1,181 @@
 {
-  "header": "hey"
+  "form": {
+    "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "button": "Commencer",
+    "autocomplete": "Adresse e-mail",
+    "error": [
+      "Veuillez saisir une adresse e-mail valide.",
+      "Le mot de passe doit comporter entre 8 et 15 caractères"
+    ],
+    "specialOfferEmailCheckbox": "Oui, envoyez-moi les offres spéciales de Netflix par e-mail.",
+    "finishSignup": "Terminer l'inscription"
+  },
+  "signup": {
+    "stepWord": ["étape", "sur"],
+    "maxStep": "3",
+    "firstStepTitle": "Complétez la configuration de votre compte.",
+    "firstStepDesc": "Netflix est personnalisé selon vos goûts. Créez un mot de passe pour commencer à regarder Netflix.",
+    "firstButton": "Suivant",
+    "signupTitle": "Créez un mot de passe pour activer votre abonnement",
+    "signupDesc": "Plus que quelques étapes et c'est fini !\nPlus rien à remplir.",
+    "signupCheckbox": "Oui, envoyez-moi les offres spéciales de Netflix par e-mail.",
+    "firstStepPlanTitle": "Choisissez votre offre.",
+    "firstStepPlanDesc": [
+      "Sans engagement. Annulable à tout moment.",
+      "Du divertissement à volonté pour un prix très attractif.",
+      "Profitez de Netflix sur tous vos appareils."
+    ],
+    "firstStepPlanChoiceTitle": "Sélectionnez l'offre qui vous convient",
+    "firstStepPlanChoiceList": [
+      "Abonnement mensuel",
+      "Qualité vidéo et audio",
+      "Résolution",
+      "Audio spatial (son immersif)",
+      "Appareils pris en charge",
+      "Appareils que les personnes de votre foyer peuvent regarder en même temps",
+      "Appareils autorisés pour le téléchargement",
+      "Pubs"
+    ],
+    "firstStepPlanChoiceCards": {
+      "0": {
+        "title": "Premium",
+        "options": ["4K + HDR"],
+        "price": "19,99€",
+        "occurence": "/mois",
+        "qualityDesc": "Optimale",
+        "resolution": "4K (Ultra HD) + HDR",
+        "spacialAudio": "Inclus",
+        "supportedDevices": ["TV, ordinateur, smartphone, tablette"],
+        "maxSimulDeviceCount": "4",
+        "downloadDevice": "6",
+        "ads": "Sans pub"
+      },
+      "1": {
+        "title": "Standard",
+        "options": ["1080p"],
+        "price": "13,49€",
+        "occurence": "/mois",
+        "qualityDesc": "Bonne",
+        "resolution": "1080p (Full HD)",
+        "spacialAudio": "Non inclus",
+        "supportedDevices": ["TV, ordinateur, smartphone, tablette"],
+        "maxSimulDeviceCount": "2",
+        "downloadDevice": "2",
+        "ads": "Sans pub"
+      },
+      "2": {
+        "title": "Standard avec pub",
+        "options": ["1080p"],
+        "price": "5.99€",
+        "occurence": "/mois",
+        "qualityDesc": "Bonne",
+        "resolution": "1080p (Full HD)",
+        "spacialAudio": "Not included",
+        "supportedDevices": ["TV, ordinateur, smartphone, tablette"],
+        "maxSimulDeviceCount": "2",
+        "downloadDevice": "2",
+        "ads": "Quelques courtes pubs"
+      }
+    },
+    "firstStepConditions": [
+      "En savoir plus sur l'offre avec pub. Si vous sélectionnez une offre avec pub, nous vous demanderons de fournir votre date de naissance pour personnaliser les publicités, ainsi qu'à d'autres fins conformes à la Déclaration de confidentialité de Netflix.",
+      "La disponibilité de la Full HD (1080p), de l'Ultra HD (4K) et de la HDR dépend de votre connexion Internet et des capacités de l'appareil. Tous les contenus ne sont pas disponibles dans toutes les résolutions. Pour en savoir plus, veuillez consulter les Conditions d'utilisation.",
+      "Seules les personnes qui vivent avec vous peuvent utiliser votre compte. Ajoutez un abonné supplémentaire avec l'offre Standard ou jusqu'à deux abonnés supplémentaires avec l'offre Premium. En savoir plus. Regardez Netflix en simultané sur 4 appareils différents avec l'offre Premium et sur 2 appareils différents avec les offres Standard et Standard avec pub."
+    ],
+    "secondStepBackTitle": "Compte créé.",
+    "secondStepBackDesc": "Utilisez cette adresse pour accéder à votre compte :",
+    "paymentStep": {
+      "title": "Choisissez comment payer",
+      "desc": "Votre paiement est sécurisé et vous pouvez modifier votre mode de paiement à tout moment.",
+      "subDesc": [
+        "Sécurité et tranquilité d'esprit.",
+        "Facilement annulable en ligne."
+      ],
+      "encrypted": "Chiffré de bout en bout",
+      "paymentTypes": {
+        "creditCard": "Carte de crédit ou de débit",
+        "mobileBill": "Ajouter à la facture mobile",
+        "paypal": "PayPal",
+        "giftCode": "Code cadeau"
+      },
+      "creditCardOption": {
+        "title": "Configurez votre carte de paiement",
+        "cardNumber": "Numéro de carte",
+        "expDate": "Date d'expiration",
+        "cvv": "Cryptogramme",
+        "nameOnCard": "Nom figurant sur la carte",
+        "allowCardCheckbox": "Permettre le traitement de la transaction via la marque CB si disponible",
+        "confirmationCheckbox": "Vous acceptez que votre abonnement commence immédiatement et reconnaissez que vous perdez ainsi votre droit de rétractation.",
+        "confirmationButton": "Activer mon abonnement payant",
+        "errorMessageConfirmation": "Vous devez confirmer que vous avez lu et que vous acceptez les Conditions d'utilisation pour continuer.",
+        "errorMessageCCNumber": "Veuillez saisir un numéro de carte bancaire valide.",
+        "errorMessageExpDate": "Veuillez saisir une date d'expiration valide.",
+        "errorMessageCVV": "Veuillez saisir un cryptogramme valide.",
+        "errorMessageName": "Veuillez saisir un nom valide.",
+        "cvvPopupText": "Le cryptogramme (CVV) de votre carte correspond au numéro à 3 ou 4 chiffres situé au recto ou au verso de la carte."
+      },
+      "mobileOption": {
+        "title": "Configurez la facturation via votre opérateur mobile",
+        "desc": "Votre abonnement Netflix sera ajouté à votre facture de téléphone mobile.",
+        "secDesc": "Votre numéro sera également utilisé en cas d'oubli de votre mot de passe ou pour des messages importants à propos de votre compte. Des frais de SMS peuvent s'appliquer.",
+        "numberInput": "Numéro de mobile",
+        "errorMessageInput": "Un numéro de mobile valide est obligatoire.",
+        "confirmationButton": "Vérifier le numéro de téléphone",
+        "confirmationCheckbox": "Vous acceptez que votre abonnement commence immédiatement et reconnaissez que vous perdez ainsi votre droit de rétractation.",
+        "errorMessageConfirmation": "Vous devez confirmer que vous avez lu et que vous acceptez les Conditions d'utilisation pour continuer.",
+        "descButton": "Nous vous enverrons un code par SMS pour vérifier ce numéro."
+      },
+      "paypalOption": {
+        "title": "Configurez votre paiement via PayPal",
+        "desc": "Pour terminer l'inscription, cliquez sur le bouton Continuer vers PayPal et identifiez-vous sur PayPal avec votre adresse e-mail et votre mot de passe.",
+        "confirmationButton": "Continuer vers PayPal",
+        "confirmationCheckbox": "Vous acceptez que votre abonnement commence immédiatement et reconnaissez que vous perdez ainsi votre droit de rétractation.",
+        "errorMessageConfirmation": "Vous devez confirmer que vous avez lu et que vous acceptez les Conditions d'utilisation pour continuer."
+      },
+      "netflixGiftCard": {
+        "title": "Saisissez votre code cadeau",
+        "pinInput": "Code ou PIN de la carte cadeau",
+        "confirmationButton": "Utiliser le code cadeau",
+        "confirmationCheckbox": "Vous acceptez que votre abonnement commence immédiatement et reconnaissez que vous perdez ainsi votre droit de rétractation.",
+        "errorMessageConfirmation": "Le code ou PIN de la carte cadeau doit comporter entre 4 et 60 caractères."
+      }
+    }
+  },
+  "signupFooterText": "Des questions ? Appelez le (+33) 0805-543-063",
+  "signupFooter": {
+    "1": {
+      "title": "FAQ",
+      "link": "/"
+    },
+    "2": {
+      "title": "Centre d'aide",
+      "link": "/"
+    },
+    "3": {
+      "title": "Boutique Netflix",
+      "link": "/"
+    },
+    "4": {
+      "title": "Conditions d'utilisation",
+      "link": "/"
+    },
+    "5": {
+      "title": "Confidentialité",
+      "link": "/"
+    },
+    "6": {
+      "title": "Préférences de cookies",
+      "link": "/"
+    },
+    "7": {
+      "title": "Mentions légales",
+      "link": "/"
+    },
+    "8": {
+      "title": "Choix liés à la pub",
+      "link": "/"
+    }
+  }
 }

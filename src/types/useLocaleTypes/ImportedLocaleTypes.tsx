@@ -1,4 +1,4 @@
-import { FooterType, HeroPageType } from "../data";
+import { FooterType, HeroPageType, SignupType } from "../data";
 
 export type FooterLocaleType = {
   content: FooterType;
@@ -7,5 +7,10 @@ export type FooterLocaleType = {
 
 export type HeroPageLocaleType = {
   content: HeroPageType;
+  isLoading: boolean;
+};
+
+export type SignUpLocaleType = {
+  content: SignupType;
   isLoading: boolean;
 };

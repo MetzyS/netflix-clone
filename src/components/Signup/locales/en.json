@@ -1,3 +1,178 @@
 {
-  "header": "hey"
+  "form": {
+    "text": "Ready to watch? Enter your email address or mobile number to create or restart your membership.",
+    "email": "Email address",
+    "password": "Password",
+    "button": "Get started",
+    "autocomplete": "Email address",
+    "error": [
+      "Please enter a valid email address.",
+      "Password should be between 8 and 15 characters."
+    ],
+    "specialOfferEmailCheckbox": "Yes, please email me Netflix special offers.",
+    "finishSignup": "Finish Sign Up"
+  },
+  "signup": {
+    "stepWord": ["step", "of"],
+    "maxStep": "3",
+    "firstStepTitle": "Finish setting up your account.",
+    "firstStepDesc": "Netflix is personalized for you. Create a password to start watching Netflix.",
+    "firstButton": "Next",
+    "signupTitle": "Create a password to start your membership",
+    "signupDesc": "Just a few more steps and you're done!\nWe hate paperwork, too.",
+    "signupCheckbox": "Yes, please email me Netflix special offers.",
+    "firstStepPlanTitle": "Choose your plan.",
+    "firstStepPlanDesc": [
+      "No commitments, cancel anytime.",
+      "Endless entertainment for one low price.",
+      "Enjoy Netflix on all your devices."
+    ],
+    "firstStepPlanChoiceTitle": "Choose the plan that’s right for you",
+    "firstStepPlanChoiceList": [
+      "Monthly price",
+      "Video and sound quality",
+      "Resolution",
+      "Spatial audio (immersive sound)",
+      "Supported devices",
+      "Devices your household can watch at the same time",
+      "Download devices",
+      "Ads"
+    ],
+    "firstStepPlanChoiceCards": {
+      "0": {
+        "title": "Premium",
+        "options": ["4K + HDR"],
+        "price": "EUR 19.99",
+        "occurence": "/month",
+        "qualityDesc": "Best",
+        "resolution": "4K (Ultra HD) + HDR",
+        "spacialAudio": "Included",
+        "supportedDevices": ["TV, computer, mobile phone, tablet"],
+        "maxSimulDeviceCount": "4",
+        "downloadDevice": "6",
+        "ads": "No ads"
+      },
+      "1": {
+        "title": "Standard",
+        "options": ["1080p"],
+        "price": "EUR 13.49",
+        "occurence": "/month",
+        "qualityDesc": "Good",
+        "resolution": "1080p (Full HD)",
+        "spacialAudio": "Not included",
+        "supportedDevices": ["TV, computer, mobile phone, tablet"],
+        "maxSimulDeviceCount": "2",
+        "downloadDevice": "2",
+        "ads": "No ads"
+      },
+      "2": {
+        "title": "Standard with ads",
+        "options": ["1080p"],
+        "price": "EUR 5.99",
+        "occurence": "/month",
+        "qualityDesc": "Good",
+        "resolution": "1080p (Full HD)",
+        "spacialAudio": "Not included",
+        "supportedDevices": ["TV, computer, mobile phone, tablet"],
+        "maxSimulDeviceCount": "2",
+        "downloadDevice": "2",
+        "ads": "A few short ads"
+      }
+    },
+    "firstStepConditions": [
+      "Learn more about an ad-supported plan. If you select an ad-supported plan, you will be required to provide your date of birth for ads personalization and other purposes consistent with the Netflix Privacy Statement.",
+      "Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service and device capabilities. Not all content is available in all resolutions. See Terms of Use for more details.",
+      "Only people who live with you may use your account. Add 1 extra member with Standard or up to 2 with Premium. Learn more. Watch on 4 different devices at the same time with Premium and 2 with Standard or Standard with ads."
+    ],
+    "secondStepBackTitle": "Account Created.",
+    "secondStepBackDesc": "Use this email to access your account :",
+    "paymentStep": {
+      "title": "Choose how to pay",
+      "desc": "Your payment is encrypted and you can change how you pay anytime.",
+      "subDesc": ["Secure for peace of mind.", "Cancel easily online."],
+      "encrypted": "End-to-end encrypted",
+      "paymentTypes": {
+        "creditCard": "Credit or Debit Card",
+        "mobileBill": "Add to mobile bill",
+        "paypal": "PayPal",
+        "giftCode": "Gift Code"
+      },
+      "creditCardOption": {
+        "title": "Set up your credit or debit card",
+        "cardNumber": "Card Number",
+        "expDate": "Expiration date",
+        "cvv": "CVV",
+        "nameOnCard": "Name on card",
+        "allowCardCheckbox": "Allow processing with Cartes Bancaires",
+        "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
+        "confirmationButton": "Start Paid Membership",
+        "errorMessageConfirmation": "You must acknowledge that you have read and agree to the Terms of Use to continue.",
+        "errorMessageCCNumber": "Please enter a card number.",
+        "errorMessageExpDate": "Please enter an expiration date.",
+        "errorMessageCVV": "Please enter a CVV.",
+        "errorMessageName": "Please enter a valid name.",
+        "cvvPopupText": "Your card's security code (CVV) is the 3 or 4 digit number located on the front or back of most cards."
+      },
+      "mobileOption": {
+        "title": "Set up billing through your mobile carrier",
+        "desc": "Your Netflix membership will be added to your mobile phone bill.",
+        "secDesc": "Your number will also be used if you forget your password and for important account messages. SMS fees may apply.",
+        "numberInput": "Mobile number",
+        "errorMessageInput": "A valid mobile phone number is required",
+        "confirmationButton": "Verify Phone Number",
+        "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
+        "errorMessageConfirmation": "You must acknowledge that you have read and agree to the Terms of Use to continue.",
+        "descButton": "We'll text a code to verify your number."
+      },
+      "paypalOption": {
+        "title": "Set up your PayPal",
+        "desc": "To finish signup, click the Continue to PayPal button and log in to PayPal using your email and password.",
+        "confirmationButton": "Continue to PayPal",
+        "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
+        "errorMessageConfirmation": "You must acknowledge that you have read and agree to the Terms of Use to continue."
+      },
+      "netflixGiftCard": {
+        "title": "Enter your gift code",
+        "pinInput": "Gift Card Pin or Code",
+        "confirmationButton": "Redeem Gift Code",
+        "confirmationCheckbox": "You agree that your membership will begin immediately, and acknowledge that you will therefore lose your right of withdrawal.",
+        "errorMessageConfirmation": "Gift Card Pin or Code should be between 4 and 60 characters."
+      }
+    }
+  },
+  "signupFooterText": "Questions? Contact us.",
+  "signupFooter": {
+    "1": {
+      "title": "FAQ",
+      "link": "/"
+    },
+    "2": {
+      "title": "Help Center",
+      "link": "/"
+    },
+    "3": {
+      "title": "Netflix Shop",
+      "link": "/"
+    },
+    "4": {
+      "title": "Terms of Use",
+      "link": "/"
+    },
+    "5": {
+      "title": "Privacy",
+      "link": "/"
+    },
+    "6": {
+      "title": "Cookie Preferences",
+      "link": "/"
+    },
+    "7": {
+      "title": "Corporate Information",
+      "link": "/"
+    },
+    "8": {
+      "title": "Ad Choices",
+      "link": "/"
+    }
+  }
 }

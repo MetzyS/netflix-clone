@@ -143,6 +143,13 @@ export type Signup = {
   paymentStep: Payment;
 };
 
+export type SignupType = {
+  form: Form;
+  signup: Signup;
+  signupFooter: string;
+  signupFooterText: FooterMap;
+};
+
 export type FooterType = {
   footerText: string;
   footer: FooterMap;
