@@ -64,6 +64,7 @@ const PaymentChoice = (props: {
 
   const handleChangePlan = () => {
     handleCreateUser([{ key: "registerStep", value: 3 }]);
+    props.handleFormStep(3);
   };
   return (
     <DefaultContainer>
