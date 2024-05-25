@@ -1,12 +1,12 @@
-import LangType, { PlanCard } from "./data";
+// import LangType, { PlanCard } from "./data";
 import { HeaderStyle } from "./headerstyle";
 import { UserProfile, UserType } from "./user";
 
 export type ContextType = {
   lang: string;
   user: UserType | undefined;
-  data: LangType;
-  plans: Record<string, PlanCard>;
+  // data: LangType;
+  // plans: Record<string, PlanCard>;
   isRegistered: boolean;
   userEmail: string;
   userPassword: string;

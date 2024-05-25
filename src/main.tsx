@@ -7,12 +7,12 @@ import ErrorPage from "./routes/ErrorPage.tsx";
 import Signup from "./routes/Signup.tsx";
 import Login from "./routes/Login.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
-import Lang from "./constants/lang.json";
+// import Lang from "./constants/lang.json";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout data={Lang} />,
+    element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
       {

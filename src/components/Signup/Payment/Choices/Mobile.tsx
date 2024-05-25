@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { MobileOption } from "../../../../types/data";
+import { MobileOption, PlanCard } from "../../../../types/data";
 import Container from "../Container";
 import BackButton from "../../BackButton";
 import FormMobile from "../Form/FormMobile";
@@ -10,6 +10,7 @@ const Mobile = (props: {
   steps: string[];
   maxStep: string;
   isLoading: boolean;
+  plans: Record<string, PlanCard>;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
   handleActivate: () => void;
@@ -39,6 +40,7 @@ const Mobile = (props: {
           content={props.content}
           handleActivate={props.handleActivate}
           isLoading={props.isLoading}
+          plans={props.plans}
         />
       </Container>
     </>

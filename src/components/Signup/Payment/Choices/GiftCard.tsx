@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { NetflixGiftCard } from "../../../../types/data";
+import { NetflixGiftCard, PlanCard } from "../../../../types/data";
 import Container from "../Container";
 import BackButton from "../../BackButton";
 import PlanPicker from "../Form/PlanPicker";
@@ -12,6 +12,7 @@ const GiftCard = (props: {
   steps: string[];
   maxStep: string;
   isLoading: boolean;
+  plans: Record<string, PlanCard>;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
   handleActivate: () => void;
@@ -36,7 +37,7 @@ const GiftCard = (props: {
           inputColor={inputColor}
           inputRing={inputRing}
         />
-        <PlanPicker onClick={props.handleChangePlan} />
+        <PlanPicker onClick={props.handleChangePlan} plans={props.plans} />
         {props.isLoading ? (
           <InputSpinner bg="text-white" className="mt-16" />
         ) : (

@@ -1,9 +1,8 @@
 import { ReactElement } from "react";
-import { CreditCardOption } from "../../../../types/data";
+import { CreditCardOption, PlanCard } from "../../../../types/data";
 import FormCard from "../Form/FormCard";
 import BackButton from "../../BackButton";
 import Container from "../Container";
-import Processing from "../Processing/Processing";
 
 const CreditCard = (props: {
   content: CreditCardOption;
@@ -11,6 +10,7 @@ const CreditCard = (props: {
   steps: string[];
   maxStep: string;
   isLoading: boolean;
+  plans: Record<string, PlanCard>;
   backButtonFunc: () => void;
   handleChangePlan: () => void;
   handleActivate: () => void;
@@ -18,7 +18,6 @@ const CreditCard = (props: {
   return (
     <>
       <Container>
-        {/* <Processing handleSubmitPayment={props.handleSubmitPayment} /> */}
         <BackButton onClick={props.backButtonFunc} />
         <p className="text-neutral-800 uppercase text-xs mt-2">
           {props.steps[0]} <span className="font-bold">3</span> {props.steps[1]}{" "}
@@ -35,6 +34,7 @@ const CreditCard = (props: {
           handleChangePlan={props.handleChangePlan}
           handleActivate={props.handleActivate}
           isLoading={props.isLoading}
+          plans={props.plans}
         />
       </Container>
     </>

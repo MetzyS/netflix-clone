@@ -1,6 +1,6 @@
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { IoMdLock } from "react-icons/io";
-import { Payment } from "../../../types/data";
+import { Payment, PlanCard } from "../../../types/data";
 import { SiVisa } from "react-icons/si";
 import MastercardIcon from "./CustomIcons/MastercardIcon";
 import CbIcon from "./CustomIcons/CbIcon";
@@ -23,6 +23,7 @@ import DefaultContainer from "../../ui/DefaultContainer";
 
 const PaymentChoice = (props: {
   data: Payment;
+  plans: Record<string, PlanCard>;
   steps: string[];
   maxStep: string;
   isLoading: boolean;
@@ -119,6 +120,7 @@ const PaymentChoice = (props: {
               handleChangePlan={handleChangePlan}
               handleActivate={props.handleActivate}
               isLoading={props.isLoading}
+              plans={props.plans}
             />
           </>
         )}
@@ -133,6 +135,7 @@ const PaymentChoice = (props: {
               handleChangePlan={handleChangePlan}
               handleActivate={props.handleActivate}
               isLoading={props.isLoading}
+              plans={props.plans}
             />
           </>
         )}
@@ -146,6 +149,7 @@ const PaymentChoice = (props: {
               handleChangePlan={handleChangePlan}
               handleActivate={props.handleActivate}
               isLoading={props.isLoading}
+              plans={props.plans}
             />
           </>
         )}
@@ -159,6 +163,7 @@ const PaymentChoice = (props: {
               handleChangePlan={handleChangePlan}
               handleActivate={props.handleActivate}
               isLoading={props.isLoading}
+              plans={props.plans}
             />
           </>
         )}

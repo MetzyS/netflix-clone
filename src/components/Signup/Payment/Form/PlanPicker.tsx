@@ -1,8 +1,12 @@
 import { useDataContext } from "../../../../layouts/RootLayout";
+import { PlanCard } from "../../../../types/data";
 
-const PlanPicker = (props: { onClick: () => void }) => {
-  const { user, plans } = useDataContext();
-  const planDesc = plans[user!.plan];
+const PlanPicker = (props: {
+  onClick: () => void;
+  plans: Record<string, PlanCard>;
+}) => {
+  const { user } = useDataContext();
+  const planDesc = props.plans[user!.plan];
   return (
     <div className="bg-neutral-100 flex items-center justify-between p-4 rounded-lg mt-3">
       <div className="flex flex-col">

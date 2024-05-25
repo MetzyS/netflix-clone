@@ -2,12 +2,13 @@ import { Form } from "react-router-dom";
 import PlanPicker from "./PlanPicker";
 import { ChangeEvent, ReactElement, useState } from "react";
 import InputNumber from "./InputNumber";
-import { MobileOption } from "../../../../types/data";
+import { MobileOption, PlanCard } from "../../../../types/data";
 import DefaultButton from "../../../ui/DefaultButton";
 import InputSpinner from "../../../Form/InputSpinner";
 
 const FormMobile = (props: {
   content: MobileOption;
+  plans: Record<string, PlanCard>;
   handleChangePlan: () => void;
   handleActivate: () => void;
   isLoading: boolean;
@@ -39,7 +40,7 @@ const FormMobile = (props: {
         inputRing={inputRing}
         value={number}
       />
-      <PlanPicker onClick={props.handleChangePlan} />
+      <PlanPicker onClick={props.handleChangePlan} plans={props.plans} />
       <div className="w-11/12 m-auto flex flex-col gap-4 mt-4">
         {!confirmation && confirmation != undefined && (
           <p className="text-red-800">

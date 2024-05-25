@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
-import LangType, { PlanCard } from "../types/data";
+// import LangType, { PlanCard } from "../types/data";
 import { userIsConnected } from "../helpers/userIsConnected";
 import {
   checkIfUserIsCreatingAccount,
@@ -13,7 +13,7 @@ import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import HeaderTwo from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
 
-const RootLayout = (props: { data: Record<string, LangType> }) => {
+const RootLayout = (props: {}) => {
   const defaultUser: UserType = {
     plan: 0,
     authorization: false,
@@ -50,7 +50,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
 
   // State gestion langage
   const [lang, setLang] = useState<string>("fr");
-  const [data, setData] = useState(props.data.fr);
+  // const [data, setData] = useState(props.data.fr);
 
   const [bgWhite, setBgWhite] = useState(false);
   const [userEmail, setUserEmail] = useState(user.email);
@@ -107,19 +107,19 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
 
   const handleChangeLang = (value: string) => {
     setLang(value);
-    switch (value) {
-      case "fr":
-        setData(props.data.fr);
-        break;
-      case "en":
-        setData(props.data.en);
-        break;
-      default:
-        setData(props.data.fr);
-    }
+    // switch (value) {
+    //   case "fr":
+    //     setData(props.data.fr);
+    //     break;
+    //   case "en":
+    //     setData(props.data.en);
+    //     break;
+    //   default:
+    //     setData(props.data.fr);
+    // }
   };
 
-  const plans: Record<string, PlanCard> = data.signup.firstStepPlanChoiceCards;
+  // const plans: Record<string, PlanCard> = data.signup.firstStepPlanChoiceCards;
 
   const handleChangeBg = (value: boolean) => {
     setBgWhite(value);
@@ -241,7 +241,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
             {
               lang,
               user,
-              plans,
+              // plans,
               handleChangeLang,
               handleChangeBg,
               handleUserEmail,
@@ -263,7 +263,7 @@ const RootLayout = (props: { data: Record<string, LangType> }) => {
               userEmail,
               userPassword,
               isCreated,
-              data,
+              // data,
             } satisfies ContextType
           }
         />

@@ -152,6 +152,7 @@ const Signup = () => {
                     handleActivate={handleActivate}
                     isLoading={isLoading}
                     handleFormStep={handleFormStep}
+                    plans={content.signup.firstStepPlanChoiceCards}
                   />
                 )}
                 {formStep == 5 && (

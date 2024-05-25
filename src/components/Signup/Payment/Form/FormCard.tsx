@@ -1,5 +1,5 @@
 import { Form } from "react-router-dom";
-import { CreditCardOption } from "../../../../types/data";
+import { CreditCardOption, PlanCard } from "../../../../types/data";
 import { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import InputExpDateAndCVV from "./InputExpDateAndCVV";
 import InputCreditCard from "./InputCreditCard";
@@ -15,6 +15,7 @@ import InputSpinner from "../../../Form/InputSpinner";
 const FormCard = (props: {
   content: CreditCardOption;
   isLoading: boolean;
+  plans: Record<string, PlanCard>;
   handleChangePlan: () => void;
   handleActivate: () => void;
 }): ReactElement => {
@@ -133,7 +134,7 @@ const FormCard = (props: {
             {props.content.allowCardCheckbox}
           </span>
         </label>
-        <PlanPicker onClick={props.handleChangePlan} />
+        <PlanPicker onClick={props.handleChangePlan} plans={props.plans} />
         <div className="w-11/12 m-auto flex flex-col gap-4 mt-4">
           {!confirmation && confirmation != undefined && (
             <p className="text-red-800">
