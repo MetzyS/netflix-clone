@@ -1,0 +1,85 @@
+{
+  "footerText": "Questions? Contact us.",
+  "footer": {
+    "1": {
+      "title": "FAQ",
+      "link": "/"
+    },
+    "2": {
+      "title": "Compte",
+      "link": "/"
+    },
+    "3": {
+      "title": "Relations Investisseurs",
+      "link": "/"
+    },
+    "4": {
+      "title": "Boutique Netflix",
+      "link": "/"
+    },
+    "5": {
+      "title": "Acheter des cartes cadeaux",
+      "link": "/"
+    },
+    "6": {
+      "title": "Conditions d'utilisation",
+      "link": "/"
+    },
+    "7": {
+      "title": "Préférences de cookies",
+      "link": "/"
+    },
+    "8": {
+      "title": "Nous contacter",
+      "link": "/"
+    },
+    "9": {
+      "title": "Garantie légale",
+      "link": "/"
+    },
+    "10": {
+      "title": "Seulement sur Netflix",
+      "link": "/"
+    },
+    "11": {
+      "title": "Centre d'aide",
+      "link": "/"
+    },
+    "12": {
+      "title": "Press",
+      "link": "/"
+    },
+    "13": {
+      "title": "Recrutement",
+      "link": "/"
+    },
+    "14": {
+      "title": "Utiliser des cartes cadeaux",
+      "link": "/"
+    },
+    "15": {
+      "title": "Modes de lecture",
+      "link": "/"
+    },
+    "16": {
+      "title": "Confidentialité",
+      "link": "/"
+    },
+    "17": {
+      "title": "Mentions légales",
+      "link": "/"
+    },
+    "18": {
+      "title": "Test de vitesse",
+      "link": "/"
+    },
+    "19": {
+      "title": "Informations légales",
+      "link": "/"
+    },
+    "20": {
+      "title": "Choix liés à la pub",
+      "link": "/"
+    }
+  }
+}

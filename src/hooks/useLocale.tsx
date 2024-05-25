@@ -6,34 +6,24 @@ export const useLocale = (
 ): {
   content: any;
   isLoading: boolean;
-  error: Error | null;
 } => {
   const [content, setContent] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | null>(null);
   useEffect(() => {
     let isMounted = true;
+
     setIsLoading(true);
-    import(`../components/${component}/locales/${lang}.json`)
-      .then((response) => {
-        if (isMounted) {
-          setContent(response.default);
-          setError(null);
-        }
-      })
-      .catch((errors) => {
-        if (isMounted) {
-          setError(errors);
-        }
-      })
-      .finally(() => {
-        if (isMounted) {
-          setIsLoading(false);
-        }
-      });
+    const modules = import.meta.glob(["../components/**/locales/*.json"], {
+      eager: true,
+    });
+    let exportedJson: any =
+      modules[`../components/${component}/locales/${lang}.json`];
+    setContent(exportedJson!.default);
+    setIsLoading(false);
+
     return () => {
       isMounted = false;
     };
   }, [component, lang]);
-  return { content, isLoading, error };
+  return { content, isLoading };
 };

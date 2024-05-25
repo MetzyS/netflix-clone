@@ -11,7 +11,6 @@ import { HeaderStyle } from "../../types/headerstyle";
 
 const Header = (props: {
   headerStyle: HeaderStyle;
-
   isConnected: boolean;
   lang: string;
   handleDisconnect: () => void;
@@ -30,7 +29,7 @@ const Header = (props: {
     signupHeader,
   } = props.headerStyle;
 
-  const { content, isLoading, error } = useLocale("Header", props.lang);
+  const { content, isLoading } = useLocale("Header", props.lang);
   const [smallHeader, setSmallHeader] = useState(false);
 
   useEffect(() => {
@@ -42,10 +41,6 @@ const Header = (props: {
   }, [props.headerStyle]);
 
   if (isLoading) {
-    return <></>;
-  }
-  if (error) {
-    console.error(error.message);
     return <></>;
   }
 

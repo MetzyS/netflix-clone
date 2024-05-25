@@ -1,3 +1,4 @@
+import { useDataContext } from "../../layouts/RootLayout";
 import FaqButton from "../ui/FaqItem";
 import SelectLang from "../ui/SelectLang";
 
@@ -12,6 +13,7 @@ const Footer = (props: {
   underline?: boolean;
   showLangText?: boolean;
 }) => {
+  const { lang, handleChangeLang } = useDataContext();
   return (
     <footer
       className={`p-6 w-screen ${
@@ -40,6 +42,8 @@ const Footer = (props: {
         </ul>
         <div className="w-32 my-6">
           <SelectLang
+            lang={lang}
+            handleChangeLang={handleChangeLang}
             bg={props.selectBg ? props.selectBg : undefined}
             selectTextColor={
               props.selectTextColor ? props.selectTextColor : undefined
