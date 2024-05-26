@@ -83,6 +83,7 @@ const Signup = () => {
     handleCreateUser([{ key: "authorization", value: true }]);
     handleCreateUser([{ key: "registered", value: true }]);
     handleCreateUser([{ key: "registerStep", value: 6 }]);
+    handleFormStep(6);
     handleRegisterAccount(true);
   };
 
