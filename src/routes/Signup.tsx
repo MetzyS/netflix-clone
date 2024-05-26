@@ -17,11 +17,10 @@ const Signup = () => {
     lang,
     isConnected,
     userEmail,
-    handleHeaderStyle,
     handleUserEmail,
-    handleChangeBg,
     handleRegisterAccount,
     handleCreateUser,
+    setWhiteTheme,
     isRegistered,
     isConfigured,
   } = useDataContext();
@@ -30,19 +29,7 @@ const Signup = () => {
 
   useEffect(() => {
     // Header style
-    handleHeaderStyle([
-      { key: "showSelectLang", value: false },
-      {
-        key: "className",
-        value: "border-b border-neutral-200 px-4 py-1 sm:py-6 w-full",
-      },
-      { key: "logoClassName", value: "w-20 sm:w-40" },
-      { key: "showBtn", value: true },
-      { key: "transparentBtn", value: true },
-      { key: "signupHeader", value: true },
-    ]);
-
-    handleChangeBg(true);
+    setWhiteTheme(true);
     isRegistered && user!.registerStep && setFormStep(user!.registerStep);
   }, []);
 

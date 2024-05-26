@@ -28,6 +28,7 @@ export type ContextType = {
   handleSubmitRegister: (value: string) => Promise<Boolean>;
 
   // handlers style
+  setWhiteTheme: (value: boolean) => void;
   resetHeaderStyle: () => void;
   handleHeaderStyle: (
     values: Array<{

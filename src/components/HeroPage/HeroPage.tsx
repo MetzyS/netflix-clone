@@ -17,10 +17,9 @@ const HeroPage = () => {
     "HeroPage",
     lang
   );
-  const { handleChangeBg, resetHeaderStyle } = useDataContext();
+  const { setWhiteTheme } = useDataContext();
   useEffect(() => {
-    resetHeaderStyle();
-    handleChangeBg(false);
+    setWhiteTheme(false);
   }, []);
 
   return (

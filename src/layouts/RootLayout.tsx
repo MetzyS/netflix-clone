@@ -59,6 +59,19 @@ const RootLayout = () => {
     signupHeader: false,
   };
 
+  const whiteHeaderStyle: HeaderStyle = {
+    showBtn: true,
+    showSelectLang: false,
+    background: "bg-transparent",
+    className: "border-b border-neutral-200 px-4 py-1 sm:py-6 w-full",
+    logoClassName: "w-20 sm:w-40",
+    transparentBtn: true,
+    signupHeader: true,
+    fixed: false,
+    resizeOnScroll: false,
+    link: "/",
+  };
+
   // Manipulation style
   // -- Header
   const [headerStyle, setHeaderStyle] = useState(defaultHeaderStyle);
@@ -76,9 +89,6 @@ const RootLayout = () => {
     });
   };
 
-  const resetHeaderStyle = () => {
-    setHeaderStyle(defaultHeaderStyle);
-  };
   // -- Background true: blanc, false: noir
   const handleChangeBg = (value: boolean) => {
     setBgWhite(value);
@@ -89,6 +99,21 @@ const RootLayout = () => {
       : () => {
           document.body.classList.remove("bg-white");
         };
+  };
+
+  // -- Style => blanc (bg + header..)
+  const setWhiteTheme = (value: boolean) => {
+    if (value === true) {
+      setHeaderStyle(whiteHeaderStyle);
+      handleChangeBg(true);
+    } else {
+      setHeaderStyle(defaultHeaderStyle);
+      handleChangeBg(false);
+    }
+  };
+
+  const resetHeaderStyle = () => {
+    setHeaderStyle(defaultHeaderStyle);
   };
   // Fin manipulation style
 
@@ -212,6 +237,7 @@ const RootLayout = () => {
               handleUserPassword,
               resetHeaderStyle,
               handleHeaderStyle,
+              setWhiteTheme,
               headerStyle,
               registerStep,
               isRegistered,

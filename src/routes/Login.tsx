@@ -11,11 +11,11 @@ import { useLocale } from "../hooks/useLocale";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, lang, handleChangeBg, handleCreateUser, handleHeaderStyle } =
+  const { user, lang, setWhiteTheme, handleCreateUser, handleHeaderStyle } =
     useDataContext();
   const { content, isLoading } = useLocale("Login", lang);
   useEffect(() => {
-    handleChangeBg(false);
+    setWhiteTheme(false);
     handleHeaderStyle([{ key: "showBtn", value: false }]);
     // l'utilisateur n'a pas fini de s'inscrire => signup
     user && user.registerStep != 0 && navigate("/signup");
@@ -43,7 +43,7 @@ const Login = () => {
       { key: "username", value: createUsernameFromEmail(email) },
       { key: "fullName", value: "" },
       { key: "registered", value: true },
-      { key: "registerStep", value: 5 },
+      { key: "registerStep", value: 6 },
       { key: "isConfigured", value: true },
     ]);
   };
