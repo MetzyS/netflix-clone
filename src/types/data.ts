@@ -226,18 +226,20 @@ export type SetupKidsProfilelist = {
   desc: string;
 };
 
-export type SetUpType = {
-  passwordRecovery: {
+export type PasswordRecoveryType = {
+  title: string;
+  desc: string[];
+  form: {
     title: string;
     desc: string[];
-    form: {
-      title: string;
-      desc: string[];
-      input: string;
-      inputError: string;
-      button: string;
-    };
+    input: string;
+    inputError: string;
+    button: string;
   };
+};
+
+export type SetUpType = {
+  passwordRecovery: PasswordRecoveryType;
 
   deviceSelection: {
     step: string;
