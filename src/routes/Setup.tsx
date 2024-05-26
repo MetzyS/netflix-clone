@@ -52,6 +52,7 @@ const Setup = () => {
               <SetupDeviceSelection
                 backButtonFunc={() => handleBackStep(1)}
                 content={content.deviceSelection}
+                submitFunc={() => handleSetupStep(3)}
               />
             )}
             {setupStep == 3 && <div>setupStep 3</div>}

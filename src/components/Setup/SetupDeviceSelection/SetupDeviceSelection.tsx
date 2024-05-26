@@ -9,6 +9,7 @@ import DefaultButton from "../../ui/DefaultButton";
 const SetupDeviceSelection = (props: {
   backButtonFunc: () => void;
   content: DeviceSelectionType;
+  submitFunc: () => void;
 }) => {
   const { handleCreateUser } = useDataContext();
   const [selectedDevices, setSelectedDevices] = useState<string[]>([]);
@@ -27,6 +28,7 @@ const SetupDeviceSelection = (props: {
 
   const handleSaveDevices = () => {
     handleCreateUser([{ key: "preferedDevices", value: selectedDevices }]);
+    handleCreateUser([{ key: "setupStep", value: 3 }]), props.submitFunc();
   };
   return (
     <DefaultContainer>
