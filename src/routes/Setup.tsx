@@ -35,36 +35,43 @@ const Setup = () => {
 
   return (
     <>
-      {isLoading ? (
-        <></>
+      {user!.registered ? (
+        <>
+          {isLoading ? (
+            <></>
+          ) : (
+            <div className="transition-all w-screen flex flex-col min-h-screen pt-20 sm:pt-32">
+              <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
+                {setupStep == 1 && (
+                  <PasswordRecovery
+                    content={content.passwordRecovery}
+                    email={user!.email}
+                    userNumber={user!.number}
+                    handleSavePasswordRecovery={handleSavePasswordRecovery}
+                  />
+                )}
+                {setupStep == 2 && (
+                  <SetupDeviceSelection
+                    backButtonFunc={() => handleBackStep(1)}
+                    content={content.deviceSelection}
+                    submitFunc={() => handleSetupStep(3)}
+                  />
+                )}
+                {setupStep == 3 && <div>setupStep 3</div>}
+                {setupStep == 4 && <div>setupStep 4</div>}
+                {setupStep == 5 && <div>setupStep 5</div>}
+                {setupStep == 6 && <div>setupStep 6</div>}
+                {setupStep == 7 && <div>setupStep 7</div>}
+                {setupStep == 8 && <div>setupStep 8</div>}
+                {setupStep == 9 && <Navigate to="/" />}
+              </div>
+            </div>
+          )}
+        </>
       ) : (
-        <div className="transition-all w-screen flex flex-col min-h-screen pt-20 sm:pt-32">
-          <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
-            {setupStep == 1 && (
-              <PasswordRecovery
-                content={content.passwordRecovery}
-                email={user!.email}
-                userNumber={user!.number}
-                handleSavePasswordRecovery={handleSavePasswordRecovery}
-              />
-            )}
-            {setupStep == 2 && (
-              <SetupDeviceSelection
-                backButtonFunc={() => handleBackStep(1)}
-                content={content.deviceSelection}
-                submitFunc={() => handleSetupStep(3)}
-              />
-            )}
-            {setupStep == 3 && <div>setupStep 3</div>}
-            {setupStep == 4 && <div>setupStep 4</div>}
-            {setupStep == 5 && <div>setupStep 5</div>}
-            {setupStep == 6 && <div>setupStep 6</div>}
-            {setupStep == 7 && <div>setupStep 7</div>}
-            {setupStep == 8 && <div>setupStep 8</div>}
-            {setupStep == 9 && <Navigate to="/" />}
-          </div>
-        </div>
+        <Navigate to="/" />
       )}
+
       <Footer
         selectBg="bg-white"
         selectTextColor="text-neutral-600"
