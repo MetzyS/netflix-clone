@@ -210,4 +210,110 @@ export type HeroPageType = {
   faq: Record<string, FaqType>;
 };
 
+export type DeviceOption = {
+  name: string;
+  desc: string;
+  iconUrl: string;
+};
+
+export type SetupInfoBoxList = {
+  iconUrl: string;
+  desc: string;
+};
+
+export type SetupKidsProfilelist = {
+  title: string;
+  desc: string;
+};
+
+export type SetUpType = {
+  passwordRecovery: {
+    title: string;
+    desc: string[];
+    form: {
+      title: string;
+      desc: string[];
+      input: string;
+      inputError: string;
+      button: string;
+    };
+  };
+
+  deviceSelection: {
+    step: string;
+    maxStep: string;
+    title: string;
+    desc: string;
+    deviceOptions: DeviceOption[];
+    otherDevice: {
+      name: string;
+      desc: string;
+    };
+    button: string;
+  };
+
+  infoBox: {
+    iconUrl: string;
+    title: string;
+    list: SetupInfoBoxList[];
+    button: string;
+  };
+
+  profileConfiguration: {
+    step: string;
+    maxStep: string;
+    title: string;
+    desc: string;
+    descList: string[];
+    mainProfile: string;
+    addProfiles: string;
+    input: string;
+    infoBox: string[];
+    button: string;
+  };
+
+  kidsProfile: {
+    step: string;
+    maxStep: string;
+    title: string;
+    list: SetupKidsProfilelist[];
+    mainProfile: string;
+    addProfiles: string;
+    input: string;
+    kids: string;
+    button: string;
+  };
+
+  profileDetails: {
+    step: string;
+    maxStep: string;
+    title: string;
+    desc: string;
+    birthDate: string[];
+    gender: string;
+    select: string;
+    button: string;
+  };
+  languageSelection: {
+    step: string;
+    maxStep: string;
+    title: string;
+    desc: string[];
+    languages: string[];
+    button: string;
+  };
+  likeSelection: {
+    step: string;
+    maxStep: string;
+    title: string;
+    desc: string[];
+    list: {};
+    buttonSelectionNotFinished: string;
+    buttonSelectionFinished: string;
+  };
+  processing: {
+    title: string;
+  };
+};
+
 export default LangType;
