@@ -6,14 +6,13 @@ export type ContextType = {
   lang: string;
   user: UserType | undefined;
   isRegistered: boolean;
+  registerStep: number | undefined;
+  accountIsConfigured: boolean;
   userEmail: string;
   userPassword: string;
   isConnected: boolean;
   isLoading: boolean;
-  isCreatingAccount: boolean;
-  registerStep: number | undefined;
   headerStyle: HeaderStyle;
-  accountIsConfigured: boolean;
 
   // handlers user
   handleCreateUser: (
@@ -22,11 +21,10 @@ export type ContextType = {
       value: string | number | UserProfile | {};
     }>
   ) => void;
-  setIsRegistered: (value: boolean) => void;
   handleChangeLang: (value: string) => void;
   handleUserEmail: (email: string) => void;
   handleUserPassword: (password: string) => void;
-  handleCreateAccount: (value: boolean) => void;
+  handleRegisterAccount: (value: boolean) => void;
   handleSubmitRegister: (value: string) => Promise<Boolean>;
 
   // handlers style

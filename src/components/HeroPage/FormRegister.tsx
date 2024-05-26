@@ -10,7 +10,6 @@ const FormRegister = (props: {
   content: FormType;
   to: string;
   method: "get" | "post" | "put" | "delete" | "patch";
-  isCreatingAccount: boolean;
   bottom?: boolean;
   isConfigured: boolean;
   isRegistered: boolean;
@@ -41,7 +40,7 @@ const FormRegister = (props: {
         >
           <h3
             className={`text-lg lg:text-xl leading-normal text-center ${
-              !props.bottom ? props.isCreatingAccount && "hidden" : ""
+              !props.bottom ? props.isRegistered && "hidden" : ""
             }`}
           >
             {props.content.text}
@@ -49,10 +48,10 @@ const FormRegister = (props: {
 
           <div
             className={`flex flex-col sm:flex-row justify-center ${
-              props.isCreatingAccount ? "" : "sm:justify-normal"
+              props.isRegistered ? "" : "sm:justify-normal"
             } mt-4 gap-4`}
           >
-            {props.isCreatingAccount ? (
+            {props.isRegistered ? (
               ""
             ) : (
               <Input
@@ -66,7 +65,7 @@ const FormRegister = (props: {
               />
             )}
 
-            {props.isCreatingAccount ? (
+            {props.isRegistered ? (
               <DefaultButton
                 type="button"
                 onClick={() => {
@@ -77,7 +76,7 @@ const FormRegister = (props: {
                 className="flex gap-3 text-xl items-center justify-between min-w-fit pl-6 self-center md:text-2xl"
                 icon={<MdArrowForwardIos className="size-5" />}
               />
-            ) : props.isRegistered && !props.isConfigured ? (
+            ) : !props.isConfigured ? (
               // Compte enregistré mais pas configuré
               <></>
             ) : (
@@ -88,7 +87,11 @@ const FormRegister = (props: {
               //   className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
               //   icon={<MdArrowForwardIos className="size-5" />}
               // />
-              <></> && (
+              (
+                <>
+                  <span>PAS CONFIGURE</span>
+                </>
+              ) && (
                 <DefaultButton
                   type="submit"
                   text={props.content.button}

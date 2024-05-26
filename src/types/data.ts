@@ -149,6 +149,11 @@ export type SignupType = {
   signup: Signup;
   signupFooter: string;
   signupFooterText: FooterMap;
+  checkoutVerifications: {
+    checking: string;
+    confirmation: string;
+    error: string;
+  };
 };
 
 export type FooterType = {

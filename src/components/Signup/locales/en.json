@@ -174,5 +174,10 @@
       "title": "Ad Choices",
       "link": "/"
     }
+  },
+  "checkoutVerifications": {
+    "checking": "",
+    "confirmation": "",
+    "error": ""
   }
 }

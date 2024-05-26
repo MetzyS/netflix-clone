@@ -6,10 +6,11 @@
  * @returns boolean
  */
 export const checkIfUserIsCreatingAccount = (): boolean => {
-  let isCreating: boolean;
-  const creationStorage = localStorage.getItem("isCreating");
-  creationStorage ? (isCreating = true) : (isCreating = false);
-  return isCreating;
+  const user = localStorage.getItem("user");
+  if (user && JSON.parse(user).registered) {
+    return JSON.parse(user).registered;
+  }
+  return false;
 };
 /**
  * Check à quelle étape de l'inscription l'utilisateur s'est arrêté.

@@ -4,10 +4,6 @@ import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
 import { userIsConnected } from "../helpers/userIsConnected";
-import {
-  checkIfUserIsCreatingAccount,
-  checkUserRegisterStep,
-} from "../helpers/creatingAccount";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import HeaderTwo from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
@@ -36,27 +32,17 @@ const RootLayout = () => {
     savedUser ? JSON.parse(savedUser) : defaultUser
   );
   const [isRegistered, setIsRegistered] = useState<boolean>(user.registered);
-
+  const [registerStep, setRegisterStep] = useState<number>(user.registerStep);
   const [accountIsConfigured, setAccountIsConfigured] = useState<boolean>(
     user.isConfigured
   );
+  const [userEmail, setUserEmail] = useState(user.email);
+  const [userPassword, setUserPassword] = useState(user.password);
   // State gestion langage
   const [lang, setLang] = useState<string>("fr");
 
   const [bgWhite, setBgWhite] = useState(false);
-  const [userEmail, setUserEmail] = useState(user.email);
-  const [userPassword, setUserPassword] = useState(user.password);
   const [isLoading, setIsLoading] = useState(false);
-  const [isCreatingAccount, setIsCreatingAccount] = useState<boolean>(
-    (): boolean => {
-      return checkIfUserIsCreatingAccount();
-    }
-  );
-  const [registerStep, setRegisterStep] = useState<number | undefined>(
-    (): number | undefined => {
-      return checkUserRegisterStep();
-    }
-  );
 
   // Header: State gestion style
 
@@ -127,12 +113,9 @@ const RootLayout = () => {
     setUserPassword(password);
   };
 
-  const handleCreateAccount = (value: boolean) => {
-    value
-      ? (setIsCreatingAccount(value),
-        localStorage.setItem("isCreating", "true"))
-      : (setIsCreatingAccount(false),
-        localStorage.setItem("isCreating", "false"));
+  const handleRegisterAccount = (value: boolean) => {
+    setIsRegistered(value);
+    localStorage.setItem("registered", value.toString());
   };
 
   /**
@@ -194,12 +177,11 @@ const RootLayout = () => {
     resetHeaderStyle();
     setUser(defaultUser);
     setUserEmail(defaultUser.email);
-    setRegisterStep(undefined);
-    setIsCreatingAccount(false);
+    setRegisterStep(0);
+    setIsRegistered(false);
     setIsConnected(false);
     setIsRegistered(false);
     localStorage.removeItem("user");
-    localStorage.removeItem("isCreating");
   };
 
   return (
@@ -222,13 +204,12 @@ const RootLayout = () => {
               handleChangeLang,
               handleChangeBg,
               handleUserEmail,
-              handleCreateAccount,
+              handleRegisterAccount,
               handleDisconnect,
               handleConnect,
               handleSubmitRegister,
               handleCreateUser,
               handleUserPassword,
-              setIsRegistered,
               resetHeaderStyle,
               handleHeaderStyle,
               headerStyle,
@@ -236,7 +217,6 @@ const RootLayout = () => {
               isRegistered,
               isLoading,
               isConnected,
-              isCreatingAccount,
               userEmail,
               userPassword,
               accountIsConfigured,

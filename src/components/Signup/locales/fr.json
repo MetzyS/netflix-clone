@@ -177,5 +177,10 @@
       "title": "Choix liés à la pub",
       "link": "/"
     }
+  },
+  "checkoutVerifications": {
+    "checking": "",
+    "confirmation": "",
+    "error": ""
   }
 }
