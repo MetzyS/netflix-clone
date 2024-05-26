@@ -7,6 +7,7 @@ const Device = (props: {
   selectedDevices: string[];
   addDevice: (device: string) => void;
   removeDevice: (device: string) => void;
+  icon: ReactElement;
 }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [opacity, setOpacity] = useState("opacity-0");
@@ -35,14 +36,26 @@ const Device = (props: {
           {props.checkedIcon}
         </span>
       )}
-      <div className="my-8"></div>
-      <p className="font-semibold mb-1">{props.name}</p>
+      <div
+        className={`my-8 mx-0 ${
+          isSelected ? "text-red-600" : "text-stone-300"
+        }`}
+      >
+        {props.icon}
+      </div>
+      <p
+        className={`font-semibold mb-1 ${
+          isSelected ? "text-black" : "text-stone-600"
+        }`}
+      >
+        {props.name}
+      </p>
       <p className="text-xs text-neutral-400">{props.desc}</p>
       <input
         type="checkbox"
         name={props.name}
         id={`device-${props.name}`}
-        className="absolute top-0 bottom-0 right-0 left-0 appearance-none"
+        className="absolute top-0 bottom-0 right-0 left-0 appearance-none cursor-pointer"
         onChange={() => handleSelected(props.name)}
       />
     </div>
