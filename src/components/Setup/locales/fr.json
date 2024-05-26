@@ -89,6 +89,8 @@
   "profileConfiguration": {
     "step": "2",
     "maxStep": "6",
+    "stepWord": "étape",
+    "ofWord": "sur",
     "title": "Qui regardera Netflix?",
     "desc": "Ajoutez jusqu'à un maximum de 5 profils pour obtenir :",
     "descList": [

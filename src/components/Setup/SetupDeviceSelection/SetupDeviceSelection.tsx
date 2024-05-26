@@ -32,16 +32,18 @@ const SetupDeviceSelection = (props: {
   };
   return (
     <DefaultContainer>
-      <div>
-        <BackButton onClick={props.backButtonFunc} />
-        <div>
+      <div className="block lg:flex max-w-[1000px] m-auto">
+        <div className="lg:w-1/3">
+          <BackButton onClick={props.backButtonFunc} />
           <p className="flex gap-1 uppercase mt-4 text-sm text-neutral-800">
             {props.content.stepWord}
             <span className="font-semibold">{props.content.step}</span>
             {props.content.ofWord}
             <span className="font-semibold">{props.content.maxStep}</span>
           </p>
-          <h1 className="signup-title">{props.content.title}</h1>
+          <h1 className="signup-title font-bold lg:text-4xl">
+            {props.content.title}
+          </h1>
           <p className="xs:text-lg">
             {props.content.desc[0]}{" "}
             <span className="font-semibold">{props.content.desc[1]}</span>

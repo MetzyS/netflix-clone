@@ -89,6 +89,8 @@
   "profileConfiguration": {
     "step": "2",
     "maxStep": "6",
+    "stepWord": "step",
+    "ofWord": "of",
     "title": "Who will be watching Netflix?",
     "desc": "Add a profile for up to 5 people you live with to get:",
     "descList": [

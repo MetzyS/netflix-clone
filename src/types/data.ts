@@ -253,6 +253,44 @@ export type DeviceSelectionType = {
   button: string;
 };
 
+export type ProfileConfigurationType = {
+  step: string;
+  maxStep: string;
+  stepWord: string;
+  ofWord: string;
+  title: string;
+  desc: string;
+  descList: string[];
+  mainProfile: string;
+  addProfiles: string;
+  input: string;
+  infoBox: string[];
+  button: string;
+};
+
+export type KidsProfileType = {
+  step: string;
+  maxStep: string;
+  title: string;
+  list: SetupKidsProfilelist[];
+  mainProfile: string;
+  addProfiles: string;
+  input: string;
+  kids: string;
+  button: string;
+};
+
+export type ProfileDetailsType = {
+  step: string;
+  maxStep: string;
+  title: string;
+  desc: string;
+  birthDate: string[];
+  gender: string;
+  select: string;
+  button: string;
+};
+
 export type SetUpType = {
   passwordRecovery: PasswordRecoveryType;
 
@@ -265,41 +303,12 @@ export type SetUpType = {
     button: string;
   };
 
-  profileConfiguration: {
-    step: string;
-    maxStep: string;
-    title: string;
-    desc: string;
-    descList: string[];
-    mainProfile: string;
-    addProfiles: string;
-    input: string;
-    infoBox: string[];
-    button: string;
-  };
+  profileConfiguration: ProfileConfigurationType;
 
-  kidsProfile: {
-    step: string;
-    maxStep: string;
-    title: string;
-    list: SetupKidsProfilelist[];
-    mainProfile: string;
-    addProfiles: string;
-    input: string;
-    kids: string;
-    button: string;
-  };
+  kidsProfile: KidsProfileType;
 
-  profileDetails: {
-    step: string;
-    maxStep: string;
-    title: string;
-    desc: string;
-    birthDate: string[];
-    gender: string;
-    select: string;
-    button: string;
-  };
+  profileDetails: ProfileDetailsType;
+
   languageSelection: {
     step: string;
     maxStep: string;

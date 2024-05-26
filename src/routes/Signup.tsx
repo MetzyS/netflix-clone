@@ -52,6 +52,7 @@ const Signup = () => {
       { key: "authorization", value: newData.authorization },
       { key: "registered", value: true },
       { key: "registerStep", value: 2 },
+      { key: "username", value: newData.email.split("@")[0] },
     ]);
     handleRegisterAccount(true);
     handleFormStep(2);

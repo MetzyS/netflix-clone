@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 import PasswordRecovery from "../components/Setup/PasswordRecovery/PasswordRecovery";
 import Footer from "../components/Footer/Footer";
 import SetupDeviceSelection from "../components/Setup/SetupDeviceSelection/SetupDeviceSelection";
+import SetupProfilesNames from "../components/Setup/SetupProfilesNames/SetupProfilesNames";
 
 const Setup = () => {
   useEffect(() => {
@@ -57,11 +58,18 @@ const Setup = () => {
                     submitFunc={() => handleSetupStep(3)}
                   />
                 )}
-                {setupStep == 3 && <div>setupStep 3</div>}
-                {setupStep == 4 && <div>setupStep 4</div>}
-                {setupStep == 5 && <div>setupStep 5</div>}
-                {setupStep == 6 && <div>setupStep 6</div>}
-                {setupStep == 7 && <div>setupStep 7</div>}
+                {setupStep == 3 && (
+                  <SetupProfilesNames
+                    backButtonFunc={() => handleBackStep(2)}
+                    content={content.profileConfiguration}
+                    submitFunc={() => handleSetupStep(4)}
+                    userName={user!.username}
+                  />
+                )}
+                {setupStep == 4 && <div>setupStep 3/6</div>}
+                {setupStep == 5 && <div>setupStep 4/6</div>}
+                {setupStep == 6 && <div>setupStep 5/6</div>}
+                {setupStep == 7 && <div>setupStep 6/6</div>}
                 {setupStep == 8 && <div>setupStep 8</div>}
                 {setupStep == 9 && <Navigate to="/" />}
               </div>
