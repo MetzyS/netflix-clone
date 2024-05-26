@@ -1,58 +1,60 @@
 {
   "0": {
-    "id": 0,
+    "plan": 0,
+    "authorization": true,
     "email": "user@mail.com",
     "username": "TheBingeWatcher",
     "fullName": "John Doe",
-    "avatarUrl": "",
-    "authorization": 1,
+    "password": "",
     "profiles": {
       "0": {
-        "id": 0,
         "username": "Titi",
         "avatarUrl": "",
         "isAdult": false
       },
       "1": {
-        "id": 0,
         "username": "Lulu",
         "avatarUrl": "",
         "isAdult": true
       },
       "2": {
-        "id": 0,
         "username": "Nana",
         "avatarUrl": "",
         "isAdult": true
       }
-    }
+    },
+    "avatarUrl": "",
+    "registerStep": 6,
+    "registered": true,
+    "isConfigured": true
   },
   "1": {
-    "id": 0,
+    "plan": 1,
+    "authorization": true,
     "email": "test@mail.com",
     "username": "LedZepp",
     "fullName": "Robert Plant",
-    "avatarUrl": "",
-    "authorization": 2,
+    "password": "",
     "profiles": {
       "0": {
-        "id": 0,
         "username": "JimmyPage",
         "avatarUrl": "",
         "isAdult": true
       },
       "1": {
-        "id": 0,
         "username": "JohnBonham",
         "avatarUrl": "",
         "isAdult": true
       },
       "2": {
-        "id": 0,
         "username": "JohnPaul",
         "avatarUrl": "",
         "isAdult": true
       }
-    }
+    },
+    "avatarUrl": "",
+    "registerStep": 6,
+    "registered": true,
+    "isConfigured": true
   }
 }

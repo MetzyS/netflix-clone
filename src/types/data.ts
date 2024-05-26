@@ -124,6 +124,13 @@ export type Payment = {
   netflixGiftCard: NetflixGiftCard;
 };
 
+export type Processing = {
+  checking: string;
+  confirmation: string;
+  error: string;
+  button: string;
+};
+
 export type Signup = {
   stepWord: string[];
   maxStep: string;
@@ -149,11 +156,7 @@ export type SignupType = {
   signup: Signup;
   signupFooter: string;
   signupFooterText: FooterMap;
-  checkoutVerifications: {
-    checking: string;
-    confirmation: string;
-    error: string;
-  };
+  processing: Processing;
 };
 
 export type FooterType = {

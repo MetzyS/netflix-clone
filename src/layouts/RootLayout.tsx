@@ -33,7 +33,7 @@ const RootLayout = () => {
   );
   const [isRegistered, setIsRegistered] = useState<boolean>(user.registered);
   const [registerStep, setRegisterStep] = useState<number>(user.registerStep);
-  const [accountIsConfigured, setAccountIsConfigured] = useState<boolean>(
+  const [isConfigured, setAccountIsConfigured] = useState<boolean>(
     user.isConfigured
   );
   const [userEmail, setUserEmail] = useState(user.email);
@@ -115,7 +115,7 @@ const RootLayout = () => {
 
   const handleRegisterAccount = (value: boolean) => {
     setIsRegistered(value);
-    localStorage.setItem("registered", value.toString());
+    handleCreateUser([{ key: "registered", value: true }]);
   };
 
   /**
@@ -130,7 +130,7 @@ const RootLayout = () => {
   ) => {
     setIsRegistered(true);
     setIsConnected(true);
-    handleHeaderStyle([{ key: "showBtn", value: "true" }]);
+    handleHeaderStyle([{ key: "showBtn", value: true }]);
     values.map((item) =>
       setUser((prevUser: UserType) => {
         const updatedUser = { ...prevUser, [item.key]: item.value };
@@ -219,7 +219,7 @@ const RootLayout = () => {
               isConnected,
               userEmail,
               userPassword,
-              accountIsConfigured,
+              isConfigured,
             } satisfies ContextType
           }
         />

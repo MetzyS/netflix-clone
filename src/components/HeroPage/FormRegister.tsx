@@ -18,6 +18,7 @@ const FormRegister = (props: {
     useDataContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState(user ? user.email : "");
+  const [isValid, setIsValid] = useState(false);
   const onSubmitFunc = async (e: FormEvent<HTMLFormElement>, email: string) => {
     e.preventDefault();
     handleUserEmail(email);
@@ -52,7 +53,7 @@ const FormRegister = (props: {
             } mt-4 gap-4`}
           >
             {props.isRegistered ? (
-              ""
+              <></>
             ) : (
               <Input
                 type="email"
@@ -62,6 +63,7 @@ const FormRegister = (props: {
                 value={email}
                 isLoading={isLoading}
                 errorPositionAbsolute={true}
+                setIsValid={setIsValid}
               />
             )}
 
@@ -76,30 +78,15 @@ const FormRegister = (props: {
                 className="flex gap-3 text-xl items-center justify-between min-w-fit pl-6 self-center md:text-2xl"
                 icon={<MdArrowForwardIos className="size-5" />}
               />
-            ) : !props.isConfigured ? (
-              // Compte enregistré mais pas configuré
-              <></>
             ) : (
-              // <DefaultButton
-              //   type="submit"
-              //   text={props.content.finishSettingup}
-              //   primary={true}
-              //   className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
-              //   icon={<MdArrowForwardIos className="size-5" />}
-              // />
-              (
-                <>
-                  <span>PAS CONFIGURE</span>
-                </>
-              ) && (
-                <DefaultButton
-                  type="submit"
-                  text={props.content.button}
-                  primary={true}
-                  className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl"
-                  icon={<MdArrowForwardIos className="size-5" />}
-                />
-              )
+              <DefaultButton
+                disabled={!isValid}
+                type="submit"
+                text={props.content.button}
+                primary={true}
+                className="flex gap-3 text-xl items-center justify-between min-w-fit self-center md:text-2xl disabled:cursor-default disabled:hover:bg-[#e50914]"
+                icon={<MdArrowForwardIos className="size-5" />}
+              />
             )}
           </div>
         </Form>

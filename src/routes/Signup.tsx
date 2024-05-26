@@ -20,11 +20,10 @@ const Signup = () => {
     handleHeaderStyle,
     handleUserEmail,
     handleChangeBg,
-    handleCreateAccount,
+    handleRegisterAccount,
     handleCreateUser,
-    setIsRegistered,
-    isCreatingAccount,
     isRegistered,
+    isConfigured,
   } = useDataContext();
 
   const { content, isLoading }: SignUpLocaleType = useLocale("Signup", lang);
@@ -44,7 +43,7 @@ const Signup = () => {
     ]);
 
     handleChangeBg(true);
-    isCreatingAccount && user!.registerStep && setFormStep(user!.registerStep);
+    isRegistered && user!.registerStep && setFormStep(user!.registerStep);
   }, []);
 
   const [formStep, setFormStep] = useState(0);
@@ -64,41 +63,31 @@ const Signup = () => {
       { key: "email", value: newData.email },
       { key: "password", value: newData.password },
       { key: "authorization", value: newData.authorization },
+      { key: "registered", value: true },
       { key: "registerStep", value: 2 },
     ]);
-    handleCreateAccount(true);
+    handleRegisterAccount(true);
     handleFormStep(2);
   };
 
   const handlePlanChoiceSubmit = (selectedPlan: number) => {
-    handleCreateUser([{ key: "registerStep", value: 4 }]);
-    handleCreateUser([{ key: "authorization", value: false }]);
-    handleCreateUser([{ key: "plan", value: selectedPlan }]);
+    handleCreateUser([
+      { key: "registerStep", value: 4 },
+      { key: "authorization", value: false },
+      { key: "plan", value: selectedPlan },
+    ]);
     handleFormStep(4);
   };
 
-  const endRegister = async (): Promise<boolean> => {
-    return new Promise<boolean>((resolve) => {
-      setTimeout(() => {
-        handleCreateUser([{ key: "authorization", value: true }]);
-        handleCreateUser([{ key: "registered", value: true }]);
-        // handleCreateUser([{ key: "isCreatingAccount", value: false }]);
-        handleCreateAccount(false);
-        setIsRegistered(true);
-        resolve(true);
-      }, 1500);
-    });
+  const handleSubmitPayment = () => {
+    handleCreateUser([{ key: "authorization", value: true }]);
+    handleCreateUser([{ key: "registered", value: true }]);
+    handleCreateUser([{ key: "registerStep", value: 6 }]);
+    handleRegisterAccount(true);
   };
 
   const handleActivate = () => {
     handleFormStep(5);
-  };
-
-  const handleSubmitPayment = async (): Promise<boolean> => {
-    setPaymentIsLoading(true);
-    const submit = await endRegister();
-    setPaymentIsLoading(false);
-    return submit;
   };
 
   return (
@@ -107,7 +96,7 @@ const Signup = () => {
         <></>
       ) : (
         <>
-          {isConnected && !isCreatingAccount ? (
+          {isConnected && isConfigured ? (
             <Navigate to="/" />
           ) : (
             <div className="transition-all w-screen flex flex-col min-h-screen pt-20 sm:pt-32">
@@ -124,7 +113,7 @@ const Signup = () => {
                     userEmail={userEmail}
                     inputData={content.form}
                     isRegistered={isRegistered}
-                    handleCreateAccount={handleCreateAccount}
+                    handleRegisterAccount={handleRegisterAccount}
                     onSubmit={handleFormSubmit}
                   />
                 )}
@@ -157,8 +146,12 @@ const Signup = () => {
                   />
                 )}
                 {formStep == 5 && (
-                  <Processing handleSubmitPayment={handleSubmitPayment} />
+                  <Processing
+                    handleSubmitPayment={handleSubmitPayment}
+                    content={content.processing}
+                  />
                 )}
+                {formStep == 6 && <Navigate to="/setup" />}
               </div>
               <div>
                 <Footer

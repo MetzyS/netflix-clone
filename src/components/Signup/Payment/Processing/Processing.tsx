@@ -3,8 +3,12 @@ import InputSpinner from "../../../Form/InputSpinner";
 import Container from "../Container";
 import ThumbsUpAnimation from "../Animations/ThumbsUpAnimation";
 import DefaultButton from "../../../ui/DefaultButton";
+import { Processing as ProcessingType } from "../../../../types/data";
 
-const Processing = (props: { handleSubmitPayment: () => void }) => {
+const Processing = (props: {
+  handleSubmitPayment: () => void;
+  content: ProcessingType;
+}) => {
   const defaultText: string = "";
   const [text, setText] = useState<string>(defaultText);
   const [processingIsLoading, setProcessingIsLoading] = useState(true);
@@ -27,8 +31,8 @@ const Processing = (props: { handleSubmitPayment: () => void }) => {
       <Container>
         <h1 className="signup-title mt-1 leading-10 sm:text-center w-full">
           {processingIsLoading
-            ? `Verification des informations saisies en cours${text}`
-            : `Verification terminée, merci d'avoir patienté!`}
+            ? `${props.content.checking}${text}`
+            : `${props.content.confirmation}`}
         </h1>
         <div className="transition-opacity">
           {processingIsLoading ? (
@@ -39,7 +43,7 @@ const Processing = (props: { handleSubmitPayment: () => void }) => {
               <DefaultButton
                 onClick={props.handleSubmitPayment}
                 className="mt-6 text-2xl w-3/4"
-                text="Commencer la configuration"
+                text={props.content.button}
                 primary={true}
               />
             </div>

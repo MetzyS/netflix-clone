@@ -178,9 +178,10 @@
       "link": "/"
     }
   },
-  "checkoutVerifications": {
-    "checking": "",
-    "confirmation": "",
-    "error": ""
+  "processing": {
+    "checking": "Verification des informations saisies en cours",
+    "confirmation": "Verification terminée, merci d'avoir patienté!",
+    "error": "Une erreur est survenue, veuillez ré-essayer plus tard.",
+    "button": "Commencer la configuration"
   }
 }

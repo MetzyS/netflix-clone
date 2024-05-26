@@ -9,7 +9,7 @@ const SignupForm = (props: {
   userEmail: string;
   inputData: FormType;
   isRegistered: boolean;
-  handleCreateAccount: (value: boolean) => void;
+  handleRegisterAccount: (value: boolean) => void;
   onSubmit: (newData: {
     email: string;
     password: string;
@@ -75,7 +75,7 @@ const SignupForm = (props: {
           method="post"
           className="flex flex-col mt-6 gap-3"
           onSubmit={(e) => {
-            props.handleCreateAccount(true);
+            props.handleRegisterAccount(true);
             handleSubmit(e);
           }}
         >

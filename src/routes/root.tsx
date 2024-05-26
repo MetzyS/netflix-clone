@@ -2,11 +2,9 @@ import { useDataContext } from "../layouts/RootLayout";
 import HeroPage from "../components/HeroPage/HeroPage";
 import ShowMovies from "../components/ShowMovies/ShowMovies";
 const Root = () => {
-  const { isRegistered, accountIsConfigured } = useDataContext();
+  const { isRegistered, isConfigured } = useDataContext();
 
-  return (
-    <>{isRegistered && accountIsConfigured ? <ShowMovies /> : <HeroPage />}</>
-  );
+  return <>{isRegistered && isConfigured ? <ShowMovies /> : <HeroPage />}</>;
 };
 
 export default Root;

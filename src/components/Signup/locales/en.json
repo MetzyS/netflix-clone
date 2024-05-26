@@ -175,9 +175,10 @@
       "link": "/"
     }
   },
-  "checkoutVerifications": {
-    "checking": "",
-    "confirmation": "",
-    "error": ""
+  "processing": {
+    "checking": "Processing your request, this may take a moment",
+    "confirmation": "Your information has been successfully verified!",
+    "error": "An error has occured during the process. Please try again later.",
+    "button": "Start setting up"
   }
 }

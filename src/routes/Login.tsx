@@ -43,7 +43,8 @@ const Login = () => {
       { key: "username", value: createUsernameFromEmail(email) },
       { key: "fullName", value: "" },
       { key: "registered", value: true },
-      { key: "registerStep", value: 4 },
+      { key: "registerStep", value: 5 },
+      { key: "isConfigured", value: true },
     ]);
   };
   return (

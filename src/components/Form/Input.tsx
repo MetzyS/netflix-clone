@@ -18,6 +18,7 @@ const Input = (props: {
   isLoading?: boolean;
   errorPositionAbsolute?: boolean;
   customFunc?: (key: string, value: boolean) => void;
+  setIsValid?: (value: boolean) => void;
 }) => {
   // gestion couleur selon bg dark/white
   let inputColor = "input-dark";
@@ -51,15 +52,24 @@ const Input = (props: {
   };
 
   const handleValidate = (e: FormEvent<HTMLInputElement>) => {
+    let result: boolean;
     switch (props.type) {
       case "email":
-        setIsValid(emailValidation(e.currentTarget.value));
+        result = emailValidation(e.currentTarget.value);
+        setIsValid(result);
+        if (props.setIsValid) {
+          props.setIsValid(result);
+        }
         if (props.customFunc) {
-          props.customFunc("email", emailValidation(e.currentTarget.value));
+          props.customFunc("email", result);
         }
         break;
       case "password":
-        setIsValid(passwordValidation(e.currentTarget.value));
+        result = passwordValidation(e.currentTarget.value);
+        setIsValid(result);
+        if (props.setIsValid) {
+          props.setIsValid(result);
+        }
         if (props.customFunc) {
           props.customFunc(
             "password",

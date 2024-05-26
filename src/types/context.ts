@@ -7,7 +7,7 @@ export type ContextType = {
   user: UserType | undefined;
   isRegistered: boolean;
   registerStep: number | undefined;
-  accountIsConfigured: boolean;
+  isConfigured: boolean;
   userEmail: string;
   userPassword: string;
   isConnected: boolean;
