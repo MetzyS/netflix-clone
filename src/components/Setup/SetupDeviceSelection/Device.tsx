@@ -4,12 +4,18 @@ const Device = (props: {
   name: string;
   desc: string;
   checkedIcon: ReactElement;
+  selectedDevices: string[];
+  addDevice: (device: string) => void;
+  removeDevice: (device: string) => void;
 }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [opacity, setOpacity] = useState("opacity-0");
-  const handleSelected = () => {
+  const handleSelected = (device: string) => {
     if (isSelected == false) {
       setOpacity("opacity-0");
+      props.addDevice(device);
+    } else {
+      props.removeDevice(device);
     }
     setIsSelected(!isSelected);
     setTimeout(() => {
@@ -21,7 +27,6 @@ const Device = (props: {
       className={`flex flex-col border text-center rounded-md cursor-pointer flex-[1_1_30%] max-w-[180px] p-2 select-none relative ${
         isSelected ? "border-red-600" : ""
       }`}
-      onClick={handleSelected}
     >
       {isSelected && (
         <span
@@ -33,6 +38,13 @@ const Device = (props: {
       <div className="my-8"></div>
       <p className="font-semibold mb-1">{props.name}</p>
       <p className="text-xs text-neutral-400">{props.desc}</p>
+      <input
+        type="checkbox"
+        name={props.name}
+        id={`device-${props.name}`}
+        className="absolute top-0 bottom-0 right-0 left-0 appearance-none"
+        onChange={() => handleSelected(props.name)}
+      />
     </div>
   );
 };
