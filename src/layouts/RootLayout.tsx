@@ -21,6 +21,7 @@ const RootLayout = () => {
     username: "",
     avatarUrl: "",
     registerStep: 0,
+    setupStep: 0,
     registered: false,
     isConfigured: false,
   };
@@ -144,6 +145,10 @@ const RootLayout = () => {
     handleCreateUser([{ key: "registered", value: true }]);
   };
 
+  const handleAccountIsConfigured = (value: boolean) => {
+    setAccountIsConfigured(value);
+  };
+
   /**
    * Met à jour "user" dans localStorage + state
    * @param values [key: "keyName", value: "value"]
@@ -207,6 +212,7 @@ const RootLayout = () => {
     setIsRegistered(false);
     setIsConnected(false);
     setIsRegistered(false);
+    setAccountIsConfigured(false);
     localStorage.removeItem("user");
   };
 
@@ -239,6 +245,7 @@ const RootLayout = () => {
               resetHeaderStyle,
               handleHeaderStyle,
               setWhiteTheme,
+              handleAccountIsConfigured,
               headerStyle,
               registerStep,
               isRegistered,

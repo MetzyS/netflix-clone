@@ -11,8 +11,14 @@ import { useLocale } from "../hooks/useLocale";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, lang, setWhiteTheme, handleCreateUser, handleHeaderStyle } =
-    useDataContext();
+  const {
+    user,
+    lang,
+    setWhiteTheme,
+    handleCreateUser,
+    handleHeaderStyle,
+    handleAccountIsConfigured,
+  } = useDataContext();
   const { content, isLoading } = useLocale("Login", lang);
   useEffect(() => {
     setWhiteTheme(false);
@@ -44,8 +50,10 @@ const Login = () => {
       { key: "fullName", value: "" },
       { key: "registered", value: true },
       { key: "registerStep", value: 6 },
+      { key: "setupStep", value: 9 },
       { key: "isConfigured", value: true },
     ]);
+    handleAccountIsConfigured(true);
   };
   return (
     <>

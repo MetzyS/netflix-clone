@@ -26,6 +26,7 @@ export type ContextType = {
   handleUserPassword: (password: string) => void;
   handleRegisterAccount: (value: boolean) => void;
   handleSubmitRegister: (value: string) => Promise<Boolean>;
+  handleAccountIsConfigured: (value: boolean) => void;
 
   // handlers style
   setWhiteTheme: (value: boolean) => void;

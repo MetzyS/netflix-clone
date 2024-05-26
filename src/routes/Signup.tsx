@@ -33,7 +33,7 @@ const Signup = () => {
     isRegistered && user!.registerStep && setFormStep(user!.registerStep);
   }, []);
 
-  const [formStep, setFormStep] = useState(0);
+  const [formStep, setFormStep] = useState(user!.registerStep);
   const [paymentIsLoading, setPaymentIsLoading] = useState(false);
   const handleFormStep = (value: number) => {
     setFormStep(value);
@@ -70,6 +70,7 @@ const Signup = () => {
     handleCreateUser([{ key: "authorization", value: true }]);
     handleCreateUser([{ key: "registered", value: true }]);
     handleCreateUser([{ key: "registerStep", value: 6 }]);
+    handleCreateUser([{ key: "setupStep", value: 1 }]);
     handleFormStep(6);
     handleRegisterAccount(true);
   };

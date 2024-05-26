@@ -16,6 +16,7 @@ export type UserType = {
   authorization: boolean;
   plan: number;
   registered: boolean;
+  setupStep: number;
   isConfigured: boolean;
 };
 
