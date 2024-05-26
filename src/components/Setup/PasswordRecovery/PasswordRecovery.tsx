@@ -23,17 +23,17 @@ const PasswordRecovery = (props: {
   return (
     <DefaultContainer className="max-w-[500px] m-auto">
       <h1 className="signup-title sm:text-4xl">{props.content.title}</h1>
-      <div className="sm:text-lg">
+      <div className="xs:text-lg">
         <p className="mt-8">
           {props.content.desc[0]} {props.email}.
         </p>
         <p className="mt-4">{props.content.desc[1]}</p>
       </div>
       <div className="mt-8 p-4 sm:px-8 sm:py-6 rounded-lg bg-stone-200 text-center">
-        <h2 className="text-stone-500 font-semibold">
+        <h2 className="text-stone-500 font-semibold xs:text-lg">
           {props.content.form.title}
         </h2>
-        <div className="sm:text-lg mt-2 mb-6 flex flex-col gap-2">
+        <div className="xs:text-lg mt-2 mb-6 flex flex-col gap-2">
           <p>{props.content.form.desc[0]}</p>
           <p>{props.content.form.desc[1]}</p>
         </div>

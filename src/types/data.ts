@@ -238,21 +238,25 @@ export type PasswordRecoveryType = {
   };
 };
 
+export type DeviceSelectionType = {
+  step: string;
+  maxStep: string;
+  stepWord: string;
+  ofWord: string;
+  title: string;
+  desc: string[];
+  deviceOptions: DeviceOption[];
+  otherDevice: {
+    name: string;
+    desc: string;
+  };
+  button: string;
+};
+
 export type SetUpType = {
   passwordRecovery: PasswordRecoveryType;
 
-  deviceSelection: {
-    step: string;
-    maxStep: string;
-    title: string;
-    desc: string;
-    deviceOptions: DeviceOption[];
-    otherDevice: {
-      name: string;
-      desc: string;
-    };
-    button: string;
-  };
+  deviceSelection: DeviceSelectionType;
 
   infoBox: {
     iconUrl: string;

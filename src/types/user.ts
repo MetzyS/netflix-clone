@@ -13,6 +13,7 @@ export type UserType = {
   avatarUrl?: string;
   registerStep: number;
   profiles: Record<number, UserProfile>;
+  preferedDevices: string[];
   authorization: boolean;
   plan: number;
   registered: boolean;

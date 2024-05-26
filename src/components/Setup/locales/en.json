@@ -20,8 +20,13 @@
   "deviceSelection": {
     "step": "1",
     "maxStep": "6",
+    "stepWord": "step",
+    "ofWord": "of",
     "title": "What devices will you be watching on ?",
-    "desc": "You can watch Netflix on any of these devices. Select all that apply.",
+    "desc": [
+      "You can watch Netflix on any of these devices. ",
+      "Select all that apply."
+    ],
     "deviceOptions": [
       {
         "name": "TV",

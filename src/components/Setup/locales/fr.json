@@ -19,9 +19,14 @@
 
   "deviceSelection": {
     "step": "1",
+    "stepWord": "étape",
+    "ofWord": "sur",
     "maxStep": "6",
-    "title": "Sur quels appareils allez-vous regarder ?",
-    "desc": "Vous pouvez regarder Netflix sur n'importe lequel de ces appareils. Sélectionnez les appareils correspondant.",
+    "title": "Sur quels appareils allez-vous regarder?",
+    "desc": [
+      "Vous pouvez regarder Netflix sur n'importe lequel de ces appareils. ",
+      "Sélectionnez les appareils correspondant."
+    ],
     "deviceOptions": [
       {
         "name": "TV",
@@ -139,7 +144,7 @@
   "languageSelection": {
     "step": "5",
     "maxStep": "6",
-    "title": "Dans quelle langue préférez-vous regarder vos series et films ?",
+    "title": "Dans quelle langue préférez-vous regarder vos series et films?",
     "desc": [
       "En nous informant, vous nous aiderez à configurer votre son et vos sous-titres.",
       "Vous pourrez toujours les modifier."

@@ -5,6 +5,7 @@ import { SetUpLocaleType } from "../types/useLocaleTypes/ImportedLocaleTypes";
 import { Navigate } from "react-router-dom";
 import PasswordRecovery from "../components/Setup/PasswordRecovery/PasswordRecovery";
 import Footer from "../components/Footer/Footer";
+import SetupDeviceSelection from "../components/Setup/SetupDeviceSelection/SetupDeviceSelection";
 
 const Setup = () => {
   useEffect(() => {
@@ -27,6 +28,11 @@ const Setup = () => {
     setSetupStep(2);
   };
 
+  const handleBackStep = (value: number) => {
+    handleCreateUser([{ key: "setupStep", value: value }]);
+    setSetupStep(value);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -42,7 +48,12 @@ const Setup = () => {
                 handleSavePasswordRecovery={handleSavePasswordRecovery}
               />
             )}
-            {setupStep == 2 && <div>setupStep 2</div>}
+            {setupStep == 2 && (
+              <SetupDeviceSelection
+                backButtonFunc={() => handleBackStep(1)}
+                content={content.deviceSelection}
+              />
+            )}
             {setupStep == 3 && <div>setupStep 3</div>}
             {setupStep == 4 && <div>setupStep 4</div>}
             {setupStep == 5 && <div>setupStep 5</div>}

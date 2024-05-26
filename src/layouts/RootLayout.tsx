@@ -18,6 +18,7 @@ const RootLayout = () => {
     password: "",
     number: "",
     profiles: {},
+    preferedDevices: [],
     username: "",
     avatarUrl: "",
     registerStep: 0,

@@ -1,6 +1,6 @@
 import { mobileValidation } from "../../../helpers/InputValidation";
 import France from "../../Signup/Payment/CustomIcons/France";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 const InputNumber = (props: {
   content: string;
@@ -8,6 +8,11 @@ const InputNumber = (props: {
   errorMessage: string;
   onChange: (value: string) => void;
 }) => {
+  useEffect(() => {
+    if (props.userNumber != undefined && props.userNumber != "") {
+      setIsEmpty(false);
+    }
+  }, [props.userNumber]);
   const [isValid, setIsValid] = useState<undefined | boolean>(undefined);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isFocus, setIsFocus] = useState(false);
