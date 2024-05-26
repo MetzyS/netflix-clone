@@ -1,1 +1,201 @@
-{}
+{
+  "passwordRecovery": {
+    "title": "Bienvenue chez Netflix!",
+    "desc": [
+      "Votre abonnement a commencé, nous vous avons envoyé vos informations par email à ",
+      "N'oubliez pas que vous pouvez annuler votre abonnement à tout moment dans la section Compte."
+    ],
+    "form": {
+      "title": "Configurer la récupération du mot de passe.",
+      "desc": [
+        "Votre numéro de téléphone sera utilisé pour vous aider à accéder à votre compte et à le récupérer.",
+        "Des tarifs supplémentaires (SMS et données) peuvent s'appliquer."
+      ],
+      "input": "Numéro de téléphone",
+      "inputError": "Veuillez saisir un numéro de téléphone valide.",
+      "button": "Suivant"
+    }
+  },
+
+  "deviceSelection": {
+    "step": "1",
+    "maxStep": "6",
+    "title": "Sur quels appareils allez-vous regarder ?",
+    "desc": "Vous pouvez regarder Netflix sur n'importe lequel de ces appareils. Sélectionnez les appareils correspondant.",
+    "deviceOptions": [
+      {
+        "name": "TV",
+        "desc": "Téléviseurs intelligents ou connectés à internet",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Téléphone ou Tablette",
+        "desc": "Téléchargez l'application Netflix pour en profiter",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Ordinateur",
+        "desc": "Ordinateur de bureau ou portable",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Console de jeu",
+        "desc": "Connectée à internet",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Appareil de streaming",
+        "desc": "Connecte votre téléviseur à internet",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Décodeur câble",
+        "desc": "De votre fournisseur d'accès",
+        "iconUrl": "/"
+      }
+    ],
+    "otherDevice": {
+      "name": "Autre appareil",
+      "desc": "Profitez de Netflix avec d'autres appareils connectés à internet."
+    },
+    "button": "Suivant"
+  },
+
+  "infoBox": {
+    "iconUrl": "/",
+    "title": "Qui peut utiliser votre compte?",
+    "list": [
+      {
+        "iconUrl": "/",
+        "desc": "Seules les personnes qui vivent avec vous sont autorisées à utiliser votre compte."
+      },
+      {
+        "iconUrl": "/",
+        "desc": "Vous pouvez créer jusqu'à 5 profils pour votre foyer."
+      },
+      {
+        "iconUrl": "/",
+        "desc": "Chaque profil recevra ses propres recommandations."
+      }
+    ],
+    "button": "Compris"
+  },
+
+  "profileConfiguration": {
+    "step": "2",
+    "maxStep": "6",
+    "title": "Qui regardera Netflix?",
+    "desc": "Ajoutez jusqu'à un maximum de 5 profils pour obtenir :",
+    "descList": [
+      "Recommandations personnalisées",
+      "Différents réglages en fonction de la personne qui regarde",
+      "Une expérience adaptée à chacun"
+    ],
+    "mainProfile": "Votre profil",
+    "addProfiles": "Ajouter des profils?",
+    "input": "Nom",
+    "infoBox": [
+      "Seules les personnes qui vivent avec vous peuvent utiliser votre compte.",
+      "En savoir plus"
+    ],
+    "button": "Suivant"
+  },
+
+  "kidsProfile": {
+    "step": "3",
+    "maxStep": "6",
+    "title": "Y aura-t-il des enfants qui regarderont?",
+    "list": [
+      {
+        "title": "Titres adaptés aux enfants",
+        "desc": "Des series et des films soigneusement sélectionnés pour eux."
+      },
+      {
+        "title": "Parcourez par personnage",
+        "desc": "Choisissez ce qu'ils regarderont en fonction de leur personnage préféré."
+      },
+      {
+        "title": "Vous avez le contrôle",
+        "desc": "Contrôle parental pour une plus grande tranquilité d'esprit."
+      }
+    ],
+    "mainProfile": "Votre profil",
+    "addProfiles": "Ajouter des profils?",
+    "input": "Nom",
+    "kids": "Kids",
+    "button": "Suivant"
+  },
+
+  "profileDetails": {
+    "step": "4",
+    "maxStep": "6",
+    "title": ", ajoutons des informations à votre profil.",
+    "desc": "Nous avons besoin de certaines informations pour la personnalisation des publicités, les paramètres de maturité et d'autres objectifs conformes à la déclaration de confidentialité de Netflix.",
+    "birthDate": ["Jour", "Mois", "Année"],
+    "gender": "Sexe",
+    "select": "Choix",
+    "button": "Sauvegarder et Continuer"
+  },
+  "languageSelection": {
+    "step": "5",
+    "maxStep": "6",
+    "title": "Dans quelle langue préférez-vous regarder vos series et films ?",
+    "desc": [
+      "En nous informant, vous nous aiderez à configurer votre son et vos sous-titres.",
+      "Vous pourrez toujours les modifier."
+    ],
+    "languages": [
+      "English",
+      "Čeština",
+      "Dansk",
+      "Deutsch",
+      "English (United Kingdom)",
+      "Español",
+      "Español (España)",
+      "Filipino",
+      "Français",
+      "Hrvatski",
+      "Indonesia",
+      "Italiano",
+      "Magyar",
+      "Melayu",
+      "Nederlands",
+      "Norsk Bokmål",
+      "Polski",
+      "Português",
+      "Português (Brasil)",
+      "Română",
+      "Suomi",
+      "Svenska",
+      "Tiếng Việt",
+      "Türkçe",
+      "Eλληνικά",
+      "Русский",
+      "українська",
+      "עִברִית",
+      "العربية",
+      "(مصر) العربية",
+      "हिंदी",
+      "தமிழ்",
+      "한국어",
+      "中文",
+      "日本語"
+    ],
+    "button": "Suivant"
+  },
+  "likeSelection": {
+    "step": "6",
+    "maxStep": "6",
+    "title": ", choisissez 3 titres parmis la liste",
+    "desc": [
+      "Cela nous aide à trouver des émissions de télévision et des films que vous aimerez.",
+      "Sélectionnez ceux qui vous plaisent."
+    ],
+    "list": {},
+    "buttonSelectionNotFinished": "Faites 3 choix pour continuer",
+    "buttonSelectionFinished": "Terminer"
+  },
+  "processing": {
+    "title": "Sélection de films et de séries adaptés a vos préférences."
+  }
+}

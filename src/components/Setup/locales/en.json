@@ -1,1 +1,201 @@
-{}
+{
+  "passwordRecovery": {
+    "title": "Welcome to Netflix!",
+    "desc": [
+      "You've started your membership and we emailed the details to ",
+      "Remember you can cancel anytime in the Account section."
+    ],
+    "form": {
+      "title": "Set up password recovery",
+      "desc": [
+        "Your phone number will be used to help you access and recover your account.",
+        "Message and data rates may apply."
+      ],
+      "input": "Mobile phone number",
+      "inputError": "Make sure you enter a valid phone number.",
+      "button": "Next"
+    }
+  },
+
+  "deviceSelection": {
+    "step": "1",
+    "maxStep": "6",
+    "title": "What devices will you be watching on ?",
+    "desc": "You can watch Netflix on any of these devices. Select all that apply.",
+    "deviceOptions": [
+      {
+        "name": "TV",
+        "desc": "Smart or internet connected TV's",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Phone or Tablet",
+        "desc": "Download the Netflix app to enjoy",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Computer",
+        "desc": "Desktop or laptop",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Game Console",
+        "desc": "Connected to the internet",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Streaming Device",
+        "desc": "Connects your TV to the internet",
+        "iconUrl": "/"
+      },
+      {
+        "name": "Cable Set Top Box",
+        "desc": "From your cable provider",
+        "iconUrl": "/"
+      }
+    ],
+    "otherDevice": {
+      "name": "Something Else",
+      "desc": "Enjoy Netflix with other internet-connected devices."
+    },
+    "button": "Next"
+  },
+
+  "infoBox": {
+    "iconUrl": "/",
+    "title": "Who can use your account",
+    "list": [
+      {
+        "iconUrl": "/",
+        "desc": "We only allow people who live with you to use your account."
+      },
+      {
+        "iconUrl": "/",
+        "desc": "You can create up to 5 profiles for your household."
+      },
+      {
+        "iconUrl": "/",
+        "desc": "Each profile user will get their own recommendations."
+      }
+    ],
+    "button": "Got It"
+  },
+
+  "profileConfiguration": {
+    "step": "2",
+    "maxStep": "6",
+    "title": "Who will be watching Netflix?",
+    "desc": "Add a profile for up to 5 people you live with to get:",
+    "descList": [
+      "Personalized recommendations",
+      "Different settings for whoever is watching",
+      "An experience tailored to each individual"
+    ],
+    "mainProfile": "Your profile",
+    "addProfiles": "Add profiles?",
+    "input": "Name",
+    "infoBox": [
+      "Only people who live with you may use your account.",
+      "Learn more"
+    ],
+    "button": "Next"
+  },
+
+  "kidsProfile": {
+    "step": "3",
+    "maxStep": "6",
+    "title": "Will there be any kids watching?",
+    "list": [
+      {
+        "title": "Kid-friendly titles",
+        "desc": "TV show and movies carefully selected for them."
+      },
+      {
+        "title": "Browse by character",
+        "desc": "Choose what to watch by their favorite character."
+      },
+      {
+        "title": "You're in control",
+        "desc": "Parental controls to give you peace of mind."
+      }
+    ],
+    "mainProfile": "Your profile",
+    "addProfiles": "Add profiles?",
+    "input": "Name",
+    "kids": "Kids",
+    "button": "Next"
+  },
+
+  "profileDetails": {
+    "step": "4",
+    "maxStep": "6",
+    "title": ", let's add details to your profile.",
+    "desc": "We just need some information for ad personalization, maturity settings, and other purposes consistent with Netflix's privacy statement.",
+    "birthDate": ["Day", "Month", "Year"],
+    "gender": "Gender",
+    "select": "Select",
+    "button": "Complete and Continue"
+  },
+  "languageSelection": {
+    "step": "5",
+    "maxStep": "6",
+    "title": "Which language do you like to watch shows and movies in?",
+    "desc": [
+      "Letting us know helps set up your audio and subtitles.",
+      "You can always change these."
+    ],
+    "languages": [
+      "English",
+      "Čeština",
+      "Dansk",
+      "Deutsch",
+      "English (United Kingdom)",
+      "Español",
+      "Español (España)",
+      "Filipino",
+      "Français",
+      "Hrvatski",
+      "Indonesia",
+      "Italiano",
+      "Magyar",
+      "Melayu",
+      "Nederlands",
+      "Norsk Bokmål",
+      "Polski",
+      "Português",
+      "Português (Brasil)",
+      "Română",
+      "Suomi",
+      "Svenska",
+      "Tiếng Việt",
+      "Türkçe",
+      "Eλληνικά",
+      "Русский",
+      "українська",
+      "עִברִית",
+      "العربية",
+      "(مصر) العربية",
+      "हिंदी",
+      "தமிழ்",
+      "한국어",
+      "中文",
+      "日本語"
+    ],
+    "button": "Next"
+  },
+  "likeSelection": {
+    "step": "6",
+    "maxStep": "6",
+    "title": ", select 3 you like.",
+    "desc": [
+      "This helps us to find TV shows and movies you'll love.",
+      "Select the ones you like."
+    ],
+    "list": {},
+    "buttonSelectionNotFinished": "Pick 3 to Continue",
+    "buttonSelectionFinished": "Finished"
+  },
+  "processing": {
+    "title": "Selecting TV show and movies just for you."
+  }
+}

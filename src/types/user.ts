@@ -8,6 +8,7 @@ export type UserType = {
   username: string;
   email: string;
   password: string;
+  number: string;
   fullName: string;
   avatarUrl?: string;
   registerStep: number;

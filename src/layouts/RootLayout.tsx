@@ -16,6 +16,7 @@ const RootLayout = () => {
     email: "",
     fullName: "",
     password: "",
+    number: "",
     profiles: {},
     username: "",
     avatarUrl: "",
