@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProfileConfigurationType } from "../../../types/data";
+import { InfoBoxType, ProfileConfigurationType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import DefaultContainer from "../../ui/DefaultContainer";
 import { UserProfile } from "../../../types/user";
@@ -9,12 +9,16 @@ import { BiUserPlus } from "react-icons/bi";
 import InputName from "./InputName";
 import { Form } from "react-router-dom";
 import { useDataContext } from "../../../layouts/RootLayout";
+import { usernameValidate } from "../../../helpers/InputValidation";
+import InfoBox from "../InfoBox/InfoBox";
+import DefaultButton from "../../ui/DefaultButton";
 
 const SetupProfilesNames = (props: {
   backButtonFunc: () => void;
   content: ProfileConfigurationType;
   submitFunc: () => void;
   userName: string;
+  infoBoxContent: InfoBoxType;
 }) => {
   const { user, handleCreateUser } = useDataContext();
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
@@ -22,6 +26,7 @@ const SetupProfilesNames = (props: {
   const [mainUsernameIsValid, setMainUsernameIsValid] = useState(true);
 
   const handleChangeMainUsername = (value: string) => {
+    setMainUsernameIsValid(usernameValidate(value));
     setMainUsername(value);
   };
 
@@ -30,10 +35,6 @@ const SetupProfilesNames = (props: {
       handleCreateUser([{ key: "username", value: mainUsername }]);
     }
   };
-
-  // const addProfile = (values: UserProfile) => {
-  //   setProfiles((prevProfiles) => [...prevProfiles,  ])
-  // };
 
   const addProfile = (name: string) => {
     setProfiles((prevProfiles) => [
@@ -83,7 +84,9 @@ const SetupProfilesNames = (props: {
           </ul>
         </div>
         <Form
-          // onSubmit={(e) => testProfiles(profiles)}
+          onSubmit={(e) => {
+            e.preventDefault(), console.log("submit");
+          }}
           className="lg:mt-16 w-full"
         >
           <div className="my-6">
@@ -96,6 +99,8 @@ const SetupProfilesNames = (props: {
               icon={<BiUser className="size-8" />}
               value={props.userName}
               onChange={handleChangeMainUsername}
+              required={true}
+              htmlFor="mainUsername"
             />
           </div>
           <div className="my-8">
@@ -109,8 +114,22 @@ const SetupProfilesNames = (props: {
                 id={item}
                 icon={<BiUserPlus className="size-8" />}
                 onChange={addProfile}
+                htmlFor={`username-${index}`}
               />
             ))}
+          </div>
+          <div className="sm:ml-10 flex flex-col">
+            {" "}
+            <InfoBox
+              content={props.infoBoxContent}
+              showPopupFunc={() => console.log("popup")}
+            />
+            <DefaultButton
+              type="submit"
+              primary={true}
+              text={props.content.button}
+              className="h-14 mt-6 w-full lg:w-1/3 lg:self-end rounded-sm"
+            />
           </div>
         </Form>
       </div>

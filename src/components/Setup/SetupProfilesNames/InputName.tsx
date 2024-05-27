@@ -7,6 +7,8 @@ const InputName = (props: {
   icon: ReactElement;
   value?: string;
   onChange: (name: string) => void;
+  required?: boolean;
+  htmlFor: string;
 }) => {
   const [isValid, setIsValid] = useState<undefined | boolean>(undefined);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -82,7 +84,7 @@ const InputName = (props: {
               type="tel"
               name="input-creditcard"
               autoComplete="off"
-              required
+              required={props.required}
               className="pt-4 bg-transparent border-none outline-none autofill-transparent"
               onFocus={handleInputFocus}
               onBlur={handleInputFocus}

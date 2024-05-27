@@ -64,6 +64,7 @@ const Setup = () => {
                     content={content.profileConfiguration}
                     submitFunc={() => handleSetupStep(4)}
                     userName={user!.username}
+                    infoBoxContent={content.infoBox}
                   />
                 )}
                 {setupStep == 4 && <div>setupStep 3/6</div>}
@@ -73,21 +74,20 @@ const Setup = () => {
                 {setupStep == 8 && <div>setupStep 8</div>}
                 {setupStep == 9 && <Navigate to="/" />}
               </div>
+              <Footer
+                selectBg="bg-white"
+                selectTextColor="text-neutral-600"
+                className="bg-[#f3f3f3] border-t border-t-black/10"
+                textColor="text-black"
+                selectBorderColor="border-black/30"
+                showLangText={true}
+              />
             </div>
           )}
         </>
       ) : (
         <Navigate to="/" />
       )}
-
-      <Footer
-        selectBg="bg-white"
-        selectTextColor="text-neutral-600"
-        className="bg-[#f3f3f3] border-t border-t-black/10"
-        textColor="text-black"
-        selectBorderColor="border-black/30"
-        showLangText={true}
-      />
     </>
   );
 };

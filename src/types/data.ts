@@ -291,17 +291,19 @@ export type ProfileDetailsType = {
   button: string;
 };
 
+export type InfoBoxType = {
+  title: string[];
+  popUpTitle: string;
+  list: SetupInfoBoxList[];
+  button: string;
+};
+
 export type SetUpType = {
   passwordRecovery: PasswordRecoveryType;
 
   deviceSelection: DeviceSelectionType;
 
-  infoBox: {
-    iconUrl: string;
-    title: string;
-    list: SetupInfoBoxList[];
-    button: string;
-  };
+  infoBox: InfoBoxType;
 
   profileConfiguration: ProfileConfigurationType;
 

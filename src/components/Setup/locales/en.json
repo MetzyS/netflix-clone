@@ -67,8 +67,11 @@
   },
 
   "infoBox": {
-    "iconUrl": "/",
-    "title": "Who can use your account",
+    "title": [
+      "Only people who live with you may use your account.",
+      "Learn more"
+    ],
+    "popUpTitle": "Who can use your account",
     "list": [
       {
         "iconUrl": "/",
@@ -101,10 +104,6 @@
     "mainProfile": "Your profile",
     "addProfiles": "Add profiles?",
     "input": "Name",
-    "infoBox": [
-      "Only people who live with you may use your account.",
-      "Learn more"
-    ],
     "button": "Next"
   },
 
