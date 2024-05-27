@@ -1,4 +1,5 @@
 export type UserProfile = {
+  id: number;
   username: string;
   avatarUrl?: string;
   isAdult: boolean;
@@ -12,7 +13,7 @@ export type UserType = {
   fullName: string;
   avatarUrl?: string;
   registerStep: number;
-  profiles: Record<number, UserProfile>;
+  profiles: UserProfile[];
   preferedDevices: string[];
   authorization: boolean;
   plan: number;

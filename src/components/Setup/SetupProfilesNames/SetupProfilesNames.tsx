@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InfoBoxType, ProfileConfigurationType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import DefaultContainer from "../../ui/DefaultContainer";
@@ -9,7 +9,6 @@ import { BiUserPlus } from "react-icons/bi";
 import InputName from "./InputName";
 import { Form } from "react-router-dom";
 import { useDataContext } from "../../../layouts/RootLayout";
-import { usernameValidate } from "../../../helpers/InputValidation";
 import InfoBox from "../InfoBox/InfoBox";
 import DefaultButton from "../../ui/DefaultButton";
 
@@ -21,41 +20,61 @@ const SetupProfilesNames = (props: {
   infoBoxContent: InfoBoxType;
 }) => {
   const { user, handleCreateUser } = useDataContext();
-  const [profiles, setProfiles] = useState<UserProfile[]>([]);
-  const [mainUsername, setMainUsername] = useState(user!.username);
-  const [mainUsernameIsValid, setMainUsernameIsValid] = useState(true);
+  const [profiles, setProfiles] = useState<{
+    [key: number]: string;
+  }>({
+    0: user!.username,
+    1: "",
+    2: "",
+    3: "",
+    4: "",
+  });
+  const [areValid, setAreValid] = useState<{
+    [key: number]: boolean | undefined;
+  }>({
+    0: false,
+    1: true,
+    2: true,
+    3: true,
+    4: true,
+  });
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
-  const handleChangeMainUsername = (value: string) => {
-    setMainUsernameIsValid(usernameValidate(value));
-    setMainUsername(value);
-  };
-
-  const handleSaveMainUsername = (value: string) => {
-    if (mainUsernameIsValid) {
-      handleCreateUser([{ key: "username", value: mainUsername }]);
-    }
-  };
-
-  const addProfile = (name: string) => {
-    setProfiles((prevProfiles) => [
-      ...prevProfiles,
-      { username: name, avatarUrl: "", isAdult: true },
-    ]);
-  };
-
-  const removeProfile = (name: string) => {
-    setProfiles(
-      profiles.filter((profile) => {
-        return profile.username !== name;
-      })
+  useEffect(() => {
+    const allInputsAreValid = Object.values(areValid).every(
+      (value) => value == true
     );
+    setIsFormValid(allInputsAreValid);
+  }, [areValid]);
+
+  useEffect(() => {
+    console.log(profiles);
+  }, [profiles]);
+
+  const handleValidInputs = (id: number, isValid: boolean | undefined) => {
+    setAreValid((prevState) => ({ ...prevState, [id]: isValid }));
   };
 
-  const changeUsername = (name: string) => {
-    handleCreateUser([{ key: "username", value: name }]);
+  const handleProfiles = (id: number, name: string) => {
+    setProfiles((prevProfiles) => ({ ...prevProfiles, [id]: name }));
   };
 
-  const testProfiles = (profiles: UserProfile[]) => {};
+  const handleSubmitProfiles = (values: { [key: number]: string }) => {
+    // Récupère les valeurs du state "profiles", crée les profiles dans localStorage
+    let savedProfiles: UserProfile[] = [];
+    Object.values(values).map((profile, index) => {
+      if (profile != "") {
+        savedProfiles.push({
+          id: index,
+          username: profile,
+          isAdult: true,
+          avatarUrl: "",
+        });
+      }
+    });
+    handleCreateUser([{ key: "profiles", value: savedProfiles }]);
+  };
+
   const maxProfiles = [1, 2, 3, 4];
   return (
     <DefaultContainer>
@@ -85,7 +104,7 @@ const SetupProfilesNames = (props: {
         </div>
         <Form
           onSubmit={(e) => {
-            e.preventDefault(), console.log("submit");
+            e.preventDefault(), handleSubmitProfiles(profiles);
           }}
           className="lg:mt-16 w-full"
         >
@@ -95,12 +114,15 @@ const SetupProfilesNames = (props: {
             </p>
             <InputName
               content={props.content.input}
-              id={0}
+              profileId={0}
               icon={<BiUser className="size-8" />}
               value={props.userName}
-              onChange={handleChangeMainUsername}
+              onChange={() => console.log("hey")}
               required={true}
+              mainUser={true}
               htmlFor="mainUsername"
+              handleValidInput={handleValidInputs}
+              saveProfileName={handleProfiles}
             />
           </div>
           <div className="my-8">
@@ -111,10 +133,12 @@ const SetupProfilesNames = (props: {
               <InputName
                 content={props.content.input}
                 key={`addprofile-${index}`}
-                id={item}
+                profileId={item}
                 icon={<BiUserPlus className="size-8" />}
-                onChange={addProfile}
+                onChange={() => console.log("z")}
                 htmlFor={`username-${index}`}
+                handleValidInput={handleValidInputs}
+                saveProfileName={handleProfiles}
               />
             ))}
           </div>
@@ -128,7 +152,9 @@ const SetupProfilesNames = (props: {
               type="submit"
               primary={true}
               text={props.content.button}
-              className="h-14 mt-6 w-full lg:w-1/3 lg:self-end rounded-sm"
+              className="h-14 mt-6 w-full lg:w-1/3 lg:self-end rounded-sm disabled:cursor-default disabled:bg-stone-400"
+              disabled={!isFormValid}
+              onClick={() => console.log(areValid)}
             />
           </div>
         </Form>

@@ -7,6 +7,8 @@
  */
 export const createUsernameFromEmail = (email: string): string => {
   const userEmail = email.split("@");
-  const username = userEmail[0].toLocaleLowerCase().replace(/[~=+_.-]/gi, "");
+  const username = userEmail[0]
+    .toLocaleLowerCase()
+    .replace(/[0-9~=+_.-]/gi, "");
   return username;
 };

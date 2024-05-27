@@ -3,14 +3,17 @@ import { usernameValidate } from "../../../helpers/InputValidation";
 
 const InputName = (props: {
   content: string;
-  id: number;
+  profileId: number;
   icon: ReactElement;
   value?: string;
   onChange: (name: string) => void;
   required?: boolean;
   htmlFor: string;
+  mainUser?: boolean;
+  handleValidInput: (id: number, value: boolean | undefined) => void;
+  saveProfileName: (id: number, value: string) => void;
 }) => {
-  const [isValid, setIsValid] = useState<undefined | boolean>(undefined);
+  const [isValid, setIsValid] = useState<undefined | boolean>(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isFocus, setIsFocus] = useState(false);
   const [val, setVal] = useState("");
@@ -20,8 +23,20 @@ const InputName = (props: {
   const handleValidate = (e: ChangeEvent<HTMLInputElement>) => {
     const checkedUsername = usernameValidate(e.currentTarget.value);
     setIsValid(checkedUsername);
-    if (!isEmpty && checkedUsername) {
-      props.onChange(e.currentTarget.value);
+    if (e.currentTarget.value == "" || e.currentTarget.value == null) {
+      // Si input profil principal vide => désactive btn submit
+      if (props.mainUser) {
+        props.handleValidInput(props.profileId, false);
+      } else {
+        // Si imput profil secondaire vide => supprime l'username precedemment sauvegardé
+        props.handleValidInput(props.profileId, true);
+        props.saveProfileName(props.profileId, "");
+      }
+    } else {
+      props.handleValidInput(props.profileId, checkedUsername);
+    }
+    if (checkedUsername == true) {
+      props.saveProfileName(props.profileId, e.currentTarget.value);
     }
   };
 
@@ -29,7 +44,10 @@ const InputName = (props: {
     if (props.value != undefined && props.value != "") {
       setIsEmpty(false);
       setVal(props.value);
-      setIsValid(usernameValidate(props.value));
+      props.saveProfileName(props.profileId, props.value);
+      const validateProps = usernameValidate(props.value);
+      setIsValid(validateProps);
+      props.handleValidInput(props.profileId, validateProps);
     }
   }, [props.value]);
 
@@ -40,6 +58,8 @@ const InputName = (props: {
   const handleEmptyInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.target.value == null || e.target.value == "") {
       setIsEmpty(true);
+      setIsValid(undefined);
+      props.handleValidInput(props.profileId, true);
     } else {
       setIsEmpty(false);
     }
@@ -61,7 +81,7 @@ const InputName = (props: {
           >
             {isEmpty ? (
               <label
-                htmlFor="input-creditcard"
+                htmlFor="input-name"
                 className={`absolute transition pointer-events-none text-start text-stone-500 ${
                   isFocus
                     ? "-translate-y-3 text-xs font-semibold"
@@ -72,7 +92,7 @@ const InputName = (props: {
               </label>
             ) : (
               <label
-                htmlFor="input-creditcard"
+                htmlFor="input-name"
                 className={`absolute transition-all pointer-events-none text-start text-stone-500 -translate-y-3 text-xs font-semibold`}
               >
                 {props.content}
@@ -81,8 +101,8 @@ const InputName = (props: {
 
             <input
               value={val}
-              type="tel"
-              name="input-creditcard"
+              type="text"
+              name="input-name"
               autoComplete="off"
               required={props.required}
               className="pt-4 bg-transparent border-none outline-none autofill-transparent"
