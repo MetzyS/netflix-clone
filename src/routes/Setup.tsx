@@ -26,12 +26,12 @@ const Setup = () => {
       { key: "number", value: value },
       { key: "setupStep", value: 2 },
     ]);
-    setSetupStep(2);
+    handleSetupStep(2);
   };
 
   const handleBackStep = (value: number) => {
     handleCreateUser([{ key: "setupStep", value: value }]);
-    setSetupStep(value);
+    handleSetupStep(value);
   };
 
   return (

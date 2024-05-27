@@ -73,6 +73,7 @@ const SetupProfilesNames = (props: {
       }
     });
     handleCreateUser([{ key: "profiles", value: savedProfiles }]);
+    props.submitFunc();
   };
 
   const maxProfiles = [1, 2, 3, 4];
@@ -152,7 +153,6 @@ const SetupProfilesNames = (props: {
               text={props.content.button}
               className="h-14 mt-6 w-full lg:w-1/3 lg:self-end rounded-sm disabled:cursor-default disabled:bg-stone-400"
               disabled={!isFormValid}
-              onClick={() => console.log(areValid)}
             />
           </div>
         </Form>
