@@ -7,6 +7,8 @@ import { BiUser } from "react-icons/bi";
 import { BiUserPlus } from "react-icons/bi";
 
 import InputName from "./InputName";
+import { Form } from "react-router-dom";
+import { useDataContext } from "../../../layouts/RootLayout";
 
 const SetupProfilesNames = (props: {
   backButtonFunc: () => void;
@@ -14,10 +16,37 @@ const SetupProfilesNames = (props: {
   submitFunc: () => void;
   userName: string;
 }) => {
+  const { user, handleCreateUser } = useDataContext();
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
-  const addProfile = (values: UserProfile[]) => {
-    values.map((item) => {});
+  const [mainUsername, setMainUsername] = useState(user!.username);
+  const [mainUsernameIsValid, setMainUsernameIsValid] = useState(true);
+
+  const handleChangeMainUsername = (value: string) => {};
+
+  // const addProfile = (values: UserProfile) => {
+  //   setProfiles((prevProfiles) => [...prevProfiles,  ])
+  // };
+
+  const addProfile = (name: string) => {
+    setProfiles((prevProfiles) => [
+      ...prevProfiles,
+      { username: name, avatarUrl: "", isAdult: true },
+    ]);
   };
+
+  const removeProfile = (name: string) => {
+    setProfiles(
+      profiles.filter((profile) => {
+        return profile.username !== name;
+      })
+    );
+  };
+
+  const changeUsername = (name: string) => {
+    handleCreateUser([{ key: "username", value: name }]);
+  };
+
+  const testProfiles = (profiles: UserProfile[]) => {};
   const maxProfiles = [1, 2, 3, 4];
   return (
     <DefaultContainer>
@@ -45,7 +74,10 @@ const SetupProfilesNames = (props: {
             ))}
           </ul>
         </div>
-        <div className="lg:mt-16 w-full">
+        <Form
+          onSubmit={(e) => testProfiles(profiles)}
+          className="lg:mt-16 w-full"
+        >
           <div className="my-6">
             <p className="font-semibold mb-6 lg:mb-0">
               {props.content.mainProfile}
@@ -55,7 +87,8 @@ const SetupProfilesNames = (props: {
               id={0}
               icon={<BiUser className="size-8" />}
               value={props.userName}
-              //   onChange={}
+              mainUser={true}
+              onChange={changeUsername}
             />
           </div>
           <div className="my-8">
@@ -68,10 +101,11 @@ const SetupProfilesNames = (props: {
                 key={`addprofile-${index}`}
                 id={item}
                 icon={<BiUserPlus className="size-8" />}
+                onChange={addProfile}
               />
             ))}
           </div>
-        </div>
+        </Form>
       </div>
     </DefaultContainer>
   );

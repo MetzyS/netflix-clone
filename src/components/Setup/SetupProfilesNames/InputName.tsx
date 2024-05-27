@@ -6,6 +6,8 @@ const InputName = (props: {
   id: number;
   icon: ReactElement;
   value?: string;
+  mainUser?: boolean;
+  onChange?: (name: string) => void;
 }) => {
   const [isValid, setIsValid] = useState<undefined | boolean>(undefined);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -15,7 +17,10 @@ const InputName = (props: {
     setVal(e.currentTarget.value);
   };
   const handleValidate = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsValid(usernameValidate(e.currentTarget.value));
+    const checkedUsername = usernameValidate(e.currentTarget.value);
+    setIsValid(checkedUsername);
+    if (!isEmpty && checkedUsername) {
+    }
   };
 
   useEffect(() => {

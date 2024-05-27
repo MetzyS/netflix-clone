@@ -10,6 +10,7 @@ import { Navigate } from "react-router-dom";
 import Processing from "../components/Signup/Payment/Processing/Processing";
 import { useLocale } from "../hooks/useLocale";
 import { SignUpLocaleType } from "../types/useLocaleTypes/ImportedLocaleTypes";
+import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 
 const Signup = () => {
   const {
@@ -52,7 +53,7 @@ const Signup = () => {
       { key: "authorization", value: newData.authorization },
       { key: "registered", value: true },
       { key: "registerStep", value: 2 },
-      { key: "username", value: newData.email.split("@")[0] },
+      { key: "username", value: createUsernameFromEmail(newData.email) },
     ]);
     handleRegisterAccount(true);
     handleFormStep(2);
