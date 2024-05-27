@@ -6,7 +6,6 @@ const InputName = (props: {
   profileId: number;
   icon: ReactElement;
   value?: string;
-  onChange: (name: string) => void;
   required?: boolean;
   htmlFor: string;
   mainUser?: boolean;

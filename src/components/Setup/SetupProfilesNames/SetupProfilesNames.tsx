@@ -117,7 +117,6 @@ const SetupProfilesNames = (props: {
               profileId={0}
               icon={<BiUser className="size-8" />}
               value={props.userName}
-              onChange={() => console.log("hey")}
               required={true}
               mainUser={true}
               htmlFor="mainUsername"
@@ -135,7 +134,6 @@ const SetupProfilesNames = (props: {
                 key={`addprofile-${index}`}
                 profileId={item}
                 icon={<BiUserPlus className="size-8" />}
-                onChange={() => console.log("z")}
                 htmlFor={`username-${index}`}
                 handleValidInput={handleValidInputs}
                 saveProfileName={handleProfiles}
