@@ -6,8 +6,7 @@ const InputName = (props: {
   id: number;
   icon: ReactElement;
   value?: string;
-  mainUser?: boolean;
-  onChange?: (name: string) => void;
+  onChange: (name: string) => void;
 }) => {
   const [isValid, setIsValid] = useState<undefined | boolean>(undefined);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -20,6 +19,7 @@ const InputName = (props: {
     const checkedUsername = usernameValidate(e.currentTarget.value);
     setIsValid(checkedUsername);
     if (!isEmpty && checkedUsername) {
+      props.onChange(e.currentTarget.value);
     }
   };
 

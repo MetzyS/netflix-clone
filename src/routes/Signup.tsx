@@ -35,7 +35,6 @@ const Signup = () => {
   }, []);
 
   const [formStep, setFormStep] = useState(user!.registerStep);
-  const [paymentIsLoading, setPaymentIsLoading] = useState(false);
   const handleFormStep = (value: number) => {
     setFormStep(value);
   };

@@ -21,7 +21,15 @@ const SetupProfilesNames = (props: {
   const [mainUsername, setMainUsername] = useState(user!.username);
   const [mainUsernameIsValid, setMainUsernameIsValid] = useState(true);
 
-  const handleChangeMainUsername = (value: string) => {};
+  const handleChangeMainUsername = (value: string) => {
+    setMainUsername(value);
+  };
+
+  const handleSaveMainUsername = (value: string) => {
+    if (mainUsernameIsValid) {
+      handleCreateUser([{ key: "username", value: mainUsername }]);
+    }
+  };
 
   // const addProfile = (values: UserProfile) => {
   //   setProfiles((prevProfiles) => [...prevProfiles,  ])
@@ -75,7 +83,7 @@ const SetupProfilesNames = (props: {
           </ul>
         </div>
         <Form
-          onSubmit={(e) => testProfiles(profiles)}
+          // onSubmit={(e) => testProfiles(profiles)}
           className="lg:mt-16 w-full"
         >
           <div className="my-6">
@@ -87,8 +95,7 @@ const SetupProfilesNames = (props: {
               id={0}
               icon={<BiUser className="size-8" />}
               value={props.userName}
-              mainUser={true}
-              onChange={changeUsername}
+              onChange={handleChangeMainUsername}
             />
           </div>
           <div className="my-8">
