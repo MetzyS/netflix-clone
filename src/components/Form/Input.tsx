@@ -108,8 +108,8 @@ const Input = (props: {
             {isEmpty ? (
               <label
                 htmlFor={`input-${props.type}`}
-                className={`absolute pointer-events-none text-start text-gray-400 ${
-                  isFocus ? "top-0 text-xs" : "top-2.5 text-base"
+                className={`absolute transition-all pointer-events-none text-start text-gray-400 ${
+                  isFocus ? "-translate-y-3 text-xs" : "translate-y-0 text-base"
                 } `}
               >
                 {props.label}
@@ -117,7 +117,7 @@ const Input = (props: {
             ) : (
               <label
                 htmlFor={`input-${props.type}`}
-                className={`absolute pointer-events-none text-start text-gray-400 top-0 text-xs`}
+                className={`absolute transition-all pointer-events-none text-start text-gray-400 -translate-y-3 text-xs`}
               >
                 {props.label}
               </label>

@@ -43,8 +43,8 @@ const InputGiftCard = (props: {
         {isEmpty ? (
           <label
             htmlFor="input-giftcard"
-            className={`absolute pointer-events-none text-start text-gray-400 ${
-              isFocus ? "top-1.5 text-xs" : "top-3.5 text-base"
+            className={`absolute transition-all pointer-events-none text-start text-gray-400 ${
+              isFocus ? "-translate-y-3 text-xs" : "translate-y-0 text-base"
             } `}
           >
             {props.content.pinInput}
@@ -52,7 +52,7 @@ const InputGiftCard = (props: {
         ) : (
           <label
             htmlFor="input-giftcard"
-            className={`absolute pointer-events-none text-start text-gray-400 top-1.5 text-xs`}
+            className={`absolute transition-all pointer-events-none text-start text-gray-400 -translate-y-3 text-xs`}
           >
             {props.content.pinInput}
           </label>

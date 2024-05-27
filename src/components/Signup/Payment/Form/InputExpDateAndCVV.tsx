@@ -90,8 +90,10 @@ const InputExpDateAndCVV = (props: {
             {isEmpty.expdate ? (
               <label
                 htmlFor="input-expdate"
-                className={`absolute w-3/4 truncate pointer-events-none text-start text-gray-400 ${
-                  isFocus.expdate ? "top-1.5 text-xs" : "top-3.5 text-base"
+                className={`absolute transition-all w-3/4 truncate pointer-events-none text-start text-gray-400 ${
+                  isFocus.expdate
+                    ? "-translate-y-3 text-xs"
+                    : "translate-y-0 text-base"
                 } `}
               >
                 {props.content.expDate}
@@ -99,7 +101,7 @@ const InputExpDateAndCVV = (props: {
             ) : (
               <label
                 htmlFor="input-expdate"
-                className={`absolute w-3/4 truncate pointer-events-none text-start text-gray-400 top-1.5 text-xs`}
+                className={`absolute transition-all w-3/4 truncate pointer-events-none text-start text-gray-400 -translate-y-3 text-xs`}
               >
                 {props.content.expDate}
               </label>
@@ -150,8 +152,10 @@ const InputExpDateAndCVV = (props: {
             {isEmpty.cvv ? (
               <label
                 htmlFor="input-cvv"
-                className={`absolute w-1/2 truncate pointer-events-none text-start text-gray-400 ${
-                  isFocus.cvv ? "top-1.5 text-xs" : "top-3.5 text-base"
+                className={`absolute transition-all w-1/2 truncate pointer-events-none text-start text-gray-400 ${
+                  isFocus.cvv
+                    ? "-translate-y-3 text-xs"
+                    : "translate-y-0 text-base"
                 } `}
               >
                 {props.content.cvv}
@@ -159,7 +163,7 @@ const InputExpDateAndCVV = (props: {
             ) : (
               <label
                 htmlFor="input-cvv"
-                className={`absolute w-1/2 truncate pointer-events-none text-start text-gray-400 top-1.5 text-xs`}
+                className={`absolute transition-all w-1/2 truncate pointer-events-none text-start text-gray-400 -translate-y-3 text-xs`}
               >
                 {props.content.cvv}
               </label>

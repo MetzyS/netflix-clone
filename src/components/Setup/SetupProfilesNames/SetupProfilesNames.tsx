@@ -33,19 +33,17 @@ const SetupProfilesNames = (props: {
           <h1 className="signup-title font-bold lg:text-4xl">
             {props.content.title}
           </h1>
-          <p className="text-base">
-            {props.content.desc}
-            <ul>
-              {props.content.descList.map((item, index) => (
-                <li
-                  className="list-disc ml-8 my-2 leading-tight"
-                  key={`descLi-${index}`}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </p>
+          <p className="text-base">{props.content.desc}</p>
+          <ul>
+            {props.content.descList.map((item, index) => (
+              <li
+                className="list-disc ml-8 my-2 leading-tight"
+                key={`descLi-${index}`}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="lg:mt-16 w-full">
           <div className="my-6">

@@ -1,4 +1,5 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ChangeEvent, ReactElement, useEffect, useState } from "react";
+import { usernameValidate } from "../../../helpers/InputValidation";
 
 const InputName = (props: {
   content: string;
@@ -9,10 +10,19 @@ const InputName = (props: {
   const [isValid, setIsValid] = useState<undefined | boolean>(undefined);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isFocus, setIsFocus] = useState(false);
+  const [val, setVal] = useState("");
+  const handleValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setVal(e.currentTarget.value);
+  };
+  const handleValidate = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsValid(usernameValidate(e.currentTarget.value));
+  };
 
   useEffect(() => {
     if (props.value != undefined && props.value != "") {
       setIsEmpty(false);
+      setVal(props.value);
+      setIsValid(usernameValidate(props.value));
     }
   }, [props.value]);
 
@@ -28,52 +38,64 @@ const InputName = (props: {
     }
   };
   return (
-    <div className="flex items-center">
-      <span className="mt-2.5 pr-2">{props.icon}</span>
-      <div className={`m-auto w-full relative mt-3`}>
-        <div
-          className={`relative flex flex-col border ${
-            isEmpty ? "border-stone-400" : "border-green-600"
-          } rounded-sm input-white px-4 py-2 sm:w-full justify-center ring-white 
+    <>
+      <div className="flex items-center">
+        <span className="mt-2.5 pr-2">{props.icon}</span>
+        <div className={`m-auto w-full relative mt-3`}>
+          <div
+            className={`relative flex flex-col border ${
+              isEmpty
+                ? "border-stone-400"
+                : isValid
+                ? "border-green-600"
+                : "border-red-500"
+            } rounded-sm input-white px-4 py-2 sm:w-full justify-center ring-white 
           }`}
-        >
-          {isEmpty ? (
-            <label
-              htmlFor="input-creditcard"
-              className={`absolute pointer-events-none text-start text-stone-500 ${
-                isFocus
-                  ? "top-1.5 text-xs font-semibold"
-                  : "top-4 sm:top-3 text-sm sm:text-lg"
-              } `}
-            >
-              {props.content}
-            </label>
-          ) : (
-            <label
-              htmlFor="input-creditcard"
-              className={`absolute pointer-events-none text-start text-stone-500 top-1.5 text-xs font-semibold`}
-            >
-              {props.content}
-            </label>
-          )}
+          >
+            {isEmpty ? (
+              <label
+                htmlFor="input-creditcard"
+                className={`absolute transition pointer-events-none text-start text-stone-500 ${
+                  isFocus
+                    ? "-translate-y-3 text-xs font-semibold"
+                    : "transalte-y-0 text-sm sm:text-lg"
+                } `}
+              >
+                {props.content}
+              </label>
+            ) : (
+              <label
+                htmlFor="input-creditcard"
+                className={`absolute transition-all pointer-events-none text-start text-stone-500 -translate-y-3 text-xs font-semibold`}
+              >
+                {props.content}
+              </label>
+            )}
 
-          <input
-            type="tel"
-            name="input-creditcard"
-            autoComplete="off"
-            required
-            className="pt-4 bg-transparent border-none outline-none autofill-transparent"
-            onFocus={handleInputFocus}
-            onBlur={handleInputFocus}
-            onChange={(e) => {
-              // props.onChange(e.target.value);
-              handleEmptyInput(e);
-              //   handleValidate(e);
-            }}
-          />
+            <input
+              value={val}
+              type="tel"
+              name="input-creditcard"
+              autoComplete="off"
+              required
+              className="pt-4 bg-transparent border-none outline-none autofill-transparent"
+              onFocus={handleInputFocus}
+              onBlur={handleInputFocus}
+              onChange={(e) => {
+                handleValue(e);
+                handleEmptyInput(e);
+                handleValidate(e);
+              }}
+            />
+          </div>
         </div>
       </div>
-    </div>
+      {!isEmpty && !isValid && (
+        <p className="pl-14 mt-2 text-red-600 text-xs">
+          Le nom doit contenir entre 3 et 10 lettres.
+        </p>
+      )}
+    </>
   );
 };
 

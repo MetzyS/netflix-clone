@@ -81,3 +81,10 @@ export function giftCardValidate(value: string): boolean {
   }
   return false;
 }
+
+export function usernameValidate(value: string): boolean {
+  if (/^[a-zA-Z0-9]{3,10}$/g.test(value)) {
+    return true;
+  }
+  return false;
+}
