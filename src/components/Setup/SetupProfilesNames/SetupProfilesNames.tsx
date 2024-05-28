@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { InfoBoxType, ProfileConfigurationType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import DefaultContainer from "../../ui/DefaultContainer";
 import { UserProfile } from "../../../types/user";
-import { BiUser } from "react-icons/bi";
-import { BiUserPlus } from "react-icons/bi";
 
 import InputName from "./InputName";
 import { Form } from "react-router-dom";
@@ -18,6 +16,7 @@ const SetupProfilesNames = (props: {
   submitFunc: () => void;
   userName: string;
   infoBoxContent: InfoBoxType;
+  icons: ReactElement[];
 }) => {
   const { user, handleCreateUser } = useDataContext();
   const [profiles, setProfiles] = useState<{
@@ -110,13 +109,13 @@ const SetupProfilesNames = (props: {
           className="lg:mt-16 w-full"
         >
           <div className="my-6">
-            <p className="font-semibold mb-6 lg:mb-0">
+            <p className="font-semibold mt-12 lg:mt-0 mb-6 lg:mb-0">
               {props.content.mainProfile}
             </p>
             <InputName
               content={props.content.input}
               profileId={0}
-              icon={<BiUser className="size-8" />}
+              icon={props.icons[0]}
               value={props.userName}
               required={true}
               mainUser={true}
@@ -134,7 +133,7 @@ const SetupProfilesNames = (props: {
                 content={props.content.input}
                 key={`addprofile-${index}`}
                 profileId={item}
-                icon={<BiUserPlus className="size-8" />}
+                icon={props.icons[1]}
                 htmlFor={`username-${index}`}
                 handleValidInput={handleValidInputs}
                 saveProfileName={handleProfiles}

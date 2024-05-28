@@ -7,6 +7,9 @@ import PasswordRecovery from "../components/Setup/PasswordRecovery/PasswordRecov
 import Footer from "../components/Footer/Footer";
 import SetupDeviceSelection from "../components/Setup/SetupDeviceSelection/SetupDeviceSelection";
 import SetupProfilesNames from "../components/Setup/SetupProfilesNames/SetupProfilesNames";
+import SetupProfilesIsAdult from "../components/Setup/SetupProfilesIsAdult/SetupProfilesIsAdult";
+import { BiUser } from "react-icons/bi";
+import { BiUserPlus } from "react-icons/bi";
 
 const Setup = () => {
   useEffect(() => {
@@ -18,6 +21,7 @@ const Setup = () => {
   const [setupStep, setSetupStep] = useState(user!.setupStep);
 
   const handleSetupStep = (value: number) => {
+    handleCreateUser([{ key: "setupStep", value: value }]);
     setSetupStep(value);
   };
 
@@ -65,9 +69,23 @@ const Setup = () => {
                     submitFunc={() => handleSetupStep(4)}
                     userName={user!.username}
                     infoBoxContent={content.infoBox}
+                    icons={[
+                      <BiUser className="size-8" />,
+                      <BiUserPlus className="size-8" />,
+                    ]}
                   />
                 )}
-                {setupStep == 4 && <div>setupStep 3/6</div>}
+                {setupStep == 4 && (
+                  <SetupProfilesIsAdult
+                    backButtonFunc={() => handleBackStep(3)}
+                    content={content.kidsProfile}
+                    icons={[
+                      <BiUser className="size-8" />,
+                      <BiUserPlus className="size-8" />,
+                    ]}
+                    infoBoxContent={content.infoBox}
+                  />
+                )}
                 {setupStep == 5 && <div>setupStep 4/6</div>}
                 {setupStep == 6 && <div>setupStep 5/6</div>}
                 {setupStep == 7 && <div>setupStep 6/6</div>}

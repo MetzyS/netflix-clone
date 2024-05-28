@@ -110,6 +110,8 @@
   "kidsProfile": {
     "step": "3",
     "maxStep": "6",
+    "stepWord": "step",
+    "ofWord": "of",
     "title": "Will there be any kids watching?",
     "list": [
       {
@@ -126,9 +128,11 @@
       }
     ],
     "mainProfile": "Your profile",
-    "addProfiles": "Add profiles?",
+    "addProfiles": "Other profiles",
+    "noProfiles": "You didn't add other profiles.",
+    "empty": "Empty",
     "input": "Name",
-    "kids": "Kids",
+    "kids": "kids",
     "button": "Next"
   },
 

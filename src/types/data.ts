@@ -271,10 +271,14 @@ export type ProfileConfigurationType = {
 export type KidsProfileType = {
   step: string;
   maxStep: string;
+  stepWord: string;
+  ofWord: string;
   title: string;
   list: SetupKidsProfilelist[];
   mainProfile: string;
   addProfiles: string;
+  noProfiles: string;
+  empty: string;
   input: string;
   kids: string;
   button: string;

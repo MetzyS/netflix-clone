@@ -160,6 +160,10 @@ body {
   color: rgb(37 99 235);
 }
 
+.checkbox-kids:checked {
+  accent-color: #db0000;
+}
+
 .checkbox-default:checked:after {
   color: black;
 }
