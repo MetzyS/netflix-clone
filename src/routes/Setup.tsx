@@ -10,6 +10,7 @@ import SetupProfilesNames from "../components/Setup/SetupProfilesNames/SetupProf
 import SetupProfilesIsAdult from "../components/Setup/SetupProfilesIsAdult/SetupProfilesIsAdult";
 import { BiUser } from "react-icons/bi";
 import { BiUserPlus } from "react-icons/bi";
+import { UserProfile } from "../types/user";
 
 const Setup = () => {
   useEffect(() => {
@@ -36,6 +37,11 @@ const Setup = () => {
   const handleBackStep = (value: number) => {
     handleCreateUser([{ key: "setupStep", value: value }]);
     handleSetupStep(value);
+  };
+
+  const handleSetupKidsProfiles = (value: UserProfile[]) => {
+    handleCreateUser([{ key: "profiles", value: value }]);
+    handleSetupStep(5);
   };
 
   return (
@@ -78,6 +84,7 @@ const Setup = () => {
                 {setupStep == 4 && (
                   <SetupProfilesIsAdult
                     backButtonFunc={() => handleBackStep(3)}
+                    onSubmit={handleSetupKidsProfiles}
                     content={content.kidsProfile}
                     icons={[
                       <BiUser className="size-8" />,

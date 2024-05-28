@@ -1,6 +1,6 @@
-import { Fragment, ReactElement } from "react";
+import { ChangeEvent, Fragment, ReactElement, useState } from "react";
 import { useDataContext } from "../../../layouts/RootLayout";
-import { InfoBoxType, KidsProfileType } from "../../../types/data";
+import { InfoBoxType, KidsProfileType, isKidType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import InfoBox from "../InfoBox/InfoBox";
 import DefaultButton from "../../ui/DefaultButton";
@@ -8,16 +8,47 @@ import DefaultContainer from "../../ui/DefaultContainer";
 import imgKidsFr from "../../../assets/kids-fr.png";
 import imgKidsEn from "../../../assets/kids-en.png";
 import ProfileItem from "./ProfileItem";
+import { UserProfile } from "../../../types/user";
 
 const SetupProfilesIsAdult = (props: {
   backButtonFunc: () => void;
+  onSubmit: (value: UserProfile[]) => void;
   content: KidsProfileType;
   icons: ReactElement[];
   infoBoxContent: InfoBoxType;
 }) => {
   const emptyProfilesLength = { length: 4 };
   const { user, lang } = useDataContext();
-  const savedProfiles = user!.profiles;
+  const [savedProfiles, setSavedProfiles] = useState(user!.profiles);
+  const defaultKidValues: isKidType = savedProfiles.reduce((acc, profile) => {
+    acc[profile.id] = !profile.isAdult;
+    return acc;
+  }, {} as isKidType);
+  const [isKid, setIsKid] = useState<isKidType>(defaultKidValues);
+
+  const handleIsKid = (
+    e: ChangeEvent<HTMLInputElement>,
+    id: keyof isKidType,
+    value: boolean
+  ) => {
+    setIsKid((prevState) => ({ ...prevState, [id]: value }));
+  };
+
+  const handleSaveChanges = () => {
+    let updatedProfiles: UserProfile[] = [];
+    Object.keys(isKid).map((item) => {
+      // Object keys retourne un tableau de string, même si les keys sont des nombres
+      const id = Number(item);
+      updatedProfiles.push({
+        id: id,
+        username: savedProfiles[id].username,
+        isAdult: !isKid[id],
+        avatarUrl: "",
+      });
+    });
+    props.onSubmit(updatedProfiles);
+  };
+
   const bulletListColors = ["bg-green-600", "bg-yellow-400", "bg-pink-400"];
   let Kidsimg;
   switch (lang) {
@@ -89,6 +120,7 @@ const SetupProfilesIsAdult = (props: {
                     checkbox={false}
                     isEmpty={true}
                     isEmptyText={props.content.empty}
+                    isKid={false}
                   />
                 </Fragment>
               )
@@ -107,28 +139,9 @@ const SetupProfilesIsAdult = (props: {
                   isEmpty={false}
                   checkbox={true}
                   isEmptyText={props.content.empty}
+                  onCheck={handleIsKid}
+                  isKid={isKid[profile.id]}
                 />
-                // <div className="flex items-center" key={`profile-${index}`}>
-                //   <span className="mr-3">{props.icons[1]}</span>
-                //   <div className="border border-neutral-400 p-3 flex justify-between items-center rounded-sm relative mb-3 w-full">
-                //     <span className="absolute text-xs top-0.5 text-neutral-500">
-                //       {props.content.input}
-                //     </span>
-                //     <span className="font-semibold pt-3">
-                //       {profile.username}
-                //     </span>
-
-                //     <label className="text-red-600 font-bold text-lg flex items-center select-none">
-                //       {props.content.kids}
-                //       <input
-                //         type="checkbox"
-                //         name={`profile-${profile.id}`}
-                //         id={`profile-${profile.id}`}
-                //         className="ml-1 size-8 checkbox-kids"
-                //       />
-                //     </label>
-                //   </div>
-                // </div>
               );
             }
           })}
@@ -141,6 +154,7 @@ const SetupProfilesIsAdult = (props: {
               primary={true}
               className="w-full p-4 rounded-sm mt-6"
               text={props.content.button}
+              onClick={handleSaveChanges}
             />
           </div>
         </div>

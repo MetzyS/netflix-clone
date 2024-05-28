@@ -337,4 +337,8 @@ export type SetUpType = {
   };
 };
 
+export type isKidType = {
+  [id: number]: boolean;
+};
+
 export default LangType;

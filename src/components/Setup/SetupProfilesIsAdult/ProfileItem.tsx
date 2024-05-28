@@ -1,4 +1,5 @@
-import { ReactElement } from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
+import { isKidType } from "../../../types/data";
 
 const ProfileItem = (props: {
   id?: number;
@@ -9,7 +10,20 @@ const ProfileItem = (props: {
   checkbox: boolean;
   isEmpty: boolean;
   isEmptyText: string;
+  isKid: boolean;
+  onCheck?: (
+    e: ChangeEvent<HTMLInputElement>,
+    key: keyof isKidType,
+    value: boolean
+  ) => void;
 }) => {
+  const [isKid, setIsKid] = useState(props.isKid);
+  const handleSetIsKid = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsKid(e.currentTarget.checked);
+    if (props.onCheck) {
+      props.onCheck(e, props.id!, e.currentTarget.checked);
+    }
+  };
   return (
     <div className="flex items-center">
       <span className="mr-3">{props.icon}</span>
@@ -32,9 +46,11 @@ const ProfileItem = (props: {
           {props.checkbox ? (
             <input
               type="checkbox"
+              defaultChecked={isKid}
               name={props.id ? `profile-${props.id}` : ""}
               id={props.id ? `profile-${props.id}` : ""}
               className="ml-1 size-8 checkbox-kids"
+              onChange={(e) => handleSetIsKid(e)}
             />
           ) : (
             <div className="size-8 border ml-2 rounded-sm border-stone-300"></div>

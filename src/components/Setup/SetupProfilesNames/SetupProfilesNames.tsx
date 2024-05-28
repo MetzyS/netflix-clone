@@ -46,10 +46,6 @@ const SetupProfilesNames = (props: {
     setIsFormValid(allInputsAreValid);
   }, [areValid]);
 
-  useEffect(() => {
-    console.log(profiles);
-  }, [profiles]);
-
   const handleValidInputs = (id: number, isValid: boolean | undefined) => {
     setAreValid((prevState) => ({ ...prevState, [id]: isValid }));
   };
@@ -61,14 +57,17 @@ const SetupProfilesNames = (props: {
   const handleSubmitProfiles = (values: { [key: number]: string }) => {
     // Récupère les valeurs du state "profiles", crée les profiles dans localStorage
     let savedProfiles: UserProfile[] = [];
-    Object.values(values).map((profile, index) => {
+    let reorganizedId = 0;
+    Object.values(values).map((profile) => {
+      // J'utilise reorganizedId comme ID car l'utilisateur peut skip un input
       if (profile != "") {
         savedProfiles.push({
-          id: index,
+          id: reorganizedId,
           username: profile,
           isAdult: true,
           avatarUrl: "",
         });
+        reorganizedId += 1;
       }
     });
     handleCreateUser([{ key: "profiles", value: savedProfiles }]);
