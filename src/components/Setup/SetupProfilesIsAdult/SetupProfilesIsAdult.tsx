@@ -59,7 +59,7 @@ const SetupProfilesIsAdult = (props: {
           </ul>
           <img src={Kidsimg} alt="" />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full lg:mt-16 ">
           <p className="my-6 font-semibold">{props.content.mainProfile}</p>
           <div className="flex items-center mb-4">
             <span className="mr-3">{props.icons[0]}</span>
