@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useDataContext } from "../layouts/RootLayout";
 import { useLocale } from "../hooks/useLocale";
 import { SetUpLocaleType } from "../types/useLocaleTypes/ImportedLocaleTypes";
@@ -11,11 +11,23 @@ import SetupProfilesIsAdult from "../components/Setup/SetupProfilesIsAdult/Setup
 import { BiUser } from "react-icons/bi";
 import { BiUserPlus } from "react-icons/bi";
 import { UserProfile } from "../types/user";
+import { PiHouse } from "react-icons/pi";
+import { PiEyeglasses } from "react-icons/pi";
+import { IoPersonAddOutline } from "react-icons/io5";
 
 const Setup = () => {
   useEffect(() => {
     setWhiteTheme(true);
   }, []);
+  const infoBoxIcons: ReactElement[] = [
+    <PiHouse className="size-6 text-blue-600" />,
+    <IoPersonAddOutline className="size-6 text-blue-600" />,
+    <PiEyeglasses className="size-6 text-blue-600" />,
+  ];
+  const inputIcons: ReactElement[] = [
+    <BiUser className="size-8" />,
+    <BiUserPlus className="size-8" />,
+  ];
 
   const { user, lang, setWhiteTheme, handleCreateUser } = useDataContext();
   const { content, isLoading }: SetUpLocaleType = useLocale("Setup", lang);
@@ -75,10 +87,8 @@ const Setup = () => {
                     submitFunc={() => handleSetupStep(4)}
                     userName={user!.username}
                     infoBoxContent={content.infoBox}
-                    icons={[
-                      <BiUser className="size-8" />,
-                      <BiUserPlus className="size-8" />,
-                    ]}
+                    icons={inputIcons}
+                    infoBoxIcons={infoBoxIcons}
                   />
                 )}
                 {setupStep == 4 && (
@@ -86,11 +96,9 @@ const Setup = () => {
                     backButtonFunc={() => handleBackStep(3)}
                     onSubmit={handleSetupKidsProfiles}
                     content={content.kidsProfile}
-                    icons={[
-                      <BiUser className="size-8" />,
-                      <BiUserPlus className="size-8" />,
-                    ]}
+                    icons={inputIcons}
                     infoBoxContent={content.infoBox}
+                    infoBoxIcons={infoBoxIcons}
                   />
                 )}
                 {setupStep == 5 && <div>setupStep 4/6</div>}

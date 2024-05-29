@@ -17,6 +17,7 @@ const SetupProfilesNames = (props: {
   userName: string;
   infoBoxContent: InfoBoxType;
   icons: ReactElement[];
+  infoBoxIcons: ReactElement[];
 }) => {
   const { user, handleCreateUser } = useDataContext();
   const [profiles, setProfiles] = useState<{
@@ -143,7 +144,7 @@ const SetupProfilesNames = (props: {
             {" "}
             <InfoBox
               content={props.infoBoxContent}
-              showPopupFunc={() => console.log("popup")}
+              icons={props.infoBoxIcons}
             />
             <DefaultButton
               type="submit"

@@ -16,6 +16,7 @@ const SetupProfilesIsAdult = (props: {
   content: KidsProfileType;
   icons: ReactElement[];
   infoBoxContent: InfoBoxType;
+  infoBoxIcons: ReactElement[];
 }) => {
   const emptyProfilesLength = { length: 4 };
   const { user, lang } = useDataContext();
@@ -148,7 +149,8 @@ const SetupProfilesIsAdult = (props: {
           <div className="sm:ml-10 flex flex-col mt-4">
             <InfoBox
               content={props.infoBoxContent}
-              showPopupFunc={() => console.log("popup")}
+              icons={props.infoBoxIcons}
+              // showPopupFunc={() => console.log("popup")}
             />
             <DefaultButton
               primary={true}
