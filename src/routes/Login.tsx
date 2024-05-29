@@ -40,18 +40,21 @@ const Login = () => {
 
   const handleLogin = (email: string, password: string) => {
     handleCreateUser([
+      { key: "username", value: createUsernameFromEmail(email) },
       { key: "email", value: email },
       { key: "password", value: password },
+      { key: "number", value: "" },
+      { key: "fullName", value: "" },
+      { key: "avatarUrl", value: "" },
+      { key: "registerStep", value: 6 },
+      { key: "profiles", value: [] },
+      { key: "preferedDevices", value: [] },
       { key: "authorization", value: true },
       { key: "plan", value: 0 },
-      { key: "profiles", value: {} },
-      { key: "avatarUrl", value: "" },
-      { key: "username", value: createUsernameFromEmail(email) },
-      { key: "fullName", value: "" },
       { key: "registered", value: true },
-      { key: "registerStep", value: 6 },
-      { key: "setupStep", value: 9 },
       { key: "isConfigured", value: true },
+      { key: "setupStep", value: 9 },
+      { key: "birthDate", value: "01/01/1990" },
     ]);
     handleAccountIsConfigured(true);
   };

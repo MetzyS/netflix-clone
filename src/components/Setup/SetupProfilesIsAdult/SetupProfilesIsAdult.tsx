@@ -64,7 +64,7 @@ const SetupProfilesIsAdult = (props: {
   }
   return (
     <DefaultContainer>
-      <div className="block lg:flex max-w-[1000px] m-auto">
+      <div className="block lg:flex max-w-[1000px] sm:px-12 m-auto">
         <div className="lg:w-2/3 lg:mr-24">
           <BackButton onClick={props.backButtonFunc} />
           <p className="flex gap-1 uppercase mt-4 text-sm text-neutral-800">
@@ -150,7 +150,6 @@ const SetupProfilesIsAdult = (props: {
             <InfoBox
               content={props.infoBoxContent}
               icons={props.infoBoxIcons}
-              // showPopupFunc={() => console.log("popup")}
             />
             <DefaultButton
               primary={true}

@@ -139,10 +139,28 @@
   "profileDetails": {
     "step": "4",
     "maxStep": "6",
+    "stepWord": "step",
+    "ofWord": "of",
     "title": ", let's add details to your profile.",
     "desc": "We just need some information for ad personalization, maturity settings, and other purposes consistent with Netflix's privacy statement.",
+    "birthDateLabel": "Date of Birth",
     "birthDate": ["Day", "Month", "Year"],
+    "month": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "Jully",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
     "gender": "Gender",
+    "genderList": ["Male", "Female", "Rather not say", "Other"],
     "select": "Select",
     "button": "Complete and Continue"
   },

@@ -2,15 +2,15 @@ import { ReactElement, useEffect, useState } from "react";
 import { useDataContext } from "../layouts/RootLayout";
 import { useLocale } from "../hooks/useLocale";
 import { SetUpLocaleType } from "../types/useLocaleTypes/ImportedLocaleTypes";
+import { UserProfile } from "../types/user";
 import { Navigate } from "react-router-dom";
 import PasswordRecovery from "../components/Setup/PasswordRecovery/PasswordRecovery";
 import Footer from "../components/Footer/Footer";
 import SetupDeviceSelection from "../components/Setup/SetupDeviceSelection/SetupDeviceSelection";
 import SetupProfilesNames from "../components/Setup/SetupProfilesNames/SetupProfilesNames";
 import SetupProfilesIsAdult from "../components/Setup/SetupProfilesIsAdult/SetupProfilesIsAdult";
-import { BiUser } from "react-icons/bi";
-import { BiUserPlus } from "react-icons/bi";
-import { UserProfile } from "../types/user";
+import SetupProfileDetails from "../components/Setup/SetupProfileDetails/SetupProfilesDetails";
+import { BiUser, BiUserPlus } from "react-icons/bi";
 import { PiHouse } from "react-icons/pi";
 import { PiEyeglasses } from "react-icons/pi";
 import { IoPersonAddOutline } from "react-icons/io5";
@@ -101,7 +101,12 @@ const Setup = () => {
                     infoBoxIcons={infoBoxIcons}
                   />
                 )}
-                {setupStep == 5 && <div>setupStep 4/6</div>}
+                {setupStep == 5 && (
+                  <SetupProfileDetails
+                    backButtonFunc={() => handleBackStep(4)}
+                    content={content.profileDetails}
+                  />
+                )}
                 {setupStep == 6 && <div>setupStep 5/6</div>}
                 {setupStep == 7 && <div>setupStep 6/6</div>}
                 {setupStep == 8 && <div>setupStep 8</div>}

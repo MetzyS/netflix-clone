@@ -47,12 +47,12 @@ const Signup = () => {
   }) => {
     handleUserEmail(newData.email);
     handleCreateUser([
+      { key: "username", value: createUsernameFromEmail(newData.email) },
       { key: "email", value: newData.email },
       { key: "password", value: newData.password },
       { key: "authorization", value: newData.authorization },
       { key: "registered", value: true },
       { key: "registerStep", value: 2 },
-      { key: "username", value: createUsernameFromEmail(newData.email) },
     ]);
     handleRegisterAccount(true);
     handleFormStep(2);

@@ -287,10 +287,15 @@ export type KidsProfileType = {
 export type ProfileDetailsType = {
   step: string;
   maxStep: string;
+  stepWord: string;
+  ofWord: string;
   title: string;
   desc: string;
   birthDate: string[];
+  birthDateLabel: string;
+  month: string[];
   gender: string;
+  genderList: string[];
   select: string;
   button: string;
 };

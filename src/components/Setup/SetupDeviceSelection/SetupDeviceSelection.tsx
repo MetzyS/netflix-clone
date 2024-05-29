@@ -32,7 +32,7 @@ const SetupDeviceSelection = (props: {
   };
   return (
     <DefaultContainer>
-      <div className="block lg:flex max-w-[1000px] m-auto">
+      <div className="block lg:flex max-w-[1000px] m-auto sm:px-12">
         <div className="lg:w-1/3">
           <BackButton onClick={props.backButtonFunc} />
           <p className="flex gap-1 uppercase mt-4 text-sm text-neutral-800">

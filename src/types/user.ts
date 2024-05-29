@@ -18,8 +18,9 @@ export type UserType = {
   authorization: boolean;
   plan: number;
   registered: boolean;
-  setupStep: number;
   isConfigured: boolean;
+  setupStep: number;
+  birthDate: string;
 };
 
 export type Users = Record<string, UserType>;

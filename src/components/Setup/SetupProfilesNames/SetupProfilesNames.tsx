@@ -72,13 +72,14 @@ const SetupProfilesNames = (props: {
       }
     });
     handleCreateUser([{ key: "profiles", value: savedProfiles }]);
+    handleCreateUser([{ key: "username", value: savedProfiles[0].username }]);
     props.submitFunc();
   };
 
   const maxProfiles = [1, 2, 3, 4];
   return (
     <DefaultContainer>
-      <div className="block lg:flex max-w-[1000px] m-auto">
+      <div className="block lg:flex max-w-[1000px] sm:px-12 m-auto">
         <div className="lg:w-2/3 lg:mr-24">
           <BackButton onClick={props.backButtonFunc} />
           <p className="flex gap-1 uppercase mt-4 text-sm text-neutral-800">

@@ -139,10 +139,28 @@
   "profileDetails": {
     "step": "4",
     "maxStep": "6",
+    "stepWord": "étape",
+    "ofWord": "sur",
     "title": ", ajoutons des informations à votre profil.",
     "desc": "Nous avons besoin de certaines informations pour la personnalisation des publicités, les paramètres de maturité et d'autres objectifs conformes à la déclaration de confidentialité de Netflix.",
+    "birthDateLabel": "Date de naissance",
     "birthDate": ["Jour", "Mois", "Année"],
+    "month": [
+      "Janvier",
+      "Fevrier",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Decembre"
+    ],
     "gender": "Sexe",
+    "genderList": ["Homme", "Femme", "Non précisé", "Autre"],
     "select": "Choix",
     "button": "Sauvegarder et Continuer"
   },
