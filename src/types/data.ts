@@ -307,6 +307,15 @@ export type InfoBoxType = {
   button: string;
 };
 
+export type LanguageSelectionType = {
+  step: string;
+  maxStep: string;
+  title: string;
+  desc: string[];
+  languages: string[];
+  button: string;
+};
+
 export type SetUpType = {
   passwordRecovery: PasswordRecoveryType;
 
@@ -320,14 +329,8 @@ export type SetUpType = {
 
   profileDetails: ProfileDetailsType;
 
-  languageSelection: {
-    step: string;
-    maxStep: string;
-    title: string;
-    desc: string[];
-    languages: string[];
-    button: string;
-  };
+  languageSelection: LanguageSelectionType;
+
   likeSelection: {
     step: string;
     maxStep: string;

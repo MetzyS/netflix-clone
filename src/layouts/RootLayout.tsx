@@ -26,6 +26,7 @@ const RootLayout = () => {
     registered: false,
     isConfigured: false,
     birthDate: "",
+    gender: 0,
   };
   const savedUser = localStorage.getItem("user");
   const navigate = useNavigate();

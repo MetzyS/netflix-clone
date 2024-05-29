@@ -1,4 +1,3 @@
-import { Form } from "react-router-dom";
 import { useDataContext } from "../../../layouts/RootLayout";
 import { ProfileDetailsType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
@@ -8,6 +7,7 @@ import BirthDatePicker from "./BirthDatePicker";
 const SetupProfileDetails = (props: {
   backButtonFunc: () => void;
   content: ProfileDetailsType;
+  onSubmit: (values: { date: string; gender: number }) => void;
 }) => {
   const { user } = useDataContext();
   return (
@@ -35,6 +35,7 @@ const SetupProfileDetails = (props: {
           months={props.content.month}
           select={props.content.select}
           btn={props.content.button}
+          onSubmit={props.onSubmit}
         />
       </div>
     </DefaultContainer>

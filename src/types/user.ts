@@ -21,6 +21,7 @@ export type UserType = {
   isConfigured: boolean;
   setupStep: number;
   birthDate: string;
+  gender: number;
 };
 
 export type Users = Record<string, UserType>;

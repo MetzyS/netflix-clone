@@ -68,10 +68,14 @@ const Signup = () => {
   };
 
   const handleSubmitPayment = () => {
-    handleCreateUser([{ key: "authorization", value: true }]);
-    handleCreateUser([{ key: "registered", value: true }]);
-    handleCreateUser([{ key: "registerStep", value: 6 }]);
-    handleCreateUser([{ key: "setupStep", value: 1 }]);
+    handleCreateUser([
+      { key: "authorization", value: true },
+      { key: "birthDate", value: "" },
+      { key: "gender", value: 3 },
+      { key: "registered", value: true },
+      { key: "registerStep", value: 6 },
+      { key: "setupStep", value: 1 },
+    ]);
     handleFormStep(6);
     handleRegisterAccount(true);
   };

@@ -1,5 +1,6 @@
 import {
   ChangeEvent,
+  FormEvent,
   Fragment,
   ReactElement,
   useEffect,
@@ -16,13 +17,14 @@ const BirthDatePicker = (props: {
   select: string;
   genderList: string[];
   btn: string;
+  onSubmit: (values: { date: string; gender: number }) => void;
 }) => {
   const year = Number(new Date().getFullYear());
   const years: number[] = Array.from(new Array(99), (_, index) => year - index);
   const [days, setDays] = useState<ReactElement[]>([]);
-  const [day, setDay] = useState<number>(1);
-  const [month, setMonth] = useState<number>(2);
-  const [selectedYear, setSelectedYear] = useState(2024);
+  const [day, setDay] = useState<number>(0);
+  const [month, setMonth] = useState<number>(0);
+  const [selectedYear, setSelectedYear] = useState(0);
   const [gender, setGender] = useState<number>(0);
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -59,13 +61,13 @@ const BirthDatePicker = (props: {
     setGender(Number(e.currentTarget.value));
   };
 
-  const handleSaveBirthDate = () => {
+  const handleSaveBirthDetails = (e: FormEvent) => {
+    e.preventDefault;
     const birthDate = `${day}/${month}/${year}`;
+    props.onSubmit({ date: birthDate, gender: gender });
   };
 
   useEffect(() => {
-    // Ré-initialisation jour
-    setDay(1);
     // Calcul nombre de jours dans le mois
     const nbOfDaysInMonth = (month: number, year: number) => {
       year = selectedYear;
@@ -92,10 +94,20 @@ const BirthDatePicker = (props: {
         </option>,
       ]);
     }
-  }, [month, selectedYear]);
+
+    if (day === 0 || month === 0 || selectedYear === 0) {
+      setIsDisabled(true);
+    }
+    if (day !== 0 && month !== 0 && selectedYear !== 0 && gender !== 0) {
+      setIsDisabled(false);
+    }
+  }, [day, month, selectedYear, gender]);
 
   return (
-    <Form className="lg:mt-11 w-full">
+    <Form
+      className="lg:mt-11 w-full"
+      onSubmit={(e) => handleSaveBirthDetails(e)}
+    >
       <div className="my-6">
         <h2 className="font-semibold mt-12 lg:mt-0 mb-1 text-lg">
           {props.label}
@@ -107,10 +119,10 @@ const BirthDatePicker = (props: {
               id="day"
               onChange={(e) => handleChangeDay(e)}
               className="text-lg select-date invalid:text-neutral-500"
-              defaultValue={""}
+              defaultValue={0}
               required
             >
-              <option value="" disabled hidden>
+              <option value={0} disabled hidden>
                 {props.inputText[0]}
               </option>
               {days.map((item, index) => (
@@ -125,10 +137,10 @@ const BirthDatePicker = (props: {
               id="month"
               onChange={(e) => handleChangeMonth(e)}
               className="text-lg select-date invalid:text-neutral-500"
-              defaultValue={""}
+              defaultValue={0}
               required
             >
-              <option value={""} disabled hidden>
+              <option value={0} disabled hidden>
                 {props.inputText[1]}
               </option>
               {props.months.map((_, index) => (
@@ -149,10 +161,10 @@ const BirthDatePicker = (props: {
               id="year"
               onChange={(e) => handleChangeYear(e)}
               className="text-lg select-date invalid:text-neutral-500"
-              defaultValue={""}
+              defaultValue={0}
               required
             >
-              <option value="" disabled hidden>
+              <option value={0} disabled hidden>
                 {props.inputText[2]}
               </option>
               {years.map((item) => (
@@ -175,15 +187,15 @@ const BirthDatePicker = (props: {
             id="gender"
             onChange={(e) => handleChangeGender(e)}
             className="text-lg select-date invalid:text-neutral-500"
-            defaultValue={""}
+            defaultValue={0}
             required
           >
-            <option value="" disabled hidden>
+            <option value={0} disabled hidden>
               {props.select}
             </option>
             {props.genderList.map((item, index) => (
               <option
-                value={index}
+                value={index + 1}
                 key={`gender-${item}`}
                 className="text-black"
               >
@@ -196,6 +208,7 @@ const BirthDatePicker = (props: {
           className="w-full p-4 mt-20 rounded-sm disabled:bg-stone-300 disabled:text-stone-400 max-w-[350px] self-end"
           text={props.btn}
           disabled={isDisabled}
+          type="submit"
         />
       </div>
     </Form>

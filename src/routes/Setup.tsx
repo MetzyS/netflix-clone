@@ -14,6 +14,7 @@ import { BiUser, BiUserPlus } from "react-icons/bi";
 import { PiHouse } from "react-icons/pi";
 import { PiEyeglasses } from "react-icons/pi";
 import { IoPersonAddOutline } from "react-icons/io5";
+import SetupLanguage from "../components/Setup/SetupLanguage/SetupLanguage";
 
 const Setup = () => {
   useEffect(() => {
@@ -54,6 +55,14 @@ const Setup = () => {
   const handleSetupKidsProfiles = (value: UserProfile[]) => {
     handleCreateUser([{ key: "profiles", value: value }]);
     handleSetupStep(5);
+  };
+
+  const handleSetupDetails = (values: { date: string; gender: number }) => {
+    handleCreateUser([
+      { key: "birthDate", value: values.date },
+      { key: "gender", value: values.gender },
+    ]);
+    handleSetupStep(6);
   };
 
   return (
@@ -104,10 +113,13 @@ const Setup = () => {
                 {setupStep == 5 && (
                   <SetupProfileDetails
                     backButtonFunc={() => handleBackStep(4)}
+                    onSubmit={handleSetupDetails}
                     content={content.profileDetails}
                   />
                 )}
-                {setupStep == 6 && <div>setupStep 5/6</div>}
+                {setupStep == 6 && (
+                  <SetupLanguage content={content.languageSelection} />
+                )}
                 {setupStep == 7 && <div>setupStep 6/6</div>}
                 {setupStep == 8 && <div>setupStep 8</div>}
                 {setupStep == 9 && <Navigate to="/" />}
