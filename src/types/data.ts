@@ -310,10 +310,24 @@ export type InfoBoxType = {
 export type LanguageSelectionType = {
   step: string;
   maxStep: string;
+  stepWord: string;
+  ofWord: string;
   title: string;
   desc: string[];
   languages: string[];
   button: string;
+};
+
+export type LikeSelectionType = {
+  step: string;
+  maxStep: string;
+  stepWord: string;
+  ofWord: string;
+  title: string;
+  desc: string[];
+  list: {};
+  buttonSelectionNotFinished: string;
+  buttonSelectionFinished: string;
 };
 
 export type SetUpType = {
@@ -331,15 +345,7 @@ export type SetUpType = {
 
   languageSelection: LanguageSelectionType;
 
-  likeSelection: {
-    step: string;
-    maxStep: string;
-    title: string;
-    desc: string[];
-    list: {};
-    buttonSelectionNotFinished: string;
-    buttonSelectionFinished: string;
-  };
+  likeSelection: LikeSelectionType;
   processing: {
     title: string;
   };

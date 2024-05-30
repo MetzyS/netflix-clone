@@ -53,7 +53,10 @@ const Setup = () => {
   };
 
   const handleSetupKidsProfiles = (value: UserProfile[]) => {
-    handleCreateUser([{ key: "profiles", value: value }]);
+    handleCreateUser([
+      { key: "profiles", value: value },
+      { key: "setupStep", value: 5 },
+    ]);
     handleSetupStep(5);
   };
 
@@ -61,8 +64,17 @@ const Setup = () => {
     handleCreateUser([
       { key: "birthDate", value: values.date },
       { key: "gender", value: values.gender },
+      { key: "setupStep", value: 6 },
     ]);
     handleSetupStep(6);
+  };
+
+  const handleSetupLanguage = (values: number[]) => {
+    handleCreateUser([
+      { key: "preferedLanguages", value: values },
+      { key: "setupStep", value: 7 },
+    ]);
+    handleSetupStep(7);
   };
 
   return (
@@ -118,7 +130,11 @@ const Setup = () => {
                   />
                 )}
                 {setupStep == 6 && (
-                  <SetupLanguage content={content.languageSelection} />
+                  <SetupLanguage
+                    content={content.languageSelection}
+                    backButtonFunc={() => handleBackStep(5)}
+                    onSubmit={handleSetupLanguage}
+                  />
                 )}
                 {setupStep == 7 && <div>setupStep 6/6</div>}
                 {setupStep == 8 && <div>setupStep 8</div>}

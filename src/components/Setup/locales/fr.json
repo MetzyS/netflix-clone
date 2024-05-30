@@ -167,6 +167,8 @@
   "languageSelection": {
     "step": "5",
     "maxStep": "6",
+    "stepWord": "étape",
+    "ofWord": "sur",
     "title": "Dans quelle langue préférez-vous regarder vos series et films?",
     "desc": [
       "En nous informant, vous nous aiderez à configurer votre son et vos sous-titres.",
@@ -217,6 +219,8 @@
   "likeSelection": {
     "step": "6",
     "maxStep": "6",
+    "stepWord": "étape",
+    "ofWord": "sur",
     "title": ", choisissez 3 titres parmis la liste",
     "desc": [
       "Cela nous aide à trouver des émissions de télévision et des films que vous aimerez.",

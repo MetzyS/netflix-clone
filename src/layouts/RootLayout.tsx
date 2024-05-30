@@ -26,6 +26,7 @@ const RootLayout = () => {
     registered: false,
     isConfigured: false,
     birthDate: "",
+    preferedLanguages: [],
     gender: 0,
   };
   const savedUser = localStorage.getItem("user");

@@ -22,6 +22,7 @@ export type UserType = {
   setupStep: number;
   birthDate: string;
   gender: number;
+  preferedLanguages: number[];
 };
 
 export type Users = Record<string, UserType>;

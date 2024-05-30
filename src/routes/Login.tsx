@@ -56,6 +56,7 @@ const Login = () => {
       { key: "setupStep", value: 9 },
       { key: "birthDate", value: "01/01/1990" },
       { key: "gender", value: 3 },
+      { key: "preferedLanguages", value: [] },
     ]);
     handleAccountIsConfigured(true);
   };
