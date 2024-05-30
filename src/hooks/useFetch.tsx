@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { DataType } from "../types/data";
 
 const useFetch = (): {
-  data: any;
+  data: Record<number, DataType>;
   dataIsLoading: boolean;
 } => {
   const [data, setData] = useState<any>(null);

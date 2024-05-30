@@ -1,9 +1,15 @@
 import { useDataContext } from "../../../layouts/RootLayout";
 
 const SetupSeriesPreferences = () => {
-  const { fetchedData } = useDataContext();
-  console.log(fetchedData);
-  return <>{fetchedData.dataIsLoading ? <div>loading</div> : <div>ok</div>}</>;
+  const { popularSeries } = useDataContext();
+  // console.log(popularSeries);
+  return (
+    <>
+      {Object.entries(popularSeries!).map((item) =>
+        console.log(item[1][1].name)
+      )}
+    </>
+  );
   //   return <></>;
 };
 

@@ -1,3 +1,4 @@
+import { DataType } from "./data";
 import { HeaderStyle } from "./headerstyle";
 import { UserProfile, UserType } from "./user";
 
@@ -5,7 +6,6 @@ export type ContextType = {
   // infos user
   lang: string;
   user: UserType | undefined;
-  fetchedData: { data: any; dataIsLoading: boolean };
   isRegistered: boolean;
   registerStep: number | undefined;
   isConfigured: boolean;
@@ -14,8 +14,10 @@ export type ContextType = {
   isConnected: boolean;
   isLoading: boolean;
   headerStyle: HeaderStyle;
-  // fetchIsNeeded: boolean;
 
+  // fetched data
+  fetchedData: { data: Record<number, DataType>; dataIsLoading: boolean };
+  popularSeries: [string, DataType][] | undefined;
   // handlers user
   handleCreateUser: (
     values: Array<{
@@ -46,5 +48,4 @@ export type ContextType = {
   handleConnect: () => void;
 
   // handler fetch
-  // handleFetchIsNeeded: (value: boolean) => void;
 };

@@ -8,6 +8,7 @@ import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import HeaderTwo from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
 import useFetch from "../hooks/useFetch";
+import { DataType } from "../types/data";
 // import { useFetch } from "../hooks/useFetch";
 
 const RootLayout = () => {
@@ -56,12 +57,30 @@ const RootLayout = () => {
   // const [fetchIsNeeded, setFetchIsNeeded] = useState<boolean>(false);
   const { data, dataIsLoading } = useFetch();
   const [fetchedData, setFetchedData] = useState<{
-    data: any;
+    data: Record<number, DataType>;
     dataIsLoading: boolean;
-  }>({ data: null, dataIsLoading: true });
+  }>({ data: {}, dataIsLoading: true });
+
+  const [popularSeries, setPopularSeries] = useState<[string, DataType][]>();
 
   useEffect(() => {
     setFetchedData({ data, dataIsLoading });
+    if (data != null) {
+      let pop = Object.entries(data).filter((item) => {
+        {
+          if (item[1].weight > 99) {
+            return {
+              item,
+            };
+          }
+          return null;
+        }
+      });
+      setPopularSeries(pop);
+      console.log(popularSeries);
+
+      // NEXT STEP FILTER PAR "weight" > 95 ou 99..
+    }
   }, [data, isLoading]);
 
   // Header: State gestion style
@@ -234,20 +253,6 @@ const RootLayout = () => {
     localStorage.removeItem("user");
   };
 
-  // Manipulation data fetch
-  // const handleFetchIsNeeded = (value: boolean) => {
-  //   setFetchIsNeeded(value);
-  //   if (value === true) {
-  //     // const fetch = useFetch();
-  //     // setData(fetch);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const fetchedData = useFetch();
-  //   setData(fetchedData);
-  // }, []);
-
   return (
     <>
       <main
@@ -279,7 +284,6 @@ const RootLayout = () => {
               handleHeaderStyle,
               setWhiteTheme,
               handleAccountIsConfigured,
-              // handleFetchIsNeeded,
               headerStyle,
               registerStep,
               isRegistered,
@@ -288,7 +292,7 @@ const RootLayout = () => {
               userEmail,
               userPassword,
               isConfigured,
-              // fetchIsNeeded,
+              popularSeries,
             } satisfies ContextType
           }
         />
