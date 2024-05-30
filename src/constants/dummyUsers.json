@@ -1,60 +1,76 @@
 {
   "0": {
-    "plan": 0,
-    "authorization": true,
-    "email": "user@mail.com",
     "username": "TheBingeWatcher",
-    "fullName": "John Doe",
+    "email": "user@mail.com",
     "password": "",
-    "profiles": {
-      "0": {
-        "username": "Titi",
-        "avatarUrl": "",
-        "isAdult": false
-      },
-      "1": {
-        "username": "Lulu",
+    "number": "",
+    "fullName": "John Doe",
+    "avatarUrl": "",
+    "registerStep": 6,
+    "profiles": [
+      {
+        "id": 0,
+        "username": "TheBingeWatcher",
         "avatarUrl": "",
         "isAdult": true
       },
-      "2": {
+      {
+        "id": 1,
+        "username": "Lulu",
+        "avatarUrl": "",
+        "isAdult": false
+      },
+      {
         "username": "Nana",
         "avatarUrl": "",
         "isAdult": true
       }
-    },
-    "avatarUrl": "",
-    "registerStep": 6,
+    ],
+    "preferedDevices": ["PC"],
+    "authorization": true,
+    "plan": 0,
     "registered": true,
-    "isConfigured": true
+    "isConfigured": true,
+    "setupStep": 9,
+    "birthDate": "01/01/1970",
+    "gender": 1,
+    "preferedLanguages": [0]
   },
   "1": {
-    "plan": 1,
-    "authorization": true,
-    "email": "test@mail.com",
-    "username": "LedZepp",
-    "fullName": "Robert Plant",
+    "username": "TheBingeWatcher",
+    "email": "user@mail.com",
     "password": "",
-    "profiles": {
-      "0": {
-        "username": "JimmyPage",
+    "number": "",
+    "fullName": "John Doe",
+    "avatarUrl": "",
+    "registerStep": 6,
+    "profiles": [
+      {
+        "id": 0,
+        "username": "TheBingeWatcher",
         "avatarUrl": "",
         "isAdult": true
       },
-      "1": {
-        "username": "JohnBonham",
+      {
+        "id": 1,
+        "username": "Lulu",
         "avatarUrl": "",
-        "isAdult": true
+        "isAdult": false
       },
-      "2": {
-        "username": "JohnPaul",
+      {
+        "username": "Nana",
         "avatarUrl": "",
         "isAdult": true
       }
-    },
-    "avatarUrl": "",
-    "registerStep": 6,
+    ],
+    "preferedDevices": ["PC"],
+    "authorization": true,
+    "plan": 0,
     "registered": true,
-    "isConfigured": true
+    "isConfigured": true,
+    "setupStep": 9,
+    "birthDate": "01/01/1970",
+    "gender": 1,
+    "preferedLanguages": [0]
   }
 }

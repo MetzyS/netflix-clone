@@ -5,6 +5,7 @@ export type ContextType = {
   // infos user
   lang: string;
   user: UserType | undefined;
+  fetchedData: { data: any; dataIsLoading: boolean };
   isRegistered: boolean;
   registerStep: number | undefined;
   isConfigured: boolean;
@@ -13,6 +14,7 @@ export type ContextType = {
   isConnected: boolean;
   isLoading: boolean;
   headerStyle: HeaderStyle;
+  // fetchIsNeeded: boolean;
 
   // handlers user
   handleCreateUser: (
@@ -42,4 +44,7 @@ export type ContextType = {
   // handlers connexion
   handleDisconnect: () => void;
   handleConnect: () => void;
+
+  // handler fetch
+  // handleFetchIsNeeded: (value: boolean) => void;
 };

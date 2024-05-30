@@ -1,5 +1,5 @@
 import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
@@ -7,6 +7,8 @@ import { userIsConnected } from "../helpers/userIsConnected";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import HeaderTwo from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
+import useFetch from "../hooks/useFetch";
+// import { useFetch } from "../hooks/useFetch";
 
 const RootLayout = () => {
   // Paramètres et infos utilisateur
@@ -49,6 +51,18 @@ const RootLayout = () => {
 
   const [bgWhite, setBgWhite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // State gestion fetch (pas besoin de fetch si l'utilisateur est deconnecté)
+  // const [fetchIsNeeded, setFetchIsNeeded] = useState<boolean>(false);
+  const { data, dataIsLoading } = useFetch();
+  const [fetchedData, setFetchedData] = useState<{
+    data: any;
+    dataIsLoading: boolean;
+  }>({ data: null, dataIsLoading: true });
+
+  useEffect(() => {
+    setFetchedData({ data, dataIsLoading });
+  }, [data, isLoading]);
 
   // Header: State gestion style
 
@@ -220,6 +234,20 @@ const RootLayout = () => {
     localStorage.removeItem("user");
   };
 
+  // Manipulation data fetch
+  // const handleFetchIsNeeded = (value: boolean) => {
+  //   setFetchIsNeeded(value);
+  //   if (value === true) {
+  //     // const fetch = useFetch();
+  //     // setData(fetch);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const fetchedData = useFetch();
+  //   setData(fetchedData);
+  // }, []);
+
   return (
     <>
       <main
@@ -237,6 +265,7 @@ const RootLayout = () => {
             {
               lang,
               user,
+              fetchedData,
               handleChangeLang,
               handleChangeBg,
               handleUserEmail,
@@ -250,6 +279,7 @@ const RootLayout = () => {
               handleHeaderStyle,
               setWhiteTheme,
               handleAccountIsConfigured,
+              // handleFetchIsNeeded,
               headerStyle,
               registerStep,
               isRegistered,
@@ -258,6 +288,7 @@ const RootLayout = () => {
               userEmail,
               userPassword,
               isConfigured,
+              // fetchIsNeeded,
             } satisfies ContextType
           }
         />

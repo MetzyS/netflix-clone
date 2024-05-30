@@ -15,6 +15,7 @@ import { PiHouse } from "react-icons/pi";
 import { PiEyeglasses } from "react-icons/pi";
 import { IoPersonAddOutline } from "react-icons/io5";
 import SetupLanguage from "../components/Setup/SetupLanguage/SetupLanguage";
+import SetupSeriesPreferences from "../components/Setup/SetupSeriesPreferences/SetupSeriesPreferences";
 
 const Setup = () => {
   useEffect(() => {
@@ -136,7 +137,7 @@ const Setup = () => {
                     onSubmit={handleSetupLanguage}
                   />
                 )}
-                {setupStep == 7 && <div>setupStep 6/6</div>}
+                {setupStep == 7 && <SetupSeriesPreferences />}
                 {setupStep == 8 && <div>setupStep 8</div>}
                 {setupStep == 9 && <Navigate to="/" />}
               </div>
