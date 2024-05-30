@@ -2,11 +2,12 @@ import { IoIosThumbsUp } from "react-icons/io";
 import { useDataContext } from "../../../layouts/RootLayout";
 import SerieCheckbox from "./LikeCheckbox";
 import { Fragment } from "react/jsx-runtime";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { DataType, LikeSelectionType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import DefaultContainer from "../../ui/DefaultContainer";
 import { Form } from "react-router-dom";
+import DefaultButton from "../../ui/DefaultButton";
 
 const SetupLikeSelection = (props: {
   content: LikeSelectionType;
@@ -20,6 +21,7 @@ const SetupLikeSelection = (props: {
   const [likedShow, setLikedShow] = useState<{ id: number; name: string }[]>(
     []
   );
+  const [disabled, setDisabled] = useState(true);
 
   const addLikedShow = (values: { id: number; name: string }) => {
     setLikedShow((prevState) => [...prevState, values]);
@@ -35,6 +37,11 @@ const SetupLikeSelection = (props: {
 
   useEffect(() => {
     console.log(likedShow);
+    if (likedShow.length === 3) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   }, [likedShow]);
 
   useEffect(() => {
@@ -56,6 +63,10 @@ const SetupLikeSelection = (props: {
     }
   }, [fetchedData]);
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log("submit:", likedShow);
+  };
   return (
     <>
       {isLoading ? (
@@ -82,7 +93,10 @@ const SetupLikeSelection = (props: {
                 </p>
               </div>
 
-              <Form className="flex gap-2 flex-wrap mt-6 max-w-[500px] m-auto">
+              <Form
+                className="flex gap-2 flex-wrap mt-6 max-w-[500px] m-auto"
+                onSubmit={(e) => handleSubmit(e)}
+              >
                 {Object.entries(popularSeries!).map((item) => {
                   const serie = item[1][1];
                   return (
@@ -96,10 +110,19 @@ const SetupLikeSelection = (props: {
                         }
                         add={addLikedShow}
                         remove={removeLikedShow}
+                        likedItems={likedShow}
                       />
                     </Fragment>
                   );
                 })}
+                <DefaultButton
+                  text={
+                    disabled
+                      ? props.content.buttonSelectionNotFinished
+                      : props.content.buttonSelectionFinished
+                  }
+                  disabled={disabled}
+                />
               </Form>
             </div>
           </DefaultContainer>

@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
 const LikeCheckbox = (props: {
   id: number;
@@ -7,8 +7,24 @@ const LikeCheckbox = (props: {
   checkedIcon: ReactElement;
   add: (value: { id: number; name: string }) => void;
   remove: (id: number) => void;
+  likedItems: { id: number; name: string }[];
 }) => {
   const [isChecked, setIsChecked] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    if (props.likedItems.length === 3) {
+      props.likedItems.filter((item) => {
+        if (item.id != props.id) {
+          setIsDisabled(true);
+        } else {
+          setIsDisabled(false);
+        }
+      });
+    } else {
+      setIsDisabled(false);
+    }
+  }, [props.likedItems]);
   const handleChecked = () => {
     if (isChecked === false) {
       props.add({ id: props.id, name: props.name });
@@ -37,6 +53,7 @@ const LikeCheckbox = (props: {
         id={`serie-${props.id}`}
         className="appearance-none absolute top-0 right-0 bottom-0 left-0"
         onChange={handleChecked}
+        disabled={isDisabled}
       />
     </div>
   );
