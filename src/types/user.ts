@@ -23,6 +23,7 @@ export type UserType = {
   birthDate: string;
   gender: number;
   preferedLanguages: number[];
+  likedShows: { id: number; title: string }[];
 };
 
 export type Users = Record<string, UserType>;

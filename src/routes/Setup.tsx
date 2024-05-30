@@ -15,7 +15,7 @@ import { PiHouse } from "react-icons/pi";
 import { PiEyeglasses } from "react-icons/pi";
 import { IoPersonAddOutline } from "react-icons/io5";
 import SetupLanguage from "../components/Setup/SetupLanguage/SetupLanguage";
-import SetupSeriesPreferences from "../components/Setup/SetupSeriesPreferences/SetupSeriesPreferences";
+import SetupSeriesPreferences from "../components/Setup/SetupSeriesPreferences/SetupLikeSelection";
 
 const Setup = () => {
   useEffect(() => {
@@ -78,6 +78,13 @@ const Setup = () => {
     handleSetupStep(7);
   };
 
+  const handleSetupLike = (values: { id: number; name: string }[]) => {
+    handleCreateUser([
+      { key: "likedShows", value: values },
+      { key: "setupStep", value: 8 },
+    ]);
+  };
+
   return (
     <>
       {user!.registered ? (
@@ -137,7 +144,13 @@ const Setup = () => {
                     onSubmit={handleSetupLanguage}
                   />
                 )}
-                {setupStep == 7 && <SetupSeriesPreferences />}
+                {setupStep == 7 && (
+                  <SetupSeriesPreferences
+                    content={content.likeSelection}
+                    backButtonFunc={() => handleBackStep(6)}
+                    onSubmit={handleSetupLike}
+                  />
+                )}
                 {setupStep == 8 && <div>setupStep 8</div>}
                 {setupStep == 9 && <Navigate to="/" />}
               </div>

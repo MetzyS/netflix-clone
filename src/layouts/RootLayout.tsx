@@ -31,6 +31,7 @@ const RootLayout = () => {
     birthDate: "",
     preferedLanguages: [],
     gender: 0,
+    likedShows: [],
   };
   const savedUser = localStorage.getItem("user");
   const navigate = useNavigate();
@@ -54,33 +55,14 @@ const RootLayout = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // State gestion fetch (pas besoin de fetch si l'utilisateur est deconnecté)
-  // const [fetchIsNeeded, setFetchIsNeeded] = useState<boolean>(false);
   const { data, dataIsLoading } = useFetch();
   const [fetchedData, setFetchedData] = useState<{
     data: Record<number, DataType>;
     dataIsLoading: boolean;
   }>({ data: {}, dataIsLoading: true });
 
-  const [popularSeries, setPopularSeries] = useState<[string, DataType][]>();
-
   useEffect(() => {
     setFetchedData({ data, dataIsLoading });
-    if (data != null) {
-      let pop = Object.entries(data).filter((item) => {
-        {
-          if (item[1].weight > 99) {
-            return {
-              item,
-            };
-          }
-          return null;
-        }
-      });
-      setPopularSeries(pop);
-      console.log(popularSeries);
-
-      // NEXT STEP FILTER PAR "weight" > 95 ou 99..
-    }
   }, [data, isLoading]);
 
   // Header: State gestion style
@@ -292,7 +274,7 @@ const RootLayout = () => {
               userEmail,
               userPassword,
               isConfigured,
-              popularSeries,
+              // popularSeries,
             } satisfies ContextType
           }
         />

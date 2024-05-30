@@ -70,7 +70,7 @@ const SetupLanguage = (props: {
             type="submit"
             primary={true}
             text={props.content.button}
-            className="self-end mt-6 py-4 px-16 rounded-sm"
+            className="w-full lg:self-end lg:w-1/2 mt-6 py-4 px-16 rounded-sm"
           ></DefaultButton>
         </Form>
       </div>
