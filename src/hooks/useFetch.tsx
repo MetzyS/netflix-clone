@@ -8,6 +8,7 @@ const useFetch = (): {
   const apiKey = import.meta.env.VITE_TMDB_AUTH_TOKEN;
 
   const [data, setData] = useState<DataType[]>([]);
+  const [movies, setMovies] = useState<DataType[]>([]);
 
   const [dataIsLoading, setDataIsLoading] = useState<boolean>(true);
   const options = {
@@ -24,21 +25,36 @@ const useFetch = (): {
 
     const fetchTopRatedSeries = async () => {
       try {
-        const [responseFr, responseEn] = await Promise.all([
+        const [
+          responseSeriesFr,
+          responseSeriesEn,
+          responseMoviesFr,
+          responseMoviesEn,
+        ] = await Promise.all([
           fetch(
-            "https://api.themoviedb.org/3/tv/top_rated?laguage=fr&page=1",
+            "https://api.themoviedb.org/3/tv/top_rated?language=fr-FR&page=1",
             options
           ),
           fetch(
-            "https://api.themoviedb.org/3/tv/top_rated?laguage=en&page=1",
+            "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1",
+            options
+          ),
+          fetch(
+            "https://api.themoviedb.org/3/movie/top_rated?language=fr-FR&page=1",
+            options
+          ),
+          fetch(
+            "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
             options
           ),
         ]);
-        const resultFr = await responseFr.json();
-        const resultEn = await responseEn.json();
+        const seriesFr = await responseSeriesFr.json();
+        const seriesEn = await responseSeriesEn.json();
+        const moviesFr = await responseMoviesFr.json();
+        const moviesEn = await responseMoviesEn.json();
 
         if (isMounted) {
-          setData([resultFr, resultEn]);
+          setData([seriesFr, seriesEn, moviesFr, moviesEn]);
         }
       } catch (error) {
         console.error(error);

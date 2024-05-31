@@ -3,7 +3,7 @@ import { useDataContext } from "../../../layouts/RootLayout";
 import SerieCheckbox from "./LikeCheckbox";
 import { Fragment } from "react/jsx-runtime";
 import { useEffect, useState } from "react";
-import { LikeSelectionType } from "../../../types/data";
+import { LikeSelectionType, ResultType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import DefaultContainer from "../../ui/DefaultContainer";
 import { Form } from "react-router-dom";
@@ -14,61 +14,55 @@ const SetupLikeSelection = (props: {
   backButtonFunc: () => void;
   onSubmit: (values: { id: number; name: string }[]) => void;
 }) => {
-  const { user, fetchedData } = useDataContext();
+  const { user, fetchedData, lang } = useDataContext();
+
+  const [data, setData] = useState<ResultType[]>([]);
+  const [movies, setMovies] = useState<ResultType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedShows, setSelectedShows] = useState<number[]>([]);
+  const [disabled, setDisabled] = useState<boolean>(true);
 
-  // const [likedShow, setLikedShow] = useState<{ id: number; name: string }[]>(
-  //   []
-  // );
-  // const [disabled, setDisabled] = useState(true);
+  const addSelected = (id: number) => {
+    setSelectedShows((prevState) => [...prevState, id]);
+  };
 
-  // const addLikedShow = (values: { id: number; name: string }) => {
-  //   setLikedShow((prevState) => [...prevState, values]);
-  // };
+  const removeSelected = (id: number) => {
+    setSelectedShows(
+      selectedShows.filter((item) => {
+        return item !== id;
+      })
+    );
+  };
 
-  // const removeLikedShow = (id: number) => {
-  //   setLikedShow(
-  //     likedShow.filter((item) => {
-  //       return item.id != id;
-  //     })
-  //   );
-  // };
+  useEffect(() => {
+    if (selectedShows.length >= 3) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [selectedShows]);
 
-  // useEffect(() => {
-  //   console.log(likedShow);
-  //   if (likedShow.length === 3) {
-  //     setDisabled(false);
-  //   } else {
-  //     setDisabled(true);
-  //   }
-  // }, [likedShow]);
+  useEffect(() => {
+    if (fetchedData.dataIsLoading === false) {
+      if (lang === "fr") {
+        setData(fetchedData.data[0].results);
+        setMovies(fetchedData.data[2].results);
+      } else if (lang === "en") {
+        setData(fetchedData.data[1].results);
+        setMovies(fetchedData.data[3].results);
+      }
+    }
+  }, [lang, fetchedData]);
 
   useEffect(() => {
     setIsLoading(fetchedData.dataIsLoading);
-    console.log(fetchedData);
-    // if (fetchedData.data[0].results != null) {
-    // setIsLoading(false);
-    // let pop = Object.entries(fetchedData.data).filter((item) => {
-    //   {
-    //     if (item[1].weight > 95) {
-    //       return {
-    //         item,
-    //       };
-    //     }
-    //     return null;
-    //   }
-    // });
-    // setPopularSeries(pop);
-    // console.log(popularSeries);
-    // setIsLoading(false);
-    // }
-    // console.log(fetchedData);
   }, [fetchedData]);
 
   // const handleSubmit = (e: FormEvent) => {
   //   e.preventDefault();
   //   console.log("submit:", likedShow);
   // };
+  console.log(data);
   return (
     <>
       {isLoading ? (
@@ -95,24 +89,42 @@ const SetupLikeSelection = (props: {
                 </p>
               </div>
 
-              {/* <Form
+              <Form
                 className="flex gap-2 flex-wrap mt-6 max-w-[500px] m-auto"
-                onSubmit={(e) => handleSubmit(e)}
+                // onSubmit={(e) => handleSubmit(e)}
               >
-                {Object.entries(popularSeries!).map((item) => {
-                  const serie = item[1][1];
+                {Object.entries(data).map((item, index) => {
+                  const serie = data[index];
                   return (
                     <Fragment key={`serie-${serie.id}`}>
                       <SerieCheckbox
                         id={serie.id}
                         name={serie.name}
-                        src={serie.image.medium}
+                        src={serie.poster_path}
                         checkedIcon={
                           <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
                         }
-                        add={addLikedShow}
-                        remove={removeLikedShow}
-                        likedItems={likedShow}
+                        add={addSelected}
+                        remove={removeSelected}
+                        selectedShows={selectedShows}
+                      />
+                    </Fragment>
+                  );
+                })}
+                {Object.entries(movies).map((item, index) => {
+                  const serie = movies[index];
+                  return (
+                    <Fragment key={`serie-${serie.id}`}>
+                      <SerieCheckbox
+                        id={serie.id}
+                        name={serie.name}
+                        src={serie.poster_path}
+                        checkedIcon={
+                          <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                        }
+                        add={addSelected}
+                        remove={removeSelected}
+                        selectedShows={selectedShows}
                       />
                     </Fragment>
                   );
@@ -125,7 +137,7 @@ const SetupLikeSelection = (props: {
                   }
                   disabled={disabled}
                 />
-              </Form> */}
+              </Form>
             </div>
           </DefaultContainer>
         </>

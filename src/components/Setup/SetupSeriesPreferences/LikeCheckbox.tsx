@@ -5,31 +5,40 @@ const LikeCheckbox = (props: {
   name: string;
   src: string;
   checkedIcon: ReactElement;
-  add: (value: { id: number; name: string }) => void;
+  add: (id: number) => void;
   remove: (id: number) => void;
-  likedItems: { id: number; name: string }[];
+  selectedShows: number[];
 }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
-  useEffect(() => {
-    if (props.likedItems.length === 3) {
-      props.likedItems.filter((item) => {
-        if (item.id != props.id) {
-          setIsDisabled(true);
-        } else {
-          setIsDisabled(false);
-        }
-      });
-    } else {
-      setIsDisabled(false);
-    }
-  }, [props.likedItems]);
-  const handleChecked = () => {
+  // useEffect(() => {
+  //   if (props.likedItems.length === 3) {
+  //     props.likedItems.filter((item) => {
+  //       if (item.id != props.id) {
+  //         setIsDisabled(true);
+  //       } else {
+  //         setIsDisabled(false);
+  //       }
+  //     });
+  //   } else {
+  //     setIsDisabled(false);
+  //   }
+  // }, [props.likedItems]);
+  // const handleChecked = () => {
+  //   if (isChecked === false) {
+  //     props.add({ id: props.id, name: props.name });
+  //   } else {
+  //     props.remove(props.id);
+  //   }
+  //   setIsChecked(!isChecked);
+  // };
+
+  const handleChecked = (id: number) => {
     if (isChecked === false) {
-      props.add({ id: props.id, name: props.name });
+      props.add(id);
     } else {
-      props.remove(props.id);
+      props.remove(id);
     }
     setIsChecked(!isChecked);
   };
@@ -43,7 +52,7 @@ const LikeCheckbox = (props: {
         <></>
       )}
       <img
-        src={props.src}
+        src={`https://image.tmdb.org/t/p/w92/${props.src}`}
         alt=""
         className="size-full pointer-events-none rounded-md"
       />
@@ -52,9 +61,12 @@ const LikeCheckbox = (props: {
         name={`serie-${props.id}`}
         id={`serie-${props.id}`}
         className="appearance-none absolute top-0 right-0 bottom-0 left-0"
-        onChange={handleChecked}
+        onChange={() => handleChecked(props.id)}
         disabled={isDisabled}
       />
+      <span className="absolute z-30 text-blue-600 font-bold">
+        {props.name}
+      </span>
     </div>
   );
 };
