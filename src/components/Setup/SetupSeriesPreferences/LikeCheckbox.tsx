@@ -64,9 +64,6 @@ const LikeCheckbox = (props: {
         onChange={() => handleChecked(props.id)}
         disabled={isDisabled}
       />
-      <span className="absolute z-30 text-blue-600 font-bold">
-        {props.name}
-      </span>
     </div>
   );
 };
