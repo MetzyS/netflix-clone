@@ -2,8 +2,8 @@ import { IoIosThumbsUp } from "react-icons/io";
 import { useDataContext } from "../../../layouts/RootLayout";
 import SerieCheckbox from "./LikeCheckbox";
 import { Fragment } from "react/jsx-runtime";
-import { FormEvent, useEffect, useState } from "react";
-import { DataType, LikeSelectionType } from "../../../types/data";
+import { useEffect, useState } from "react";
+import { LikeSelectionType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import DefaultContainer from "../../ui/DefaultContainer";
 import { Form } from "react-router-dom";
@@ -15,58 +15,60 @@ const SetupLikeSelection = (props: {
   onSubmit: (values: { id: number; name: string }[]) => void;
 }) => {
   const { user, fetchedData } = useDataContext();
-  // console.log(popularSeries);
   const [isLoading, setIsLoading] = useState(true);
-  const [popularSeries, setPopularSeries] = useState<[string, DataType][]>();
-  const [likedShow, setLikedShow] = useState<{ id: number; name: string }[]>(
-    []
-  );
-  const [disabled, setDisabled] = useState(true);
 
-  const addLikedShow = (values: { id: number; name: string }) => {
-    setLikedShow((prevState) => [...prevState, values]);
-  };
+  // const [likedShow, setLikedShow] = useState<{ id: number; name: string }[]>(
+  //   []
+  // );
+  // const [disabled, setDisabled] = useState(true);
 
-  const removeLikedShow = (id: number) => {
-    setLikedShow(
-      likedShow.filter((item) => {
-        return item.id != id;
-      })
-    );
-  };
+  // const addLikedShow = (values: { id: number; name: string }) => {
+  //   setLikedShow((prevState) => [...prevState, values]);
+  // };
+
+  // const removeLikedShow = (id: number) => {
+  //   setLikedShow(
+  //     likedShow.filter((item) => {
+  //       return item.id != id;
+  //     })
+  //   );
+  // };
+
+  // useEffect(() => {
+  //   console.log(likedShow);
+  //   if (likedShow.length === 3) {
+  //     setDisabled(false);
+  //   } else {
+  //     setDisabled(true);
+  //   }
+  // }, [likedShow]);
 
   useEffect(() => {
-    console.log(likedShow);
-    if (likedShow.length === 3) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [likedShow]);
-
-  useEffect(() => {
-    setIsLoading(true);
-    if (fetchedData.data != null) {
-      let pop = Object.entries(fetchedData.data).filter((item) => {
-        {
-          if (item[1].weight > 95) {
-            return {
-              item,
-            };
-          }
-          return null;
-        }
-      });
-      setPopularSeries(pop);
-      console.log(popularSeries);
-      setIsLoading(false);
-    }
+    setIsLoading(fetchedData.dataIsLoading);
+    console.log(fetchedData);
+    // if (fetchedData.data[0].results != null) {
+    // setIsLoading(false);
+    // let pop = Object.entries(fetchedData.data).filter((item) => {
+    //   {
+    //     if (item[1].weight > 95) {
+    //       return {
+    //         item,
+    //       };
+    //     }
+    //     return null;
+    //   }
+    // });
+    // setPopularSeries(pop);
+    // console.log(popularSeries);
+    // setIsLoading(false);
+    // }
+    // console.log(fetchedData);
   }, [fetchedData]);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log("submit:", likedShow);
-  };
+  // const handleSubmit = (e: FormEvent) => {
+  //   e.preventDefault();
+  //   console.log("submit:", likedShow);
+  // };
   return (
     <>
       {isLoading ? (
@@ -93,7 +95,7 @@ const SetupLikeSelection = (props: {
                 </p>
               </div>
 
-              <Form
+              {/* <Form
                 className="flex gap-2 flex-wrap mt-6 max-w-[500px] m-auto"
                 onSubmit={(e) => handleSubmit(e)}
               >
@@ -123,7 +125,7 @@ const SetupLikeSelection = (props: {
                   }
                   disabled={disabled}
                 />
-              </Form>
+              </Form> */}
             </div>
           </DefaultContainer>
         </>

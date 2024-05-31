@@ -57,9 +57,9 @@ const RootLayout = () => {
   // State gestion fetch (pas besoin de fetch si l'utilisateur est deconnecté)
   const { data, dataIsLoading } = useFetch();
   const [fetchedData, setFetchedData] = useState<{
-    data: Record<number, DataType>;
+    data: DataType[];
     dataIsLoading: boolean;
-  }>({ data: {}, dataIsLoading: true });
+  }>({ data: [], dataIsLoading: true });
 
   useEffect(() => {
     setFetchedData({ data, dataIsLoading });

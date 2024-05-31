@@ -16,7 +16,7 @@ export type ContextType = {
   headerStyle: HeaderStyle;
 
   // fetched data
-  fetchedData: { data: Record<number, DataType>; dataIsLoading: boolean };
+  fetchedData: { data: DataType[]; dataIsLoading: boolean };
   // popularSeries: [string, DataType][] | undefined;
   // handlers user
   handleCreateUser: (
