@@ -90,53 +90,59 @@ const SetupLikeSelection = (props: {
               </div>
 
               <Form
-                className="flex gap-2 flex-wrap mt-6 max-w-[500px] m-auto"
+                className="flex flex-col mt-6 lg:w-2/3 lg:items-end"
                 // onSubmit={(e) => handleSubmit(e)}
               >
-                {Object.entries(data).map((item, index) => {
-                  const serie = data[index];
-                  return (
-                    <Fragment key={`serie-${serie.id}`}>
-                      <SerieCheckbox
-                        id={serie.id}
-                        name={serie.name}
-                        src={serie.poster_path}
-                        checkedIcon={
-                          <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
-                        }
-                        add={addSelected}
-                        remove={removeSelected}
-                        selectedShows={selectedShows}
-                      />
-                    </Fragment>
-                  );
-                })}
-                {Object.entries(movies).map((item, index) => {
-                  const serie = movies[index];
-                  return (
-                    <Fragment key={`serie-${serie.id}`}>
-                      <SerieCheckbox
-                        id={serie.id}
-                        name={serie.name}
-                        src={serie.poster_path}
-                        checkedIcon={
-                          <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
-                        }
-                        add={addSelected}
-                        remove={removeSelected}
-                        selectedShows={selectedShows}
-                      />
-                    </Fragment>
-                  );
-                })}
-                <DefaultButton
-                  text={
-                    disabled
-                      ? props.content.buttonSelectionNotFinished
-                      : props.content.buttonSelectionFinished
-                  }
-                  disabled={disabled}
-                />
+                <div className="relative flex gap-2 flex-wrap lg:max-w-[435px]">
+                  {Object.entries(data).map((item, index) => {
+                    const serie = data[index];
+                    return (
+                      <Fragment key={`serie-${serie.id}`}>
+                        <SerieCheckbox
+                          id={serie.id}
+                          name={serie.name}
+                          src={serie.poster_path}
+                          checkedIcon={
+                            <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                          }
+                          add={addSelected}
+                          remove={removeSelected}
+                          selectedShows={selectedShows}
+                        />
+                      </Fragment>
+                    );
+                  })}
+                  {Object.entries(movies).map((item, index) => {
+                    const serie = movies[index];
+                    return (
+                      <Fragment key={`serie-${serie.id}`}>
+                        <SerieCheckbox
+                          id={serie.id}
+                          name={serie.name}
+                          src={serie.poster_path}
+                          checkedIcon={
+                            <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                          }
+                          add={addSelected}
+                          remove={removeSelected}
+                          selectedShows={selectedShows}
+                        />
+                      </Fragment>
+                    );
+                  })}
+                </div>
+                <div className="sticky bottom-0 w-full mx-auto pb-6 pt-12 mt-6 bg-gradient-to-b from-transparent to-white shadow-sm pointer-events-none lg:flex lg:items-end">
+                  <DefaultButton
+                    text={
+                      disabled
+                        ? props.content.buttonSelectionNotFinished
+                        : props.content.buttonSelectionFinished
+                    }
+                    disabled={disabled}
+                    primary={true}
+                    className="py-6 disabled:bg-stone-300 disabled:text-stone-600 w-full pointer-events-auto disabled:cursor-default lg:w-1/2 lg:ml-auto"
+                  />
+                </div>
               </Form>
             </div>
           </DefaultContainer>

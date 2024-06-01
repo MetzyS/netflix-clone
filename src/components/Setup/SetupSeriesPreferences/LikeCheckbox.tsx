@@ -12,27 +12,13 @@ const LikeCheckbox = (props: {
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
-  // useEffect(() => {
-  //   if (props.likedItems.length === 3) {
-  //     props.likedItems.filter((item) => {
-  //       if (item.id != props.id) {
-  //         setIsDisabled(true);
-  //       } else {
-  //         setIsDisabled(false);
-  //       }
-  //     });
-  //   } else {
-  //     setIsDisabled(false);
-  //   }
-  // }, [props.likedItems]);
-  // const handleChecked = () => {
-  //   if (isChecked === false) {
-  //     props.add({ id: props.id, name: props.name });
-  //   } else {
-  //     props.remove(props.id);
-  //   }
-  //   setIsChecked(!isChecked);
-  // };
+  useEffect(() => {
+    props.selectedShows.length === 3
+      ? setIsDisabled(true)
+      : setIsDisabled(false);
+
+    props.selectedShows.includes(props.id) && setIsDisabled(false);
+  }, [props.selectedShows]);
 
   const handleChecked = (id: number) => {
     if (isChecked === false) {
@@ -43,7 +29,7 @@ const LikeCheckbox = (props: {
     setIsChecked(!isChecked);
   };
   return (
-    <div className={`relative w-20 rounded-md`}>
+    <div className={`relative w-[75px] sm:w-20 rounded-md`}>
       {isChecked ? (
         <span className="absolute bg-black/60 size-full rounded-md">
           {props.checkedIcon}
