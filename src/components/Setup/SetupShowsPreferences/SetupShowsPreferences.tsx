@@ -2,17 +2,17 @@ import { IoIosThumbsUp } from "react-icons/io";
 import { useDataContext } from "../../../layouts/RootLayout";
 import SerieCheckbox from "./LikeCheckbox";
 import { Fragment } from "react/jsx-runtime";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { LikeSelectionType, ResultType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import DefaultContainer from "../../ui/DefaultContainer";
 import { Form } from "react-router-dom";
 import DefaultButton from "../../ui/DefaultButton";
 
-const SetupLikeSelection = (props: {
+const SetupShowsPreferences = (props: {
   content: LikeSelectionType;
   backButtonFunc: () => void;
-  onSubmit: (values: { id: number; name: string }[]) => void;
+  onSubmit: (likedShowsId: number[]) => void;
 }) => {
   const { user, fetchedPopularShows } = useDataContext();
 
@@ -60,11 +60,10 @@ const SetupLikeSelection = (props: {
     }
   }, [fetchedPopularShows]);
 
-  // const handleSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-  //   console.log("submit:", likedShow);
-  // };
-  // console.log(data);
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    props.onSubmit(selectedShows);
+  };
   return (
     <>
       {isLoading ? (
@@ -93,7 +92,7 @@ const SetupLikeSelection = (props: {
 
               <Form
                 className="flex flex-col mt-6 lg:w-2/3 lg:items-end"
-                // onSubmit={(e) => handleSubmit(e)}
+                onSubmit={(e) => handleSubmit(e)}
               >
                 <div className="relative flex gap-2 flex-wrap lg:max-w-[435px]">
                   {Object.entries(series).map((item) => {
@@ -171,6 +170,7 @@ const SetupLikeSelection = (props: {
                 </div>
                 <div className="sticky bottom-0 w-full mx-auto pb-6 pt-12 mt-6 bg-gradient-to-b from-transparent to-white shadow-sm pointer-events-none lg:flex lg:items-end">
                   <DefaultButton
+                    type="submit"
                     text={
                       disabled
                         ? props.content.buttonSelectionNotFinished
@@ -190,4 +190,4 @@ const SetupLikeSelection = (props: {
   );
 };
 
-export default SetupLikeSelection;
+export default SetupShowsPreferences;

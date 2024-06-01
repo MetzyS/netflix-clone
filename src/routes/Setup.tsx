@@ -15,7 +15,8 @@ import { PiHouse } from "react-icons/pi";
 import { PiEyeglasses } from "react-icons/pi";
 import { IoPersonAddOutline } from "react-icons/io5";
 import SetupLanguage from "../components/Setup/SetupLanguage/SetupLanguage";
-import SetupSeriesPreferences from "../components/Setup/SetupSeriesPreferences/SetupLikeSelection";
+import SetupShowsPreferences from "../components/Setup/SetupShowsPreferences/SetupShowsPreferences";
+import SetupProfileHomepage from "../components/Setup/SetupProfileHomepage/SetupProfileHomepage";
 
 const Setup = () => {
   useEffect(() => {
@@ -35,54 +36,58 @@ const Setup = () => {
   const { content, isLoading }: SetUpLocaleType = useLocale("Setup", lang);
   const [setupStep, setSetupStep] = useState(user!.setupStep);
 
-  const handleSetupStep = (value: number) => {
-    handleCreateUser([{ key: "setupStep", value: value }]);
-    setSetupStep(value);
+  const handleSetupStep = (setupStep: number) => {
+    handleCreateUser([{ key: "setupStep", value: setupStep }]);
+    setSetupStep(setupStep);
   };
 
-  const handleSavePasswordRecovery = (value: string) => {
+  const handleSavePasswordRecovery = (phoneNumber: string) => {
     handleCreateUser([
-      { key: "number", value: value },
+      { key: "number", value: phoneNumber },
       { key: "setupStep", value: 2 },
     ]);
     handleSetupStep(2);
   };
 
-  const handleBackStep = (value: number) => {
-    handleCreateUser([{ key: "setupStep", value: value }]);
-    handleSetupStep(value);
+  const handleBackStep = (step: number) => {
+    handleCreateUser([{ key: "setupStep", value: step }]);
+    handleSetupStep(step);
   };
 
-  const handleSetupKidsProfiles = (value: UserProfile[]) => {
+  const handleSetupKidsProfiles = (profiles: UserProfile[]) => {
     handleCreateUser([
-      { key: "profiles", value: value },
+      { key: "profiles", value: profiles },
       { key: "setupStep", value: 5 },
     ]);
     handleSetupStep(5);
   };
 
-  const handleSetupDetails = (values: { date: string; gender: number }) => {
+  const handleSetupDetails = (birthDetails: {
+    date: string;
+    gender: number;
+  }) => {
     handleCreateUser([
-      { key: "birthDate", value: values.date },
-      { key: "gender", value: values.gender },
+      { key: "birthDate", value: birthDetails.date },
+      { key: "gender", value: birthDetails.gender },
       { key: "setupStep", value: 6 },
     ]);
     handleSetupStep(6);
   };
 
-  const handleSetupLanguage = (values: number[]) => {
+  const handleSetupLanguage = (languagesId: number[]) => {
     handleCreateUser([
-      { key: "preferedLanguages", value: values },
+      { key: "preferedLanguages", value: languagesId },
       { key: "setupStep", value: 7 },
     ]);
     handleSetupStep(7);
   };
 
-  const handleSetupLike = (values: { id: number; name: string }[]) => {
+  const handleSetupLike = (likedShowsId: number[]) => {
     handleCreateUser([
-      { key: "likedShows", value: values },
+      { key: "likedShows", value: likedShowsId },
       { key: "setupStep", value: 8 },
     ]);
+    handleSetupStep(8);
   };
 
   return (
@@ -145,13 +150,15 @@ const Setup = () => {
                   />
                 )}
                 {setupStep == 7 && (
-                  <SetupSeriesPreferences
+                  <SetupShowsPreferences
                     content={content.likeSelection}
                     backButtonFunc={() => handleBackStep(6)}
                     onSubmit={handleSetupLike}
                   />
                 )}
-                {setupStep == 8 && <div>setupStep 8</div>}
+                {setupStep == 8 && (
+                  <SetupProfileHomepage content={content.processing} />
+                )}
                 {setupStep == 9 && <Navigate to="/" />}
               </div>
               <Footer

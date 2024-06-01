@@ -9,7 +9,7 @@ import DefaultButton from "../../ui/DefaultButton";
 const SetupLanguage = (props: {
   backButtonFunc: () => void;
   content: LanguageSelectionType;
-  onSubmit: (values: number[]) => void;
+  onSubmit: (languagesId: number[]) => void;
 }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<number[]>([0]);
 

@@ -9,13 +9,13 @@ const PasswordRecovery = (props: {
   content: PasswordRecoveryType;
   email: string;
   userNumber: string;
-  handleSavePasswordRecovery: (value: string) => void;
+  handleSavePasswordRecovery: (phoneNumber: string) => void;
 }) => {
   const { handleCreateUser } = useDataContext();
   const [userNumber, setUserNumber] = useState<string>(props.userNumber);
 
-  const handleUserNumber = (value: string) => {
-    const number = value.replace(/\D/, "");
+  const handleUserNumber = (phoneNumber: string) => {
+    const number = phoneNumber.replace(/\D/, "");
     setUserNumber(number);
     handleCreateUser([{ key: "number", value: number }]);
   };

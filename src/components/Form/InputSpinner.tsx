@@ -1,9 +1,15 @@
-const InputSpinner = (props: { bg?: string; className?: string }) => {
+const InputSpinner = (props: {
+  bg?: string;
+  className?: string;
+  size?: string;
+}) => {
   return (
     <div role="status" className="w-full flex items-center justify-center">
       <svg
         aria-hidden="true"
-        className={`w-8 h-8 text-gray-200 animate-spin ${
+        className={`${
+          props.size ? props.size : "w-8 h-8"
+        } text-gray-200 animate-spin ${
           props.bg ? props.bg : "text-gray-600"
         } fill-blue-600 ${props.className ? props.className : ""}`}
         viewBox="0 0 100 101"

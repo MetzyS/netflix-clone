@@ -12,7 +12,7 @@ import { UserProfile } from "../../../types/user";
 
 const SetupProfilesIsAdult = (props: {
   backButtonFunc: () => void;
-  onSubmit: (value: UserProfile[]) => void;
+  onSubmit: (profile: UserProfile[]) => void;
   content: KidsProfileType;
   icons: ReactElement[];
   infoBoxContent: InfoBoxType;

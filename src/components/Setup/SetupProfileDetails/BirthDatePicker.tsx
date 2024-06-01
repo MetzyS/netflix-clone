@@ -17,7 +17,7 @@ const BirthDatePicker = (props: {
   select: string;
   genderList: string[];
   btn: string;
-  onSubmit: (values: { date: string; gender: number }) => void;
+  onSubmit: (birthDetails: { date: string; gender: number }) => void;
 }) => {
   const year = Number(new Date().getFullYear());
   const years: number[] = Array.from(new Array(99), (_, index) => year - index);
@@ -63,7 +63,7 @@ const BirthDatePicker = (props: {
 
   const handleSaveBirthDetails = (e: FormEvent) => {
     e.preventDefault;
-    const birthDate = `${day}/${month}/${year}`;
+    const birthDate = `${day}/${month}/${selectedYear}`;
     props.onSubmit({ date: birthDate, gender: gender });
   };
 

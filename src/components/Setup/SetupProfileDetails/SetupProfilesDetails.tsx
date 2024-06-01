@@ -7,7 +7,7 @@ import BirthDatePicker from "./BirthDatePicker";
 const SetupProfileDetails = (props: {
   backButtonFunc: () => void;
   content: ProfileDetailsType;
-  onSubmit: (values: { date: string; gender: number }) => void;
+  onSubmit: (birthDetails: { date: string; gender: number }) => void;
 }) => {
   const { user } = useDataContext();
   return (
