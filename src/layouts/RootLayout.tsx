@@ -7,8 +7,8 @@ import { userIsConnected } from "../helpers/userIsConnected";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import HeaderTwo from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
-import useFetch from "../hooks/useFetch";
 import { DataType } from "../types/data";
+import useFetchPopularShows from "../hooks/useFetchPopularShows";
 // import { useFetch } from "../hooks/useFetch";
 
 const RootLayout = () => {
@@ -55,14 +55,14 @@ const RootLayout = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // State gestion fetch (pas besoin de fetch si l'utilisateur est deconnecté)
-  const { data, dataIsLoading } = useFetch();
-  const [fetchedData, setFetchedData] = useState<{
+  const { data, dataIsLoading } = useFetchPopularShows();
+  const [fetchedPopularShows, setFetchedPopularShows] = useState<{
     data: DataType[];
     dataIsLoading: boolean;
   }>({ data: [], dataIsLoading: true });
 
   useEffect(() => {
-    setFetchedData({ data, dataIsLoading });
+    setFetchedPopularShows({ data, dataIsLoading });
   }, [data, isLoading]);
 
   // Header: State gestion style
@@ -252,7 +252,7 @@ const RootLayout = () => {
             {
               lang,
               user,
-              fetchedData,
+              fetchedPopularShows,
               handleChangeLang,
               handleChangeBg,
               handleUserEmail,

@@ -14,10 +14,14 @@ const SetupLikeSelection = (props: {
   backButtonFunc: () => void;
   onSubmit: (values: { id: number; name: string }[]) => void;
 }) => {
-  const { user, fetchedData, lang } = useDataContext();
+  const { user, fetchedPopularShows } = useDataContext();
 
-  const [data, setData] = useState<ResultType[]>([]);
+  const [series, setSeries] = useState<ResultType[]>([]);
+  const [seriesSecPage, setSeriesSecPage] = useState<ResultType[]>([]);
+
   const [movies, setMovies] = useState<ResultType[]>([]);
+  const [moviesSecPage, setMoviesSecPage] = useState<ResultType[]>([]);
+
   const [isLoading, setIsLoading] = useState(true);
   const [selectedShows, setSelectedShows] = useState<number[]>([]);
   const [disabled, setDisabled] = useState<boolean>(true);
@@ -43,26 +47,24 @@ const SetupLikeSelection = (props: {
   }, [selectedShows]);
 
   useEffect(() => {
-    if (fetchedData.dataIsLoading === false) {
-      if (lang === "fr") {
-        setData(fetchedData.data[0].results);
-        setMovies(fetchedData.data[2].results);
-      } else if (lang === "en") {
-        setData(fetchedData.data[1].results);
-        setMovies(fetchedData.data[3].results);
-      }
-    }
-  }, [lang, fetchedData]);
+    setIsLoading(fetchedPopularShows.dataIsLoading);
 
-  useEffect(() => {
-    setIsLoading(fetchedData.dataIsLoading);
-  }, [fetchedData]);
+    if (
+      fetchedPopularShows.data[0] != undefined &&
+      fetchedPopularShows.data[3] != undefined
+    ) {
+      setSeries(fetchedPopularShows.data[0].results);
+      setMovies(fetchedPopularShows.data[1].results);
+      setSeriesSecPage(fetchedPopularShows.data[2].results);
+      setMoviesSecPage(fetchedPopularShows.data[3].results);
+    }
+  }, [fetchedPopularShows]);
 
   // const handleSubmit = (e: FormEvent) => {
   //   e.preventDefault();
   //   console.log("submit:", likedShow);
   // };
-  console.log(data);
+  // console.log(data);
   return (
     <>
       {isLoading ? (
@@ -94,8 +96,8 @@ const SetupLikeSelection = (props: {
                 // onSubmit={(e) => handleSubmit(e)}
               >
                 <div className="relative flex gap-2 flex-wrap lg:max-w-[435px]">
-                  {Object.entries(data).map((item, index) => {
-                    const serie = data[index];
+                  {Object.entries(series).map((item) => {
+                    const serie = item[1];
                     return (
                       <Fragment key={`serie-${serie.id}`}>
                         <SerieCheckbox
@@ -112,14 +114,50 @@ const SetupLikeSelection = (props: {
                       </Fragment>
                     );
                   })}
-                  {Object.entries(movies).map((item, index) => {
-                    const serie = movies[index];
+                  {Object.entries(movies).map((item) => {
+                    const movie = item[1];
                     return (
-                      <Fragment key={`serie-${serie.id}`}>
+                      <Fragment key={`serie-${movie.id}`}>
                         <SerieCheckbox
-                          id={serie.id}
-                          name={serie.name}
-                          src={serie.poster_path}
+                          id={movie.id}
+                          name={movie.name}
+                          src={movie.poster_path}
+                          checkedIcon={
+                            <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                          }
+                          add={addSelected}
+                          remove={removeSelected}
+                          selectedShows={selectedShows}
+                        />
+                      </Fragment>
+                    );
+                  })}
+                  {Object.entries(moviesSecPage).map((item) => {
+                    const movie = item[1];
+                    return (
+                      <Fragment key={`serie-${movie.id}`}>
+                        <SerieCheckbox
+                          id={movie.id}
+                          name={movie.name}
+                          src={movie.poster_path}
+                          checkedIcon={
+                            <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                          }
+                          add={addSelected}
+                          remove={removeSelected}
+                          selectedShows={selectedShows}
+                        />
+                      </Fragment>
+                    );
+                  })}
+                  {Object.entries(seriesSecPage).map((item) => {
+                    const movie = item[1];
+                    return (
+                      <Fragment key={`serie-${movie.id}`}>
+                        <SerieCheckbox
+                          id={movie.id}
+                          name={movie.name}
+                          src={movie.poster_path}
                           checkedIcon={
                             <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
                           }

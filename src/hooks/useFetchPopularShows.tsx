@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { DataType } from "../types/data";
 
-const useFetch = (): {
+const useFetchPopularShows = (): {
   data: DataType[];
   dataIsLoading: boolean;
 } => {
   const apiKey = import.meta.env.VITE_TMDB_AUTH_TOKEN;
 
   const [data, setData] = useState<DataType[]>([]);
-  const [movies, setMovies] = useState<DataType[]>([]);
+  // const [movies, setMovies] = useState<DataType[]>([]);
 
   const [dataIsLoading, setDataIsLoading] = useState<boolean>(true);
   const options = {
@@ -23,35 +23,35 @@ const useFetch = (): {
     let isMounted = true;
     setDataIsLoading(true);
 
-    const fetchTopRatedSeries = async () => {
+    const fetchTopRatedShows = async () => {
       try {
         const [
           responseSeriesFr,
-          responseSeriesEn,
+          responseSeriesFrSecPage,
           responseMoviesFr,
-          responseMoviesEn,
+          responseMoviesFrSecPage,
         ] = await Promise.all([
           fetch(
-            "https://api.themoviedb.org/3/tv/top_rated?language=fr-FR&page=1",
+            "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=10000",
             options
           ),
           fetch(
-            "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1",
+            "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=2&sort_by=popularity.desc&vote_count.gte=10000",
             options
           ),
           fetch(
-            "https://api.themoviedb.org/3/movie/top_rated?language=fr-FR&page=1",
+            "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=10000",
             options
           ),
           fetch(
-            "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+            "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&vote_count.gte=10000",
             options
           ),
         ]);
         const seriesFr = await responseSeriesFr.json();
-        const seriesEn = await responseSeriesEn.json();
+        const seriesEn = await responseSeriesFrSecPage.json();
         const moviesFr = await responseMoviesFr.json();
-        const moviesEn = await responseMoviesEn.json();
+        const moviesEn = await responseMoviesFrSecPage.json();
 
         if (isMounted) {
           setData([seriesFr, seriesEn, moviesFr, moviesEn]);
@@ -65,7 +65,7 @@ const useFetch = (): {
       }
     };
 
-    fetchTopRatedSeries();
+    fetchTopRatedShows();
     return () => {
       isMounted = false;
     };
@@ -73,4 +73,4 @@ const useFetch = (): {
 
   return { data, dataIsLoading };
 };
-export default useFetch;
+export default useFetchPopularShows;

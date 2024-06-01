@@ -16,7 +16,7 @@ export type ContextType = {
   headerStyle: HeaderStyle;
 
   // fetched data
-  fetchedData: { data: DataType[]; dataIsLoading: boolean };
+  fetchedPopularShows: { data: DataType[]; dataIsLoading: boolean };
   // popularSeries: [string, DataType][] | undefined;
   // handlers user
   handleCreateUser: (
