@@ -78,7 +78,7 @@ const SetupProfilesNames = (props: {
 
   const maxProfiles = [1, 2, 3, 4];
   return (
-    <DefaultContainer>
+    <DefaultContainer className="mb-16 lg:mb-0">
       <div className="block lg:flex max-w-[1000px] sm:px-12 m-auto">
         <div className="lg:w-2/3 lg:mr-24">
           <BackButton onClick={props.backButtonFunc} />

@@ -63,7 +63,7 @@ const SetupProfilesIsAdult = (props: {
       Kidsimg = imgKidsFr;
   }
   return (
-    <DefaultContainer>
+    <DefaultContainer className="mb-16">
       <div className="block lg:flex max-w-[1000px] sm:px-12 m-auto">
         <div className="lg:w-2/3 lg:mr-24">
           <BackButton onClick={props.backButtonFunc} />

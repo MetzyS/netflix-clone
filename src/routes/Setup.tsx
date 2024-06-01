@@ -32,7 +32,14 @@ const Setup = () => {
     <BiUserPlus className="size-8" />,
   ];
 
-  const { user, lang, setWhiteTheme, handleCreateUser } = useDataContext();
+  const {
+    user,
+    lang,
+    setWhiteTheme,
+    handleCreateUser,
+    handleAccountIsConfigured,
+    handleConnect,
+  } = useDataContext();
   const { content, isLoading }: SetUpLocaleType = useLocale("Setup", lang);
   const [setupStep, setSetupStep] = useState(user!.setupStep);
 
@@ -90,6 +97,20 @@ const Setup = () => {
     handleSetupStep(8);
   };
 
+  const handleSaveInfos = () => {
+    // Simulation latence sauvegarde bdd
+    setTimeout(() => {
+      handleCreateUser([
+        { key: "isConfigured", value: true },
+        { key: "setupStep", value: 9 },
+      ]);
+      handleAccountIsConfigured(true);
+      handleConnect();
+
+      handleSetupStep(9);
+    }, 2000);
+  };
+
   return (
     <>
       {user!.registered ? (
@@ -98,7 +119,7 @@ const Setup = () => {
             <></>
           ) : (
             <div className="transition-all w-screen flex flex-col min-h-screen pt-20 sm:pt-32">
-              <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
+              <div className="text-black px-6 lg:px-8 flex-grow">
                 {setupStep == 1 && (
                   <PasswordRecovery
                     content={content.passwordRecovery}
@@ -157,7 +178,10 @@ const Setup = () => {
                   />
                 )}
                 {setupStep == 8 && (
-                  <SetupProfileHomepage content={content.processing} />
+                  <SetupProfileHomepage
+                    content={content.processing}
+                    saveInfos={handleSaveInfos}
+                  />
                 )}
                 {setupStep == 9 && <Navigate to="/" />}
               </div>

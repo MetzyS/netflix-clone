@@ -31,7 +31,7 @@ const SetupDeviceSelection = (props: {
     handleCreateUser([{ key: "setupStep", value: 3 }]), props.submitFunc();
   };
   return (
-    <DefaultContainer>
+    <DefaultContainer className="mb-8 lg:mb-0">
       <div className="block lg:flex max-w-[1000px] m-auto sm:px-12">
         <div className="lg:w-1/3">
           <BackButton onClick={props.backButtonFunc} />

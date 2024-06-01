@@ -21,7 +21,7 @@ const PasswordRecovery = (props: {
   };
 
   return (
-    <DefaultContainer className="max-w-[500px] m-auto">
+    <DefaultContainer className="max-w-[500px] m-auto mb-16 lg:mb-0">
       <h1 className="signup-title sm:text-4xl">{props.content.title}</h1>
       <div className="xs:text-lg">
         <p className="mt-8">

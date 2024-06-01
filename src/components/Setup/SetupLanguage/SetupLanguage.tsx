@@ -30,7 +30,7 @@ const SetupLanguage = (props: {
     props.onSubmit(selectedLanguage);
   };
   return (
-    <DefaultContainer>
+    <DefaultContainer className="mb-16">
       <div className="block lg:flex max-w-[1000px] sm:px-12 m-auto">
         <div className="lg:w-2/3 lg:mr-24">
           <BackButton onClick={props.backButtonFunc} />

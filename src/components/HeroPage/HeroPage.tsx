@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDataContext } from "../../layouts/RootLayout";
 import { HeroPageLocaleType } from "../../types/useLocaleTypes/ImportedLocaleTypes";
 import { useLocale } from "../../hooks/useLocale";
@@ -17,10 +17,18 @@ const HeroPage = () => {
     "HeroPage",
     lang
   );
+  // const [userIsConnected, setUserIsConnected] = useState<boolean>(
+  //   isRegistered && isConfigured
+  // );
+
   const { setWhiteTheme } = useDataContext();
   useEffect(() => {
     setWhiteTheme(false);
   }, []);
+
+  // useEffect(() => {
+  //   setUserIsConnected(isRegistered && isConfigured);
+  // }, [isRegistered, isConfigured]);
 
   return (
     <>
