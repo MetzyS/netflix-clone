@@ -12,6 +12,7 @@ import { HeaderStyle } from "../../types/headerstyle";
 const Header = (props: {
   headerStyle: HeaderStyle;
   isConnected: boolean;
+  isConfigured: boolean;
   lang: string;
   handleDisconnect: () => void;
   handleChangeLang: (lang: string) => void;
@@ -31,6 +32,9 @@ const Header = (props: {
 
   const { content, isLoading } = useLocale("Header", props.lang);
   const [smallHeader, setSmallHeader] = useState(false);
+  const [mainHeader, setMainHeader] = useState(
+    props.isConfigured && props.isConnected
+  );
 
   useEffect(() => {
     if (resizeOnScroll) {
@@ -40,62 +44,72 @@ const Header = (props: {
     }
   }, [props.headerStyle]);
 
+  useEffect(() => {
+    setMainHeader(props.isConnected && props.isConfigured);
+  }, [props.isConnected, props.isConfigured]);
+
   if (isLoading) {
     return <></>;
   }
 
   return (
-    <header
-      className={`${
-        fixed ? "fixed" : "absolute"
-      } z-20 top-0 left-0 right-0 flex flex-wrap items-center m-auto justify-between gap-2 ${background} max-w-[1600px] px-6 ${
-        smallHeader ? "py-2" : ""
-      } ${signupHeader ? "" : "py-6"} ${className ? className : ""}`}
-    >
-      <Link to="/">
-        <Logo className={`${logoClassName}`} />
-      </Link>
-      <div className="flex items-center gap-2">
-        {showSelectLang && (
-          <SelectLang
-            handleChangeLang={props.handleChangeLang}
-            lang={props.lang}
-          />
-        )}
-        {transparentBtn ? (
-          props.isConnected ? (
-            <TransparentButton
-              onClick={props.handleDisconnect}
-              text={content.disconnect}
-              className={`py-1 px-4 text-base lg:text-xl`}
-            />
-          ) : (
-            <TransparentLink
-              link={link}
-              text={content.button}
-              className={`py-1 px-4`}
-            />
-          )
-        ) : showBtn ? (
-          props.isConnected ? (
-            <DefaultButton
-              primary={true}
-              className={`ring-default py-1 px-4 text-base lg:text-xl`}
-              text={content.disconnect}
-              onClick={props.handleDisconnect}
-            />
-          ) : (
-            <DefaultLink
-              link="/login"
-              text={content.button}
-              className={`py-1 px-4 text-base lg:text-xl`}
-            />
-          )
-        ) : (
-          <></>
-        )}
-      </div>
-    </header>
+    <>
+      {mainHeader ? (
+        <header>header</header>
+      ) : (
+        <header
+          className={`${
+            fixed ? "fixed" : "absolute"
+          } z-20 top-0 left-0 right-0 flex flex-wrap items-center m-auto justify-between gap-2 ${background} max-w-[1600px] px-6 ${
+            smallHeader ? "py-2" : ""
+          } ${signupHeader ? "" : "py-6"} ${className ? className : ""}`}
+        >
+          <Link to="/">
+            <Logo className={`${logoClassName}`} />
+          </Link>
+          <div className="flex items-center gap-2">
+            {showSelectLang && (
+              <SelectLang
+                handleChangeLang={props.handleChangeLang}
+                lang={props.lang}
+              />
+            )}
+            {transparentBtn ? (
+              props.isConnected ? (
+                <TransparentButton
+                  onClick={props.handleDisconnect}
+                  text={content.disconnect}
+                  className={`py-1 px-4 text-base lg:text-xl`}
+                />
+              ) : (
+                <TransparentLink
+                  link={link}
+                  text={content.button}
+                  className={`py-1 px-4`}
+                />
+              )
+            ) : showBtn ? (
+              props.isConnected ? (
+                <DefaultButton
+                  primary={true}
+                  className={`ring-default py-1 px-4 text-base lg:text-xl`}
+                  text={content.disconnect}
+                  onClick={props.handleDisconnect}
+                />
+              ) : (
+                <DefaultLink
+                  link="/login"
+                  text={content.button}
+                  className={`py-1 px-4 text-base lg:text-xl`}
+                />
+              )
+            ) : (
+              <></>
+            )}
+          </div>
+        </header>
+      )}
+    </>
   );
 };
 

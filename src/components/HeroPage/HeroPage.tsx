@@ -17,18 +17,11 @@ const HeroPage = () => {
     "HeroPage",
     lang
   );
-  // const [userIsConnected, setUserIsConnected] = useState<boolean>(
-  //   isRegistered && isConfigured
-  // );
 
   const { setWhiteTheme } = useDataContext();
   useEffect(() => {
     setWhiteTheme(false);
   }, []);
-
-  // useEffect(() => {
-  //   setUserIsConnected(isRegistered && isConfigured);
-  // }, [isRegistered, isConfigured]);
 
   return (
     <>

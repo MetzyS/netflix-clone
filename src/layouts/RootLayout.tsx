@@ -244,6 +244,7 @@ const RootLayout = () => {
           headerStyle={headerStyle}
           lang={lang}
           isConnected={isConnected}
+          isConfigured={isConfigured}
           handleDisconnect={handleDisconnect}
           handleChangeLang={handleChangeLang}
         />
