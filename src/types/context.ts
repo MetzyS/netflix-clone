@@ -13,6 +13,7 @@ export type ContextType = {
   userPassword: string;
   isConnected: boolean;
   isLoading: boolean;
+  selectedProfile: undefined | number;
   headerStyle: HeaderStyle;
 
   // fetched data
@@ -22,7 +23,7 @@ export type ContextType = {
   handleCreateUser: (
     values: Array<{
       key: keyof UserType;
-      value: string | number | UserProfile | {};
+      value: string | number | UserProfile | undefined | {};
     }>
   ) => void;
   handleChangeLang: (value: string) => void;

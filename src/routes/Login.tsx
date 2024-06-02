@@ -47,8 +47,14 @@ const Login = () => {
       { key: "fullName", value: "" },
       { key: "avatarUrl", value: "" },
       { key: "registerStep", value: 6 },
-      { key: "profiles", value: [] },
-      { key: "selectedProfile", value: 0 },
+      {
+        key: "profiles",
+        value: [
+          { id: 0, username: "MainUser", avatarUrl: "", isAdult: true },
+          { id: 1, username: "KidUser", avatarUrl: "", isAdult: false },
+        ],
+      },
+      { key: "selectedProfile", value: undefined },
       { key: "preferedDevices", value: [] },
       { key: "authorization", value: true },
       { key: "plan", value: 0 },

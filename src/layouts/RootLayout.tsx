@@ -177,7 +177,7 @@ const RootLayout = () => {
   const handleCreateUser = (
     values: Array<{
       key: keyof UserType;
-      value: string | number | UserProfile | {};
+      value: string | number | UserProfile | undefined | {};
     }>
   ) => {
     setIsRegistered(true);
@@ -189,7 +189,7 @@ const RootLayout = () => {
         localStorage.setItem("user", JSON.stringify(updatedUser));
         if (item.key === "email" && typeof item.value != "string") {
           const updatedUsername = createUsernameFromEmail(
-            item.value.toString()
+            item.value!.toString()
           );
           let update = { ...updatedUser, username: updatedUsername };
           localStorage.setItem("user", JSON.stringify(update));
@@ -284,7 +284,7 @@ const RootLayout = () => {
               userEmail,
               userPassword,
               isConfigured,
-              // popularSeries,
+              selectedProfile,
             } satisfies ContextType
           }
         />

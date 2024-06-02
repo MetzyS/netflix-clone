@@ -30,7 +30,7 @@ const ProfileChoice = (props: {
           {props.profiles.map((item, index) => (
             <button
               type="button"
-              className="text-center text-neutral-400 hover:text-white group/item"
+              className="text-center text-neutral-400 hover:text-white group/item relative"
               onClick={() => props.onChange(item.id)}
               key={`profileBtn-${item.id}`}
             >
@@ -39,6 +39,13 @@ const ProfileChoice = (props: {
                 alt=""
                 className="max-w-[100px] rounded-md border border-transparent group-hover/item:border-white"
               />
+              {item.isAdult ? (
+                <></>
+              ) : (
+                <span className="absolute font-bold text-red-500 bottom-7 right-2 drop-shadow-[1px_1px_3px_rgba(255,255,255,1)]">
+                  kids
+                </span>
+              )}
               <span className="text-sm">{item.username}</span>
             </button>
           ))}
