@@ -14,6 +14,7 @@ export type UserType = {
   avatarUrl?: string;
   registerStep: number;
   profiles: UserProfile[];
+  selectedProfile: undefined | number;
   preferedDevices: string[];
   authorization: boolean;
   plan: number;

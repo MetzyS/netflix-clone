@@ -48,6 +48,7 @@ const Login = () => {
       { key: "avatarUrl", value: "" },
       { key: "registerStep", value: 6 },
       { key: "profiles", value: [] },
+      { key: "selectedProfile", value: 0 },
       { key: "preferedDevices", value: [] },
       { key: "authorization", value: true },
       { key: "plan", value: 0 },

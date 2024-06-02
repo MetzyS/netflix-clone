@@ -1,1 +1,7 @@
-{}
+{
+  "profileChoice": {
+    "title": "Who's watching?",
+    "addButton": "Add Profile",
+    "manageButton": "Manage Profiles"
+  }
+}

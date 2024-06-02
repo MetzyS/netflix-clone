@@ -21,6 +21,7 @@ const RootLayout = () => {
     password: "",
     number: "",
     profiles: [],
+    selectedProfile: undefined,
     preferedDevices: [],
     username: "",
     avatarUrl: "",
@@ -48,6 +49,7 @@ const RootLayout = () => {
   );
   const [userEmail, setUserEmail] = useState(user.email);
   const [userPassword, setUserPassword] = useState(user.password);
+  const [selectedProfile, setSelectedProfile] = useState(user.selectedProfile);
   // State gestion langage
   const [lang, setLang] = useState<string>("fr");
 
@@ -198,6 +200,11 @@ const RootLayout = () => {
     );
   };
 
+  const handleSaveSelectedProfile = (id: number) => {
+    setSelectedProfile(id);
+    handleCreateUser([{ key: "selectedProfile", value: id }]);
+  };
+
   const handleDisconnect = () => {
     const user = userIsConnected();
     if (user) {
@@ -232,6 +239,7 @@ const RootLayout = () => {
     setIsConnected(false);
     setIsRegistered(false);
     setAccountIsConfigured(false);
+    setSelectedProfile(undefined);
     localStorage.removeItem("user");
   };
 
@@ -267,6 +275,7 @@ const RootLayout = () => {
               handleHeaderStyle,
               setWhiteTheme,
               handleAccountIsConfigured,
+              handleSaveSelectedProfile,
               headerStyle,
               registerStep,
               isRegistered,

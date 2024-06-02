@@ -31,6 +31,7 @@ export type ContextType = {
   handleRegisterAccount: (value: boolean) => void;
   handleSubmitRegister: (value: string) => Promise<Boolean>;
   handleAccountIsConfigured: (value: boolean) => void;
+  handleSaveSelectedProfile: (id: number) => void;
 
   // handlers style
   setWhiteTheme: (value: boolean) => void;

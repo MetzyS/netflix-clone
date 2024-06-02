@@ -23,7 +23,7 @@ const Header = (props: {
     background,
     className,
     fixed,
-    resizeOnScroll,
+    // resizeOnScroll,
     transparentBtn,
     logoClassName,
     link,
@@ -31,18 +31,17 @@ const Header = (props: {
   } = props.headerStyle;
 
   const { content, isLoading } = useLocale("Header", props.lang);
-  const [smallHeader, setSmallHeader] = useState(false);
   const [mainHeader, setMainHeader] = useState(
     props.isConfigured && props.isConnected
   );
 
-  useEffect(() => {
-    if (resizeOnScroll) {
-      window.addEventListener("scroll", () => {
-        setSmallHeader(window.scrollY > 200);
-      });
-    }
-  }, [props.headerStyle]);
+  // useEffect(() => {
+  //   if (resizeOnScroll) {
+  //     window.addEventListener("scroll", () => {
+  //       setSmallHeader(window.scrollY > 200);
+  //     });
+  //   }
+  // }, [props.headerStyle]);
 
   useEffect(() => {
     setMainHeader(props.isConnected && props.isConfigured);
@@ -55,14 +54,33 @@ const Header = (props: {
   return (
     <>
       {mainHeader ? (
-        <header>header</header>
+        <header>
+          {showBtn ? (
+            props.isConnected ? (
+              <DefaultButton
+                primary={true}
+                className={`ring-default py-1 px-4 text-base lg:text-xl`}
+                text={content.disconnect}
+                onClick={props.handleDisconnect}
+              />
+            ) : (
+              <DefaultLink
+                link="/login"
+                text={content.button}
+                className={`py-1 px-4 text-base lg:text-xl`}
+              />
+            )
+          ) : (
+            <></>
+          )}
+        </header>
       ) : (
         <header
           className={`${
             fixed ? "fixed" : "absolute"
           } z-20 top-0 left-0 right-0 flex flex-wrap items-center m-auto justify-between gap-2 ${background} max-w-[1600px] px-6 ${
-            smallHeader ? "py-2" : ""
-          } ${signupHeader ? "" : "py-6"} ${className ? className : ""}`}
+            signupHeader ? "" : "py-6"
+          } ${className ? className : ""}`}
         >
           <Link to="/">
             <Logo className={`${logoClassName}`} />
@@ -79,20 +97,20 @@ const Header = (props: {
                 <TransparentButton
                   onClick={props.handleDisconnect}
                   text={content.disconnect}
-                  className={`py-1 px-4 text-base lg:text-xl`}
+                  className={`py-1 px-4 text-sm lg:text-xl`}
                 />
               ) : (
                 <TransparentLink
                   link={link}
                   text={content.button}
-                  className={`py-1 px-4`}
+                  className={`py-1 px-4 text-sm lg:text-xl`}
                 />
               )
             ) : showBtn ? (
               props.isConnected ? (
                 <DefaultButton
                   primary={true}
-                  className={`ring-default py-1 px-4 text-base lg:text-xl`}
+                  className={`ring-default py-1 px-4 text-sm lg:text-xl`}
                   text={content.disconnect}
                   onClick={props.handleDisconnect}
                 />
@@ -100,7 +118,7 @@ const Header = (props: {
                 <DefaultLink
                   link="/login"
                   text={content.button}
-                  className={`py-1 px-4 text-base lg:text-xl`}
+                  className={`py-1 px-4 text-sm lg:text-xl`}
                 />
               )
             ) : (
