@@ -246,7 +246,9 @@ const RootLayout = () => {
   return (
     <>
       <main
-        className={`w-screen h-full flex-grow ${bgWhite ? "bg-white" : ""}`}
+        className={`w-screen h-full flex-grow ${bgWhite ? "bg-white" : ""} ${
+          isConfigured && isConnected && "bg-neutral-900"
+        }`}
       >
         <HeaderTwo
           headerStyle={headerStyle}

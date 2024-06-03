@@ -3,10 +3,16 @@ import { useEffect, useState } from "react";
 import DefaultContainer from "../ui/DefaultContainer";
 import { useLocale } from "../../hooks/useLocale";
 import ProfileChoice from "./ProfileChoice.tsx/ProfileChoice";
+import TopShowBanner from "./TopShowBanner/TopShowBanner";
 
 const ShowMovies = (props: { selectedProfile: undefined | number }) => {
-  const { setWhiteTheme, lang, user, handleSaveSelectedProfile } =
-    useDataContext();
+  const {
+    setWhiteTheme,
+    lang,
+    user,
+    handleSaveSelectedProfile,
+    fetchedPopularShows,
+  } = useDataContext();
   const { content, isLoading } = useLocale("ShowMovies", lang);
   const [profile, setProfile] = useState<undefined | number>(
     props.selectedProfile
@@ -20,9 +26,10 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   useEffect(() => {
     setWhiteTheme(false);
   }, []);
+
   return (
     <>
-      <DefaultContainer className="w-screen overflow-hidden pt-20 md:px-12">
+      <DefaultContainer className="w-screen overflow-hidden">
         {isLoading ? (
           <span>loading</span>
         ) : user && profile === undefined ? (
@@ -32,9 +39,17 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
             onChange={handleSelectedProfile}
           />
         ) : (
-          <div className="bg-red-500 w-full h-96">
-            profile selected: {props.selectedProfile}
-          </div>
+          <>
+            {fetchedPopularShows.dataIsLoading ? (
+              <div>loading</div>
+            ) : (
+              <TopShowBanner
+                fetchedData={fetchedPopularShows.data}
+                lang={lang}
+                content={content.topShowBanner}
+              />
+            )}
+          </>
         )}
       </DefaultContainer>
     </>

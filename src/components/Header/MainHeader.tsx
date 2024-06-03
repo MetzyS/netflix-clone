@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "../../types/data";
 import Logo from "../ui/Logo";
@@ -19,6 +19,20 @@ const MainHeader = (props: {
   handleDisconnect: () => void;
   handleChangeLang: (lang: string) => void;
 }) => {
+  useEffect(() => {
+    window.addEventListener("scroll", handleTransparentMenu);
+  });
+  const [transparentMenu, setTransparentMenu] = useState(true);
+
+  const handleTransparentMenu = () => {
+    let currentScroll = window.scrollY;
+    if (currentScroll > 5) {
+      setTransparentMenu(false);
+    } else {
+      setTransparentMenu(true);
+    }
+  };
+
   const [showNavMenu, setShowNavMenu] = useState<boolean>(false);
   const [showProfileMenu, setShowProfileMenu] = useState<boolean>(false);
   const [showNotificationMenu, setShowNotificationMenu] =
@@ -37,7 +51,7 @@ const MainHeader = (props: {
   };
 
   const handleShowNotificationsMenu = () => {
-    setShowNotificationMenu(!showProfileMenu);
+    setShowNotificationMenu(!showNotificationMenu);
     setShowNavMenu(false);
     setShowProfileMenu(false);
   };
@@ -49,12 +63,17 @@ const MainHeader = (props: {
     <FiHelpCircle className="size-6" />,
     <RiLogoutBoxLine className="size-6" />,
   ];
+
   return (
     <>
       {props.isLoading ? (
         <div>loading</div>
       ) : (
-        <header className="fixed py-6 px-4 w-full flex gap-4 bg-transparent items-center justify-between">
+        <header
+          className={`fixed py-6 px-4 w-full flex gap-4 items-center justify-between transition-colors duration-700 bg-neutral-900 ${
+            transparentMenu ? "bg-opacity-0" : "bg-opacity-100"
+          }`}
+        >
           {/* logo */}
           <Link to="/">
             <Logo className="w-28" />
@@ -63,19 +82,19 @@ const MainHeader = (props: {
           {/* menu */}
           <nav className="flex items-center flex-grow relative font-semibold">
             <button className="block lg:hidden" onClick={handleShowNavMenu}>
-              Browse
+              {props.content.mainHeader.browseBtn}
             </button>
             <ul
               className={`${
-                showNavMenu ? "flex" : "hidden"
-              } absolute flex-col border-t-2 bg-black/85 w-max -left-20 top-12 lg:relative lg:flex-row lg:-left-0 lg:top-0 lg:mt-0 lg:border-none 
+                showNavMenu ? "flex" : "hidden lg:flex"
+              } absolute flex-col border-t-2 bg-black/85 lg:bg-transparent w-max -left-20 top-12 lg:relative lg:flex-row lg:-left-0 lg:top-0 lg:mt-0 lg:border-none  transition-colors duration-700
               `}
             >
               {props.content.mainHeader.browseList.map((item, index) => (
                 <Link
                   to={item.link}
                   key={`navlink-${index}`}
-                  className="py-3 px-8 text-center transition-all hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400"
+                  className="text-sm py-3 px-8 lg:px-3 text-center transition-all hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400"
                   onClick={() => setShowNavMenu(false)}
                 >
                   {item.name}
@@ -88,9 +107,22 @@ const MainHeader = (props: {
           <div className="flex gap-3 lg:mr-6">
             <button className="hidden lg:block">search</button>
             {/* Notif btn */}
-            <button onClick={handleShowNotificationsMenu}>
-              <FiBell className="size-6" />
-            </button>
+            <div className="flex items-center relative">
+              <button onClick={handleShowNotificationsMenu}>
+                <FiBell className="size-6" />
+              </button>
+              <div
+                className={`${
+                  showNotificationMenu ? "block" : "hidden"
+                } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
+              `}
+              >
+                <p className="px-6 py-4">
+                  {props.content.mainHeader.notificationMenu[1].text[0]}
+                </p>
+              </div>
+            </div>
+            {/* Profile btn */}
             <div className="flex items-center relative">
               <button onClick={handleShowProfileMenu}>
                 <img
@@ -98,11 +130,10 @@ const MainHeader = (props: {
                   className="w-8"
                 />
               </button>
-              {/* Profile btn */}
               <div
                 className={`${
                   showProfileMenu ? "block" : "hidden"
-                } absolute bg-black/85 w-max -right-4 top-14 -mt-1 lg:-mt-2 border-t-2 
+                } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
               `}
               >
                 <ul className="flex flex-col font-semibold border-b border-neutral-600">

@@ -18,7 +18,6 @@ export type ContextType = {
 
   // fetched data
   fetchedPopularShows: { data: DataType[]; dataIsLoading: boolean };
-  // popularSeries: [string, DataType][] | undefined;
   // handlers user
   handleCreateUser: (
     values: Array<{

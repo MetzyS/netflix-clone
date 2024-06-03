@@ -21,7 +21,7 @@ const ProfileChoice = (props: {
     ProfileIconFive,
   ];
   return (
-    <DefaultContainer className="absolute top-0 right-0 left-0 bottom-0 bg-neutral-800 flex items-center justify-center">
+    <DefaultContainer className="absolute top-0 right-0 left-0 bottom-0 bg-neutral-800 flex items-center justify-center md:px-12">
       <div className="flex flex-col m-auto max-w-[550px]">
         <h1 className="text-center font-semibold text-3xl">
           {props.content.title}

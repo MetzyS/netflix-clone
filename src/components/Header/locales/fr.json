@@ -5,18 +5,22 @@
     "browseBtn": "Parcourir",
     "browseList": [
       { "name": "Accueil", "link": "/" },
-      { "name": "Series", "link": "/" },
+      { "name": "Séries", "link": "/" },
       { "name": "Films", "link": "/" },
-      { "name": "Nouveautés", "link": "/" },
+      { "name": "Nouveautés populaires", "link": "/" },
       { "name": "Ma liste", "link": "/" },
-      { "name": "Parcourir par langages", "link": "/" }
+      { "name": "Explorer par langue", "link": "/" }
     ],
     "profileMenu": [
-      { "name": "Gestion des Profils", "link": "/" },
-      { "name": "Transfert Profil", "link": "/" },
+      { "name": "Gérer les profils", "link": "/" },
+      { "name": "Transférer un profil", "link": "/" },
       { "name": "Compte", "link": "/" },
       { "name": "Centre d'aiede", "link": "/" },
       { "name": "Se déconnecter", "link": "/" }
+    ],
+    "notificationMenu": [
+      { "value": true, "text": ["Vous avez ", "notifications."] },
+      { "value": true, "text": ["Pas de notification.", ""] }
     ]
   }
 }

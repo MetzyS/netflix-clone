@@ -3,5 +3,10 @@
     "title": "Who's watching?",
     "addButton": "Add Profile",
     "manageButton": "Manage Profiles"
+  },
+  "topShowBanner": {
+    "playButton": "Play",
+    "infoButton": "More Info",
+    "title": ["#", "in TV Shows Today"]
   }
 }

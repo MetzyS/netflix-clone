@@ -17,6 +17,10 @@
       { "name": "Account", "link": "/" },
       { "name": "Help Center", "link": "/" },
       { "name": "Sign out of Netflix", "link": "/" }
+    ],
+    "notificationMenu": [
+      { "value": true, "text": ["You have ", "notifications."] },
+      { "value": true, "text": ["No recent notifications.", ""] }
     ]
   }
 }

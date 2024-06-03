@@ -5,6 +5,7 @@ export type Header = {
     browseBtn: string;
     browseList: { name: string; link: string }[];
     profileMenu: { name: string; link: string }[];
+    notificationMenu: { value: boolean; text: string[] }[];
   };
 };
 
@@ -388,6 +389,12 @@ export type ProfileChoiceType = {
   title: string;
   addButton: string;
   manageButton: string;
+};
+
+export type TopShowBannerType = {
+  playButton: string;
+  infoButton: string;
+  title: string[];
 };
 
 export default LangType;
