@@ -25,29 +25,35 @@ const TopShowBanner = (props: {
   };
   return (
     <>
-      <div
-        style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original${props.fetchedData[language].results[0].backdrop_path})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="py-40"
-      >
-        <div>
-          <p>
-            <span>icon</span>
-            <span>
-              {props.content.title[0]}1{props.content.title[1]}
-            </span>
-          </p>
-          <p>{props.fetchedData[language].results[0].overview}</p>
+      <div className="h-[56.25vw] relative">
+        <div
+          style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/original${props.fetchedData[language].results[0].backdrop_path}`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          className="h-[50%] py-[30%]"
+        >
+          <div className="absolute top-0 bottom-0 right-0 left-0 bg-[radial-gradient(circle,_rgba(255,255,255,0)_0%,_rgba(0,0,0,0.7)_100%)]">
+            <p className="mt-[20%]">
+              <span>icon</span>
+              <span>
+                {props.content.title[0]}1{props.content.title[1]}
+              </span>
+            </p>
+            <p className="text-sm w-[75%] lg:w-[30%]">
+              {props.fetchedData[language].results[0].overview}
+            </p>
+          </div>
         </div>
         <div>
           <div>
             <button>Lecture</button>
             <button>Plus d'infos</button>
           </div>
-          <div></div>
+          <div>
+            <span>13+</span>
+          </div>
         </div>
       </div>
     </>
