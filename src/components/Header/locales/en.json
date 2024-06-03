@@ -1,4 +1,22 @@
 {
   "button": "Sign In",
-  "disconnect": "Sign Out"
+  "disconnect": "Sign Out",
+  "mainHeader": {
+    "browseBtn": "Browse",
+    "browseList": [
+      { "name": "Home", "link": "/" },
+      { "name": "TV Shows", "link": "/" },
+      { "name": "Movies", "link": "/" },
+      { "name": "New & Popular", "link": "/" },
+      { "name": "My List", "link": "/" },
+      { "name": "Browse by Languages", "link": "/" }
+    ],
+    "profileMenu": [
+      { "name": "Manage Profiles", "link": "/" },
+      { "name": "Transfer Profile", "link": "/" },
+      { "name": "Account", "link": "/" },
+      { "name": "Help Center", "link": "/" },
+      { "name": "Sign out of Netflix", "link": "/" }
+    ]
+  }
 }

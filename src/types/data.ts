@@ -1,6 +1,11 @@
 export type Header = {
   button: string;
   disconnect: string;
+  mainHeader: {
+    browseBtn: string;
+    browseList: { name: string; link: string }[];
+    profileMenu: { name: string; link: string }[];
+  };
 };
 
 export type HeroDescription = {

@@ -255,6 +255,8 @@ const RootLayout = () => {
           isConfigured={isConfigured}
           handleDisconnect={handleDisconnect}
           handleChangeLang={handleChangeLang}
+          selectedProfile={selectedProfile}
+          user={user}
         />
         <Outlet
           context={

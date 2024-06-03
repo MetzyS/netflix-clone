@@ -1,20 +1,25 @@
 import { useLocale } from "../../hooks/useLocale";
-import DefaultButton from "../ui/DefaultButton";
-import DefaultLink from "../ui/DefaultLink";
 import { useEffect, useState } from "react";
 import { HeaderStyle } from "../../types/headerstyle";
 import HeroHeader from "./HeroHeader";
+import MainHeader from "./MainHeader";
+import { UserType } from "../../types/user";
+import UserProfileIconOne from "../../assets/profile-0.png";
+import UserProfileIconTwo from "../../assets/profile-1.png";
+import UserProfileIconThree from "../../assets/profile-2.png";
+import UserProfileIconFour from "../../assets/profile-3.png";
+import UserProfileIconFive from "../../assets/profile-4.png";
 
 const Header = (props: {
   headerStyle: HeaderStyle;
   isConnected: boolean;
   isConfigured: boolean;
+  selectedProfile: undefined | number;
   lang: string;
+  user: UserType;
   handleDisconnect: () => void;
   handleChangeLang: (lang: string) => void;
 }) => {
-  const { showBtn } = props.headerStyle;
-
   const { content, isLoading } = useLocale("Header", props.lang);
   const [mainHeader, setMainHeader] = useState(
     props.isConfigured && props.isConnected
@@ -24,33 +29,27 @@ const Header = (props: {
     setMainHeader(props.isConnected && props.isConfigured);
   }, [props.isConnected, props.isConfigured]);
 
-  if (isLoading) {
-    return <></>;
-  }
+  const userProfileIcons: string[] = [
+    UserProfileIconOne,
+    UserProfileIconTwo,
+    UserProfileIconThree,
+    UserProfileIconFour,
+    UserProfileIconFive,
+  ];
 
   return (
     <>
       {mainHeader ? (
-        <header>
-          {showBtn ? (
-            props.isConnected ? (
-              <DefaultButton
-                primary={true}
-                className={`ring-default py-1 px-4 text-base lg:text-xl`}
-                text={content.disconnect}
-                onClick={props.handleDisconnect}
-              />
-            ) : (
-              <DefaultLink
-                link="/login"
-                text={content.button}
-                className={`py-1 px-4 text-base lg:text-xl`}
-              />
-            )
-          ) : (
-            <></>
-          )}
-        </header>
+        <MainHeader
+          content={content}
+          lang={props.lang}
+          isLoading={isLoading}
+          handleDisconnect={props.handleDisconnect}
+          handleChangeLang={props.handleChangeLang}
+          selectedProfile={props.selectedProfile}
+          user={props.user}
+          userProfileIcons={userProfileIcons}
+        />
       ) : (
         <HeroHeader
           headerStyle={props.headerStyle}
@@ -59,6 +58,8 @@ const Header = (props: {
           lang={props.lang}
           handleDisconnect={props.handleDisconnect}
           handleChangeLang={props.handleChangeLang}
+          isLoading={isLoading}
+          content={content}
         />
       )}
     </>

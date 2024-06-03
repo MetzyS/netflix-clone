@@ -6,13 +6,15 @@ import TransparentLink from "../ui/TransparentLink";
 import DefaultButton from "../ui/DefaultButton";
 import DefaultLink from "../ui/DefaultLink";
 import { HeaderStyle } from "../../types/headerstyle";
-import { useLocale } from "../../hooks/useLocale";
+import { Header } from "../../types/data";
 
 const HeroHeader = (props: {
   headerStyle: HeaderStyle;
   isConnected: boolean;
   isConfigured: boolean;
   lang: string;
+  content: Header;
+  isLoading: boolean;
   handleDisconnect: () => void;
   handleChangeLang: (lang: string) => void;
 }) => {
@@ -27,10 +29,10 @@ const HeroHeader = (props: {
     link,
     signupHeader,
   } = props.headerStyle;
-  const { content, isLoading } = useLocale("Header", props.lang);
+
   return (
     <>
-      {isLoading ? (
+      {props.isLoading ? (
         <div>loading</div>
       ) : (
         <header
@@ -54,13 +56,13 @@ const HeroHeader = (props: {
               props.isConnected ? (
                 <TransparentButton
                   onClick={props.handleDisconnect}
-                  text={content.disconnect}
+                  text={props.content.disconnect}
                   className={`py-1 px-4 text-sm lg:text-xl`}
                 />
               ) : (
                 <TransparentLink
                   link={link}
-                  text={content.button}
+                  text={props.content.button}
                   className={`py-1 px-4 text-sm lg:text-xl`}
                 />
               )
@@ -69,13 +71,13 @@ const HeroHeader = (props: {
                 <DefaultButton
                   primary={true}
                   className={`ring-default py-1 px-4 text-sm lg:text-xl`}
-                  text={content.disconnect}
+                  text={props.content.disconnect}
                   onClick={props.handleDisconnect}
                 />
               ) : (
                 <DefaultLink
                   link="/login"
-                  text={content.button}
+                  text={props.content.button}
                   className={`py-1 px-4 text-sm lg:text-xl`}
                 />
               )
