@@ -9,7 +9,6 @@ import HeaderTwo from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
 import { DataType } from "../types/data";
 import useFetchPopularShows from "../hooks/useFetchPopularShows";
-// import { useFetch } from "../hooks/useFetch";
 
 const RootLayout = () => {
   // Paramètres et infos utilisateur

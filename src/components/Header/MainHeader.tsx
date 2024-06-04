@@ -70,7 +70,7 @@ const MainHeader = (props: {
         <div>loading</div>
       ) : (
         <header
-          className={`fixed py-6 px-4 w-full flex gap-4 items-center justify-between transition-colors duration-700 bg-neutral-900 z-20 ${
+          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors duration-700 bg-neutral-900 z-20 ${
             transparentMenu ? "bg-opacity-0" : "bg-opacity-100"
           }`}
         >

@@ -385,6 +385,29 @@ export type ResultType = {
   vote_count: number;
 };
 
+export type ImageCollectionType = {
+  backdrops: {
+    aspect_ratio: number;
+    height: number;
+    iso_639_1: boolean | null;
+    file_path: string;
+    vote_average: number;
+    vote_count: number;
+    width: number;
+  }[];
+  id: number;
+  logos: [];
+  posters: {
+    aspect_ratio: number;
+    height: number;
+    iso_639_1: boolean | null;
+    file_path: string;
+    vote_average: number;
+    vote_count: number;
+    width: number;
+  }[];
+};
+
 export type ProfileChoiceType = {
   title: string;
   addButton: string;

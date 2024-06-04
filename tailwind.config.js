@@ -6,6 +6,9 @@ export default {
       screens: {
         xs: "375px",
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(rgba(0,0,0,0%), rgba(0,0,0,40%))",
+      },
     },
   },
   plugins: [],

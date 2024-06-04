@@ -25,10 +25,25 @@ const TopShowBanner = (props: {
   };
   return (
     <>
-      <div className="h-[56.25vw] relative">
+      <div
+        style={{
+          backgroundImage: `url(https://image.tmdb.org/t/p/original${props.fetchedData[language].results[1].backdrop_path})`,
+          maskImage:
+            "linear-gradient(to bottom, #000 0%, #000 70% ,rgba(0,0,0,0))",
+          backgroundPosition: "top",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+        className="w-full h-[50vh] relative"
+      >
+        <div className="absolute flex items-center size-full bg-gradient-radial px-4 lg:px-14">
+          <span>test</span>
+        </div>
+      </div>
+      {/* <div className="h-[56.25vw] relative">
         <div
           style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/original${props.fetchedData[language].results[0].backdrop_path}`,
+            backgroundImage: `url(https://image.tmdb.org/t/p/original${props.fetchedData[language].results[0].backdrop_path)}`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -55,7 +70,7 @@ const TopShowBanner = (props: {
             <span>13+</span>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
