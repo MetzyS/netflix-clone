@@ -47,12 +47,12 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
             {fetchedPopularShows.dataIsLoading ? (
               <div>loading</div>
             ) : (
-              <ShowBackdrop
-                showData={fetchedPopularShows.data[0].results[randomNumber()]}
-                // title={fetchedPopularShows[0].results[1].name}
-                // backdropImageUrl={`url(https://image.tmdb.org/t/p/original${fetchedPopularShows[0].results[1].backdrop_path})`}
-                content={content.topShowBanner}
-              />
+              <>
+                <ShowBackdrop
+                  showData={fetchedPopularShows.data[0].results[randomNumber()]}
+                  content={content.topShowBanner}
+                />
+              </>
             )}
           </>
         )}

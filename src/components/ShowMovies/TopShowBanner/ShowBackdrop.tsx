@@ -9,8 +9,8 @@ const ShowBackdrop = (props: {
 }) => {
   const defaultDescSize = "max-h-[100px]";
   const hideSize = "max-h-0";
-  const defaultTitleSize = "text-5xl lg:text-8xl";
-  const zoomedTitleSize = "text-6xl lg:text-9xl";
+  const defaultTitleSize = "text-5xl lg:text-7xl";
+  const zoomedTitleSize = "text-6xl lg:text-8xl";
   const [descTransition, setDescTransition] = useState(defaultDescSize);
   const [firstTransition, setFirstTransition] = useState(true);
   const [titleTransition, setTitleTransition] = useState(defaultTitleSize);
@@ -46,9 +46,8 @@ const ShowBackdrop = (props: {
         className="w-full h-[100vh] relative"
       >
         <div className="absolute flex size-full bg-gradient-radial px-4 lg:px-14">
-          <div className="self-center">
+          <div className="self-center w-full">
             <div
-              className="h-[120px] lg:h-[180px]"
               onMouseEnter={() =>
                 handleTriggerEffect({
                   desc: defaultDescSize,
@@ -63,17 +62,17 @@ const ShowBackdrop = (props: {
               }
             >
               <p
-                className={`${titleTransition} font-bold drop-shadow-default w-5/6 lg:w-2/3 hover:lg:w-1/2 leading-8 text-wrap transition-all duration-700`}
+                className={`${titleTransition} font-bold drop-shadow-default w-5/6 lg:w-3/4 leading-[3rem] text-wrap transition-all duration-700`}
               >
                 {props.showData.name}
               </p>
               <p
-                className={`text-sm drop-shadow-default mt-6 w-11/12 sm:w-10/12 md:w-1/2 line-clamp-3 text-ellipsis ${descTransition} transition-all duration-700`}
+                className={`text-sm drop-shadow-default mt-6 w-11/12 sm:w-10/12 md:w-1/2 line-clamp-3 text-ellipsis ${descTransition} transition-all duration-500`}
               >
                 {props.showData.overview}
               </p>
             </div>
-            <div className="mt-4 flex justify-between h-fit relative">
+            <div className="mt-6 flex justify-between relative">
               <div className="flex gap-2 lg:gap-4 items-center">
                 <button
                   type="button"
