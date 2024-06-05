@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import DefaultContainer from "../ui/DefaultContainer";
 import { useLocale } from "../../hooks/useLocale";
 import ProfileChoice from "./ProfileChoice.tsx/ProfileChoice";
-import TopShowBanner from "./TopShowBanner/TopShowBanner";
+import ShowBackdrop from "./TopShowBanner/ShowBackdrop";
 
 const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const {
@@ -21,6 +21,10 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const handleSelectedProfile = (id: number): void => {
     setProfile(id);
     handleSaveSelectedProfile(id);
+  };
+
+  const randomNumber = () => {
+    return Math.floor(Math.random() * 10);
   };
 
   useEffect(() => {
@@ -43,9 +47,10 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
             {fetchedPopularShows.dataIsLoading ? (
               <div>loading</div>
             ) : (
-              <TopShowBanner
-                fetchedData={fetchedPopularShows.data}
-                lang={lang}
+              <ShowBackdrop
+                showData={fetchedPopularShows.data[0].results[randomNumber()]}
+                // title={fetchedPopularShows[0].results[1].name}
+                // backdropImageUrl={`url(https://image.tmdb.org/t/p/original${fetchedPopularShows[0].results[1].backdrop_path})`}
                 content={content.topShowBanner}
               />
             )}
