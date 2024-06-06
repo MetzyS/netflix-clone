@@ -8,5 +8,34 @@
     "playButton": "Play",
     "infoButton": "More Info",
     "title": ["#", "in TV Shows Today"]
-  }
+  },
+  "sections": [
+    {
+      "title": "Trouvez votre prochain coup de coeur"
+    },
+    {
+      "title": "Ma liste"
+    },
+    {
+      "title": "À regarder pendant de très longues heures"
+    },
+    {
+      "title": "On pense que vous allez adorer..."
+    },
+    {
+      "title": "Notre sélection du jour pour vous"
+    },
+    {
+      "title": "Les plus recherchés"
+    },
+    {
+      "title": "Séries à regarder sans modération"
+    },
+    {
+      "title": "Nouveautés sur Netflix"
+    },
+    {
+      "title": "Séries incontournables"
+    }
+  ]
 }

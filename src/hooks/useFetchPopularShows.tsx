@@ -1,23 +1,14 @@
 import { useState, useEffect } from "react";
 import { DataType } from "../types/data";
+import { fetchSettings } from "./fetchSettings";
 
 const useFetchPopularShows = (): {
   data: DataType[];
   dataIsLoading: boolean;
 } => {
-  const apiKey = import.meta.env.VITE_TMDB_AUTH_TOKEN;
-
   const [data, setData] = useState<DataType[]>([]);
-  // const [movies, setMovies] = useState<DataType[]>([]);
 
   const [dataIsLoading, setDataIsLoading] = useState<boolean>(true);
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-  };
 
   useEffect(() => {
     let isMounted = true;
@@ -33,19 +24,19 @@ const useFetchPopularShows = (): {
         ] = await Promise.all([
           fetch(
             "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=10000",
-            options
+            fetchSettings.options
           ),
           fetch(
             "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=2&sort_by=popularity.desc&vote_count.gte=10000",
-            options
+            fetchSettings.options
           ),
           fetch(
             "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=10000",
-            options
+            fetchSettings.options
           ),
           fetch(
             "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&vote_count.gte=10000",
-            options
+            fetchSettings.options
           ),
         ]);
         const seriesFr = await responseSeriesFr.json();

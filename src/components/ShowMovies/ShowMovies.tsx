@@ -4,6 +4,7 @@ import DefaultContainer from "../ui/DefaultContainer";
 import { useLocale } from "../../hooks/useLocale";
 import ProfileChoice from "./ProfileChoice.tsx/ProfileChoice";
 import ShowBackdrop from "./TopShowBanner/ShowBackdrop";
+import CustomSection from "./CustomSection/CustomSection";
 
 const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const {
@@ -51,6 +52,10 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
                 <ShowBackdrop
                   showData={fetchedPopularShows.data[0].results[randomNumber()]}
                   content={content.topShowBanner}
+                />
+                <CustomSection
+                  title={content.sections[0].title}
+                  data={fetchedPopularShows.data[0].results}
                 />
               </>
             )}
