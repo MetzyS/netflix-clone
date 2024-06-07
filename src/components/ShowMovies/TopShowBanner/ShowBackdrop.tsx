@@ -43,7 +43,7 @@ const ShowBackdrop = (props: {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-        className="w-full h-[100vh] relative"
+        className="w-full h-screen relative"
       >
         <div className="absolute flex size-full bg-gradient-radial px-4 lg:px-14">
           <div className="self-center w-full">
@@ -76,7 +76,7 @@ const ShowBackdrop = (props: {
               <div className="flex gap-2 lg:gap-4 items-center">
                 <button
                   type="button"
-                  className="px-4 lg:px-6 py-2 bg-neutral-200 hover:bg-neutral-400 text-sm lg:text-lg text-black font-semibold rounded-md flex gap-2 items-center leading-"
+                  className="px-4 lg:px-6 py-2 bg-neutral-200 hover:bg-neutral-400 text-sm lg:text-lg text-black font-semibold rounded-md flex gap-2 items-center"
                 >
                   <FaPlay className="size-5 lg:size-8" />
                   {props.content.playButton}

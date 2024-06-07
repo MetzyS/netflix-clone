@@ -5,6 +5,7 @@ import { useLocale } from "../../hooks/useLocale";
 import ProfileChoice from "./ProfileChoice.tsx/ProfileChoice";
 import ShowBackdrop from "./TopShowBanner/ShowBackdrop";
 import CustomSection from "./CustomSection/CustomSection";
+import SkeletonShowBackdrop from "./Skeleton/SkeletonShowBackdrop";
 
 const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const {
@@ -46,7 +47,7 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
         ) : (
           <>
             {fetchedPopularShows.dataIsLoading ? (
-              <div>loading</div>
+              <SkeletonShowBackdrop />
             ) : (
               <>
                 <ShowBackdrop
