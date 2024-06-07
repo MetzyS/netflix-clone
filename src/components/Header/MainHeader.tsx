@@ -8,6 +8,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { FiHelpCircle, FiBell } from "react-icons/fi";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const MainHeader = (props: {
   content: Header;
@@ -70,10 +71,22 @@ const MainHeader = (props: {
         <div>loading</div>
       ) : (
         <header
-          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors duration-700 bg-neutral-900 z-20 ${
-            transparentMenu ? "bg-opacity-0" : "bg-opacity-100"
+          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors bg-neutral-900 z-20 ${
+            transparentMenu
+              ? showNavMenu
+                ? "bg-neutral-900 lg:bg-opacity-0 duration-0"
+                : "bg-opacity-0 duration-200"
+              : "bg-opacity-100 duration-700"
           }`}
         >
+          {/* Mobile nav btn */}
+          <button
+            type="button"
+            className="lg:hidden flex ites-center"
+            onClick={handleShowNavMenu}
+          >
+            <RxHamburgerMenu className="size-6 mr-4" />
+          </button>
           {/* logo */}
           <Link to="/">
             <Logo className="w-28" />
@@ -81,96 +94,83 @@ const MainHeader = (props: {
 
           {/* menu */}
           <nav className="flex items-center flex-grow relative font-semibold">
-            <button className="block lg:hidden" onClick={handleShowNavMenu}>
-              {props.content.mainHeader.browseBtn}
-            </button>
-            <ul
+            <div
               className={`${
-                showNavMenu ? "flex" : "hidden lg:flex"
-              } absolute flex-col border-t-2 bg-black/85 lg:bg-transparent w-max -left-20 top-12 lg:relative lg:flex-row lg:-left-0 lg:top-0 lg:mt-0 lg:border-none  transition-colors duration-700
+                showNavMenu ? "flex flex-col lg:flex-row" : "hidden"
+              } fixed bg-neutral-900 w-max left-0 top-20 transition-colors duration-700 h-full lg:relative lg:flex lg:bg-transparent lg:w-full lg:justify-between lg:-left-0 lg:top-0 lg:mt-0 lg:items-center
               `}
             >
-              {props.content.mainHeader.browseList.map((item, index) => (
-                <Link
-                  to={item.link}
-                  key={`navlink-${index}`}
-                  className="text-sm py-3 px-8 lg:px-3 text-center transition-all hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400"
-                  onClick={() => setShowNavMenu(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </ul>
-          </nav>
-
-          {/* settings */}
-          <div className="flex gap-3 lg:mr-6">
-            <button className="hidden lg:block">search</button>
-            {/* Notif btn */}
-            <div className="flex items-center relative">
-              <button onClick={handleShowNotificationsMenu}>
-                <FiBell className="size-6" />
-              </button>
-              <div
-                className={`${
-                  showNotificationMenu ? "block" : "hidden"
-                } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
-              `}
-              >
-                <p className="px-6 py-4">
-                  {props.content.mainHeader.notificationMenu[1].text[0]}
-                </p>
-              </div>
-            </div>
-            {/* Profile btn */}
-            <div className="flex items-center relative">
-              <button onClick={handleShowProfileMenu}>
-                <img
-                  src={props.userProfileIcons[props.selectedProfile!]}
-                  className="w-8"
-                />
-              </button>
-              <div
-                className={`${
-                  showProfileMenu ? "block" : "hidden"
-                } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
-              `}
-              >
-                <ul className="flex flex-col font-semibold border-b border-neutral-600">
-                  {props.user.profiles.map((item, index) => (
-                    <li className="text-sm" key={`profileBtn-${index}`}>
-                      <button className="flex gap-2 px-2 py-3 items-end group/profile">
-                        <img
-                          src={props.userProfileIcons[item.id]}
-                          alt="user profile icon"
-                          className="w-6"
-                        />
-                        <span className="group-hover/profile:underline">
-                          {item.username}
-                        </span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-                <ul className="text-sm font-semibold">
-                  {props.content.mainHeader.profileMenu.map((item, index) => (
-                    <li
-                      key={`profileMenu-${index}`}
-                      className="group/profilelink flex px-2 py-3 items-center gap-2 cursor-pointer last:border-t last:border-neutral-600"
+              <ul className="flex flex-col lg:flex-row lg:gap-0 order-2 lg:order-1 pt-2 lg:pt-0">
+                {props.content.mainHeader.browseList.map((item, index) => (
+                  <li className="flex lg:block">
+                    <Link
+                      to={item.link}
+                      key={`navlink-${index}`}
+                      className="text-sm py-2 px-8 lg:px-3 transition-color hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400 w-full"
+                      onClick={() => setShowNavMenu(false)}
                     >
-                      {profileLinkIcons[index]}
-                      <Link
-                        to={item.link}
-                        className="flex gap-2 items-end group-hover/profilelink:underline"
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {/* settings desktop */}
+              <div className="lg:mr-6 lg:flex lg:gap-3 order-1 lg:order-2">
+                <button className="hidden lg:block">search</button>
+                {/* Notif btn */}
+                <div className="hidden lg:flex items-center relative">
+                  <button onClick={handleShowNotificationsMenu}>
+                    <FiBell className="size-6" />
+                  </button>
+                  <div
+                    className={`${
+                      showNotificationMenu ? "block" : "hidden"
+                    } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
+              `}
+                  >
+                    <p className="px-6 py-4">
+                      {props.content.mainHeader.notificationMenu[1].text[0]}
+                    </p>
+                  </div>
+                </div>
+                {/* Profile btn */}
+                <div className="flex flex-col relative py-3 px-8 lg:py-0 lg:px-0">
+                  <button
+                    // onClick={handleShowProfileMenu}
+                    className="flex items-center gap-4"
+                  >
+                    <img
+                      src={props.userProfileIcons[props.selectedProfile!]}
+                      className="w-8"
+                    />
+                    <span className="lg:hidden">{props.user.username}</span>
+                  </button>
+                </div>
+                <div className="lg:hidden">
+                  <ul className="flex flex-col border-b border-b-white/20 pb-2">
+                    {props.content.mainHeader.profileMenu.map((item) => (
+                      <a
+                        href={`${item.link}`}
+                        className="text-sm py-2 px-8
+hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400 
+w-full"
                       >
                         {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                      </a>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
+          </nav>
+
+          {/* input search mobile */}
+          <input
+            type="text"
+            name="search"
+            className="bg-black/20 p-1 text-sm lg:hidden border border-white/15 backdrop-blur-md w-full xs:w-auto"
+            placeholder={`${props.content.mainHeader.searchPlaceholder}`}
+          />
         </header>
       )}
     </>

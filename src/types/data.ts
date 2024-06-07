@@ -6,6 +6,7 @@ export type Header = {
     browseList: { name: string; link: string }[];
     profileMenu: { name: string; link: string }[];
     notificationMenu: { value: boolean; text: string[] }[];
+    searchPlaceholder: string;
   };
 };
 
