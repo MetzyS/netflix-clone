@@ -56,14 +56,15 @@ const RootLayout = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // State gestion fetch (pas besoin de fetch si l'utilisateur est deconnecté)
-  const { data, dataIsLoading } = useFetchPopularShows();
+  const { data, dataIsLoading, error } = useFetchPopularShows();
   const [fetchedPopularShows, setFetchedPopularShows] = useState<{
     data: DataType[];
     dataIsLoading: boolean;
-  }>({ data: [], dataIsLoading: true });
+    error: Error | null;
+  }>({ data: [], dataIsLoading: true, error: null });
 
   useEffect(() => {
-    setFetchedPopularShows({ data, dataIsLoading });
+    setFetchedPopularShows({ data, dataIsLoading, error });
   }, [data, isLoading]);
 
   // Header: State gestion style

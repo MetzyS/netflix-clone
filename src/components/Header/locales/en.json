@@ -15,9 +15,9 @@
       { "name": "Manage Profiles", "link": "/" },
       { "name": "Transfer Profile", "link": "/" },
       { "name": "Account", "link": "/" },
-      { "name": "Help Center", "link": "/" },
-      { "name": "Sign out of Netflix", "link": "/" }
+      { "name": "Help Center", "link": "/" }
     ],
+    "disconnect": "Sign out of Netflix",
     "notificationMenu": [
       { "value": true, "text": ["You have ", "notifications."] },
       { "value": true, "text": ["No recent notifications.", ""] }

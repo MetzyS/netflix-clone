@@ -102,7 +102,7 @@ const MainHeader = (props: {
             >
               <ul className="flex flex-col lg:flex-row lg:gap-0 order-2 lg:order-1 pt-2 lg:pt-0">
                 {props.content.mainHeader.browseList.map((item, index) => (
-                  <li className="flex lg:block">
+                  <li className="flex lg:block" key={`navItem-${index}`}>
                     <Link
                       to={item.link}
                       key={`navlink-${index}`}
@@ -148,16 +148,22 @@ const MainHeader = (props: {
                 </div>
                 <div className="lg:hidden">
                   <ul className="flex flex-col border-b border-b-white/20 pb-2">
-                    {props.content.mainHeader.profileMenu.map((item) => (
-                      <a
-                        href={`${item.link}`}
-                        className="text-sm py-2 px-8
-hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400 
-w-full"
-                      >
-                        {item.name}
-                      </a>
+                    {props.content.mainHeader.profileMenu.map((item, index) => (
+                      <li className="flex" key={`profileMenuItem-${index}`}>
+                        <a href={`${item.link}`} className="default-navlink">
+                          {item.name}
+                        </a>
+                      </li>
                     ))}
+                    <li className="flex">
+                      <button
+                        type="button"
+                        className="default-navlink"
+                        onClick={props.handleDisconnect}
+                      >
+                        {props.content.disconnect}
+                      </button>
+                    </li>
                   </ul>
                 </div>
               </div>

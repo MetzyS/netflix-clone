@@ -5,10 +5,13 @@ import { fetchSettings } from "./fetchSettings";
 const useFetchPopularShows = (): {
   data: DataType[];
   dataIsLoading: boolean;
+  error: Error | null;
 } => {
   const [data, setData] = useState<DataType[]>([]);
 
   const [dataIsLoading, setDataIsLoading] = useState<boolean>(true);
+
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -16,12 +19,7 @@ const useFetchPopularShows = (): {
 
     const fetchTopRatedShows = async () => {
       try {
-        const [
-          responseSeriesFr,
-          responseSeriesFrSecPage,
-          responseMoviesFr,
-          responseMoviesFrSecPage,
-        ] = await Promise.all([
+        const results = await Promise.allSettled([
           fetch(
             "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=10000",
             fetchSettings.options
@@ -39,16 +37,30 @@ const useFetchPopularShows = (): {
             fetchSettings.options
           ),
         ]);
-        const seriesFr = await responseSeriesFr.json();
-        const seriesEn = await responseSeriesFrSecPage.json();
-        const moviesFr = await responseMoviesFr.json();
-        const moviesEn = await responseMoviesFrSecPage.json();
+
+        for (const result of results) {
+          if (result.status === "rejected") {
+            throw new Error(result.reason);
+          }
+          const response = (result as PromiseFulfilledResult<Response>).value;
+          if (!response.ok) {
+            setError(Error(`Erreur: ${response.status}`));
+          }
+        }
+        const dataResults = results.map(
+          (result) => (result as PromiseFulfilledResult<Response>).value
+        );
+        const dataJson = await Promise.all(
+          dataResults.map((response) => response.json())
+        );
 
         if (isMounted) {
-          setData([seriesFr, seriesEn, moviesFr, moviesEn]);
+          setData(dataJson);
         }
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        if (isMounted) {
+          setError(err as Error);
+        }
       } finally {
         if (isMounted) {
           setDataIsLoading(false);
@@ -62,6 +74,6 @@ const useFetchPopularShows = (): {
     };
   }, []);
 
-  return { data, dataIsLoading };
+  return { data, dataIsLoading, error };
 };
 export default useFetchPopularShows;

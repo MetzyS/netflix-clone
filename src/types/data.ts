@@ -5,6 +5,7 @@ export type Header = {
     browseBtn: string;
     browseList: { name: string; link: string }[];
     profileMenu: { name: string; link: string }[];
+    disconnect: string;
     notificationMenu: { value: boolean; text: string[] }[];
     searchPlaceholder: string;
   };
@@ -335,6 +336,9 @@ export type LikeSelectionType = {
   list: {};
   buttonSelectionNotFinished: string;
   buttonSelectionFinished: string;
+  error: {
+    fetchError: string;
+  };
 };
 
 export type SetUpType = {

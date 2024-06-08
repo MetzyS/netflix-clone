@@ -1,10 +1,11 @@
-const SkeletonShowBackdrop = () => {
+const SkeletonShowBackdrop = (props: { error: null | Error }) => {
   return (
     <>
       <div className="h-screen bg-neutral-800 w-full relative select-none cursor-default">
         <div className="absolute flex size-full bg-gradient-radial px-4 lg:px-14">
           <div className="self-center w-full">
             <div className="animate-pulse">
+              {props.error && <p>{props.error.message}</p>}
               <p
                 className={`font-bold drop-shadow-default w-5/6 lg:w-3/4 leading-[3rem] text-wrap transition-all duration-700 text-transparent bg-neutral-700/50`}
               >

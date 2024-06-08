@@ -76,6 +76,10 @@
   .ul-plan {
     @apply lg:p-2 basis-full lg:border lg:border-neutral-300 lg:rounded-xl hover:border-neutral-400 cursor-pointer;
   }
+
+  .default-navlink {
+    @apply text-sm py-2 px-8 hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400 w-full text-left;
+  }
 }
 
 @layer utilities {

@@ -46,8 +46,9 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
           />
         ) : (
           <>
-            {fetchedPopularShows.dataIsLoading ? (
-              <SkeletonShowBackdrop />
+            {fetchedPopularShows.dataIsLoading ||
+            fetchedPopularShows.error != null ? (
+              <SkeletonShowBackdrop error={fetchedPopularShows.error} />
             ) : (
               <>
                 <ShowBackdrop

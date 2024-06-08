@@ -15,9 +15,9 @@
       { "name": "Gérer les profils", "link": "/" },
       { "name": "Transférer un profil", "link": "/" },
       { "name": "Compte", "link": "/" },
-      { "name": "Centre d'aiede", "link": "/" },
-      { "name": "Se déconnecter", "link": "/" }
+      { "name": "Centre d'aiede", "link": "/" }
     ],
+    "disconnect": "Se déconnecter",
     "notificationMenu": [
       { "value": true, "text": ["Vous avez ", "notifications."] },
       { "value": true, "text": ["Pas de notification.", ""] }

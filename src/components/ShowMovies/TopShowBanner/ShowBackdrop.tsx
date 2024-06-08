@@ -62,7 +62,7 @@ const ShowBackdrop = (props: {
               }
             >
               <p
-                className={`${titleTransition} font-bold drop-shadow-default w-5/6 lg:w-3/4 leading-[3rem] text-wrap transition-all duration-700`}
+                className={`${titleTransition} font-bold drop-shadow-default w-5/6 lg:w-3/4 leading-[3rem] text-wrap break-words transition-all duration-700`}
               >
                 {props.showData.name}
               </p>

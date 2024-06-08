@@ -228,7 +228,10 @@
     ],
     "list": {},
     "buttonSelectionNotFinished": "Pick 3 to Continue",
-    "buttonSelectionFinished": "Finished"
+    "buttonSelectionFinished": "Finished",
+    "error": {
+      "fetchError": "An error has occured while fetching data, code: "
+    }
   },
   "processing": {
     "title": "Selecting TV show and movies just for you."

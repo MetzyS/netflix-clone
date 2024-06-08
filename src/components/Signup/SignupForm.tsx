@@ -43,6 +43,7 @@ const SignupForm = (props: {
   };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.currentTarget.blur();
     props.onSubmit({
       email: email,
       password: password,
