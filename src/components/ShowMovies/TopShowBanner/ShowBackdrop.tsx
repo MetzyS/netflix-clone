@@ -46,7 +46,7 @@ const ShowBackdrop = (props: {
         className="w-full h-screen relative"
       >
         <div className="absolute flex size-full bg-gradient-radial px-4 lg:px-14">
-          <div className="self-center w-full">
+          <div className="self-center w-full grid">
             <div
               onMouseEnter={() =>
                 handleTriggerEffect({

@@ -37,7 +37,7 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
     <>
       <DefaultContainer className="w-screen overflow-hidden">
         {isLoading ? (
-          <span>loading</span>
+          <SkeletonShowBackdrop error={fetchedPopularShows.error} />
         ) : user && profile === undefined ? (
           <ProfileChoice
             content={content.profileChoice}
