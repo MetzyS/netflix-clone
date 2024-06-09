@@ -43,10 +43,10 @@ const ShowBackdrop = (props: {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-        className="w-full h-screen relative"
+        className="w-full h-[90vh] relative"
       >
         <div className="absolute flex size-full bg-gradient-radial px-4 lg:px-14">
-          <div className="self-center w-full grid">
+          <div className="mt-[20vh] self-center w-full grid">
             <div
               onMouseEnter={() =>
                 handleTriggerEffect({
@@ -61,11 +61,11 @@ const ShowBackdrop = (props: {
                 })
               }
             >
-              <p
+              <h1
                 className={`${titleTransition} font-bold drop-shadow-default w-5/6 lg:w-3/4 leading-[3rem] text-wrap break-words transition-all duration-700`}
               >
                 {props.showData.name}
-              </p>
+              </h1>
               <p
                 className={`text-sm drop-shadow-default mt-6 w-11/12 sm:w-10/12 md:w-1/2 line-clamp-3 text-ellipsis ${descTransition} transition-all duration-500`}
               >

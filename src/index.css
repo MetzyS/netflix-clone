@@ -96,6 +96,15 @@
   .no-number-scrollbar {
     -moz-appearance: textfield;
   }
+
+  .hide-scrollbar {
+    scrollbar-width: 0;
+    scrollbar-color: transparent;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* debug */
