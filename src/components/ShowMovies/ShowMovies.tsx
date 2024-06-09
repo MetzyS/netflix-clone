@@ -6,6 +6,8 @@ import ProfileChoice from "./ProfileChoice.tsx/ProfileChoice";
 import ShowBackdrop from "./TopShowBanner/ShowBackdrop";
 import CustomSection from "./CustomSection/CustomSection";
 import SkeletonShowBackdrop from "./Skeleton/SkeletonShowBackdrop";
+import { fetchSettings } from "../../hooks/fetchSettings";
+import { BackdropVideoInfoType } from "../../types/data";
 
 const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const {
@@ -19,17 +21,55 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const [profile, setProfile] = useState<undefined | number>(
     props.selectedProfile
   );
+  const [nb, setNb] = useState<number>(() => {
+    return Math.floor(Math.random() * 10);
+  });
+  const [backdropVideoInfos, setBackdropVideoInfos] =
+    useState<null | BackdropVideoInfoType>(null);
+
+  // if (!fetchedPopularShows.dataIsLoading) {
+  //   const { videoData } = useFetchVideo(
+  //     fetchedPopularShows.data[0].results[nb].id
+  //   );
+  //   console.log(videoData);
+  // }
+
+  useEffect(() => {
+    if (
+      !fetchedPopularShows.dataIsLoading &&
+      fetchedPopularShows.error === null
+    ) {
+      console.log("tru");
+      const fetchVideo = async (id: number) => {
+        try {
+          const result = await fetch(
+            `https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`,
+            fetchSettings.options
+          );
+          const response = await result.json();
+          console.log(response);
+          setBackdropVideoInfos(response);
+        } catch (err: any) {
+          throw new Error(err.message);
+        }
+      };
+      fetchVideo(fetchedPopularShows.data[0].results[nb].id);
+    }
+  }, [fetchedPopularShows.dataIsLoading]);
 
   const handleSelectedProfile = (id: number): void => {
     setProfile(id);
     handleSaveSelectedProfile(id);
   };
 
-  const randomNumber = () => {
-    return Math.floor(Math.random() * 10);
-  };
-
   useEffect(() => {
+    const randomNumber = () => {
+      const nb = Math.floor(Math.random() * 10);
+      setNb(nb);
+      // console.log(videoData);
+      return nb;
+    };
+    randomNumber();
     setWhiteTheme(false);
   }, []);
 
@@ -52,8 +92,9 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
             ) : (
               <>
                 <ShowBackdrop
-                  showData={fetchedPopularShows.data[0].results[randomNumber()]}
+                  showData={fetchedPopularShows.data[0].results[nb]}
                   content={content.topShowBanner}
+                  backdropVideoInfos={backdropVideoInfos}
                 />
                 <CustomSection
                   title={content.sections[0].title}

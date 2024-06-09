@@ -1,19 +1,39 @@
 import { useEffect, useState } from "react";
-import { ResultType, TopShowBannerType } from "../../../types/data";
+import {
+  BackdropVideoInfoType,
+  ResultType,
+  TopShowBannerType,
+} from "../../../types/data";
 import { FaPlay } from "react-icons/fa6";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import { HiVolumeOff } from "react-icons/hi";
+import { HiVolumeUp } from "react-icons/hi";
+import ReactPlayer from "react-player";
 
 const ShowBackdrop = (props: {
   showData: ResultType;
   content: TopShowBannerType;
+  backdropVideoInfos: null | BackdropVideoInfoType;
 }) => {
   const defaultDescSize = "max-h-[100px]";
   const hideSize = "max-h-0";
   const defaultTitleSize = "text-5xl lg:text-7xl";
   const zoomedTitleSize = "text-6xl lg:text-8xl";
   const [descTransition, setDescTransition] = useState(defaultDescSize);
-  const [firstTransition, setFirstTransition] = useState(true);
+  const [firstTransition, setFirstTransition] = useState<boolean>(true);
   const [titleTransition, setTitleTransition] = useState(defaultTitleSize);
+  const [displayVideo, setDisplayVideo] = useState<boolean>(true);
+  const [videoIsReady, setVideoIsReady] = useState<boolean>(false);
+  const [videoIsPlaying, setVideoIsPlaying] = useState<boolean>(true);
+  const [muted, setMuted] = useState<boolean>(true);
+
+  const handleVideoIsReady = () => {
+    setVideoIsReady(!videoIsReady);
+  };
+
+  const handleMuted = () => {
+    setMuted(!muted);
+  };
 
   const handleTriggerEffect = (values: { desc: string; title: string }) => {
     if (!firstTransition) {
@@ -31,7 +51,6 @@ const ShowBackdrop = (props: {
     return () => clearTimeout(textTransition);
   }, []);
 
-  console.log(props.showData);
   return (
     <>
       <div
@@ -43,10 +62,40 @@ const ShowBackdrop = (props: {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-        className="w-full h-[90vh] relative"
+        className="w-full h-[90vh] lg:aspect-video relative"
       >
         <div className="absolute flex size-full bg-gradient-radial px-4 lg:px-14">
-          <div className="mt-[20vh] self-center w-full grid">
+          {displayVideo && (
+            <div className="absolute left-0 top-0 bottom-0 right-0 aspect-video pointer-events-none hidden lg:block">
+              <ReactPlayer
+                controls={false}
+                loop={false}
+                muted={muted}
+                url={`https://www.youtube.com/watch?v=${props.backdropVideoInfos?.results[0].key}`}
+                playing={videoIsPlaying}
+                onEnded={() => {
+                  setDisplayVideo(false);
+                  setVideoIsPlaying(false);
+                }}
+                onReady={handleVideoIsReady}
+                width={"100%"}
+                height={"100%"}
+                onError={() => setDisplayVideo(false)}
+                config={{
+                  youtube: {
+                    playerVars: {
+                      controls: 0,
+                      disablekb: 1,
+                      fs: 0,
+                      iv_load_policy: 3,
+                      rel: 0,
+                    },
+                  },
+                }}
+              />
+            </div>
+          )}
+          <div className="mt-[20vh] lg:mt-0 self-center w-full grid">
             <div
               onMouseEnter={() =>
                 handleTriggerEffect({
@@ -90,6 +139,19 @@ const ShowBackdrop = (props: {
                 </button>
               </div>
               <div className="absolute -mr-14 top-12 lg:top-0 right-8 lg:right-0 h-full flex items-center">
+                {videoIsReady && displayVideo && (
+                  <button
+                    type="button"
+                    onClick={handleMuted}
+                    className="rounded-full border p-2 mr-2 hover:bg-white/10 hidden lg:block"
+                  >
+                    {muted ? (
+                      <HiVolumeOff className="size-3" />
+                    ) : (
+                      <HiVolumeUp className="size-3" />
+                    )}
+                  </button>
+                )}
                 <p className="bg-neutral-500/20 border-l-2 pl-4 py-1 pr-8">
                   12+
                 </p>

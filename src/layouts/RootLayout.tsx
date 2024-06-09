@@ -98,6 +98,7 @@ const RootLayout = () => {
   // Manipulation style
   // -- Header
   const [headerStyle, setHeaderStyle] = useState(defaultHeaderStyle);
+
   const handleHeaderStyle = (
     values: Array<{
       key: keyof HeaderStyle;

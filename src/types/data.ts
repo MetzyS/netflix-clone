@@ -425,4 +425,20 @@ export type TopShowBannerType = {
   title: string[];
 };
 
+export type BackdropVideoInfoType = {
+  id: number;
+  results: {
+    id: string;
+    iso_639_1: string;
+    iso_3166_1: string;
+    key: string;
+    name: string;
+    official: boolean;
+    published_at: string;
+    site: string;
+    size: number;
+    type: string;
+  }[];
+};
+
 export default LangType;
