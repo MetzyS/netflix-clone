@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { Header } from "../../types/data";
 import Logo from "../ui/Logo";
 import { UserType } from "../../types/user";
-import { BiPencil } from "react-icons/bi";
-import { AiOutlineUser } from "react-icons/ai";
+// import { BiPencil } from "react-icons/bi";
+// import { AiOutlineUser } from "react-icons/ai";
 import { FiHelpCircle, FiBell } from "react-icons/fi";
-import { IoShareSocialOutline } from "react-icons/io5";
-import { RiLogoutBoxLine } from "react-icons/ri";
+// import { IoShareSocialOutline } from "react-icons/io5";
+// import { RiLogoutBoxLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const MainHeader = (props: {
@@ -45,11 +45,11 @@ const MainHeader = (props: {
     setShowNotificationMenu(false);
   };
 
-  const handleShowProfileMenu = () => {
-    setShowProfileMenu(!showProfileMenu);
-    setShowNavMenu(false);
-    setShowNotificationMenu(false);
-  };
+  // const handleShowProfileMenu = () => {
+  //   setShowProfileMenu(!showProfileMenu);
+  //   setShowNavMenu(false);
+  //   setShowNotificationMenu(false);
+  // };
 
   const handleShowNotificationsMenu = () => {
     setShowNotificationMenu(!showNotificationMenu);
@@ -57,13 +57,13 @@ const MainHeader = (props: {
     setShowProfileMenu(false);
   };
 
-  const profileLinkIcons: JSX.Element[] = [
-    <BiPencil className="size-6" />,
-    <IoShareSocialOutline className="size-6" />,
-    <AiOutlineUser className="size-6" />,
-    <FiHelpCircle className="size-6" />,
-    <RiLogoutBoxLine className="size-6" />,
-  ];
+  // const profileLinkIcons: JSX.Element[] = [
+  //   <BiPencil className="size-6" />,
+  //   <IoShareSocialOutline className="size-6" />,
+  //   <AiOutlineUser className="size-6" />,
+  //   <FiHelpCircle className="size-6" />,
+  //   <RiLogoutBoxLine className="size-6" />,
+  // ];
 
   return (
     <>
