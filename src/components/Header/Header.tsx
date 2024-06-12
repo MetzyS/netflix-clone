@@ -1,5 +1,5 @@
 import { useLocale } from "../../hooks/useLocale";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { HeaderStyle } from "../../types/headerstyle";
 import HeroHeader from "./HeroHeader";
 import MainHeader from "./MainHeader";
@@ -21,13 +21,9 @@ const Header = (props: {
   handleChangeLang: (lang: string) => void;
 }) => {
   const { content, isLoading } = useLocale("Header", props.lang);
-  const [mainHeader, setMainHeader] = useState(
-    props.isConfigured && props.isConnected
-  );
-
-  useEffect(() => {
-    setMainHeader(props.isConnected && props.isConfigured);
-  }, [props.isConnected, props.isConfigured]);
+  const mainHeader = useMemo(() => {
+    return props.isConfigured && props.isConnected;
+  }, [props.isConfigured, props.isConnected]);
 
   const userProfileIcons: string[] = [
     UserProfileIconOne,

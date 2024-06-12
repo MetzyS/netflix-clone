@@ -1,5 +1,5 @@
 import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { ContextType } from "../types/context";
 import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
@@ -7,7 +7,6 @@ import { userIsConnected } from "../helpers/userIsConnected";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
 import HeaderTwo from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
-import { DataType } from "../types/data";
 import useFetchPopularShows from "../hooks/useFetchPopularShows";
 
 const RootLayout = () => {
@@ -57,15 +56,10 @@ const RootLayout = () => {
 
   // State gestion fetch (pas besoin de fetch si l'utilisateur est deconnecté)
   const { data, dataIsLoading, error } = useFetchPopularShows();
-  const [fetchedPopularShows, setFetchedPopularShows] = useState<{
-    data: DataType[];
-    dataIsLoading: boolean;
-    error: Error | null;
-  }>({ data: [], dataIsLoading: true, error: null });
 
-  useEffect(() => {
-    setFetchedPopularShows({ data, dataIsLoading, error });
-  }, [data, isLoading]);
+  const fetchedPopularShows = useMemo(() => {
+    return { data, dataIsLoading, error };
+  }, [data, dataIsLoading, error]);
 
   // Header: State gestion style
 

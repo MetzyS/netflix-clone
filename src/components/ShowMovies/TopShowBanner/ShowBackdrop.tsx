@@ -62,7 +62,7 @@ const ShowBackdrop = (props: {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-        className="w-full h-[90vh] lg:aspect-video relative"
+        className="w-full h-[90vh] lg:h-auto lg:aspect-video relative"
       >
         <div className="absolute flex size-full bg-gradient-radial px-4 lg:px-14">
           {displayVideo && (
