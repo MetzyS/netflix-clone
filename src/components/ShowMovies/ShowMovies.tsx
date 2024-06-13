@@ -39,7 +39,6 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
       !fetchedPopularShows.dataIsLoading &&
       fetchedPopularShows.error === null
     ) {
-      console.log("tru");
       const fetchVideo = async (id: number) => {
         try {
           const result = await fetch(
@@ -66,7 +65,6 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
     const randomNumber = () => {
       const nb = Math.floor(Math.random() * 10);
       setNb(nb);
-      // console.log(videoData);
       return nb;
     };
     randomNumber();
