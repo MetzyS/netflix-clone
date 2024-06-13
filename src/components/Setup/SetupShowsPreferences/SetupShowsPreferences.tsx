@@ -3,7 +3,7 @@ import { useDataContext } from "../../../layouts/RootLayout";
 import SerieCheckbox from "./LikeCheckbox";
 import { Fragment } from "react/jsx-runtime";
 import { FormEvent, useEffect, useState } from "react";
-import { LikeSelectionType, ResultType } from "../../../types/data";
+import { LikeSelectionType } from "../../../types/data";
 import BackButton from "../../Signup/BackButton";
 import DefaultContainer from "../../ui/DefaultContainer";
 import { Form } from "react-router-dom";
@@ -15,15 +15,6 @@ const SetupShowsPreferences = (props: {
   onSubmit: (likedShowsId: number[]) => void;
 }) => {
   const { user, fetchedPopularShows } = useDataContext();
-
-  const [series, setSeries] = useState<ResultType[]>([]);
-  const [seriesSecPage, setSeriesSecPage] = useState<ResultType[]>([]);
-
-  const [movies, setMovies] = useState<ResultType[]>([]);
-  const [moviesSecPage, setMoviesSecPage] = useState<ResultType[]>([]);
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [fetchError, setFetchError] = useState<Error | null>(null);
 
   const [selectedShows, setSelectedShows] = useState<number[]>([]);
   const [disabled, setDisabled] = useState<boolean>(true);
@@ -48,28 +39,13 @@ const SetupShowsPreferences = (props: {
     }
   }, [selectedShows]);
 
-  useEffect(() => {
-    setIsLoading(fetchedPopularShows.dataIsLoading);
-    setFetchError(fetchedPopularShows.error);
-
-    if (
-      fetchedPopularShows.data[0] != undefined &&
-      fetchedPopularShows.data[3] != undefined
-    ) {
-      setSeries(fetchedPopularShows.data[0].results);
-      setMovies(fetchedPopularShows.data[1].results);
-      setSeriesSecPage(fetchedPopularShows.data[2].results);
-      setMoviesSecPage(fetchedPopularShows.data[3].results);
-    }
-  }, [fetchedPopularShows, fetchedPopularShows.error]);
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     props.onSubmit(selectedShows);
   };
   return (
     <>
-      {isLoading ? (
+      {fetchedPopularShows.dataIsLoading ? (
         <>loading</>
       ) : (
         <>
@@ -98,84 +74,93 @@ const SetupShowsPreferences = (props: {
                 onSubmit={(e) => handleSubmit(e)}
               >
                 <div className="relative flex gap-2 flex-wrap lg:max-w-[435px]">
-                  {fetchError != null ? (
-                    <span>
-                      {props.content.error.fetchError} {fetchError.message}
+                  {fetchedPopularShows.error != null ? (
+                    <span className="h-[30vh] text-red-500 italic font-semibold">
+                      {props.content.error.fetchError}{" "}
+                      {fetchedPopularShows.error.message}
                     </span>
                   ) : (
                     <>
-                      {Object.entries(series).map((item) => {
-                        const serie = item[1];
-                        return (
-                          <Fragment key={`serie-${serie.id}`}>
-                            <SerieCheckbox
-                              id={serie.id}
-                              name={serie.name}
-                              src={serie.poster_path}
-                              checkedIcon={
-                                <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
-                              }
-                              add={addSelected}
-                              remove={removeSelected}
-                              selectedShows={selectedShows}
-                            />
-                          </Fragment>
-                        );
-                      })}
-                      {Object.entries(movies).map((item) => {
-                        const movie = item[1];
-                        return (
-                          <Fragment key={`serie-${movie.id}`}>
-                            <SerieCheckbox
-                              id={movie.id}
-                              name={movie.name}
-                              src={movie.poster_path}
-                              checkedIcon={
-                                <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
-                              }
-                              add={addSelected}
-                              remove={removeSelected}
-                              selectedShows={selectedShows}
-                            />
-                          </Fragment>
-                        );
-                      })}
-                      {Object.entries(moviesSecPage).map((item) => {
-                        const movie = item[1];
-                        return (
-                          <Fragment key={`serie-${movie.id}`}>
-                            <SerieCheckbox
-                              id={movie.id}
-                              name={movie.name}
-                              src={movie.poster_path}
-                              checkedIcon={
-                                <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
-                              }
-                              add={addSelected}
-                              remove={removeSelected}
-                              selectedShows={selectedShows}
-                            />
-                          </Fragment>
-                        );
-                      })}
-                      {Object.entries(seriesSecPage).map((item) => {
-                        const movie = item[1];
-                        return (
-                          <Fragment key={`serie-${movie.id}`}>
-                            <SerieCheckbox
-                              id={movie.id}
-                              name={movie.name}
-                              src={movie.poster_path}
-                              checkedIcon={
-                                <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
-                              }
-                              add={addSelected}
-                              remove={removeSelected}
-                              selectedShows={selectedShows}
-                            />
-                          </Fragment>
-                        );
-                      })}
+                      {Object.entries(fetchedPopularShows.data[0].results).map(
+                        (item) => {
+                          const serie = item[1];
+                          return (
+                            <Fragment key={`serie-${serie.id}`}>
+                              <SerieCheckbox
+                                id={serie.id}
+                                name={serie.name}
+                                src={serie.poster_path}
+                                checkedIcon={
+                                  <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                                }
+                                add={addSelected}
+                                remove={removeSelected}
+                                selectedShows={selectedShows}
+                              />
+                            </Fragment>
+                          );
+                        }
+                      )}
+                      {Object.entries(fetchedPopularShows.data[1].results).map(
+                        (item) => {
+                          const movie = item[1];
+                          return (
+                            <Fragment key={`serie-${movie.id}`}>
+                              <SerieCheckbox
+                                id={movie.id}
+                                name={movie.name}
+                                src={movie.poster_path}
+                                checkedIcon={
+                                  <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                                }
+                                add={addSelected}
+                                remove={removeSelected}
+                                selectedShows={selectedShows}
+                              />
+                            </Fragment>
+                          );
+                        }
+                      )}
+                      {Object.entries(fetchedPopularShows.data[2].results).map(
+                        (item) => {
+                          const movie = item[1];
+                          return (
+                            <Fragment key={`serie-${movie.id}`}>
+                              <SerieCheckbox
+                                id={movie.id}
+                                name={movie.name}
+                                src={movie.poster_path}
+                                checkedIcon={
+                                  <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                                }
+                                add={addSelected}
+                                remove={removeSelected}
+                                selectedShows={selectedShows}
+                              />
+                            </Fragment>
+                          );
+                        }
+                      )}
+                      {Object.entries(fetchedPopularShows.data[3].results).map(
+                        (item) => {
+                          const movie = item[1];
+                          return (
+                            <Fragment key={`serie-${movie.id}`}>
+                              <SerieCheckbox
+                                id={movie.id}
+                                name={movie.name}
+                                src={movie.poster_path}
+                                checkedIcon={
+                                  <IoIosThumbsUp className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-8 text-white" />
+                                }
+                                add={addSelected}
+                                remove={removeSelected}
+                                selectedShows={selectedShows}
+                              />
+                            </Fragment>
+                          );
+                        }
+                      )}
                     </>
                   )}
                 </div>
