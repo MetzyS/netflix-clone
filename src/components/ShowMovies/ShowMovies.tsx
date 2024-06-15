@@ -27,13 +27,6 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const [backdropVideoInfos, setBackdropVideoInfos] =
     useState<null | BackdropVideoInfoType>(null);
 
-  // if (!fetchedPopularShows.dataIsLoading) {
-  //   const { videoData } = useFetchVideo(
-  //     fetchedPopularShows.data[0].results[nb].id
-  //   );
-  //   console.log(videoData);
-  // }
-
   useEffect(() => {
     if (
       !fetchedPopularShows.dataIsLoading &&
@@ -94,10 +87,17 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
                   content={content.topShowBanner}
                   backdropVideoInfos={backdropVideoInfos}
                 />
-                <CustomSection
-                  title={content.sections[0].title}
-                  data={fetchedPopularShows.data[0].results}
-                />
+                <div
+                  className="-mt-[3vh]
+lg:-mt-[10vw] xl:-mt-[15vw]"
+                >
+                  {fetchedPopularShows.data.map((page, index) => (
+                    <CustomSection
+                      title={content.sections[index].title}
+                      data={page.results}
+                    />
+                  ))}
+                </div>
               </>
             )}
           </>

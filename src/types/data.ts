@@ -380,7 +380,8 @@ export type ResultType = {
   id: number;
   origin_country: string[];
   original_language: string;
-  original_name: string;
+  original_name?: undefined | string;
+  original_title?: undefined | string;
   overview: string;
   popularity: number;
   poster_path: string;
