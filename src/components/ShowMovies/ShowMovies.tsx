@@ -91,12 +91,16 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
                   className="-mt-[3vh]
 lg:-mt-[10vw] xl:-mt-[15vw]"
                 >
-                  {fetchedPopularShows.data.map((page, index) => (
-                    <CustomSection
-                      title={content.sections[index].title}
-                      data={page.results}
-                    />
-                  ))}
+                  {fetchedPopularShows.data.map((page, index) => {
+                    if (page.results.length != 0) {
+                      return (
+                        <CustomSection
+                          title={content.sections[index].title}
+                          data={page.results}
+                        />
+                      );
+                    }
+                  })}
                 </div>
               </>
             )}
