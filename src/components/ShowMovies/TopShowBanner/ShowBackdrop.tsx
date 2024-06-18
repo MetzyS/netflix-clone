@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   BackdropVideoInfoType,
   ResultType,
@@ -15,6 +15,9 @@ const ShowBackdrop = (props: {
   content: TopShowBannerType;
   backdropVideoInfos: null | BackdropVideoInfoType;
 }) => {
+  const backdropVideoKey = useMemo(() => {
+    return props.backdropVideoInfos;
+  }, [props.backdropVideoInfos]);
   const defaultDescSize = "max-h-[100px]";
   const hideSize = "max-h-0";
   const defaultTitleSize = "text-5xl lg:text-6xl xl:text-6xl";
@@ -65,36 +68,39 @@ const ShowBackdrop = (props: {
         className="w-full h-[90vh] lg:h-auto lg:aspect-video relative"
       >
         <div className="absolute flex size-full bg-gradient-radial px-4 lg:px-14">
-          {displayVideo && (
-            <div className="absolute left-0 top-0 bottom-0 right-0 aspect-video pointer-events-none hidden lg:block">
-              <ReactPlayer
-                controls={false}
-                loop={false}
-                muted={muted}
-                url={`https://www.youtube.com/watch?v=${props.backdropVideoInfos?.results[0].key}`}
-                playing={videoIsPlaying}
-                onEnded={() => {
-                  setDisplayVideo(false);
-                  setVideoIsPlaying(false);
-                }}
-                onReady={handleVideoIsReady}
-                width={"100%"}
-                height={"100%"}
-                onError={() => setDisplayVideo(false)}
-                config={{
-                  youtube: {
-                    playerVars: {
-                      controls: 0,
-                      disablekb: 1,
-                      fs: 0,
-                      iv_load_policy: 3,
-                      rel: 0,
+          {displayVideo &&
+            backdropVideoKey != null &&
+            backdropVideoKey.results[0] &&
+            backdropVideoKey.results[0].key != undefined && (
+              <div className="absolute left-0 top-0 bottom-0 right-0 aspect-video pointer-events-none hidden lg:block">
+                <ReactPlayer
+                  controls={false}
+                  loop={false}
+                  muted={muted}
+                  url={`https://www.youtube.com/watch?v=${props.backdropVideoInfos?.results[0].key}`}
+                  playing={videoIsPlaying}
+                  onEnded={() => {
+                    setDisplayVideo(false);
+                    setVideoIsPlaying(false);
+                  }}
+                  onReady={handleVideoIsReady}
+                  width={"100%"}
+                  height={"100%"}
+                  onError={() => setDisplayVideo(false)}
+                  config={{
+                    youtube: {
+                      playerVars: {
+                        controls: 0,
+                        disablekb: 1,
+                        fs: 0,
+                        iv_load_policy: 3,
+                        rel: 0,
+                      },
                     },
-                  },
-                }}
-              />
-            </div>
-          )}
+                  }}
+                />
+              </div>
+            )}
           <div className="mt-[20vh] lg:mt-0 self-center w-full grid">
             <div
               onMouseEnter={() =>

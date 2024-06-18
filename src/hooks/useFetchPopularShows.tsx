@@ -21,11 +21,13 @@ const useFetchPopularShows = (): {
       try {
         const results = await Promise.allSettled([
           fetch(
-            "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=10000",
+            // "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=10000",
+            "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=10000",
             fetchSettings.options
           ),
           fetch(
-            "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=2&sort_by=popularity.desc&vote_count.gte=10000",
+            // "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=2&sort_by=popularity.desc&vote_count.gte=10000",
+            "https://api.themoviedb.org/3/tv/popular?language=en-US&page=2&sort_by=popularity.desc&vote_count.gte=10000",
             fetchSettings.options
           ),
           fetch(

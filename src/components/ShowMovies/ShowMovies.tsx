@@ -1,5 +1,5 @@
 import { useDataContext } from "../../layouts/RootLayout";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import DefaultContainer from "../ui/DefaultContainer";
 import { useLocale } from "../../hooks/useLocale";
 import ProfileChoice from "./ProfileChoice.tsx/ProfileChoice";
@@ -94,10 +94,12 @@ lg:-mt-[10vw] xl:-mt-[15vw]"
                   {fetchedPopularShows.data.map((page, index) => {
                     if (page.results.length != 0) {
                       return (
-                        <CustomSection
-                          title={content.sections[index].title}
-                          data={page.results}
-                        />
+                        <Fragment key={`customSection-${index}`}>
+                          <CustomSection
+                            title={content.sections[index].title}
+                            data={page.results}
+                          />
+                        </Fragment>
                       );
                     }
                   })}

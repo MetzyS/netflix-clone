@@ -159,29 +159,27 @@ const CustomSection = (props: { data: ResultType[]; title: string }) => {
           <ul className="flex justify-between gap-[1vw]">
             {props.data.map((show, index) => {
               return (
-                <>
-                  <li
-                    key={`show-${index}`}
-                    className="w-1/2 flex-shrink-0 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 rounded-lg"
+                <li
+                  key={`show-${index}`}
+                  className="w-1/2 flex-shrink-0 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 rounded-lg"
+                >
+                  <button
+                    type="button"
+                    className="relative flex items-center"
+                    onClick={() => handleOpenPopup(show)}
                   >
-                    <button
-                      type="button"
-                      className="relative flex items-center"
-                      onClick={() => handleOpenPopup(show)}
-                    >
-                      <img
-                        src={`https://image.tmdb.org/t/p/original/${props.data[index].backdrop_path}`}
-                        alt=""
-                        className="aspect-[16/9] object-center object-fill rounded-lg"
-                      />
-                      <span className="absolute top-1/2 left-1/2 text-xl xl:text-2xl 2xl:text-3xl drop-shadow-default text-wrap break-words w-9/12 text-left text-white translate-x-[-50%] translate-y-[-50%]">
-                        {show.original_name
-                          ? show.original_name
-                          : show.original_title}
-                      </span>
-                    </button>
-                  </li>
-                </>
+                    <img
+                      src={`https://image.tmdb.org/t/p/original/${props.data[index].backdrop_path}`}
+                      alt=""
+                      className="aspect-[16/9] object-center object-fill rounded-lg"
+                    />
+                    <span className="absolute top-1/2 left-1/2 text-xl xl:text-2xl 2xl:text-3xl drop-shadow-default text-wrap break-words w-9/12 text-left text-white translate-x-[-50%] translate-y-[-50%]">
+                      {show.original_name
+                        ? show.original_name
+                        : show.original_title}
+                    </span>
+                  </button>
+                </li>
               );
             })}
           </ul>
