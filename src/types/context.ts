@@ -46,6 +46,7 @@ export type ContextType = {
       value: string | boolean;
     }>
   ) => void;
+  bodyOverflow: (vlaue: boolean) => void;
   handleChangeBg: (value: boolean) => void;
 
   // handlers connexion

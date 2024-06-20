@@ -159,6 +159,24 @@ body {
   left: 50%;
   transform: translate(-50%, 50%);
 }
+
+.modal-scrollbar::-webkit-scrollbar {
+  border-top-right-radius: 5px;
+  width: 12px;
+  /* border-bottom: 5px; */
+}
+
+.modal-scrollbar::-webkit-scrollbar-track {
+  /* width: 10px; */
+  background-color: rgba(255, 255, 255, 8%);
+  background-clip: content-box;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  height: 5px;
+}
+
 .checkbox:checked:after {
   content: "L";
   transform: rotate(45deg) scaleX(-1);

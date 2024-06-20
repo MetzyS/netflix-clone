@@ -96,7 +96,10 @@ lg:-mt-[10vw] xl:-mt-[15vw]"
                       return (
                         <Fragment key={`customSection-${index}`}>
                           <CustomSection
-                            title={content.sections[index].title}
+                            content={{
+                              title: content.sections[index].title,
+                              explore: content.exploreBtn,
+                            }}
                             data={page.results}
                           />
                         </Fragment>

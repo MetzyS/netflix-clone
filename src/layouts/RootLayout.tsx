@@ -51,6 +51,7 @@ const RootLayout = () => {
   // State gestion langage
   const [lang, setLang] = useState<string>("fr");
 
+  const [overflow, setOverflow] = useState(false);
   const [bgWhite, setBgWhite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -107,6 +108,18 @@ const RootLayout = () => {
     });
   };
 
+  /**
+   *
+   * @param value boolean false = overflow hidden
+   */
+  const bodyOverflow = (value: boolean) => {
+    setOverflow(value);
+    if (value === false) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  };
   // -- Background true: blanc, false: noir
   const handleChangeBg = (value: boolean) => {
     setBgWhite(value);
@@ -263,6 +276,7 @@ const RootLayout = () => {
               fetchedPopularShows,
               handleChangeLang,
               handleChangeBg,
+              bodyOverflow,
               handleUserEmail,
               handleRegisterAccount,
               handleDisconnect,
