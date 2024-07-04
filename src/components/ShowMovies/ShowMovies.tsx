@@ -99,6 +99,7 @@ lg:-mt-[10vw] xl:-mt-[15vw]"
                             content={{
                               title: content.sections[index].title,
                               explore: content.exploreBtn,
+                              playButton: content.topShowBanner.playButton,
                             }}
                             data={page.results}
                           />
