@@ -38,5 +38,9 @@
       "title": "Séries incontournables"
     }
   ],
-  "exploreBtn": "Explore all"
+  "exploreBtn": "Explore all",
+  "showDetails": {
+    "recommended": "Recommended",
+    "seasons": "Seasons"
+  }
 }

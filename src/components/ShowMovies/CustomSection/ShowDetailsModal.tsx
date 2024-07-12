@@ -4,14 +4,29 @@ import { ResultType } from "../../../types/data";
 import { FaCheck, FaPlay } from "react-icons/fa6";
 import { BsHandThumbsUp } from "react-icons/bs";
 import { BsHandThumbsUpFill } from "react-icons/bs";
+import useFetchShowDetails from "../../../hooks/useFetchShowDetails";
 
 const ShowDetailsModal = (props: {
+  id: number;
   closeModalFunction: (e: KeyboardEvent) => void;
   btnClose: () => void;
   backdropImage: string;
   show: ResultType;
-  playButton: string;
+  content: {
+    title: string;
+    explore: string;
+    playButton: string;
+    recommended: string;
+    seasons: string;
+  };
 }) => {
+  const { data, dataIsLoading } = useFetchShowDetails(props.id);
+
+  useEffect(() => {
+    console.log(data);
+  }, [dataIsLoading]);
+
+  console.log(props.show);
   useEffect(() => {
     document.addEventListener("keydown", props.closeModalFunction);
     return () => {
@@ -19,7 +34,7 @@ const ShowDetailsModal = (props: {
     };
   }, []);
   return (
-    <div className="fixed transition-all h-[100vh] lg:h-[95vh] w-full lg:w-3/4 top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 mx-auto rounded-md overflow-y-scroll modal-scrollbar">
+    <div className="fixed transition-all h-[100vh] lg:h-[95vh] w-full xl:w-3/4 top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 mx-auto rounded-md overflow-y-scroll modal-scrollbar">
       {/* backdrop */}
       <div>
         <button
@@ -44,7 +59,7 @@ const ShowDetailsModal = (props: {
                 className="px-4 lg:px-6 py-2 bg-neutral-200 hover:bg-neutral-400 text-sm lg:text-lg text-black font-semibold rounded-md flex gap-2 items-center"
               >
                 <FaPlay className="size-5 lg:size-8" />
-                {props.playButton}
+                {props.content.playButton}
               </button>
               <button
                 type="button"
@@ -66,6 +81,16 @@ const ShowDetailsModal = (props: {
                   <BsHandThumbsUp className="rotate-180" />
                 </button>
               </div>
+            </div>
+            <div className="mt-20">
+              <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
+                <span className="text-green-500">
+                  Recommandé à {(props.show.vote_average * 10).toFixed(0)}%
+                </span>
+                <span>2024</span>
+                <span>3 {props.content.seasons}</span>
+                <span className="px-2 border text-xs rounded-md">HD</span>
+              </p>
             </div>
           </div>
         </div>

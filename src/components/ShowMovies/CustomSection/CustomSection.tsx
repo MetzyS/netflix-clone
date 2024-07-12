@@ -7,7 +7,13 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const CustomSection = (props: {
   data: ResultType[];
-  content: { title: string; explore: string; playButton: string };
+  content: {
+    title: string;
+    explore: string;
+    playButton: string;
+    recommended: string;
+    seasons: string;
+  };
 }) => {
   const { bodyOverflow } = useDataContext();
   const [open, setOpen] = useState(false);
@@ -40,11 +46,12 @@ const CustomSection = (props: {
     <>
       {open && selectedShow !== null && (
         <ShowDetailsModal
+          id={selectedShow.id}
           closeModalFunction={handleClosePopup}
           btnClose={funcClosePopup}
           backdropImage={selectedShow.backdrop_path}
           show={selectedShow}
-          playButton={props.content.playButton}
+          content={props.content}
         />
       )}
       <section className="ml-4 lg:ml-12 z-20 backdrop-blur-[1px] mb-6">

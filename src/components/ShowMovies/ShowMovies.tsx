@@ -22,8 +22,9 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
     props.selectedProfile
   );
   const [nb, setNb] = useState<number>(() => {
-    return Math.floor(Math.random() * 10);
+    return Math.floor(Math.random() * 6);
   });
+  console.log(nb);
   const [backdropVideoInfos, setBackdropVideoInfos] =
     useState<null | BackdropVideoInfoType>(null);
 
@@ -100,6 +101,8 @@ lg:-mt-[10vw] xl:-mt-[15vw]"
                               title: content.sections[index].title,
                               explore: content.exploreBtn,
                               playButton: content.topShowBanner.playButton,
+                              recommended: content.showDetails.recommended,
+                              seasons: content.showDetails.seasons,
                             }}
                             data={page.results}
                           />
