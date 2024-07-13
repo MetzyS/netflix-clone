@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ResultDetailsType } from "../types/data";
 import { fetchSettings } from "./fetchSettings";
+import { useDataContext } from "../layouts/RootLayout";
 
 const useFetchShowDetails = (
   id: number
@@ -8,6 +9,7 @@ const useFetchShowDetails = (
   data: ResultDetailsType | undefined;
   dataIsLoading: boolean;
 } => {
+  const { lang } = useDataContext();
   const [data, setData] = useState<ResultDetailsType | undefined>();
   const [dataIsLoading, setDataIsLoading] = useState<boolean>(true);
 
@@ -18,7 +20,7 @@ const useFetchShowDetails = (
     const fetchDetails = async (id: number) => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/tv/${id}?language=en-US`,
+          `https://api.themoviedb.org/3/tv/${id}?language=${lang}-${lang}`,
           fetchSettings.options
         );
         const responseJson = await response.json();

@@ -88,20 +88,30 @@ const ShowDetailsModal = (props: {
               : data && (
                   <>
                     <div className="mt-20">
-                      <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
-                        <span className="text-green-500">
-                          {`${props.content.recommended} ${(
-                            props.show.vote_average * 10
-                          ).toFixed(0)} %`}
-                        </span>
-                        <span>{data.first_air_date.substring(0, 4)}</span>
-                        <span>
-                          {`${data.seasons.length} ${props.content.seasons}`}{" "}
-                        </span>
-                        <span className="px-2 border text-xs rounded-md">
-                          HD
-                        </span>
-                      </p>
+                      <div>
+                        <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
+                          <span className="text-green-500">
+                            {`${props.content.recommended} ${(
+                              props.show.vote_average * 10
+                            ).toFixed(0)} %`}
+                          </span>
+                          <span>{data.first_air_date.substring(0, 4)}</span>
+                          <span>
+                            {`${data.seasons.length} ${props.content.seasons}`}{" "}
+                          </span>
+                          <span className="px-2 border text-xs rounded-md">
+                            HD
+                          </span>
+                        </p>
+                        <ul className="flex gap-2 text-neutral-300 font-semibold">
+                          {data.genres.map((genre, index) => (
+                            <li key={`genre-${index}`}>
+                              {genre.name.toLowerCase()}
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="mt-4 text-sm">{data.overview}</p>
+                      </div>
                     </div>
                   </>
                 )}
