@@ -41,6 +41,13 @@
   "exploreBtn": "Explore all",
   "showDetails": {
     "recommended": "Match",
-    "seasons": "Seasons"
+    "seasons": "Seasons",
+    "distribution": "Distribution",
+    "genres": "Genres",
+    "genreDetails": "This program is",
+    "episodes": "Episodes",
+    "miniSerie": "Mini-serie",
+    "similar": "Similar titles",
+    "about": "About "
   }
 }

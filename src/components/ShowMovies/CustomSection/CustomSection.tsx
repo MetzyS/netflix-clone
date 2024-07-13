@@ -4,6 +4,7 @@ import ShowDetailsModal from "./ShowDetailsModal";
 import { useDataContext } from "../../../layouts/RootLayout";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
+import { ShowDetailsType } from "../../../types/useLocaleTypes/ImportedLocaleTypes";
 
 const CustomSection = (props: {
   data: ResultType[];
@@ -11,9 +12,8 @@ const CustomSection = (props: {
     title: string;
     explore: string;
     playButton: string;
-    recommended: string;
-    seasons: string;
   };
+  showDetails: ShowDetailsType;
 }) => {
   const { bodyOverflow } = useDataContext();
   const [open, setOpen] = useState(false);
@@ -51,6 +51,7 @@ const CustomSection = (props: {
           backdropImage={selectedShow.backdrop_path}
           show={selectedShow}
           content={props.content}
+          showDetailsContent={props.showDetails}
         />
       )}
       <section className="ml-4 lg:ml-12 z-20 backdrop-blur-[1px] mb-6">

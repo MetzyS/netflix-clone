@@ -8,6 +8,7 @@ import CustomSection from "./CustomSection/CustomSection";
 import SkeletonShowBackdrop from "./Skeleton/SkeletonShowBackdrop";
 import { fetchSettings } from "../../hooks/fetchSettings";
 import { BackdropVideoInfoType } from "../../types/data";
+import { ShowDetailsType } from "../../types/useLocaleTypes/ImportedLocaleTypes";
 
 const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const {
@@ -101,9 +102,8 @@ lg:-mt-[10vw] xl:-mt-[15vw]"
                               title: content.sections[index].title,
                               explore: content.exploreBtn,
                               playButton: content.topShowBanner.playButton,
-                              recommended: content.showDetails.recommended,
-                              seasons: content.showDetails.seasons,
                             }}
+                            showDetails={content.showDetails as ShowDetailsType}
                             data={page.results}
                           />
                         </Fragment>

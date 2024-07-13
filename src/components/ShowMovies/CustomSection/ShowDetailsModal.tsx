@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { ResultType } from "../../../types/data";
 import { FaCheck, FaPlay } from "react-icons/fa6";
 import { BsHandThumbsUp } from "react-icons/bs";
 import { BsHandThumbsUpFill } from "react-icons/bs";
 import useFetchShowDetails from "../../../hooks/useFetchShowDetails";
+import { ShowDetailsType } from "../../../types/useLocaleTypes/ImportedLocaleTypes";
 
 const ShowDetailsModal = (props: {
   closeModalFunction: (e: KeyboardEvent) => void;
@@ -15,17 +16,31 @@ const ShowDetailsModal = (props: {
     title: string;
     explore: string;
     playButton: string;
-    recommended: string;
-    seasons: string;
   };
+  showDetailsContent: ShowDetailsType;
 }) => {
   const { data, dataIsLoading } = useFetchShowDetails(props.show.id);
+  const [season, setSeason] = useState<number | string>(0);
+  const [multipleSeasons, setMultipleSeasons] = useState<boolean>(false);
+
+  const handleSetSeason = (number: number | string) => {
+    setSeason(number);
+  };
+  const handleMultipleSeasons = (value: boolean) => {
+    setMultipleSeasons(value);
+  };
+
   if (!dataIsLoading) {
     console.log(data);
   }
 
   useEffect(() => {
-    console.log(data);
+    if (dataIsLoading && data != null) {
+      if (data.seasons.length > 1) {
+        setMultipleSeasons(true);
+        setSeason(data.seasons[0].id);
+      }
+    }
   }, [dataIsLoading]);
 
   useEffect(() => {
@@ -35,7 +50,7 @@ const ShowDetailsModal = (props: {
     };
   }, []);
   return (
-    <div className="fixed transition-all h-[100vh] lg:h-[95vh] w-full xl:w-3/4 top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 mx-auto rounded-md overflow-y-scroll modal-scrollbar">
+    <div className="fixed transition-all h-[100vh] lg:h-[100vh] w-full xl:w-3/4 top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 mx-auto rounded-md overflow-y-scroll modal-scrollbar">
       {/* backdrop */}
       <div>
         <button
@@ -87,17 +102,17 @@ const ShowDetailsModal = (props: {
               ? ""
               : data && (
                   <>
-                    <div className="mt-20">
+                    <div className="mt-20 lg:flex lg:justify-between">
                       <div>
                         <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
                           <span className="text-green-500">
-                            {`${props.content.recommended} ${(
+                            {`${props.showDetailsContent.recommended} ${(
                               props.show.vote_average * 10
                             ).toFixed(0)} %`}
                           </span>
                           <span>{data.first_air_date.substring(0, 4)}</span>
                           <span>
-                            {`${data.seasons.length} ${props.content.seasons}`}{" "}
+                            {`${data.seasons.length} ${props.showDetailsContent.seasons}`}{" "}
                           </span>
                           <span className="px-2 border text-xs rounded-md">
                             HD
@@ -110,7 +125,56 @@ const ShowDetailsModal = (props: {
                             </li>
                           ))}
                         </ul>
+
                         <p className="mt-4 text-sm">{data.overview}</p>
+                      </div>
+                      <div className="mt-4 lg:mt-0 lg:mr-8 text-sm">
+                        <ul className="flex flex-wrap mb-4">
+                          <li className="text-neutral-500">
+                            {`${props.showDetailsContent.distribution}:`}
+                          </li>
+                          {data.production_companies.map((company, index) => (
+                            <li key={`dist-${index}`} className="ml-2">
+                              {company.name},
+                            </li>
+                          ))}
+                        </ul>
+                        <ul className="flex flex-wrap mb-4">
+                          <li className="text-neutral-500">
+                            {`${props.showDetailsContent.genres}:`}
+                          </li>
+                          {data.genres.map((genre, index) => (
+                            <li key={`gnr-${index}`} className="ml-2">
+                              {genre.name}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="mt-12 lg:mr-12">
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-xl lg:text-2xl font-semibold">
+                          {props.showDetailsContent.episodes}
+                        </h3>
+                        {multipleSeasons && (
+                          <select
+                            className="bg-white/5 p-3 border border-neutral-500 rounded-md font-semibold"
+                            defaultValue={season}
+                            onChange={(e) =>
+                              handleSetSeason(e.currentTarget.value)
+                            }
+                          >
+                            {data.seasons.map((season, index) => (
+                              <option
+                                value={season.id}
+                                key={`season-${index}`}
+                                className="text-black"
+                              >
+                                {season.name}
+                              </option>
+                            ))}
+                          </select>
+                        )}
                       </div>
                     </div>
                   </>

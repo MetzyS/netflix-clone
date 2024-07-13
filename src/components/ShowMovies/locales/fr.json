@@ -41,6 +41,13 @@
   "exploreBtn": "Tout explorer",
   "showDetails": {
     "recommended": "Recommandé à",
-    "seasons": "Saisons"
+    "seasons": "Saisons",
+    "distribution": "Distribution",
+    "genres": "Genres",
+    "genreDetails": "Ce programme est",
+    "episodes": "Épisodes",
+    "miniSerie": "Mini-série",
+    "similar": "Titres similaires",
+    "about": "À propos de "
   }
 }

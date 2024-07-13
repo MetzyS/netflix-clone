@@ -19,3 +19,15 @@ export type SetUpLocaleType = {
   content: SetUpType;
   isLoading: boolean;
 };
+
+export type ShowDetailsType = {
+  recommended: string;
+  seasons: string;
+  distribution: string;
+  genres: string;
+  genreDetails: string;
+  episodes: string;
+  miniSerie: string;
+  similar: string;
+  about: string;
+};
