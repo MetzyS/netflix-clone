@@ -10,6 +10,8 @@ import { HeaderStyle } from "../types/headerstyle";
 import useFetchPopularShows from "../hooks/useFetchPopularShows";
 
 const RootLayout = () => {
+  // State gestion langage
+  const [lang, setLang] = useState<string>("fr");
   // Paramètres et infos utilisateur
   const defaultUser: UserType = {
     plan: 0,
@@ -48,15 +50,13 @@ const RootLayout = () => {
   const [userEmail, setUserEmail] = useState(user.email);
   const [userPassword, setUserPassword] = useState(user.password);
   const [selectedProfile, setSelectedProfile] = useState(user.selectedProfile);
-  // State gestion langage
-  const [lang, setLang] = useState<string>("fr");
 
   const [overflow, setOverflow] = useState(false);
   const [bgWhite, setBgWhite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   // State gestion fetch (pas besoin de fetch si l'utilisateur est deconnecté)
-  const { data, dataIsLoading, error } = useFetchPopularShows();
+  const { data, dataIsLoading, error } = useFetchPopularShows(lang);
 
   const fetchedPopularShows = useMemo(() => {
     return { data, dataIsLoading, error };

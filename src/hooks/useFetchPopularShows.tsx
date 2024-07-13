@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { DataType } from "../types/data";
 import { fetchSettings } from "./fetchSettings";
+import { useDataContext } from "../layouts/RootLayout";
 
-const useFetchPopularShows = (): {
+const useFetchPopularShows = (
+  lang: string
+): {
   data: DataType[];
   dataIsLoading: boolean;
   error: Error | null;
@@ -21,19 +24,19 @@ const useFetchPopularShows = (): {
       try {
         const results = await Promise.allSettled([
           fetch(
-            "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=4000",
+            `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=${lang}-${lang}&page=1&sort_by=popularity.desc&vote_count.gte=4000`,
             fetchSettings.options
           ),
           fetch(
-            "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=2&sort_by=popularity.desc&vote_count.gte=4000",
+            `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=${lang}-${lang}&page=2&sort_by=popularity.desc&vote_count.gte=4000`,
             fetchSettings.options
           ),
           fetch(
-            "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=3&sort_by=popularity.desc&vote_count.gte=4000",
+            `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=${lang}-${lang}&page=3&sort_by=popularity.desc&vote_count.gte=4000`,
             fetchSettings.options
           ),
           fetch(
-            "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=4&sort_by=popularity.desc&vote_count.gte=4000",
+            `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=${lang}-${lang}&page=4&sort_by=popularity.desc&vote_count.gte=4000`,
             fetchSettings.options
           ),
         ]);
