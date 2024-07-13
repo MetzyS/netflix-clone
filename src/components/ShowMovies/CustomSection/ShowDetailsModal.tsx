@@ -7,7 +7,6 @@ import { BsHandThumbsUpFill } from "react-icons/bs";
 import useFetchShowDetails from "../../../hooks/useFetchShowDetails";
 
 const ShowDetailsModal = (props: {
-  id: number;
   closeModalFunction: (e: KeyboardEvent) => void;
   btnClose: () => void;
   backdropImage: string;
@@ -20,13 +19,15 @@ const ShowDetailsModal = (props: {
     seasons: string;
   };
 }) => {
-  const { data, dataIsLoading } = useFetchShowDetails(props.id);
+  const { data, dataIsLoading } = useFetchShowDetails(props.show.id);
+  if (!dataIsLoading) {
+    console.log(data);
+  }
 
   useEffect(() => {
     console.log(data);
   }, [dataIsLoading]);
 
-  console.log(props.show);
   useEffect(() => {
     document.addEventListener("keydown", props.closeModalFunction);
     return () => {
@@ -50,7 +51,7 @@ const ShowDetailsModal = (props: {
             className="rounded-l-md bg-faded aspect-video"
           />
           <div className="absolute top-[40%] lg:top-[50%] left-[5%]">
-            <h1 className="text-3xl">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold">
               {props.show.name ? props.show.name : props.show.original_title}
             </h1>
             <div className="flex gap-2 mt-6">
@@ -82,16 +83,28 @@ const ShowDetailsModal = (props: {
                 </button>
               </div>
             </div>
-            <div className="mt-20">
-              <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
-                <span className="text-green-500">
-                  Recommandé à {(props.show.vote_average * 10).toFixed(0)}%
-                </span>
-                <span>2024</span>
-                <span>3 {props.content.seasons}</span>
-                <span className="px-2 border text-xs rounded-md">HD</span>
-              </p>
-            </div>
+            {dataIsLoading
+              ? ""
+              : data && (
+                  <>
+                    <div className="mt-20">
+                      <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
+                        <span className="text-green-500">
+                          {`${props.content.recommended} ${(
+                            props.show.vote_average * 10
+                          ).toFixed(0)} %`}
+                        </span>
+                        <span>{data.first_air_date.substring(0, 4)}</span>
+                        <span>
+                          {`${data.seasons.length} ${props.content.seasons}`}{" "}
+                        </span>
+                        <span className="px-2 border text-xs rounded-md">
+                          HD
+                        </span>
+                      </p>
+                    </div>
+                  </>
+                )}
           </div>
         </div>
       </div>

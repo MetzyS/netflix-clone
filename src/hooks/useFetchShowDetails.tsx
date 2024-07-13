@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { ResultType } from "../types/data";
+import { ResultDetailsType } from "../types/data";
 import { fetchSettings } from "./fetchSettings";
 
-const useFetchShowDetails = (props: {
-  id: number;
-}): {
-  data: ResultType[];
+const useFetchShowDetails = (
+  id: number
+): {
+  data: ResultDetailsType | undefined;
   dataIsLoading: boolean;
 } => {
-  const [data, setData] = useState<ResultType[]>([]);
+  const [data, setData] = useState<ResultDetailsType | undefined>();
   const [dataIsLoading, setDataIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const useFetchShowDetails = (props: {
       }
     };
 
-    fetchDetails(props.id);
+    fetchDetails(id);
 
     return () => {
       isMounted = false;

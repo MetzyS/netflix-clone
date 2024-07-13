@@ -46,7 +46,6 @@ const CustomSection = (props: {
     <>
       {open && selectedShow !== null && (
         <ShowDetailsModal
-          id={selectedShow.id}
           closeModalFunction={handleClosePopup}
           btnClose={funcClosePopup}
           backdropImage={selectedShow.backdrop_path}
