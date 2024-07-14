@@ -50,7 +50,7 @@ const ShowDetailsModal = (props: {
     };
   }, []);
   return (
-    <div className="fixed transition-all h-[100vh] lg:h-[100vh] w-full xl:w-3/4 top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 mx-auto rounded-md overflow-y-scroll modal-scrollbar">
+    <div className="fixed transition-all h-[100vh] w-full lg:w-[90vw] top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 rounded-md overflow-y-scroll modal-scrollbar">
       {/* backdrop */}
       <div>
         <button
@@ -65,7 +65,7 @@ const ShowDetailsModal = (props: {
             alt=""
             className="rounded-l-md bg-faded aspect-video"
           />
-          <div className="absolute top-[40%] lg:top-[50%] left-[5%]">
+          <div className="absolute top-[40%] lg:top-[50%] px-8 lg:px-12">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold">
               {props.show.name ? props.show.name : props.show.original_title}
             </h1>
@@ -128,7 +128,7 @@ const ShowDetailsModal = (props: {
 
                         <p className="mt-4 text-sm">{data.overview}</p>
                       </div>
-                      <div className="mt-4 lg:mt-0 lg:mr-8 text-sm">
+                      <div className="mt-4 lg:mt-0 text-sm">
                         <ul className="flex flex-wrap mb-4">
                           <li className="text-neutral-500">
                             {`${props.showDetailsContent.distribution}:`}
@@ -151,7 +151,7 @@ const ShowDetailsModal = (props: {
                         </ul>
                       </div>
                     </div>
-                    <div className="mt-12 lg:mr-12">
+                    <div className="mt-12">
                       <div className="flex justify-between items-center">
                         <h3 className="text-xl lg:text-2xl font-semibold">
                           {props.showDetailsContent.episodes}

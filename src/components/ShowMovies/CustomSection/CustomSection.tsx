@@ -45,14 +45,17 @@ const CustomSection = (props: {
   return (
     <>
       {open && selectedShow !== null && (
-        <ShowDetailsModal
-          closeModalFunction={handleClosePopup}
-          btnClose={funcClosePopup}
-          backdropImage={selectedShow.backdrop_path}
-          show={selectedShow}
-          content={props.content}
-          showDetailsContent={props.showDetails}
-        />
+        <>
+          <div className="fixed z-20 backdrop-blur-md bg-black/70 top-0 bottom-0 right-0 left-0"></div>
+          <ShowDetailsModal
+            closeModalFunction={handleClosePopup}
+            btnClose={funcClosePopup}
+            backdropImage={selectedShow.backdrop_path}
+            show={selectedShow}
+            content={props.content}
+            showDetailsContent={props.showDetails}
+          />
+        </>
       )}
       <section className="ml-4 lg:ml-12 z-20 backdrop-blur-[1px] mb-6">
         <Link to="/" className="flex items-center group group/title">
