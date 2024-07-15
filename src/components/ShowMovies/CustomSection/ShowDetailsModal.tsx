@@ -24,24 +24,25 @@ const ShowDetailsModal = (props: {
   const [multipleSeasons, setMultipleSeasons] = useState<boolean>(false);
 
   const handleSetSeason = (number: number | string) => {
+    console.log(`Serie ID: ${data!.id} -- Season ID: ${number}`);
     setSeason(number);
   };
   const handleMultipleSeasons = (value: boolean) => {
     setMultipleSeasons(value);
   };
 
-  if (!dataIsLoading) {
-    console.log(data);
-  }
+  // API Season Episodes (with Series ID & Season number)
+  // https://developer.themoviedb.org/reference/tv-season-details
 
   useEffect(() => {
-    if (dataIsLoading && data != null) {
-      if (data.seasons.length > 1) {
+    if (!dataIsLoading) {
+      console.log(data);
+      if (data && data.seasons && data.seasons.length > 1) {
         setMultipleSeasons(true);
         setSeason(data.seasons[0].id);
       }
     }
-  }, [dataIsLoading]);
+  }, [dataIsLoading, data]);
 
   useEffect(() => {
     document.addEventListener("keydown", props.closeModalFunction);
@@ -50,7 +51,7 @@ const ShowDetailsModal = (props: {
     };
   }, []);
   return (
-    <div className="fixed transition-all h-[100vh] w-full lg:w-[90vw] top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 rounded-md overflow-y-scroll modal-scrollbar">
+    <div className="fixed transition-all h-[100vh] w-full lg:w-[90vw] top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 rounded-md overflow-y-scroll modal-scrollbar pb-24">
       {/* backdrop */}
       <div>
         <button
@@ -103,7 +104,7 @@ const ShowDetailsModal = (props: {
               : data && (
                   <>
                     <div className="mt-20 lg:flex lg:justify-between">
-                      <div>
+                      <div className="lg:max-w-[75%]">
                         <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
                           <span className="text-green-500">
                             {`${props.showDetailsContent.recommended} ${(
@@ -126,9 +127,11 @@ const ShowDetailsModal = (props: {
                           ))}
                         </ul>
 
-                        <p className="mt-4 text-sm">{data.overview}</p>
+                        <p className="mt-4 text-sm lg:max-w-[75%]">
+                          {data.overview}
+                        </p>
                       </div>
-                      <div className="mt-4 lg:mt-0 text-sm">
+                      <div className="mt-4 lg:mt-0 text-sm lg:w-full lg:ml-12">
                         <ul className="flex flex-wrap mb-4">
                           <li className="text-neutral-500">
                             {`${props.showDetailsContent.distribution}:`}
@@ -152,7 +155,7 @@ const ShowDetailsModal = (props: {
                       </div>
                     </div>
                     <div className="mt-12">
-                      <div className="flex justify-between items-center">
+                      <div className="mb-6 lg:flex lg:justify-between lg:items-center">
                         <h3 className="text-xl lg:text-2xl font-semibold">
                           {props.showDetailsContent.episodes}
                         </h3>
@@ -166,7 +169,7 @@ const ShowDetailsModal = (props: {
                           >
                             {data.seasons.map((season, index) => (
                               <option
-                                value={season.id}
+                                value={index}
                                 key={`season-${index}`}
                                 className="text-black"
                               >

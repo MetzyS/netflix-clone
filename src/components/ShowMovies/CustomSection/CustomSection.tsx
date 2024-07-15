@@ -86,7 +86,7 @@ const CustomSection = (props: {
                     onClick={() => handleOpenPopup(show)}
                   >
                     <img
-                      src={`https://image.tmdb.org/t/p/original/${props.data[index].backdrop_path}`}
+                      src={`https://image.tmdb.org/t/p/w780/${props.data[index].backdrop_path}`}
                       alt=""
                       className="aspect-[16/9] object-center object-fill rounded-lg"
                     />

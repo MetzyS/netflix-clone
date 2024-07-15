@@ -25,7 +25,6 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const [nb, setNb] = useState<number>(() => {
     return Math.floor(Math.random() * 6);
   });
-  console.log(nb);
   const [backdropVideoInfos, setBackdropVideoInfos] =
     useState<null | BackdropVideoInfoType>(null);
 
@@ -41,7 +40,6 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
             fetchSettings.options
           );
           const response = await result.json();
-          console.log(response);
           setBackdropVideoInfos(response);
         } catch (err: any) {
           throw new Error(err.message);
