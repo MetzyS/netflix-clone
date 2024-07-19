@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { fetchSettings } from "./fetchSettings";
 
 const useFetchEpisodes = (props: {
-  showId: number;
+  serieId: number;
+  seasonNumber: number;
 }): {
   isLoading: boolean;
   data: any;
@@ -15,9 +16,9 @@ const useFetchEpisodes = (props: {
   useEffect(() => {
     let isMounted = true;
     setIsLoading(true);
-    const fetchEpisodes = async (showId: number) => {
+    const fetchEpisodes = async (serieId: number, seasonNumber: number) => {
       try {
-        const response = await fetch("", fetchSettings.options);
+        const response = await fetch(`https://api.themoviedb.org/3/tv/${serieId}/season/${seasonNumber}`, fetchSettings.options);
         const responseJson = await response.json();
 
         if (isMounted == true) {
@@ -27,6 +28,7 @@ const useFetchEpisodes = (props: {
         setError(err);
       }
     };
+    fetchEpisodes(props.serieId, props.seasonNumber);
   }, []);
   return { isLoading, data, error };
 };

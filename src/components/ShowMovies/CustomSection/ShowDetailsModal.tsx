@@ -7,6 +7,8 @@ import { BsHandThumbsUpFill } from "react-icons/bs";
 import useFetchShowDetails from "../../../hooks/useFetchShowDetails";
 import { ShowDetailsType } from "../../../types/useLocaleTypes/ImportedLocaleTypes";
 
+import useFetchEpisodes from "../../../hooks/useFetchEpisodes";
+
 const ShowDetailsModal = (props: {
   closeModalFunction: (e: KeyboardEvent) => void;
   btnClose: () => void;
@@ -22,13 +24,19 @@ const ShowDetailsModal = (props: {
   const { data, dataIsLoading } = useFetchShowDetails(props.show.id);
   const [season, setSeason] = useState<number | string>(0);
   const [multipleSeasons, setMultipleSeasons] = useState<boolean>(false);
+  const [episodes, setEpisodes] = useState<any>([]);
 
   const handleSetSeason = (number: number | string) => {
     console.log(`Serie ID: ${data!.id} -- Season ID: ${number}`);
     setSeason(number);
+    // TO DO: handleMultipleSeasons => setEpisodes...
   };
   const handleMultipleSeasons = (value: boolean) => {
     setMultipleSeasons(value);
+    const szn = Number(season);
+    const episodes = useFetchEpisodes({ serieId: props.show.id, seasonNumber: Number(season) })
+    console.log(episodes);
+    setEpisodes(episodes);
   };
 
   // API Season Episodes (with Series ID & Season number)
@@ -102,86 +110,86 @@ const ShowDetailsModal = (props: {
             {dataIsLoading
               ? ""
               : data && (
-                  <>
-                    <div className="mt-20 lg:flex lg:justify-between">
-                      <div className="lg:max-w-[75%]">
-                        <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
-                          <span className="text-green-500">
-                            {`${props.showDetailsContent.recommended} ${(
-                              props.show.vote_average * 10
-                            ).toFixed(0)} %`}
-                          </span>
-                          <span>{data.first_air_date.substring(0, 4)}</span>
-                          <span>
-                            {`${data.seasons.length} ${props.showDetailsContent.seasons}`}{" "}
-                          </span>
-                          <span className="px-2 border text-xs rounded-md">
-                            HD
-                          </span>
-                        </p>
-                        <ul className="flex gap-2 text-neutral-300 font-semibold">
-                          {data.genres.map((genre, index) => (
-                            <li key={`genre-${index}`}>
-                              {genre.name.toLowerCase()}
-                            </li>
-                          ))}
-                        </ul>
+                <>
+                  <div className="mt-20 lg:flex lg:justify-between">
+                    <div className="lg:max-w-[75%]">
+                      <p className="flex gap-2 flex-wrap text-neutral-400 font-semibold">
+                        <span className="text-green-500">
+                          {`${props.showDetailsContent.recommended} ${(
+                            props.show.vote_average * 10
+                          ).toFixed(0)} %`}
+                        </span>
+                        <span>{data.first_air_date.substring(0, 4)}</span>
+                        <span>
+                          {`${data.seasons.length} ${props.showDetailsContent.seasons}`}{" "}
+                        </span>
+                        <span className="px-2 border text-xs rounded-md">
+                          HD
+                        </span>
+                      </p>
+                      <ul className="flex gap-2 text-neutral-300 font-semibold">
+                        {data.genres.map((genre, index) => (
+                          <li key={`genre-${index}`}>
+                            {genre.name.toLowerCase()}
+                          </li>
+                        ))}
+                      </ul>
 
-                        <p className="mt-4 text-sm lg:max-w-[75%]">
-                          {data.overview}
-                        </p>
-                      </div>
-                      <div className="mt-4 lg:mt-0 text-sm lg:w-full lg:ml-12">
-                        <ul className="flex flex-wrap mb-4">
-                          <li className="text-neutral-500">
-                            {`${props.showDetailsContent.distribution}:`}
-                          </li>
-                          {data.production_companies.map((company, index) => (
-                            <li key={`dist-${index}`} className="ml-2">
-                              {company.name},
-                            </li>
-                          ))}
-                        </ul>
-                        <ul className="flex flex-wrap mb-4">
-                          <li className="text-neutral-500">
-                            {`${props.showDetailsContent.genres}:`}
-                          </li>
-                          {data.genres.map((genre, index) => (
-                            <li key={`gnr-${index}`} className="ml-2">
-                              {genre.name}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <p className="mt-4 text-sm lg:max-w-[75%]">
+                        {data.overview}
+                      </p>
                     </div>
-                    <div className="mt-12">
-                      <div className="mb-6 lg:flex lg:justify-between lg:items-center">
-                        <h3 className="text-xl lg:text-2xl font-semibold">
-                          {props.showDetailsContent.episodes}
-                        </h3>
-                        {multipleSeasons && (
-                          <select
-                            className="bg-white/5 p-3 border border-neutral-500 rounded-md font-semibold"
-                            defaultValue={season}
-                            onChange={(e) =>
-                              handleSetSeason(e.currentTarget.value)
-                            }
-                          >
-                            {data.seasons.map((season, index) => (
-                              <option
-                                value={index}
-                                key={`season-${index}`}
-                                className="text-black"
-                              >
-                                {season.name}
-                              </option>
-                            ))}
-                          </select>
-                        )}
-                      </div>
+                    <div className="mt-4 lg:mt-0 text-sm lg:w-full lg:ml-12">
+                      <ul className="flex flex-wrap mb-4">
+                        <li className="text-neutral-500">
+                          {`${props.showDetailsContent.distribution}:`}
+                        </li>
+                        {data.production_companies.map((company, index) => (
+                          <li key={`dist-${index}`} className="ml-2">
+                            {company.name},
+                          </li>
+                        ))}
+                      </ul>
+                      <ul className="flex flex-wrap mb-4">
+                        <li className="text-neutral-500">
+                          {`${props.showDetailsContent.genres}:`}
+                        </li>
+                        {data.genres.map((genre, index) => (
+                          <li key={`gnr-${index}`} className="ml-2">
+                            {genre.name}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  </>
-                )}
+                  </div>
+                  <div className="mt-12">
+                    <div className="mb-6 lg:flex lg:justify-between lg:items-center">
+                      <h3 className="text-xl lg:text-2xl font-semibold">
+                        {props.showDetailsContent.episodes}
+                      </h3>
+                      {multipleSeasons && (
+                        <select
+                          className="bg-white/5 p-3 border border-neutral-500 rounded-md font-semibold"
+                          defaultValue={season}
+                          onChange={(e) =>
+                            handleSetSeason(e.currentTarget.value)
+                          }
+                        >
+                          {data.seasons.map((season, index) => (
+                            <option
+                              value={index}
+                              key={`season-${index}`}
+                              className="text-black"
+                            >
+                              {season.name}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
           </div>
         </div>
       </div>
