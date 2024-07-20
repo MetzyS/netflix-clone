@@ -27,6 +27,7 @@ export type ShowDetailsType = {
   genres: string;
   genreDetails: string;
   episodes: string;
+  episode: string;
   miniSerie: string;
   similar: string;
   about: string;
