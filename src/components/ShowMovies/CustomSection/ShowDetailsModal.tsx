@@ -46,7 +46,7 @@ const ShowDetailsModal = (props: {
 
   useEffect(() => {
     if (!ep.isLoading && ep.data != null) { console.log(ep) }
-  }, [ep.isLoading])
+  }, [season])
 
   useEffect(() => {
     document.addEventListener("keydown", props.closeModalFunction);
@@ -203,16 +203,6 @@ const ShowDetailsModal = (props: {
                       ))}
                     </>
                   )}
-                  <div className="flex">
-                    <span>1</span>
-                    <div><img src="" alt="" /></div>
-                    <div>
-                      <p className="flex justify-between">
-                        <span>Episode 1</span> <span>32 min</span>
-                      </p>
-                      <p>lorem lorem</p>
-                    </div>
-                  </div>
                 </>
               )}
           </div>

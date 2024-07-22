@@ -5,6 +5,7 @@ import { useDataContext } from "../../../layouts/RootLayout";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { ShowDetailsType } from "../../../types/useLocaleTypes/ImportedLocaleTypes";
+import { createPortal } from "react-dom";
 
 const CustomSection = (props: {
   data: ResultType[];
@@ -44,7 +45,7 @@ const CustomSection = (props: {
 
   return (
     <>
-      {open && selectedShow !== null && (
+      {open && selectedShow !== null && createPortal(
         <>
           <div className="fixed z-20 backdrop-blur-md bg-black/70 top-0 bottom-0 right-0 left-0"></div>
           <ShowDetailsModal
@@ -55,8 +56,8 @@ const CustomSection = (props: {
             content={props.content}
             showDetailsContent={props.showDetails}
           />
-        </>
-      )}
+        </>, document.body)
+      }
       <section className="ml-4 lg:ml-12 z-20 backdrop-blur-[1px] mb-6">
         <Link to="/" className="flex items-center group group/title">
           <h1 className="font-semibold text-lg lg:text-xl xl:text-2xl 2xl:text-3xl my-2">
