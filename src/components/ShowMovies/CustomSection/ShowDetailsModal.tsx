@@ -27,7 +27,6 @@ const ShowDetailsModal = (props: {
   const multipleSeasons = useMemo(() => { if (data != undefined && data.seasons.length > 1) { return true } return false }, [dataIsLoading])
 
   const handleSetSeason = (number: number | string) => {
-    console.log(`Serie ID: ${data!.id} -- Season ID: ${number}`);
     setSeason(Number(number));
   };
 

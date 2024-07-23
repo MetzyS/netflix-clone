@@ -20,7 +20,6 @@ const useFetchEpisodes = (props: {
   const [epError, setEpError] = useState<any>({});
 
   useEffect(() => {
-    console.log("effinadeeee")
     let isMounted = true;
     setEpDataIsLoading(true);
     async function fetchEpisodes(serieId: number, seasonNumber: number) {

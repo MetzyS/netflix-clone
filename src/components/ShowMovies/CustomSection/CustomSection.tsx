@@ -16,7 +16,6 @@ const CustomSection = (props: {
   };
   showDetails: ShowDetailsType;
 }) => {
-  console.log("effins")
   const { bodyOverflow } = useDataContext();
   const [open, setOpen] = useState(false);
   const [selectedShow, setSelectedShow] = useState<null | ResultType>(null);
