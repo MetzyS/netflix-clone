@@ -3,43 +3,46 @@ import { fetchSettings } from "./fetchSettings";
 import { useDataContext } from "../layouts/RootLayout";
 import { ResultEpisodes } from "../types/data";
 
+export type FetchedEpisodesDetails = {
+  epDataIsLoading: boolean;
+  epData: ResultEpisodes;
+  epError: any;
+}
+
 const useFetchEpisodes = (props: {
   serieId: number;
   seasonNumber: number;
-}): {
-  isLoading: boolean;
-  data: any;
-  error: any;
-} => {
+}
+): FetchedEpisodesDetails => {
   const { lang } = useDataContext();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [data, setData] = useState<any>({});
-  const [error, setError] = useState<any>({});
+  const [epDataIsLoading, setEpDataIsLoading] = useState<boolean>(true);
+  const [epData, setEpData] = useState<any>({});
+  const [epError, setEpError] = useState<any>({});
 
   useEffect(() => {
+    console.log("effinadeeee")
     let isMounted = true;
-    setIsLoading(true);
-    const fetchEpisodes = async (serieId: number, seasonNumber: number) => {
+    setEpDataIsLoading(true);
+    async function fetchEpisodes(serieId: number, seasonNumber: number) {
       try {
-        console.log(`FETCH URL: https://api.themoviedb.org/3/tv/${serieId}/season/${seasonNumber}?language=${lang}-${lang}`)
         const response = await fetch(`https://api.themoviedb.org/3/tv/${serieId}/season/${seasonNumber}?language=${lang}-${lang}`, fetchSettings.options);
         const responseJson = await response.json();
 
         if (isMounted == true) {
-          setData(responseJson);
+          setEpData(responseJson);
         }
       } catch (err) {
-        setError(err);
+        setEpError(err);
       } finally {
-        setIsLoading(false);
+        setEpDataIsLoading(false);
       }
     };
     fetchEpisodes(props.serieId, props.seasonNumber);
     return () => {
       isMounted = false;
     }
-  }, []);
-  return { isLoading, data, error };
+  }, [props.serieId, props.seasonNumber, lang]);
+  return { epDataIsLoading, epData, epError };
 };
 
 export default useFetchEpisodes;
