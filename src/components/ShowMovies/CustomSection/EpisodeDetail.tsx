@@ -9,7 +9,6 @@ const EpisodeDetail = (props: { episode: Episode; minutes: string }) => {
     image.src = `https://image.tmdb.org/t/p/w154/${props.episode.still_path}.jpg`;
     image.onload = () => {
       setImageIsLoaded(true);
-      console.log("trued");
     };
   }, [props.episode.still_path]);
 

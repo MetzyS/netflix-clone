@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { Episode, ResultEpisodes, ResultType } from "../../../types/data";
+import { Episode, ResultType } from "../../../types/data";
 import { FaCheck, FaPlay } from "react-icons/fa6";
 import { BsHandThumbsUp } from "react-icons/bs";
 import useFetchShowDetails from "../../../hooks/useFetchShowDetails";
@@ -8,6 +8,7 @@ import { ShowDetailsType } from "../../../types/useLocaleTypes/ImportedLocaleTyp
 
 import useFetchEpisodes from "../../../hooks/useFetchEpisodes";
 import EpisodeDetail from "./EpisodeDetail";
+import LoadingSpinner from "../../ui/LoadingSpinner";
 
 const ShowDetailsModal = (props: {
   closeModalFunction: (e: KeyboardEvent) => void;
@@ -38,6 +39,10 @@ const ShowDetailsModal = (props: {
   const handleSetSeason = (number: number | string) => {
     setSeason(Number(number));
   };
+
+  useEffect(() => {
+    console.log(epError);
+  }, [epError]);
 
   useEffect(() => {
     document.addEventListener("keydown", props.closeModalFunction);
@@ -179,17 +184,27 @@ const ShowDetailsModal = (props: {
                         </div>
                       </div>
 
-                      {epData !== null && epData.episodes && (
+                      {epDataIsLoading ? (
+                        <LoadingSpinner />
+                      ) : (
                         <>
-                          {epData.episodes &&
-                            epData.episodes.map((episode: Episode, index) => (
-                              <Fragment key={`episode-${index}`}>
-                                <EpisodeDetail
-                                  episode={episode}
-                                  minutes={props.showDetailsContent.minutes}
-                                />
-                              </Fragment>
-                            ))}
+                          {epData !== null && epData.episodes && (
+                            <>
+                              {epData.episodes &&
+                                epData.episodes.map(
+                                  (episode: Episode, index) => (
+                                    <Fragment key={`episode-${index}`}>
+                                      <EpisodeDetail
+                                        episode={episode}
+                                        minutes={
+                                          props.showDetailsContent.minutes
+                                        }
+                                      />
+                                    </Fragment>
+                                  )
+                                )}
+                            </>
+                          )}
                         </>
                       )}
                     </>
