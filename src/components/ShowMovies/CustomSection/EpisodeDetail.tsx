@@ -38,7 +38,10 @@ const EpisodeDetail = (props: { episode: Episode; minutes: string }) => {
       <div className="pl-2 grid w-full">
         <div className="md:flex md:justify-between md:mb-2 hidden">
           <h4 className="max-w-[85%] line-clamp-1">{props.episode.name}</h4>
-          <span>{`${props.episode.runtime} ${props.minutes}`}</span>
+          <span>
+            {props.episode.runtime !== null &&
+              `${props.episode.runtime} ${props.minutes}`}
+          </span>
         </div>
         <p className="hidden md:block text-neutral-400 text-sm text-ellipsis line-clamp-3 max-h-[60px] text-justify">
           {props.episode.overview}
