@@ -5,6 +5,7 @@ const EpisodeDetail = (props: { episode: Episode; minutes: string }) => {
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
   const image = new Image();
   useEffect(() => {
+    setImageIsLoaded(false);
     image.src = `https://image.tmdb.org/t/p/w154/${props.episode.still_path}.jpg`;
     image.onload = () => {
       setImageIsLoaded(true);
@@ -13,7 +14,7 @@ const EpisodeDetail = (props: { episode: Episode; minutes: string }) => {
   }, [props.episode.still_path]);
 
   return (
-    <div className="flex flex-col items-center justify-center md:justify-normal md:items-start md:flex-row md:py-6 md:px-8 gap-4 md:rounded-md border border-transparent border-b-neutral-700">
+    <div className="flex flex-col items-center justify-center md:justify-normal md:items-start md:flex-row md:py-6 md:px-8 gap-4 md:rounded-md border border-transparent border-b-neutral-700 cursor-pointer hover:bg-neutral-800">
       <h4 className="md:hidden line-clamp-1 text-center mt-2 md:mt-0">
         {props.episode.name}
       </h4>
