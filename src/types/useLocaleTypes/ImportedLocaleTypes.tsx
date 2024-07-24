@@ -31,4 +31,5 @@ export type ShowDetailsType = {
   miniSerie: string;
   similar: string;
   about: string;
+  minutes: string;
 };
