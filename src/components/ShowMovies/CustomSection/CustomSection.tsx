@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { ResultType } from "../../../types/data";
 import ShowDetailsModal from "./ShowDetailsModal";
 import { useDataContext } from "../../../layouts/RootLayout";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { ShowDetailsType } from "../../../types/useLocaleTypes/ImportedLocaleTypes";
 import { createPortal } from "react-dom";
+import ShowVignette from "./ShowVignette";
 
 const CustomSection = (props: {
   data: ResultType[];
@@ -77,27 +78,32 @@ const CustomSection = (props: {
           <ul className="flex justify-between gap-[1vw]">
             {props.data.map((show, index) => {
               return (
-                <li
-                  key={`show-${index}`}
-                  className="w-1/2 flex-shrink-0 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 rounded-lg"
-                >
-                  <button
-                    type="button"
-                    className="relative flex items-center"
-                    onClick={() => handleOpenPopup(show)}
-                  >
-                    <img
-                      src={`https://image.tmdb.org/t/p/w780/${props.data[index].backdrop_path}`}
-                      alt=""
-                      className="aspect-[16/9] object-center object-fill rounded-lg"
-                    />
-                    <span className="absolute top-1/2 left-1/2 text-xl xl:text-2xl 2xl:text-3xl drop-shadow-default text-wrap break-words w-9/12 text-left text-white translate-x-[-50%] translate-y-[-50%]">
-                      {show.original_name
-                        ? show.original_name
-                        : show.original_title}
-                    </span>
-                  </button>
-                </li>
+                <Fragment key={`show-${index}`}>
+
+                  <ShowVignette show={show} handleOpenPopup={handleOpenPopup} />
+
+                </Fragment>
+                // <li
+                //   key={`show-${index}`}
+                //   className="w-1/2 flex-shrink-0 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 rounded-lg"
+                // >
+                //   <button
+                //     type="button"
+                //     className="relative flex items-center"
+                //     onClick={() => handleOpenPopup(show)}
+                //   >
+                //     <img
+                //       src={`https://image.tmdb.org/t/p/w780/${show.backdrop_path}`}
+                //       alt=""
+                //       className="aspect-[16/9] object-center object-fill rounded-lg"
+                //     />
+                //     <span className="absolute top-1/2 left-1/2 text-xl xl:text-2xl 2xl:text-3xl drop-shadow-default text-wrap break-words w-9/12 text-left text-white translate-x-[-50%] translate-y-[-50%]">
+                //       {show.original_name
+                //         ? show.original_name
+                //         : show.original_title}
+                //     </span>
+                //   </button>
+                // </li>
               );
             })}
           </ul>
