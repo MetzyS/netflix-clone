@@ -24,7 +24,6 @@ const useFetchVideo = (
           fetchSettings.options
         );
         const response = await result.json();
-        // console.log(response);
         isMounted && setVideoData(response);
       } catch (err: any) {
         isMounted && setErrrrr(Error(err.message));

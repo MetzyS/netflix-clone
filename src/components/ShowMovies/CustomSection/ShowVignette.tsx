@@ -13,7 +13,6 @@ const ShowVignette = (props: {
     setImageIsLoaded(false);
     image.src = `https://image.tmdb.org/t/p/w780/${props.show.backdrop_path}`
     image.onload = () => {
-      console.log("ouaisouaisouais")
       setImageIsLoaded(true);
     }
   }, [props.show.backdrop_path]);

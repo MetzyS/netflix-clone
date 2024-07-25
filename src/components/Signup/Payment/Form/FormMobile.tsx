@@ -28,7 +28,6 @@ const FormMobile = (props: {
   const handleConfirmation = (e: ChangeEvent<HTMLInputElement>) => {
     setConfirmation(e.target.checked);
     e.target.checked ? setErrorStyle("") : setErrorStyle("checkbox-error");
-    console.log(e.target.checked);
   };
 
   return (

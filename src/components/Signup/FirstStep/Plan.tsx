@@ -10,7 +10,6 @@ const Plan = (props: {
   handleSelected: (value: number) => void;
 }) => {
   const handleKeyDown = (e: KeyboardEvent<HTMLUListElement>) => {
-    console.log(e.key);
     if (e.key === "Enter") {
       props.handleSelected(props.index);
     }
@@ -19,40 +18,36 @@ const Plan = (props: {
     <ul
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      className={`ul-plan ${
-        props.isSelected === props.index
+      className={`ul-plan ${props.isSelected === props.index
           ? "lg:shadow-lg lg:shadow-black/40 border-neutral-400"
           : ""
-      }`}
+        }`}
       onClick={() => props.handleSelected(props.index)}
     >
       <li>
         <div
           key={"plan-" + props.index}
-          className={`relative basis-full h-28 lg:h-max lg:pb-8 border border-neutral-300 rounded-xl pt-4 lg:pt-2 px-2.5 cursor-pointer ${
-            props.isSelected == props.index
+          className={`relative basis-full h-28 lg:h-max lg:pb-8 border border-neutral-300 rounded-xl pt-4 lg:pt-2 px-2.5 cursor-pointer ${props.isSelected == props.index
               ? "bg-plan-" + props.index + " shadow-md text-white"
               : "bg-transparent"
-          }`}
+            }`}
         >
           <h2 className="text-sm font-bold lg:text-lg lg:-mb-2">
             {props.item.title}
           </h2>
           <sub
-            className={`text-xs lg:text-base font-semibold ${
-              props.isSelected === props.index
+            className={`text-xs lg:text-base font-semibold ${props.isSelected === props.index
                 ? "text-white"
                 : "text-neutral-600"
-            }`}
+              }`}
           >
             {props.item.options}
           </sub>
           <div
-            className={`absolute bottom-3 right-3 transition-all ${
-              props.isSelected == props.index
+            className={`absolute bottom-3 right-3 transition-all ${props.isSelected == props.index
                 ? "opacity-100 size-5"
                 : "opacity-0 size-0"
-            }`}
+              }`}
           >
             <IoIosCheckmarkCircle className="size-full text-white" />
           </div>

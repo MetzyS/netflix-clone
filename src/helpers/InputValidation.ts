@@ -31,10 +31,7 @@ export function expdateValidation(value: string): boolean {
   const fullDate = new Date();
   const month = fullDate.getMonth() + 1;
   const year = Number(fullDate.getFullYear().toString().slice(-2));
-  console.log("month: " + month);
-  console.log(year);
   const splitUserInput = value.split("/");
-  console.log(splitUserInput);
   if (Number(splitUserInput[1]) < year) {
     // Année invalide
     return false;
