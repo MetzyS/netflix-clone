@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { Episode, ResultType } from "../../../types/data";
 import { FaCheck, FaPlay } from "react-icons/fa6";
@@ -11,6 +11,7 @@ import EpisodeDetail from "./EpisodeDetail";
 import LoadingSpinner from "../../ui/LoadingSpinner";
 import ShowDetailsButtons from "./ShowDetailsButtons";
 import ShowDetailsDesc from "./ShowDetailsDesc";
+import ShowDetailsSeasonSelect from "./ShowDetailsSeeasonSelect";
 
 const ShowDetailsModal = (props: {
   closeModalFunction: (e: KeyboardEvent) => void;
@@ -25,18 +26,21 @@ const ShowDetailsModal = (props: {
   showDetailsContent: ShowDetailsType;
 }) => {
   const [season, setSeason] = useState<number | string>(1);
+  const [multipleSeasons, setMultipleSeasons] = useState<boolean>(false);
   const { data, dataIsLoading } = useFetchShowDetails(props.show.id);
   const { epDataIsLoading, epData, epError } = useFetchEpisodes({
     serieId: props.show.id,
     seasonNumber: Number(season),
   });
 
-  const multipleSeasons = useMemo(() => {
-    if (data != undefined && data.seasons.length > 1) {
-      return true;
-    }
-    return false;
-  }, [dataIsLoading]);
+  useEffect(() => {
+    setMultipleSeasons(() => {
+      if (data != undefined && data.seasons.length > 1) {
+        return true;
+      }
+      return false;
+    });
+  }, [data]);
 
   const handleSetSeason = (number: number | string) => {
     setSeason(Number(number));
@@ -79,65 +83,46 @@ const ShowDetailsModal = (props: {
               {dataIsLoading
                 ? ""
                 : data && (
-                  <>
-                    <ShowDetailsDesc
-                      text={props.showDetailsContent}
-                      averageVote={props.show.vote_average}
-                      data={data}
-                    />
-                    {/* episode + select season */}
-                    <div className="mt-12">
-                      <div className="mb-2 lg:flex lg:justify-between lg:items-center">
-                        <h3 className="text-xl lg:text-2xl">
-                          {props.showDetailsContent.episodes}
-                        </h3>
-                        {multipleSeasons && (
-                          <select
-                            className="bg-white/5 p-3 border border-neutral-500 rounded-md font-semibold"
-                            defaultValue={season}
-                            onChange={(e) =>
-                              handleSetSeason(e.currentTarget.value)
-                            }
-                          >
-                            {data.seasons.map((season, index) => (
-                              <option
-                                value={season.season_number}
-                                key={`season-${index}`}
-                                className="text-black"
-                              >
-                                {season.name}
-                              </option>
-                            ))}
-                          </select>
-                        )}
-                      </div>
-                    </div>
+                    <>
+                      <ShowDetailsDesc
+                        text={props.showDetailsContent}
+                        averageVote={props.show.vote_average}
+                        data={data}
+                      />
+                      {/* episode + select season */}
+                      <ShowDetailsSeasonSelect
+                        episodeText={props.showDetailsContent.episodes}
+                        multipleSeasons={multipleSeasons}
+                        season={season}
+                        handleSetSeason={handleSetSeason}
+                        data={data}
+                      />
 
-                    {epDataIsLoading ? (
-                      <LoadingSpinner />
-                    ) : (
-                      <>
-                        {epData !== null && epData.episodes && (
-                          <>
-                            {epData.episodes &&
-                              epData.episodes.map(
-                                (episode: Episode, index) => (
-                                  <Fragment key={`episode-${index}`}>
-                                    <EpisodeDetail
-                                      episode={episode}
-                                      minutes={
-                                        props.showDetailsContent.minutes
-                                      }
-                                    />
-                                  </Fragment>
-                                )
-                              )}
-                          </>
-                        )}
-                      </>
-                    )}
-                  </>
-                )}
+                      {epDataIsLoading ? (
+                        <LoadingSpinner />
+                      ) : (
+                        <>
+                          {epData !== null && epData.episodes && (
+                            <>
+                              {epData.episodes &&
+                                epData.episodes.map(
+                                  (episode: Episode, index) => (
+                                    <Fragment key={`episode-${index}`}>
+                                      <EpisodeDetail
+                                        episode={episode}
+                                        minutes={
+                                          props.showDetailsContent.minutes
+                                        }
+                                      />
+                                    </Fragment>
+                                  )
+                                )}
+                            </>
+                          )}
+                        </>
+                      )}
+                    </>
+                  )}
             </div>
           </div>
         </div>
