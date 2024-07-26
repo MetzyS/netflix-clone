@@ -11,7 +11,7 @@ import EpisodeDetail from "./EpisodeDetail";
 import LoadingSpinner from "../../ui/LoadingSpinner";
 import ShowDetailsButtons from "./ShowDetailsButtons";
 import ShowDetailsDesc from "./ShowDetailsDesc";
-import ShowDetailsSeasonSelect from "./ShowDetailsSeeasonSelect";
+import ShowDetailsSeasonSelect from "./ShowDetailsSeasonSelect";
 
 const ShowDetailsModal = (props: {
   closeModalFunction: (e: KeyboardEvent) => void;
@@ -83,46 +83,46 @@ const ShowDetailsModal = (props: {
               {dataIsLoading
                 ? ""
                 : data && (
-                    <>
-                      <ShowDetailsDesc
-                        text={props.showDetailsContent}
-                        averageVote={props.show.vote_average}
-                        data={data}
-                      />
-                      {/* episode + select season */}
-                      <ShowDetailsSeasonSelect
-                        episodeText={props.showDetailsContent.episodes}
-                        multipleSeasons={multipleSeasons}
-                        season={season}
-                        handleSetSeason={handleSetSeason}
-                        data={data}
-                      />
+                  <>
+                    <ShowDetailsDesc
+                      text={props.showDetailsContent}
+                      averageVote={props.show.vote_average}
+                      data={data}
+                    />
+                    {/* episode + select season */}
+                    <ShowDetailsSeasonSelect
+                      episodeText={props.showDetailsContent.episodes}
+                      multipleSeasons={multipleSeasons}
+                      season={season}
+                      handleSetSeason={handleSetSeason}
+                      data={data}
+                    />
 
-                      {epDataIsLoading ? (
-                        <LoadingSpinner />
-                      ) : (
-                        <>
-                          {epData !== null && epData.episodes && (
-                            <>
-                              {epData.episodes &&
-                                epData.episodes.map(
-                                  (episode: Episode, index) => (
-                                    <Fragment key={`episode-${index}`}>
-                                      <EpisodeDetail
-                                        episode={episode}
-                                        minutes={
-                                          props.showDetailsContent.minutes
-                                        }
-                                      />
-                                    </Fragment>
-                                  )
-                                )}
-                            </>
-                          )}
-                        </>
-                      )}
-                    </>
-                  )}
+                    {epDataIsLoading ? (
+                      <LoadingSpinner />
+                    ) : (
+                      <>
+                        {epData !== null && epData.episodes && (
+                          <>
+                            {epData.episodes &&
+                              epData.episodes.map(
+                                (episode: Episode, index) => (
+                                  <Fragment key={`episode-${index}`}>
+                                    <EpisodeDetail
+                                      episode={episode}
+                                      minutes={
+                                        props.showDetailsContent.minutes
+                                      }
+                                    />
+                                  </Fragment>
+                                )
+                              )}
+                          </>
+                        )}
+                      </>
+                    )}
+                  </>
+                )}
             </div>
           </div>
         </div>
