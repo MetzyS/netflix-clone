@@ -4,7 +4,7 @@ const FaqButton = (props: {
     link: string;
     title: string;
   };
-  textColor?: string;
+  footerStyle?: boolean;
   underline?: boolean;
 }) => {
   return (
@@ -12,8 +12,8 @@ const FaqButton = (props: {
       <a
         href={props.item.link}
         className={`${
-          props.textColor
-            ? props.textColor
+          props.footerStyle
+            ? "text-black"
             : "hover:text-neutral-200 text-secondary"
         } ${props.underline ? "underline" : "hover:underline"} `}
       >

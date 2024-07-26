@@ -1,9 +1,9 @@
 export type HeaderStyle = {
+  absolutePos: boolean;
   showBtn: boolean;
   showSelectLang: boolean;
   background: string;
   className: string;
-  fixed: boolean;
   resizeOnScroll: boolean;
   transparentBtn: boolean;
   link: string;

@@ -39,7 +39,7 @@ export type ContextType = {
 
   // handlers style
   setWhiteTheme: (value: boolean) => void;
-  resetHeaderStyle: () => void;
+  resetStyle: () => void;
   handleHeaderStyle: (
     values: Array<{
       key: keyof HeaderStyle;

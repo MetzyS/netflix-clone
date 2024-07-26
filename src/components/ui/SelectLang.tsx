@@ -8,7 +8,6 @@ const SelectLang = (props: {
   lang: string;
   handleChangeLang: (lang: string) => void;
 }) => {
-  // const { lang, handleChangeLang } = useDataContext();
   return (
     <>
       <div className="justify-center items-center rounded-md transition-none ring-default">

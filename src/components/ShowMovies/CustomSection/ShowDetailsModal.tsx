@@ -55,7 +55,7 @@ const ShowDetailsModal = (props: {
 
   return (
     <>
-      <div className="fixed transition-all h-[100vh] w-full lg:w-[90vw] xl:w-[60vw] top-0 lg:top-[2vh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 rounded-md overflow-y-scroll modal-scrollbar pb-24">
+      <div className="fixed transition-all h-[100vh] w-full lg:w-[90vw] xl:w-[60vw] top-0 lg:h-[95dvh] lg:top-[2.5dvh] lg:left-[50%] lg:-translate-x-[50%] bg-neutral-900 z-30 rounded-md overflow-y-scroll modal-scrollbar">
         {/* backdrop */}
         <div>
           <button

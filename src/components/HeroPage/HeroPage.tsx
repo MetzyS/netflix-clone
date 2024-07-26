@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDataContext } from "../../layouts/RootLayout";
 import { HeroPageLocaleType } from "../../types/useLocaleTypes/ImportedLocaleTypes";
 import { useLocale } from "../../hooks/useLocale";
-import Footer from "../Footer/Footer";
 import OfferAd from "./OfferAd";
 import Card from "./Card";
 import Faq from "./Faq";
@@ -12,15 +11,15 @@ import FormRegister from "./FormRegister";
 import DefaultContainer from "../ui/DefaultContainer";
 
 const HeroPage = () => {
-  const { lang, isConfigured, isRegistered } = useDataContext();
+  const { lang, isConfigured, isRegistered, resetStyle, setWhiteTheme } =
+    useDataContext();
   const { content, isLoading }: HeroPageLocaleType = useLocale(
     "HeroPage",
     lang
   );
-
-  const { setWhiteTheme } = useDataContext();
   useEffect(() => {
     setWhiteTheme(false);
+    resetStyle();
   }, []);
 
   return (
@@ -29,6 +28,7 @@ const HeroPage = () => {
         <></>
       ) : (
         <>
+          <div className="placeholder"></div>
           <DefaultContainer className="w-screen overflow-hidden pr-4">
             <FadedBackground className="pb-8">
               <div className="max-w-[1024px] m-auto text-center">
@@ -59,7 +59,12 @@ const HeroPage = () => {
 
             <div>
               {Object.values(content.description).map((item, index) => (
-                <Card content={item} key={"card-" + index} lang={lang} />
+                <Card
+                  content={item}
+                  key={"card-" + index}
+                  lang={lang}
+                  index={index}
+                />
               ))}
             </div>
 
@@ -84,8 +89,6 @@ const HeroPage = () => {
               <Separation />
             </div>
           </DefaultContainer>
-
-          <Footer />
         </>
       )}
     </>

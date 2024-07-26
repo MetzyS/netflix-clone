@@ -1,24 +1,26 @@
-import { useDataContext } from "../../layouts/RootLayout";
+// import { useDataContext } from "../../layouts/RootLayout";
 import { FooterLocaleType } from "../../types/useLocaleTypes/ImportedLocaleTypes";
 import { useLocale } from "../../hooks/useLocale";
 import FaqButton from "../ui/FaqItem";
 import SelectLang from "../ui/SelectLang";
+import { FooterStyle } from "../../types/footerstyle";
 
 const Footer = (props: {
-  selectBg?: string;
-  selectTextColor?: string;
-  className?: string;
-  textColor?: string;
-  selectBorderColor?: string;
-  underline?: boolean;
-  showLangText?: boolean;
+  lang: string;
+  handleChangeLang: (value: string) => void;
+  footerStyle: FooterStyle;
 }) => {
-  const { lang, handleChangeLang } = useDataContext();
-  const { content, isLoading }: FooterLocaleType = useLocale("Footer", lang);
+  const { content, isLoading }: FooterLocaleType = useLocale(
+    "Footer",
+    props.lang
+  );
+  console.log(props.footerStyle);
   return (
     <footer
       className={`p-6 w-screen ${
-        props.className ? props.className : undefined
+        props.footerStyle.whiteTheme
+          ? "bg-[#f3f3f3] border-t border-t-black/10"
+          : ""
       }`}
     >
       {isLoading ? (
@@ -28,7 +30,7 @@ const Footer = (props: {
           <a
             href="mailto:contact@metzys.net"
             className={`text-left ${
-              props.textColor ? props.textColor : "text-secondary"
+              props.footerStyle.whiteTheme ? "text-black" : "text-secondary"
             } hover:underline`}
           >
             {content.footerText}
@@ -39,23 +41,22 @@ const Footer = (props: {
                 key={"footer-item-" + index}
                 item={item}
                 index={index}
-                textColor={props.textColor}
-                underline={props.underline}
+                footerStyle={props.footerStyle.whiteTheme}
               />
             ))}
           </ul>
           <div className="w-32 my-6">
             <SelectLang
-              lang={lang}
-              handleChangeLang={handleChangeLang}
-              bg={props.selectBg ? props.selectBg : undefined}
+              lang={props.lang}
+              handleChangeLang={props.handleChangeLang}
+              bg={props.footerStyle.whiteTheme ? "bg-white" : ""}
               selectTextColor={
-                props.selectTextColor ? props.selectTextColor : undefined
+                props.footerStyle.whiteTheme ? "text-neutral-600" : ""
               }
               borderColor={
-                props.selectBorderColor ? props.selectBorderColor : undefined
+                props.footerStyle.whiteTheme ? "border-black/30" : undefined
               }
-              showText={props.showLangText ? props.showLangText : undefined}
+              showText={true}
             />
           </div>
         </div>

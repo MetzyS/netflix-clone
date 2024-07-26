@@ -23,11 +23,11 @@ const HeroHeader = (props: {
     showSelectLang,
     background,
     className,
-    fixed,
     transparentBtn,
     logoClassName,
     link,
     signupHeader,
+    absolutePos,
   } = props.headerStyle;
 
   return (
@@ -37,7 +37,7 @@ const HeroHeader = (props: {
       ) : (
         <header
           className={`${
-            fixed ? "fixed" : "absolute"
+            absolutePos ? "absolute" : ""
           } z-20 top-0 left-0 right-0 flex flex-wrap items-center m-auto justify-between gap-2 ${background} max-w-[1600px] px-6 ${
             signupHeader ? "" : "py-6"
           } ${className ? className : ""}`}

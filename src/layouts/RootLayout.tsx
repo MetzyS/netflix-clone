@@ -5,9 +5,11 @@ import { UserProfile, UserType } from "../types/user";
 import { checkEmail } from "../helpers/checkEmail";
 import { userIsConnected } from "../helpers/userIsConnected";
 import { createUsernameFromEmail } from "../helpers/createUsernameFromEmail";
-import HeaderTwo from "../components/Header/Header";
+import Header from "../components/Header/Header";
 import { HeaderStyle } from "../types/headerstyle";
 import useFetchPopularShows from "../hooks/useFetchPopularShows";
+import Footer from "../components/Footer/Footer";
+import { FooterStyle } from "../types/footerstyle";
 
 const RootLayout = () => {
   // State gestion langage
@@ -69,12 +71,12 @@ const RootLayout = () => {
     showSelectLang: true,
     background: "bg-transparent",
     className: "",
-    fixed: false,
     resizeOnScroll: false,
     transparentBtn: false,
     link: "/",
     logoClassName: "logo-default",
     signupHeader: false,
+    absolutePos: true,
   };
 
   const whiteHeaderStyle: HeaderStyle = {
@@ -85,14 +87,23 @@ const RootLayout = () => {
     logoClassName: "w-20 sm:w-40",
     transparentBtn: true,
     signupHeader: true,
-    fixed: false,
     resizeOnScroll: false,
     link: "/",
+    absolutePos: false,
+  };
+
+  const defaultFooterStyle: FooterStyle = {
+    whiteTheme: false,
+  };
+
+  const whiteFooterStyle: FooterStyle = {
+    whiteTheme: true,
   };
 
   // Manipulation style
   // -- Header
   const [headerStyle, setHeaderStyle] = useState(defaultHeaderStyle);
+  const [footerStyle, setFooterStyle] = useState(defaultFooterStyle);
 
   const handleHeaderStyle = (
     values: Array<{
@@ -136,15 +147,18 @@ const RootLayout = () => {
   const setWhiteTheme = (value: boolean) => {
     if (value === true) {
       setHeaderStyle(whiteHeaderStyle);
+      setFooterStyle(whiteFooterStyle);
       handleChangeBg(true);
     } else {
       setHeaderStyle(defaultHeaderStyle);
+      setFooterStyle(defaultFooterStyle);
       handleChangeBg(false);
     }
   };
 
-  const resetHeaderStyle = () => {
+  const resetStyle = () => {
     setHeaderStyle(defaultHeaderStyle);
+    setFooterStyle(defaultFooterStyle);
   };
   // Fin manipulation style
 
@@ -239,7 +253,7 @@ const RootLayout = () => {
   };
 
   const clearUser = () => {
-    resetHeaderStyle();
+    resetStyle();
     setUser(defaultUser);
     setUserEmail(defaultUser.email);
     setRegisterStep(0);
@@ -254,11 +268,13 @@ const RootLayout = () => {
   return (
     <>
       <main
-        className={`w-screen h-full flex-grow ${bgWhite ? "bg-white" : ""} ${
+        className={`w-screen min-h-[100dvh] flex-grow ${
+          bgWhite ? "bg-white" : ""
+        } ${
           isConfigured && isConnected && "bg-neutral-900"
-        }`}
+        } grid grid-rows-[auto_1fr_auto]`}
       >
-        <HeaderTwo
+        <Header
           headerStyle={headerStyle}
           lang={lang}
           isConnected={isConnected}
@@ -284,7 +300,7 @@ const RootLayout = () => {
               handleSubmitRegister,
               handleCreateUser,
               handleUserPassword,
-              resetHeaderStyle,
+              resetStyle,
               handleHeaderStyle,
               setWhiteTheme,
               handleAccountIsConfigured,
@@ -300,6 +316,12 @@ const RootLayout = () => {
               selectedProfile,
             } satisfies ContextType
           }
+        />
+        <Footer
+          lang={lang}
+          handleChangeLang={handleChangeLang}
+          footerStyle={footerStyle}
+          // showLangText={true}
         />
       </main>
     </>

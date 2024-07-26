@@ -1,6 +1,5 @@
 import { useDataContext } from "../layouts/RootLayout";
 import { useEffect, useState } from "react";
-import Footer from "../components/Footer/Footer";
 import FirstStepForm from "../components/Signup/FirstStepForm";
 import SignupForm from "../components/Signup/SignupForm";
 import FirstStepPlanDesc from "../components/Signup/FirstStep/FirstStepPlanDesc";
@@ -93,8 +92,8 @@ const Signup = () => {
           {isConnected && isConfigured ? (
             <Navigate to="/" />
           ) : (
-            <div className="transition-all w-screen flex flex-col min-h-screen pt-20 sm:pt-32">
-              <div className="text-black mb-32 px-6 lg:px-8 flex-grow">
+            <div className="transition-all w-screen flex flex-col sm:pt-12 mb-12">
+              <div className="text-black px-6 lg:px-8 flex-grow">
                 {formStep == 0 && (
                   <FirstStepForm
                     data={content.signup}
@@ -146,16 +145,6 @@ const Signup = () => {
                   />
                 )}
                 {formStep == 6 && <Navigate to="/setup" />}
-              </div>
-              <div>
-                <Footer
-                  selectBg="bg-white"
-                  selectTextColor="text-neutral-600"
-                  className="bg-[#f3f3f3] border-t border-t-black/10"
-                  textColor="text-black"
-                  selectBorderColor="border-black/30"
-                  showLangText={true}
-                />
               </div>
             </div>
           )}
