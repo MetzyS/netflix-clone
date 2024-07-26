@@ -80,6 +80,10 @@
   .default-navlink {
     @apply text-sm py-2 px-8 hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400 w-full text-left;
   }
+
+  .carousel-btn {
+    @apply hidden md:block fixed h-[133px] p-4 rounded-tl-md rounded-bl-md z-30 text-xl font-bold text-transparent bg-transparent hover:bg-black/70 hover:text-white transition-all;
+  }
 }
 
 @layer utilities {
@@ -88,13 +92,7 @@
   }
 
   .bg-faded {
-    -webkit-mask-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      from(rgba(0, 0, 0, 1)),
-      to(rgba(0, 0, 0, 0))
-    );
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   }
 
@@ -251,11 +249,7 @@ input:-webkit-autofill:active {
 
 .bg-fade {
   height: 101%;
-  background: linear-gradient(
-    rgba(0, 0, 0, 95%),
-    rgba(0, 0, 0, 40%) 35%,
-    rgba(0, 0, 0, 100%) 98%
-  );
+  background: linear-gradient(rgba(0, 0, 0, 95%), rgba(0, 0, 0, 40%) 35%, rgba(0, 0, 0, 100%) 98%);
   z-index: -1;
 }
 
@@ -269,12 +263,7 @@ input:-webkit-autofill:active {
 }
 
 .radial-gradient {
-  background: radial-gradient(
-    120.35% 220% at 49.86% -6.29%,
-    #e50914 0%,
-    #0e1b4f 46.15%,
-    #0d1121 100%
-  );
+  background: radial-gradient(120.35% 220% at 49.86% -6.29%, #e50914 0%, #0e1b4f 46.15%, #0d1121 100%);
 }
 
 .offer-icon {
@@ -286,13 +275,7 @@ input:-webkit-autofill:active {
 
 @media screen and (min-width: 640px) {
   .radial-gradient {
-    background: radial-gradient(
-      51.39% 511.66% at 47.68% -217.91%,
-      #ff9900 0%,
-      #e50914 17.27%,
-      #0e1b4f 79.44%,
-      #000413 100%
-    );
+    background: radial-gradient(51.39% 511.66% at 47.68% -217.91%, #ff9900 0%, #e50914 17.27%, #0e1b4f 79.44%, #000413 100%);
   }
   .offer-icon {
     position: relative;
@@ -320,31 +303,16 @@ input:-webkit-autofill:active {
 }
 
 .bg-plan-0 {
-  background: radial-gradient(
-      140.76% 131.96% at 100% 100%,
-      rgb(229, 9, 20) 0%,
-      rgba(74, 42, 150, 0.5) 73.57%,
-      rgba(74, 42, 150, 0) 100%
-    ),
+  background: radial-gradient(140.76% 131.96% at 100% 100%, rgb(229, 9, 20) 0%, rgba(74, 42, 150, 0.5) 73.57%, rgba(74, 42, 150, 0) 100%),
     rgb(29, 82, 157);
 }
 
 .bg-plan-1 {
-  background: radial-gradient(
-      140.76% 131.96% at 100% 100%,
-      rgb(176, 56, 220) 0%,
-      rgba(74, 42, 150, 0.5) 73.57%,
-      rgba(74, 42, 150, 0) 100%
-    ),
+  background: radial-gradient(140.76% 131.96% at 100% 100%, rgb(176, 56, 220) 0%, rgba(74, 42, 150, 0.5) 73.57%, rgba(74, 42, 150, 0) 100%),
     rgb(29, 82, 157);
 }
 
 .bg-plan-2 {
-  background: radial-gradient(
-      140.76% 131.96% at 100% 100%,
-      rgb(109, 59, 227) 0%,
-      rgba(74, 42, 150, 0.5) 73.57%,
-      rgba(74, 42, 150, 0) 100%
-    ),
+  background: radial-gradient(140.76% 131.96% at 100% 100%, rgb(109, 59, 227) 0%, rgba(74, 42, 150, 0.5) 73.57%, rgba(74, 42, 150, 0) 100%),
     rgb(29, 82, 157);
 }
