@@ -9,6 +9,7 @@ import { FiHelpCircle, FiBell } from "react-icons/fi";
 // import { IoShareSocialOutline } from "react-icons/io5";
 // import { RiLogoutBoxLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { IoMdSearch } from "react-icons/io";
 
 const MainHeader = (props: {
   content: Header;
@@ -65,6 +66,12 @@ const MainHeader = (props: {
   //   <RiLogoutBoxLine className="size-6" />,
   // ];
 
+  const [searchIsVisible, setSearchIsVisible] = useState(false);
+
+  const handleToggleSearch = () => {
+    setSearchIsVisible(!searchIsVisible);
+  };
+
   return (
     <>
       {props.isLoading ? (
@@ -115,8 +122,42 @@ const MainHeader = (props: {
                 ))}
               </ul>
               {/* settings desktop */}
-              <div className="lg:mr-6 lg:flex lg:gap-3 order-1 lg:order-2">
-                <button className="hidden lg:block">search</button>
+              <div className="lg:mr-6 lg:flex lg:gap-3 order-1 lg:order-2 items-center">
+                <button
+                  className={`h-full ${
+                    searchIsVisible ? "hidden" : "hidden lg:flex"
+                  } items-center`}
+                  onClick={handleToggleSearch}
+                >
+                  <IoMdSearch className="size-7" />
+                </button>
+                <div
+                  className={`float-right overflow-hidden h-full p-0 ${
+                    searchIsVisible
+                      ? "flex bg-black/60 backdrop-blur-md border rounded-sm items-center w-56 transition-all duration-300 "
+                      : "w-0"
+                  }`}
+                >
+                  <IoMdSearch className="size-6 bg-transparent mr-1" />
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    className={`bg-transparent outline-none p-0 m-0 h-full ${
+                      searchIsVisible ? "w-max" : "w-0"
+                    }`}
+                    onBlur={handleToggleSearch}
+                  />
+                  {/* <input
+                    type="text"
+                    className={`bg-white outline-none placeholder:text-sm ${
+                      searchIsVisible
+                        ? "transition-all w-full duration-1000"
+                        : "w-0"
+                    }`}
+                    onBlur={handleToggleSearch}
+                    placeholder="Title, people, genres"
+                  /> */}
+                </div>
                 {/* Notif btn */}
                 <div className="hidden lg:flex items-center relative">
                   <button onClick={handleShowNotificationsMenu}>
