@@ -114,17 +114,17 @@ const MainHeader = (props: {
                   <IoMdSearch className="size-7" />
                 </button>
                 <div
-                  className={`float-right overflow-hidden h-full p-0 ${
+                  className={`float-right overflow-hidden h-full p-0 relative ${
                     searchIsVisible
-                      ? "flex bg-black/60 backdrop-blur-md border rounded-sm items-center md:w-24 transition-all duration-300 "
+                      ? "flex bg-black/60 backdrop-blur-md border rounded-sm items-center lg:w-28 xl:w-40 2xl:w-60 transition-all duration-300 "
                       : "w-0"
                   }`}
                 >
-                  <IoMdSearch className="size-6 bg-transparent mr-1" />
+                  <IoMdSearch className="size-6 bg-transparent absolute left-0.5" />
                   <input
                     type="text"
                     placeholder="Title"
-                    className={`bg-transparent outline-none p-0 m-0 h-full ${
+                    className={`bg-transparent outline-none pl-8 h-6 m-0 ${
                       searchIsVisible ? "w-max" : "w-0"
                     }`}
                     onBlur={handleToggleSearch}
