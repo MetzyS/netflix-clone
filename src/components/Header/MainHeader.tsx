@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 import { Header } from "../../types/data";
 import Logo from "../ui/Logo";
 import { UserType } from "../../types/user";
-// import { BiPencil } from "react-icons/bi";
-// import { AiOutlineUser } from "react-icons/ai";
 import { FiHelpCircle, FiBell } from "react-icons/fi";
-// import { IoShareSocialOutline } from "react-icons/io5";
-// import { RiLogoutBoxLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdSearch } from "react-icons/io";
 
@@ -46,25 +42,11 @@ const MainHeader = (props: {
     setShowNotificationMenu(false);
   };
 
-  // const handleShowProfileMenu = () => {
-  //   setShowProfileMenu(!showProfileMenu);
-  //   setShowNavMenu(false);
-  //   setShowNotificationMenu(false);
-  // };
-
   const handleShowNotificationsMenu = () => {
     setShowNotificationMenu(!showNotificationMenu);
     setShowNavMenu(false);
     setShowProfileMenu(false);
   };
-
-  // const profileLinkIcons: JSX.Element[] = [
-  //   <BiPencil className="size-6" />,
-  //   <IoShareSocialOutline className="size-6" />,
-  //   <AiOutlineUser className="size-6" />,
-  //   <FiHelpCircle className="size-6" />,
-  //   <RiLogoutBoxLine className="size-6" />,
-  // ];
 
   const [searchIsVisible, setSearchIsVisible] = useState(false);
 
@@ -78,7 +60,7 @@ const MainHeader = (props: {
         <div>loading</div>
       ) : (
         <header
-          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors bg-neutral-900 z-20 ${
+          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors bg-neutral-900 z-20 md:text-xs ${
             transparentMenu
               ? showNavMenu
                 ? "bg-neutral-900 lg:bg-opacity-0 duration-0"
@@ -113,7 +95,7 @@ const MainHeader = (props: {
                     <Link
                       to={item.link}
                       key={`navlink-${index}`}
-                      className="text-sm py-2 px-8 lg:px-3 transition-color hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400 w-full"
+                      className="text-sm xl:text-lg py-2 px-8 lg:px-2 xl:px-4 transition-color hover:bg-white/10 lg:hover:bg-transparent lg:hover:text-neutral-400 w-full"
                       onClick={() => setShowNavMenu(false)}
                     >
                       {item.name}
@@ -134,7 +116,7 @@ const MainHeader = (props: {
                 <div
                   className={`float-right overflow-hidden h-full p-0 ${
                     searchIsVisible
-                      ? "flex bg-black/60 backdrop-blur-md border rounded-sm items-center w-56 transition-all duration-300 "
+                      ? "flex bg-black/60 backdrop-blur-md border rounded-sm items-center md:w-24 transition-all duration-300 "
                       : "w-0"
                   }`}
                 >
@@ -147,16 +129,6 @@ const MainHeader = (props: {
                     }`}
                     onBlur={handleToggleSearch}
                   />
-                  {/* <input
-                    type="text"
-                    className={`bg-white outline-none placeholder:text-sm ${
-                      searchIsVisible
-                        ? "transition-all w-full duration-1000"
-                        : "w-0"
-                    }`}
-                    onBlur={handleToggleSearch}
-                    placeholder="Title, people, genres"
-                  /> */}
                 </div>
                 {/* Notif btn */}
                 <div className="hidden lg:flex items-center relative">
@@ -176,10 +148,7 @@ const MainHeader = (props: {
                 </div>
                 {/* Profile btn */}
                 <div className="flex flex-col relative py-3 px-8 lg:py-0 lg:px-0">
-                  <button
-                    // onClick={handleShowProfileMenu}
-                    className="flex items-center gap-4"
-                  >
+                  <button className="flex items-center gap-4">
                     <img
                       src={props.userProfileIcons[props.selectedProfile!]}
                       className="w-8"
