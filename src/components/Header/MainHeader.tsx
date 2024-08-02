@@ -60,12 +60,13 @@ const MainHeader = (props: {
         <div>loading</div>
       ) : (
         <header
-          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors bg-neutral-900 z-20 md:text-xs ${transparentMenu
-            ? showNavMenu
-              ? "bg-neutral-900 lg:bg-opacity-0 duration-0"
-              : "bg-opacity-0 duration-200"
-            : "bg-opacity-100 duration-700"
-            }`}
+          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors bg-neutral-900 z-20 md:text-xs ${
+            transparentMenu
+              ? showNavMenu
+                ? "bg-neutral-900 lg:bg-opacity-0 duration-0"
+                : "bg-opacity-0 duration-200"
+              : "bg-opacity-100 duration-700"
+          }`}
         >
           {/* Mobile nav btn */}
           <button
@@ -83,8 +84,9 @@ const MainHeader = (props: {
           {/* menu */}
           <nav className="flex items-center flex-grow relative font-semibold">
             <div
-              className={`${showNavMenu ? "flex flex-col lg:flex-row" : "hidden"
-                } fixed bg-neutral-900 w-max left-0 top-20 transition-colors duration-700 h-full lg:relative lg:flex lg:bg-transparent lg:w-full lg:justify-between lg:-left-0 lg:top-0 lg:mt-0 lg:items-center
+              className={`${
+                showNavMenu ? "flex flex-col lg:flex-row" : "hidden"
+              } fixed bg-neutral-900 w-max left-0 top-20 transition-colors duration-700 h-full lg:relative lg:flex lg:bg-transparent lg:w-full lg:justify-between lg:-left-0 lg:top-0 lg:mt-0 lg:items-center
               `}
             >
               <ul className="flex flex-col lg:flex-row lg:gap-0 order-2 lg:order-1 pt-2 lg:pt-0 lg:min-w-fit">
@@ -102,9 +104,17 @@ const MainHeader = (props: {
                 ))}
               </ul>
               {/* settings desktop */}
-              <div className={`lg:flex lg:gap-3 order-1 lg:order-2 items-center justify-end w-fit h-full`}>
+              <div
+                className={`lg:flex lg:gap-3 order-1 lg:order-2 items-center justify-end w-fit h-full`}
+              >
                 {/* Searchbar Desktop */}
-                <div className={`w-fit h-full px-0.5 flex items-center border transition-all ${searchIsVisible ? "border-neutral-400 bg-neutral-900" : "border-transparent bg-transparent"}`}>
+                <div
+                  className={`w-fit h-full px-0.5 flex items-center border transition-all ${
+                    searchIsVisible
+                      ? "border-neutral-400 bg-neutral-900"
+                      : "border-transparent bg-transparent"
+                  }`}
+                >
                   <button
                     className={`hidden lg:flex items-center size-7 shrink-0`}
                     onClick={handleToggleSearch}
@@ -112,12 +122,22 @@ const MainHeader = (props: {
                     <IoMdSearch className="size-full" />
                   </button>
 
-                  <label htmlFor="searchInput"
-                    className={`w-auto h-6 transition-all duration-700 ${searchIsVisible ? "lg:flex lg:max-w-[500px]" : "max-w-0"}`}
+                  <label
+                    htmlFor="searchInput"
+                    className={`w-auto h-6 transition-all duration-700 ${
+                      searchIsVisible ? "lg:flex lg:max-w-[500px]" : "max-w-0"
+                    }`}
                     onBlur={handleToggleSearch}
                   >
-
-                    <input type="text" className={`size-full transition-all duration-500 bg-transparent px-1 ${searchIsVisible ? "text-neutral-200" : "text-transparent"}`} placeholder={props.content.mainHeader.searchPlaceholder} />
+                    <input
+                      type="text"
+                      className={`size-full transition-all duration-500 bg-transparent px-1 ${
+                        searchIsVisible
+                          ? "text-neutral-200"
+                          : "text-transparent pointer-events-none"
+                      }`}
+                      placeholder={props.content.mainHeader.searchPlaceholder}
+                    />
                   </label>
                 </div>
 
@@ -127,8 +147,9 @@ const MainHeader = (props: {
                     <FiBell className="size-6" />
                   </button>
                   <div
-                    className={`${showNotificationMenu ? "block" : "hidden"
-                      } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
+                    className={`${
+                      showNotificationMenu ? "block" : "hidden"
+                    } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
               `}
                   >
                     <p className="px-6 py-4">
@@ -177,7 +198,7 @@ const MainHeader = (props: {
             className="bg-black/20 p-1 text-sm lg:hidden border border-white/15 backdrop-blur-md w-full xs:w-auto"
             placeholder={`${props.content.mainHeader.searchPlaceholder}`}
           />
-        </header >
+        </header>
       )}
     </>
   );
