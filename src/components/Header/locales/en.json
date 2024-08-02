@@ -22,6 +22,6 @@
       { "value": true, "text": ["You have ", "notifications."] },
       { "value": true, "text": ["No recent notifications.", ""] }
     ],
-    "searchPlaceholder": "Search"
+    "searchPlaceholder": "Title, people, genres"
   }
 }

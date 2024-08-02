@@ -117,7 +117,7 @@ const MainHeader = (props: {
                     onBlur={handleToggleSearch}
                   >
 
-                    <input type="text" className={`size-full transition-all duration-500 bg-transparent px-1 ${searchIsVisible ? "text-neutral-200" : "text-transparent"}`} placeholder="titre" />
+                    <input type="text" className={`size-full transition-all duration-500 bg-transparent px-1 ${searchIsVisible ? "text-neutral-200" : "text-transparent"}`} placeholder={props.content.mainHeader.searchPlaceholder} />
                   </label>
                 </div>
 

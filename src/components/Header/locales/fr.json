@@ -22,6 +22,6 @@
       { "value": true, "text": ["Vous avez ", "notifications."] },
       { "value": true, "text": ["Pas de notification.", ""] }
     ],
-    "searchPlaceholder": "Recherche"
+    "searchPlaceholder": "Titre, acteurs, genres"
   }
 }
