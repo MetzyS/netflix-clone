@@ -37,16 +37,28 @@ const MainHeader = (props: {
     useState<boolean>(false);
 
   const handleShowNavMenu = () => {
+    handleHideEveryMenus();
     setShowNavMenu(!showNavMenu);
-    setShowProfileMenu(false);
-    setShowNotificationMenu(false);
   };
 
-  const handleShowNotificationsMenu = () => {
-    setShowNotificationMenu(!showNotificationMenu);
-    setShowNavMenu(false);
-    setShowProfileMenu(false);
+  const handleShowNotificationsMenu = (value = !showNotificationMenu) => {
+    if (value) {
+      handleHideEveryMenus()
+    }
+    setShowNotificationMenu(value);
   };
+
+  const handleShowProfileMenu = (value = !showProfileMenu) => {
+    if (value) {
+      handleHideEveryMenus();
+    }
+    setShowProfileMenu(value);
+  }
+
+  const handleHideEveryMenus = () => {
+    setShowProfileMenu(false);
+    setShowNotificationMenu(false);
+  }
 
   const [searchIsVisible, setSearchIsVisible] = useState(false);
 
@@ -60,13 +72,12 @@ const MainHeader = (props: {
         <div>loading</div>
       ) : (
         <header
-          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors bg-neutral-900 z-20 md:text-xs ${
-            transparentMenu
-              ? showNavMenu
-                ? "bg-neutral-900 lg:bg-opacity-0 duration-0"
-                : "bg-opacity-0 duration-200"
-              : "bg-opacity-100 duration-700"
-          }`}
+          className={`fixed py-6 px-4 lg:px-14 w-full flex gap-4 items-center justify-between transition-colors bg-neutral-900 z-20 md:text-xs ${transparentMenu
+            ? showNavMenu
+              ? "bg-neutral-900 lg:bg-opacity-0 duration-0"
+              : "bg-opacity-0 duration-200"
+            : "bg-opacity-100 duration-700"
+            }`}
         >
           {/* Mobile nav btn */}
           <button
@@ -84,9 +95,8 @@ const MainHeader = (props: {
           {/* menu */}
           <nav className="flex items-center flex-grow relative font-semibold">
             <div
-              className={`${
-                showNavMenu ? "flex flex-col lg:flex-row" : "hidden"
-              } fixed bg-neutral-900 w-max left-0 top-20 transition-colors duration-700 h-full lg:relative lg:flex lg:bg-transparent lg:w-full lg:justify-between lg:-left-0 lg:top-0 lg:mt-0 lg:items-center
+              className={`${showNavMenu ? "flex flex-col lg:flex-row" : "hidden"
+                } fixed bg-neutral-900 w-max left-0 top-20 transition-colors duration-700 h-full lg:relative lg:flex lg:bg-transparent lg:w-full lg:justify-between lg:-left-0 lg:top-0 lg:mt-0 lg:items-center
               `}
             >
               <ul className="flex flex-col lg:flex-row lg:gap-0 order-2 lg:order-1 pt-2 lg:pt-0 lg:min-w-fit">
@@ -104,16 +114,10 @@ const MainHeader = (props: {
                 ))}
               </ul>
               {/* settings desktop */}
-              <div
-                className={`lg:flex lg:gap-3 order-1 lg:order-2 items-center justify-end w-fit h-full`}
-              >
+              <div className={`flex-col flex lg:flex lg:flex-row lg:gap-3 order-1 lg:order-2 items-start lg:items-center lg:justify-end w-fit lg:h-full`}>
                 {/* Searchbar Desktop */}
-                <div
-                  className={`w-fit h-full px-0.5 flex items-center border transition-all ${
-                    searchIsVisible
-                      ? "border-neutral-400 bg-neutral-900"
-                      : "border-transparent bg-transparent"
-                  }`}
+                <div className={`w-fit lg:h-full px-0.5 flex items-center border transition-all ${searchIsVisible ? "border-neutral-400 bg-neutral-900" : "border-transparent bg-transparent"}`}
+                  onMouseEnter={handleHideEveryMenus}
                 >
                   <button
                     className={`hidden lg:flex items-center size-7 shrink-0`}
@@ -122,35 +126,26 @@ const MainHeader = (props: {
                     <IoMdSearch className="size-full" />
                   </button>
 
-                  <label
-                    htmlFor="searchInput"
-                    className={`w-auto h-6 transition-all duration-700 ${
-                      searchIsVisible ? "lg:flex lg:max-w-[500px]" : "max-w-0"
-                    }`}
+                  <label htmlFor="searchInput"
+                    className={`w-auto h-6 transition-all duration-700 ${searchIsVisible ? "lg:flex lg:max-w-[500px]" : "max-w-0"}`}
                     onBlur={handleToggleSearch}
                   >
-                    <input
-                      type="text"
-                      className={`size-full transition-all duration-500 bg-transparent px-1 ${
-                        searchIsVisible
-                          ? "text-neutral-200"
-                          : "text-transparent pointer-events-none"
-                      }`}
-                      placeholder={props.content.mainHeader.searchPlaceholder}
-                    />
+
+                    <input type="text" className={`size-full font-normal transition-all duration-500 bg-transparent px-1 outline-none ${searchIsVisible ? "text-neutral-200" : "text-transparent"}`} placeholder={props.content.mainHeader.searchPlaceholder} />
                   </label>
                 </div>
 
                 {/* Notif btn */}
-                <div className="hidden lg:flex items-center relative shrink-0">
-                  <button onClick={handleShowNotificationsMenu}>
+                <div className="hidden lg:flex items-center relative shrink-0" onMouseEnter={() => handleShowNotificationsMenu(true)}>
+                  <button onClick={() => handleShowNotificationsMenu}>
                     <FiBell className="size-6" />
                   </button>
                   <div
-                    className={`${
-                      showNotificationMenu ? "block" : "hidden"
-                    } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
+                    className={`${showNotificationMenu ? "block" : "hidden"
+                      } absolute bg-black/85 w-max -right-4 top-14 lg:-mt-2 border-t-2 
               `}
+
+                    onMouseLeave={() => handleShowNotificationsMenu(false)}
                   >
                     <p className="px-6 py-4">
                       {props.content.mainHeader.notificationMenu[1].text[0]}
@@ -158,7 +153,9 @@ const MainHeader = (props: {
                   </div>
                 </div>
                 {/* Profile btn */}
-                <div className="flex flex-col relative py-3 px-8 lg:py-0 lg:px-0 shrink-0">
+                <div className="flex flex-col relative py-3 px-8 lg:py-0 lg:px-0 shrink-0"
+                  onMouseEnter={() => handleShowProfileMenu(true)}
+                >
                   <button className="flex items-center gap-4">
                     <img
                       src={props.userProfileIcons[props.selectedProfile!]}
@@ -192,13 +189,16 @@ const MainHeader = (props: {
           </nav>
 
           {/* input search mobile */}
-          <input
-            type="text"
-            name="search"
-            className="bg-black/20 p-1 text-sm lg:hidden border border-white/15 backdrop-blur-md w-full xs:w-auto"
-            placeholder={`${props.content.mainHeader.searchPlaceholder}`}
-          />
-        </header>
+          <div className="w-full bg-black/20 lg:hidden flex shrink border border-white/15 backdrop-blur-md min-w-[80px] max-w-[45%]">
+            <IoMdSearch className="size-7" />
+            <input
+              type="text"
+              name="search"
+              className="p-1 bg-transparent text-sm w-full"
+              placeholder={`${props.content.mainHeader.searchPlaceholder}`}
+            />
+          </div>
+        </header >
       )}
     </>
   );
