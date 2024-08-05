@@ -24,8 +24,22 @@ const CustomSection = (props: {
   const [carouselIsActivated, setCarouselIsActivated] =
     useState<boolean>(false);
 
-  const nextBtnRef = useRef(null);
-  const prevBtnRef = useRef(null);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+  const prevBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (nextBtnRef.current) {
+      nextBtnRef.current.addEventListener("click", () => {
+        console.log("test");
+      });
+
+      if (prevBtnRef.current) {
+        prevBtnRef.current.addEventListener("click", () => {
+          console.log("test");
+        });
+      }
+    }
+  }, []);
 
   const showList = useRef<HTMLUListElement>(null);
 
@@ -70,7 +84,6 @@ const CustomSection = (props: {
   //   props.data.length
   // );
   const [thumbnailSize, setThumbnailSize] = useState<number>(0);
-  console.log(`thumbnailCount: ${thumbnailCount}`);
   const [carouselStyleInfos, setCarouselStyleInfos] = useState(
     countFullyVisibleThumbnails(
       screenSize,
@@ -124,10 +137,17 @@ const CustomSection = (props: {
     let tSize = 0;
     if (showList.current) {
       // width du 1er thumbnail
-      console.log(showList.current.children[0].clientWidth);
       tSize = showList.current.children[0].clientWidth;
     }
     setThumbnailSize(tSize);
+    setCarouselStyleInfos(
+      countFullyVisibleThumbnails(
+        screenSize,
+        BASE_OFFSET,
+        thumbnailSize,
+        thumbnailCount
+      )
+    );
   }, [props.data, screenSize]);
 
   return (
