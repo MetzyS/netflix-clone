@@ -27,20 +27,6 @@ const CustomSection = (props: {
   const nextBtnRef = useRef<HTMLButtonElement>(null);
   const prevBtnRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    if (nextBtnRef.current) {
-      nextBtnRef.current.addEventListener("click", () => {
-        console.log("test");
-      });
-
-      if (prevBtnRef.current) {
-        prevBtnRef.current.addEventListener("click", () => {
-          console.log("test");
-        });
-      }
-    }
-  }, []);
-
   const showList = useRef<HTMLUListElement>(null);
 
   // CAROUSEL STYLE FUNCTION
@@ -64,6 +50,8 @@ const CustomSection = (props: {
     const maxOffset = (thumbnailCount - 1) * GAP;
     const maxScrollX = -Math.abs(thumbnailSize * thumbnailCount + maxOffset);
 
+    console.log(`DISPLAYABLE THUMB = ${displayableThumbnails}`);
+
     return {
       containerDisplayedWidth,
       visibleThumbnails,
@@ -84,6 +72,9 @@ const CustomSection = (props: {
   //   props.data.length
   // );
   const [thumbnailSize, setThumbnailSize] = useState<number>(0);
+  const [maxSize, setMaxSize] = useState<number>(
+    -Math.abs(thumbnailCount * thumbnailSize)
+  );
   const [carouselStyleInfos, setCarouselStyleInfos] = useState(
     countFullyVisibleThumbnails(
       screenSize,
@@ -92,6 +83,40 @@ const CustomSection = (props: {
       thumbnailCount
     )
   );
+
+  useEffect(() => {
+    if (prevBtnRef.current) {
+      prevBtnRef.current.addEventListener("click", () => {
+        // console.log("prev");
+      });
+    }
+    if (nextBtnRef.current) {
+      nextBtnRef.current.addEventListener("click", () => {
+        // console.log("next");
+        console.log(
+          `posX=${posX}, thumbnailSize=${thumbnailSize}, thumbnailCount=${thumbnailCount}, displayableThumbnails=${carouselStyleInfos.displayableThumbnails}, offset=${carouselStyleInfos.offset}`
+        );
+        let position =
+          posX -
+          (thumbnailSize * carouselStyleInfos.displayableThumbnails +
+            carouselStyleInfos.offset);
+
+        console.log(`position:${position}`);
+
+        if (position < maxSize) {
+          setPosX(
+            carouselStyleInfos.maxScrollX +
+              carouselStyleInfos.visibleThumbnails * thumbnailSize +
+              carouselStyleInfos.offset
+          );
+        } else if (position == carouselStyleInfos.maxScrollX) {
+          setPosX(0);
+        } else {
+          setPosX(position);
+        }
+      });
+    }
+  }, [nextBtnRef, prevBtnRef, carouselStyleInfos]);
 
   const handleCarouselActivation = () => {
     setCarouselIsActivated(true);
@@ -140,6 +165,7 @@ const CustomSection = (props: {
       tSize = showList.current.children[0].clientWidth;
     }
     setThumbnailSize(tSize);
+    setMaxSize(-Math.abs(thumbnailCount * thumbnailSize));
     setCarouselStyleInfos(
       countFullyVisibleThumbnails(
         screenSize,
@@ -204,6 +230,9 @@ const CustomSection = (props: {
               carouselIsActivated ? "ml-0" : "ml-4 lg:ml-12"
             }`}
             ref={showList}
+            style={{
+              transform: `translateX(${posX}px)`,
+            }}
           >
             {props.data.map((show, index) => {
               return (
