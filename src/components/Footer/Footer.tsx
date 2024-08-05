@@ -14,7 +14,6 @@ const Footer = (props: {
     "Footer",
     props.lang
   );
-  console.log(props.footerStyle);
   return (
     <footer
       className={`p-6 w-screen ${

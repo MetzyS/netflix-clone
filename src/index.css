@@ -82,7 +82,7 @@
   }
 
   .carousel-btn {
-    @apply hidden md:block fixed h-[133px] p-4 rounded-tl-md rounded-bl-md z-30 text-xl font-bold text-transparent bg-transparent hover:bg-black/70 hover:text-white transition-all;
+    @apply hidden absolute h-full p-4 z-30 hover:text-white transition-all;
   }
 }
 
@@ -155,6 +155,22 @@ html {
 body {
   background-color: black;
   overflow-x: hidden;
+}
+
+.scrollbar-style::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar-style::-webkit-scrollbar-track {
+  background: #171717;
+}
+
+.scrollbar-style::-webkit-scrollbar-thumb {
+  background: #525252;
+}
+
+.scrollbar-style::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
 }
 
 .absolute-center {

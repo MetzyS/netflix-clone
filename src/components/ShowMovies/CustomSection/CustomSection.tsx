@@ -1,14 +1,13 @@
 import { useDataContext } from "../../../layouts/RootLayout";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { ResultType } from "../../../types/data";
 import { ShowDetailsType } from "../../../types/useLocaleTypes/ImportedLocaleTypes";
 import ShowDetailsModal from "./ShowDetailsModal";
 import ShowVignette from "./ShowVignette";
+import { MdArrowBackIosNew } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
-import { GrNext } from "react-icons/gr";
-
 
 const CustomSection = (props: {
   data: ResultType[];
@@ -22,24 +21,69 @@ const CustomSection = (props: {
   const { bodyOverflow } = useDataContext();
   const [open, setOpen] = useState(false);
   const [selectedShow, setSelectedShow] = useState<null | ResultType>(null);
+  const [carouselIsActivated, setCarouselIsActivated] =
+    useState<boolean>(false);
 
-  // Carousel
-  const [carouselPos, setCarouselPos] = useState<number>(0);
-  const carousel = useRef(null);
+  const nextBtnRef = useRef(null);
+  const prevBtnRef = useRef(null);
 
-  const handleCarouselSwipe = (element: Element, direction: string) => {
-    switch (direction) {
-      case "next":
-        element.scrollLeft -= 10;
-        setCarouselPos(element.scrollLeft -= 10);
-        break;
-      case "prev": element.scrollLeft += 10;
-        setCarouselPos(element.scrollLeft += 10);
+  const showList = useRef<HTMLUListElement>(null);
 
-        break;
-      default: element.scrollLeft -= 10;
-    }
-  }
+  // CAROUSEL STYLE FUNCTION
+  const countFullyVisibleThumbnails = (
+    screenSize: number,
+    baseOffset: number,
+    thumbnailSize: number,
+    thumbnailCount: number
+  ) => {
+    // screenSize * 0.1 = 1vw (ul gap-[1vw])
+    const GAP = screenSize * 0.1;
+    const containerDisplayedWidth = screenSize - baseOffset;
+    const visibleThumbnails = Math.floor(
+      containerDisplayedWidth / thumbnailSize
+    );
+    const displayableThumbnails = Math.floor(
+      (containerDisplayedWidth - visibleThumbnails * GAP) / thumbnailSize
+    );
+
+    const offset = visibleThumbnails * GAP;
+    const maxOffset = (thumbnailCount - 1) * GAP;
+    const maxScrollX = -Math.abs(thumbnailSize * thumbnailCount + maxOffset);
+
+    return {
+      containerDisplayedWidth,
+      visibleThumbnails,
+      displayableThumbnails,
+      offset,
+      maxScrollX,
+    };
+  };
+
+  // CAROUSEL
+  const BASE_OFFSET = 0;
+  const [posX, setPosX] = useState<number>(0);
+  const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
+  const thumbnailCount = useMemo<number>(() => {
+    return props.data.length;
+  }, [props.data]);
+  // const [thumbnailCount, setThumbnailCount] = useState<number>(
+  //   props.data.length
+  // );
+  const [thumbnailSize, setThumbnailSize] = useState<number>(0);
+  console.log(`thumbnailCount: ${thumbnailCount}`);
+  const [carouselStyleInfos, setCarouselStyleInfos] = useState(
+    countFullyVisibleThumbnails(
+      screenSize,
+      BASE_OFFSET,
+      thumbnailSize,
+      thumbnailCount
+    )
+  );
+
+  const handleCarouselActivation = () => {
+    setCarouselIsActivated(true);
+    console.log("activated");
+  };
 
   const handleOpenPopup = (show: ResultType) => {
     setOpen(!open);
@@ -57,6 +101,17 @@ const CustomSection = (props: {
     setSelectedShow(null);
   };
 
+  // useEffect screen resize
+  useEffect(() => {
+    const handleScreenResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+    window.addEventListener("resize", handleScreenResize);
+    return () => {
+      window.removeEventListener("resize", () => handleScreenResize);
+    };
+  }, []);
+
   useEffect(() => {
     if (open === false) {
       bodyOverflow(true);
@@ -65,23 +120,39 @@ const CustomSection = (props: {
     }
   }, [open]);
 
+  useEffect(() => {
+    let tSize = 0;
+    if (showList.current) {
+      // width du 1er thumbnail
+      console.log(showList.current.children[0].clientWidth);
+      tSize = showList.current.children[0].clientWidth;
+    }
+    setThumbnailSize(tSize);
+  }, [props.data, screenSize]);
+
   return (
     <>
-      {open && selectedShow !== null && createPortal(
-        <>
-          <div className="fixed z-20 backdrop-blur-md bg-black/70 top-0 bottom-0 right-0 left-0"></div>
-          <ShowDetailsModal
-            closeModalFunction={handleClosePopup}
-            btnClose={funcClosePopup}
-            backdropImage={selectedShow.backdrop_path}
-            show={selectedShow}
-            content={props.content}
-            showDetailsContent={props.showDetails}
-          />
-        </>, document.body)
-      }
-      <section className="ml-4 lg:ml-12 z-20 backdrop-blur-[1px] mb-6">
-        <Link to="/" className="flex items-center group group/title">
+      {open &&
+        selectedShow !== null &&
+        createPortal(
+          <>
+            <div className="fixed z-20 backdrop-blur-md bg-black/70 top-0 bottom-0 right-0 left-0"></div>
+            <ShowDetailsModal
+              closeModalFunction={handleClosePopup}
+              btnClose={funcClosePopup}
+              backdropImage={selectedShow.backdrop_path}
+              show={selectedShow}
+              content={props.content}
+              showDetailsContent={props.showDetails}
+            />
+          </>,
+          document.body
+        )}
+      <section className="z-20 backdrop-blur-[1px] mb-6">
+        <Link
+          to="/"
+          className="flex items-center group group/title ml-4 lg:ml-12"
+        >
           <h1 className="font-semibold text-lg lg:text-xl xl:text-2xl 2xl:text-3xl my-2">
             {props.content.title}
           </h1>
@@ -93,20 +164,31 @@ const CustomSection = (props: {
           </p>
         </Link>
         <div className="relative overflow-visible overflow-x-scroll hide-scrollbar">
-          <button className="carousel-btn left-0"
-            onClick={() => handleCarouselSwipe(carousel.current!, "prev")}>
-            <GrNext className="rotate-180" />
+          <button
+            className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${
+              carouselIsActivated ? "block bg-black/70 hover:bg-black/90" : ""
+            }`}
+            ref={prevBtnRef}
+          >
+            <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
           </button>
-          <button className="carousel-btn right-5" onClick={() => handleCarouselSwipe(carousel.current!, "next")}>
-            <GrNext />
+          <button
+            className="carousel-btn rounded-tr-md rounded-br-md block right-0 text-transparent bg-black/70 hover:bg-black/90 group"
+            onClick={handleCarouselActivation}
+            ref={nextBtnRef}
+          >
+            <MdArrowBackIosNew className="rotate-180 text-white size-8 transition-all p-1 group-hover:p-0" />
           </button>
-          <ul className="flex justify-between gap-[1vw]" ref={carousel}>
+          <ul
+            className={`flex justify-between gap-[1vw] transition-all my-0 ${
+              carouselIsActivated ? "ml-0" : "ml-4 lg:ml-12"
+            }`}
+            ref={showList}
+          >
             {props.data.map((show, index) => {
               return (
                 <Fragment key={`show-${index}`}>
-
                   <ShowVignette show={show} handleOpenPopup={handleOpenPopup} />
-
                 </Fragment>
               );
             })}
