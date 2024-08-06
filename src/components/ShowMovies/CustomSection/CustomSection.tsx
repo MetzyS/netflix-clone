@@ -23,105 +23,37 @@ const CustomSection = (props: {
   const [selectedShow, setSelectedShow] = useState<null | ResultType>(null);
   const [carouselIsActivated, setCarouselIsActivated] =
     useState<boolean>(false);
-
-  const nextBtnRef = useRef<HTMLButtonElement>(null);
-  const prevBtnRef = useRef<HTMLButtonElement>(null);
-
-  const showList = useRef<HTMLUListElement>(null);
-
-  // CAROUSEL STYLE FUNCTION
-  const countFullyVisibleThumbnails = (
-    screenSize: number,
-    baseOffset: number,
-    thumbnailSize: number,
-    thumbnailCount: number
-  ) => {
-    // screenSize * 0.1 = 1vw (ul gap-[1vw])
-    const GAP = screenSize * 0.1;
-    const containerDisplayedWidth = screenSize - baseOffset;
-    const visibleThumbnails = Math.floor(
-      containerDisplayedWidth / thumbnailSize
-    );
-    const displayableThumbnails = Math.floor(
-      (containerDisplayedWidth - visibleThumbnails * GAP) / thumbnailSize
-    );
-
-    const offset = visibleThumbnails * GAP;
-    const maxOffset = (thumbnailCount - 1) * GAP;
-    const maxScrollX = -Math.abs(thumbnailSize * thumbnailCount + maxOffset);
-
-    console.log(`DISPLAYABLE THUMB = ${displayableThumbnails}`);
-
-    return {
-      containerDisplayedWidth,
-      visibleThumbnails,
-      displayableThumbnails,
-      offset,
-      maxScrollX,
-    };
-  };
-
-  // CAROUSEL
-  const BASE_OFFSET = 0;
   const [posX, setPosX] = useState<number>(0);
   const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
-  const thumbnailCount = useMemo<number>(() => {
-    return props.data.length;
-  }, [props.data]);
-  // const [thumbnailCount, setThumbnailCount] = useState<number>(
-  //   props.data.length
-  // );
+  const [thumbnailCount, setThumbnailCount] = useState<number>(props.data.length);
   const [thumbnailSize, setThumbnailSize] = useState<number>(0);
-  const [maxSize, setMaxSize] = useState<number>(
-    -Math.abs(thumbnailCount * thumbnailSize)
-  );
-  const [carouselStyleInfos, setCarouselStyleInfos] = useState(
-    countFullyVisibleThumbnails(
-      screenSize,
-      BASE_OFFSET,
-      thumbnailSize,
-      thumbnailCount
-    )
-  );
+  const [visibleThumbnails, setVisibleThumbnails] = useState<number>(0)
 
+
+  // CAROUSEL REF & READY STATE
+  const [carouselIsReady, setCarouselIsReady] = useState<boolean>(false);
+  const carouselRef = useRef<HTMLUListElement>(null)
   useEffect(() => {
-    if (prevBtnRef.current) {
-      prevBtnRef.current.addEventListener("click", () => {
-        // console.log("prev");
-      });
+    if (carouselRef.current) {
+      setThumbnailSize(carouselRef.current.children[0].clientWidth)
+      setCarouselIsReady(true);
     }
-    if (nextBtnRef.current) {
-      nextBtnRef.current.addEventListener("click", () => {
-        // console.log("next");
-        console.log(
-          `posX=${posX}, thumbnailSize=${thumbnailSize}, thumbnailCount=${thumbnailCount}, displayableThumbnails=${carouselStyleInfos.displayableThumbnails}, offset=${carouselStyleInfos.offset}`
-        );
-        let position =
-          posX -
-          (thumbnailSize * carouselStyleInfos.displayableThumbnails +
-            carouselStyleInfos.offset);
 
-        console.log(`position:${position}`);
-
-        if (position < maxSize) {
-          setPosX(
-            carouselStyleInfos.maxScrollX +
-              carouselStyleInfos.visibleThumbnails * thumbnailSize +
-              carouselStyleInfos.offset
-          );
-        } else if (position == carouselStyleInfos.maxScrollX) {
-          setPosX(0);
-        } else {
-          setPosX(position);
-        }
-      });
-    }
-  }, [nextBtnRef, prevBtnRef, carouselStyleInfos]);
+  }, [carouselRef])
 
   const handleCarouselActivation = () => {
-    setCarouselIsActivated(true);
-    console.log("activated");
+    if (carouselIsReady && !carouselIsActivated) {
+      setCarouselIsActivated(true);
+    }
   };
+
+  const handleCarouselNextClick = () => {
+    if (carouselIsReady) {
+      let newPos = posX - (visibleThumbnails * thumbnailSize);
+      setPosX(newPos);
+      console.log(newPos)
+    }
+  }
 
   const handleOpenPopup = (show: ResultType) => {
     setOpen(!open);
@@ -139,10 +71,11 @@ const CustomSection = (props: {
     setSelectedShow(null);
   };
 
-  // useEffect screen resize
+  // SCREEN RESIZE
   useEffect(() => {
     const handleScreenResize = () => {
       setScreenSize(window.innerWidth);
+      console.log(`screenSize: ${window.innerWidth}`)
     };
     window.addEventListener("resize", handleScreenResize);
     return () => {
@@ -151,30 +84,17 @@ const CustomSection = (props: {
   }, []);
 
   useEffect(() => {
+    setVisibleThumbnails(Math.floor(screenSize / thumbnailSize));
+    console.log(visibleThumbnails)
+  }, [screenSize, thumbnailSize])
+
+  useEffect(() => {
     if (open === false) {
       bodyOverflow(true);
     } else {
       bodyOverflow(false);
     }
   }, [open]);
-
-  useEffect(() => {
-    let tSize = 0;
-    if (showList.current) {
-      // width du 1er thumbnail
-      tSize = showList.current.children[0].clientWidth;
-    }
-    setThumbnailSize(tSize);
-    setMaxSize(-Math.abs(thumbnailCount * thumbnailSize));
-    setCarouselStyleInfos(
-      countFullyVisibleThumbnails(
-        screenSize,
-        BASE_OFFSET,
-        thumbnailSize,
-        thumbnailCount
-      )
-    );
-  }, [props.data, screenSize]);
 
   return (
     <>
@@ -211,25 +131,26 @@ const CustomSection = (props: {
         </Link>
         <div className="relative overflow-visible overflow-x-scroll hide-scrollbar">
           <button
-            className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${
-              carouselIsActivated ? "block bg-black/70 hover:bg-black/90" : ""
-            }`}
-            ref={prevBtnRef}
+            className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${carouselIsActivated ? "block bg-black/70 hover:bg-black/90" : ""
+              }`}
+          // ref={prevBtnRef}
           >
             <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
           </button>
           <button
             className="carousel-btn rounded-tr-md rounded-br-md block right-0 text-transparent bg-black/70 hover:bg-black/90 group"
-            onClick={handleCarouselActivation}
-            ref={nextBtnRef}
+            onClick={() => {
+              handleCarouselActivation(); handleCarouselNextClick();
+            }}
+          // onClick={}
+          // ref={nextBtnRef}
           >
             <MdArrowBackIosNew className="rotate-180 text-white size-8 transition-all p-1 group-hover:p-0" />
           </button>
           <ul
-            className={`flex justify-between gap-[1vw] transition-all my-0 ${
-              carouselIsActivated ? "ml-0" : "ml-4 lg:ml-12"
-            }`}
-            ref={showList}
+            className={`flex justify-between gap-[1vw] transition-all my-0 ${carouselIsActivated ? "ml-0" : "ml-4 lg:ml-12"
+              }`}
+            ref={carouselRef}
             style={{
               transform: `translateX(${posX}px)`,
             }}
