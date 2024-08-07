@@ -47,11 +47,34 @@ const CustomSection = (props: {
     }
   };
 
-  const handleCarouselNextClick = () => {
+  const handleCarouselClick = (signal: string) => {
     if (carouselIsReady) {
-      let newPos = posX - (visibleThumbnails * thumbnailSize);
-      setPosX(newPos);
-      console.log(newPos)
+      const gap: number = screenSize * 0.1;
+      const lastThumbnail: number = visibleThumbnails - 1;
+      const swipeSize = lastThumbnail * thumbnailSize;
+      const totalGap: number = lastThumbnail * gap;
+      switch (signal) {
+        case "next": {
+          const newPos: number = posX - swipeSize - totalGap;
+          setPosX(newPos)
+          break;
+        }
+        case "prev": {
+          const newPos: number = posX + swipeSize + totalGap;
+          setPosX(newPos)
+        }
+      }
+      // let newPos = posX - (visibleThumbnails * thumbnailSize);
+      // setPosX(newPos);
+      // console.log(newPos)
+
+      // const gap: number = screenSize * 0.1;
+      // const lastThumbnail: number = visibleThumbnails - 1;
+      // const swipeSize = lastThumbnail * thumbnailSize;
+      // const totalGap: number = lastThumbnail * gap;
+      // const newPos: number = posX - swipeSize - totalGap;
+      // setPosX(newPos)
+
     }
   }
 
@@ -133,14 +156,15 @@ const CustomSection = (props: {
           <button
             className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${carouselIsActivated ? "block bg-black/70 hover:bg-black/90" : ""
               }`}
-          // ref={prevBtnRef}
+            // ref={prevBtnRef}
+            onClick={() => handleCarouselClick("prev")}
           >
             <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
           </button>
           <button
             className="carousel-btn rounded-tr-md rounded-br-md block right-0 text-transparent bg-black/70 hover:bg-black/90 group"
             onClick={() => {
-              handleCarouselActivation(); handleCarouselNextClick();
+              handleCarouselActivation(); handleCarouselClick("next");
             }}
           // onClick={}
           // ref={nextBtnRef}
