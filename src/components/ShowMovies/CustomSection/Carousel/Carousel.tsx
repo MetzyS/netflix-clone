@@ -53,6 +53,9 @@ const Carousel = (props: {
           ...newState,
           baseOffset: marginLeft,
         };
+        // newState = {
+        //   ...newState
+        // }
         return newState;
       });
     }
@@ -78,7 +81,7 @@ const Carousel = (props: {
     );
     const visibleThumbnailsRaw =
       displayableWidthWithoutGaps / carouselInfo.thumbnailSize;
-    const maxOffset = (carouselInfo.thumbnailCount - 1) * 10;
+    const maxOffset = (carouselInfo.thumbnailCount - 1) * (props.screenSize * 0.01);
     const maxScrollX = -Math.abs(
       carouselInfo.thumbnailSize * carouselInfo.thumbnailCount + maxOffset
     );
@@ -121,21 +124,14 @@ const Carousel = (props: {
         console.log(Math.ceil(newPos));
         console.log(carouselInfo.maxSize);
 
-        if (
-          Math.ceil(
-            newPos -
-              carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails
-          ) < carouselInfo.maxSize
-        ) {
-          setCarouselInfo({
-            ...carouselInfo,
-            posX:
-              carouselCalc.maxScrollX +
-              carouselCalc.visibleThumbnailsRaw * carouselInfo.thumbnailSize +
-              carouselCalc.offset,
+        if (newPos - carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails < carouselInfo.maxSize) {
+          setCarouselInfo((prevState) => {
+            let newState = { ...prevState, posX: carouselCalc.maxScrollX + carouselCalc.visibleThumbnailsRaw * carouselInfo.thumbnailSize + carouselCalc.offset };
+            return newState;
           });
           break;
         }
+
         if (newPos == carouselCalc.maxScrollX) {
           setCarouselInfo({ ...carouselInfo, posX: 0 });
           break;
@@ -159,9 +155,8 @@ const Carousel = (props: {
   return (
     <div className="ml-4 lg:ml-12">
       <button
-        className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${
-          carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
-        }`}
+        className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
+          }`}
         onClick={() => handleCarousel("PREV")}
       >
         <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
