@@ -15,6 +15,7 @@ const Carousel = (props: {
     baseOffset: number;
     thumbnailCount: number;
     maxSize: number;
+    buttonWidth: number;
   };
 
   const [carouselInfo, setCarouselInfo] = useState<CarouselInfoType>({
@@ -24,7 +25,12 @@ const Carousel = (props: {
     baseOffset: 0,
     thumbnailCount: props.data.length,
     maxSize: 0,
+    buttonWidth: 64,
   });
+  const [resetCarousel, setResetCarousel] = useState<boolean>(false);
+  const handleResetCarousel = (value: boolean) => {
+    setResetCarousel(value);
+  };
   // CAROUSEL REF & READY STATE
   const [carouselIsReady, setCarouselIsReady] = useState<boolean>(false);
   const carouselRef = useRef<HTMLUListElement>(null);
@@ -53,9 +59,6 @@ const Carousel = (props: {
           ...newState,
           baseOffset: marginLeft,
         };
-        // newState = {
-        //   ...newState
-        // }
         return newState;
       });
     }
@@ -81,7 +84,8 @@ const Carousel = (props: {
     );
     const visibleThumbnailsRaw =
       displayableWidthWithoutGaps / carouselInfo.thumbnailSize;
-    const maxOffset = (carouselInfo.thumbnailCount - 1) * (props.screenSize * 0.01);
+    const maxOffset =
+      (carouselInfo.thumbnailCount - 1) * (props.screenSize * 0.01);
     const maxScrollX = -Math.abs(
       carouselInfo.thumbnailSize * carouselInfo.thumbnailCount + maxOffset
     );
@@ -121,15 +125,35 @@ const Carousel = (props: {
           carouselInfo.posX -
           (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails +
             carouselCalc.offset);
-        console.log(Math.ceil(newPos));
-        console.log(carouselInfo.maxSize);
 
-        if (newPos - carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails < carouselInfo.maxSize) {
-          setCarouselInfo((prevState) => {
-            let newState = { ...prevState, posX: carouselCalc.maxScrollX + carouselCalc.visibleThumbnailsRaw * carouselInfo.thumbnailSize + carouselCalc.offset };
-            return newState;
-          });
-          break;
+        if (
+          newPos -
+            carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails <
+          carouselInfo.maxSize
+        ) {
+          if (!resetCarousel) {
+            setCarouselInfo((prevState) => {
+              let newState = {
+                ...prevState,
+                posX:
+                  carouselCalc.maxScrollX +
+                  carouselCalc.visibleThumbnailsRaw *
+                    carouselInfo.thumbnailSize +
+                  carouselCalc.offset,
+              };
+              return newState;
+            });
+            handleResetCarousel(true);
+            break;
+          } else {
+            console.log("reojkgre");
+            setCarouselInfo({
+              ...carouselInfo,
+              posX: -Math.abs(carouselInfo.baseOffset),
+            });
+            handleResetCarousel(false);
+            break;
+          }
         }
 
         if (newPos == carouselCalc.maxScrollX) {
@@ -142,7 +166,35 @@ const Carousel = (props: {
       }
 
       case "PREV": {
-        console.log("TEST");
+        const newPos =
+          carouselInfo.posX +
+          (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails -
+            carouselCalc.offset);
+        if (newPos > 0) {
+          if (!resetCarousel) {
+            handleResetCarousel(true);
+            setCarouselInfo({
+              ...carouselInfo,
+              posX: -Math.abs(carouselInfo.baseOffset),
+            });
+            break;
+          } else {
+            handleResetCarousel(false);
+            setCarouselInfo((prevState) => {
+              let newState = {
+                ...prevState,
+                posX:
+                  carouselCalc.maxScrollX +
+                  carouselCalc.visibleThumbnailsRaw *
+                    carouselInfo.thumbnailSize +
+                  carouselCalc.offset,
+              };
+              return newState;
+            });
+            break;
+          }
+        }
+        setCarouselInfo({ ...carouselInfo, posX: newPos });
         break;
       }
       default: {
@@ -155,8 +207,9 @@ const Carousel = (props: {
   return (
     <div className="ml-4 lg:ml-12">
       <button
-        className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
-          }`}
+        className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${
+          carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
+        }`}
         onClick={() => handleCarousel("PREV")}
       >
         <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
