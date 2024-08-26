@@ -1,23 +1,14 @@
-import { useState, useRef, Fragment, useLayoutEffect } from "react";
-import { ResultType } from "../../../../types/data";
+import { useState, useRef, Fragment, useLayoutEffect, useMemo } from "react";
+import { CarouselInfoType, ResultType } from "../../../../types/data";
 import ShowVignette from "../ShowVignette";
 import { MdArrowBackIosNew } from "react-icons/md";
+import { displayCalculations } from "./CarouselCalculations";
 
 const Carousel = (props: {
   data: ResultType[];
   handleOpenPopup: (show: ResultType) => void;
   screenSize: number;
 }) => {
-  type CarouselInfoType = {
-    posX: number;
-    screenSize: number;
-    thumbnailSize: number;
-    baseOffset: number;
-    thumbnailCount: number;
-    maxSize: number;
-    buttonWidth: number;
-  };
-
   const [carouselInfo, setCarouselInfo] = useState<CarouselInfoType>({
     posX: 0,
     screenSize: props.screenSize,
@@ -27,6 +18,12 @@ const Carousel = (props: {
     maxSize: 0,
     buttonWidth: 64,
   });
+
+  const carouselCalc = useMemo(() => {
+    const calc = displayCalculations(carouselInfo, props.screenSize);
+    return calc;
+  }, [carouselInfo, props.screenSize]);
+
   const [resetCarousel, setResetCarousel] = useState<boolean>(false);
   const handleResetCarousel = (value: boolean) => {
     setResetCarousel(value);
@@ -37,7 +34,7 @@ const Carousel = (props: {
 
   useLayoutEffect(() => {
     if (carouselRef.current) {
-      console.log("fired");
+      // console.log("fired");
       if (!carouselIsReady) {
         setCarouselIsReady(true);
       }
@@ -67,57 +64,10 @@ const Carousel = (props: {
   const [carouselIsActivated, setCarouselIsActivated] =
     useState<boolean>(false);
 
-  const carouselCalculations = (carouselInfo: CarouselInfoType) => {
-    const displayableWidth = carouselInfo.screenSize - carouselInfo.baseOffset;
-    console.log(
-      `displayableWidth = ${displayableWidth} , thumbnailSize: ${carouselInfo.thumbnailSize}`
-    );
-    const visibleThumbnails = Math.floor(
-      displayableWidth / carouselInfo.thumbnailSize
-    );
-    const offset = Math.ceil(
-      visibleThumbnails * (carouselInfo.screenSize * 0.01)
-    );
-    const displayableWidthWithoutGaps = displayableWidth - offset;
-    const displayableThumbnails = Math.floor(
-      displayableWidthWithoutGaps / carouselInfo.thumbnailSize
-    );
-    const visibleThumbnailsRaw =
-      displayableWidthWithoutGaps / carouselInfo.thumbnailSize;
-    const maxOffset =
-      (carouselInfo.thumbnailCount - 1) * (props.screenSize * 0.01);
-    const maxScrollX = -Math.abs(
-      carouselInfo.thumbnailSize * carouselInfo.thumbnailCount + maxOffset
-    );
-
-    console.log({
-      displayableWidth,
-      visibleThumbnails,
-      offset,
-      displayableWidthWithoutGaps,
-      displayableThumbnails,
-      visibleThumbnailsRaw,
-      maxOffset,
-      maxScrollX,
-    });
-
-    return {
-      displayableWidth,
-      visibleThumbnails,
-      offset,
-      displayableWidthWithoutGaps,
-      displayableThumbnails,
-      visibleThumbnailsRaw,
-      maxOffset,
-      maxScrollX,
-    };
-  };
-
   const handleCarousel = (signal: string) => {
     if (!carouselIsActivated && carouselIsReady) {
       setCarouselIsActivated(true);
     }
-    let carouselCalc = carouselCalculations(carouselInfo);
 
     switch (signal) {
       case "NEXT": {
@@ -146,7 +96,6 @@ const Carousel = (props: {
             handleResetCarousel(true);
             break;
           } else {
-            console.log("reojkgre");
             setCarouselInfo({
               ...carouselInfo,
               posX: -Math.abs(carouselInfo.baseOffset),
