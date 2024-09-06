@@ -59,6 +59,7 @@ const RootLayout = () => {
 
   // State gestion fetch (pas besoin de fetch si l'utilisateur est deconnecté)
   const { data, dataIsLoading, error } = useFetchPopularShows(lang);
+  // console.log(data);
 
   const fetchedPopularShows = useMemo(() => {
     return { data, dataIsLoading, error };

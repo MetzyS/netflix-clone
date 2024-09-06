@@ -9,6 +9,7 @@ const Root = () => {
       {isRegistered && isConfigured ? (
         <ShowMovies selectedProfile={selectedProfile} />
       ) : (
+        // <div></div>
         <HeroPage />
       )}
     </>

@@ -4,6 +4,11 @@ import { UserProfile, UserType } from "./user";
 
 export type ContextType = {
   // infos user
+  // data: {
+  //   data: DataType[];
+  //   dataIsLoading: boolean;
+  //   error: Error | null;
+  // };
   lang: string;
   user: UserType | undefined;
   isRegistered: boolean;

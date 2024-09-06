@@ -34,11 +34,9 @@ const Carousel = (props: {
 
   useLayoutEffect(() => {
     if (carouselRef.current) {
-      // console.log("fired");
       if (!carouselIsReady) {
         setCarouselIsReady(true);
       }
-      // Config state thumbnailSize, maxSize (scroll limit) & offset (margin left: ml-4 lg:ml-12)
       const thumbnailWidth = carouselRef.current.children[0].clientWidth;
       let marginLeft = 16;
       if (props.screenSize >= 1024) {

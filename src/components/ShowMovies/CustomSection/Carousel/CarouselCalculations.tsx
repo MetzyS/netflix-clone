@@ -1,9 +1,10 @@
 import { CarouselInfoType, ResultType } from "../../../../types/data";
 
 export const arraySplit = (array: any[], size: number) => {
+  let oldArray = array;
   let newArray = [];
-  for (let i = 0; i < array.length; i + size) {
-    newArray.push(array.splice(i, i + size));
+  for (let i = 0; i < oldArray.length; i + size) {
+    newArray.push(oldArray.splice(i, i + size));
   }
   return newArray;
 };

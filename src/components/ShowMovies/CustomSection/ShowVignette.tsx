@@ -17,7 +17,7 @@ const ShowVignette = (props: {
     };
   }, [props.show.backdrop_path]);
   return (
-    <li className="w-1/2 flex-shrink-0 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 rounded-lg">
+    <li className="w-1/2 flex-shrink-0 sm:w-1/4 lg:w-1/5 rounded-lg">
       <button
         type="button"
         className="relative flex items-center"
