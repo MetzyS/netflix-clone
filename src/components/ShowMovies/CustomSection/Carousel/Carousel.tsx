@@ -6,6 +6,7 @@ import { displayCalculations } from "./CarouselCalculations";
 
 const Carousel = (props: {
   data: ResultType[];
+  carouselData: any;
   handleOpenPopup: (show: ResultType) => void;
   screenSize: number;
 }) => {
@@ -18,6 +19,8 @@ const Carousel = (props: {
     maxSize: 0,
     buttonWidth: 64,
   });
+
+  console.log(props.carouselData);
 
   const carouselCalc = useMemo(() => {
     const calc = displayCalculations(carouselInfo, props.screenSize);
@@ -179,6 +182,10 @@ const Carousel = (props: {
             <ShowVignette show={show} handleOpenPopup={props.handleOpenPopup} />
           </Fragment>
         ))}
+
+        {/* {props.carouselData[0].map((item, index) => {
+          return <div key={index}>{item.name}</div>;
+        })} */}
       </ul>
     </div>
   );

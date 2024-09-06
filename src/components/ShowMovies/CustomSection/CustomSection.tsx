@@ -74,9 +74,6 @@ const CustomSection = (props: {
       case window.innerWidth >= 1024:
         handleCarouselData(5);
         break;
-      // default:
-      //   handleCarouselData(2);
-      //   break;
     }
   }, [screenSize]);
 
@@ -122,11 +119,12 @@ const CustomSection = (props: {
           </p>
         </Link>
         <div className="relative overflow-visible overflow-x-scroll hide-scrollbar">
-          {/* <Carousel
+          <Carousel
             data={props.data}
+            carouselData={carouselData}
             handleOpenPopup={handleOpenPopup}
             screenSize={screenSize}
-          /> */}
+          />
         </div>
       </section>
     </>
