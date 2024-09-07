@@ -21,7 +21,6 @@ const Carousel = (props: {
   handleOpenPopup: (show: ResultType) => void;
   screenSize: number;
 }) => {
-  console.log(props.carouselData);
   const [count, setCount] = useState<{
     prev: number;
     current: number;
@@ -32,17 +31,20 @@ const Carousel = (props: {
     next: 2,
   });
 
+  const [carouselDataIsReady, setCarouselDataIsReady] =
+    useState<boolean>(false);
+
   useEffect(() => {
+    setCarouselDataIsReady(false);
     let unShuffledCount = unShuffle(props.carouselData, count);
     setCount(unShuffledCount);
+    setTimeout(() => {
+      setCarouselDataIsReady(true);
+    }, 5);
   }, [props.carouselData]);
 
-  console.log(count);
-
   const handleCarouselButtons = (signal: string) => {
-    console.log(count);
     let newCount = shuffle(signal, props.carouselData, count);
-    console.log(newCount);
     setCount(newCount);
   };
   // const [carouselInfo, setCarouselInfo] = useState<CarouselInfoType>({
@@ -220,15 +222,18 @@ const Carousel = (props: {
         {/* {props.carouselData[0].map((item, index) => {
           console.log(item);
         })} */}
-        {props.carouselData[count.prev].map((item) => {
-          return <div key={`prev-${item.id}`}>{item.name}</div>;
-        })}
-        {props.carouselData[count.current].map((item) => {
-          return <div key={`current-${item.id}`}>{item.name}</div>;
-        })}
-        {props.carouselData[count.next].map((item) => {
-          return <div key={`next-${item.id}`}>{item.name}</div>;
-        })}
+        {carouselDataIsReady &&
+          props.carouselData[count.prev].map((item) => {
+            return <div key={`prev-${item.id}`}>{item.name}</div>;
+          })}
+        {carouselDataIsReady &&
+          props.carouselData[count.current].map((item) => {
+            return <div key={`current-${item.id}`}>{item.name}</div>;
+          })}
+        {carouselDataIsReady &&
+          props.carouselData[count.next].map((item) => {
+            return <div key={`next-${item.id}`}>{item.name}</div>;
+          })}
       </ul>
     </div>
   );
