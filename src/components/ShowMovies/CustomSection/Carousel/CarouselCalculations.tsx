@@ -9,14 +9,25 @@ export const arraySplit = (array: any[], size: number) => {
   return newArray;
 };
 
+export const unShuffle = (
+  array: [ResultType[]],
+  count: { prev: number; current: number; next: number }
+) => {
+  let unShuffledCount = count;
+  unShuffledCount.prev = array.length - 1;
+  unShuffledCount.current = 0;
+  unShuffledCount.next = 1;
+  return unShuffledCount;
+};
+
 export const shuffle = (
   signal: string,
-  array: [],
+  array: [ResultType[]],
   count: { prev: number; current: number; next: number }
 ) => {
   let newState = count;
   switch (signal) {
-    case "next":
+    case "NEXT":
       if (count.current + 1 > array.length - 1) {
         // Reset carousel
         newState.prev = newState.current;
@@ -36,7 +47,7 @@ export const shuffle = (
       }
       break;
 
-    case "prev":
+    case "PREV":
       if (newState.current - 1 < 0) {
         // if current < 0, current = last item
         newState.current = array.length - 1;

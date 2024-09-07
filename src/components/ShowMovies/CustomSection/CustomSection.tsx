@@ -43,7 +43,7 @@ const CustomSection = (props: {
   // console.log(props.data);
 
   const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
-  const [carouselData, setCarouselData] = useState<any>([]);
+  const [carouselData, setCarouselData] = useState<[ResultType[]] | any>([]);
   const handleCarouselData = (quotient: number) => {
     let newData = Array.from(props.data);
     let test = arraySplit(newData, quotient);
