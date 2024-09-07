@@ -31,6 +31,9 @@ const Carousel = (props: {
     next: 2,
   });
 
+  const [carouselIsActivated, setCarouselIsActivated] =
+    useState<boolean>(false);
+
   const [carouselDataIsReady, setCarouselDataIsReady] =
     useState<boolean>(false);
 
@@ -44,6 +47,9 @@ const Carousel = (props: {
   }, [props.carouselData]);
 
   const handleCarouselButtons = (signal: string) => {
+    if (!carouselIsActivated) {
+      setCarouselIsActivated(true);
+    }
     let newCount = shuffle(signal, props.carouselData, count);
     setCount(newCount);
   };
@@ -194,9 +200,9 @@ const Carousel = (props: {
   return (
     <div className="ml-4 lg:ml-12">
       <button
-        // className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${
-        //   carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
-        // }`}
+        className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${
+          carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
+        }`}
         onClick={() => handleCarouselButtons("PREV")}
       >
         <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
@@ -223,17 +229,32 @@ const Carousel = (props: {
           console.log(item);
         })} */}
         {carouselDataIsReady &&
-          props.carouselData[count.prev].map((item) => {
-            return <div key={`prev-${item.id}`}>{item.name}</div>;
-          })}
+          props.carouselData[count.prev].map((show) => (
+            <Fragment key={`${show.id}`}>
+              <ShowVignette
+                show={show}
+                handleOpenPopup={props.handleOpenPopup}
+              />
+            </Fragment>
+          ))}
         {carouselDataIsReady &&
-          props.carouselData[count.current].map((item) => {
-            return <div key={`current-${item.id}`}>{item.name}</div>;
-          })}
+          props.carouselData[count.current].map((show) => (
+            <Fragment key={`${show.id}`}>
+              <ShowVignette
+                show={show}
+                handleOpenPopup={props.handleOpenPopup}
+              />
+            </Fragment>
+          ))}
         {carouselDataIsReady &&
-          props.carouselData[count.next].map((item) => {
-            return <div key={`next-${item.id}`}>{item.name}</div>;
-          })}
+          props.carouselData[count.next].map((show) => (
+            <Fragment key={`${show.id}`}>
+              <ShowVignette
+                show={show}
+                handleOpenPopup={props.handleOpenPopup}
+              />
+            </Fragment>
+          ))}
       </ul>
     </div>
   );
