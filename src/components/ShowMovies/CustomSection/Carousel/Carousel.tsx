@@ -37,21 +37,27 @@ const Carousel = (props: {
   const [carouselDataIsReady, setCarouselDataIsReady] =
     useState<boolean>(false);
 
+  const [buttonIsDisabled, setButtonIsDisabled] = useState<boolean>(false);
+
   useEffect(() => {
     setCarouselDataIsReady(false);
     let unShuffledCount = unShuffle(props.carouselData, count);
     setCount(unShuffledCount);
-    setTimeout(() => {
-      setCarouselDataIsReady(true);
-    }, 5);
+    setCarouselDataIsReady(true);
   }, [props.carouselData]);
 
   const handleCarouselButtons = (signal: string) => {
     if (!carouselIsActivated) {
       setCarouselIsActivated(true);
     }
+    setButtonIsDisabled(true);
     let newCount = shuffle(signal, props.carouselData, count);
     setCount(newCount);
+    // console.log(newCount);
+    setTimeout(() => {
+      console.log("timeout");
+    }, 5000);
+    setButtonIsDisabled(false);
   };
   // const [carouselInfo, setCarouselInfo] = useState<CarouselInfoType>({
   //   posX: 0,
@@ -204,12 +210,14 @@ const Carousel = (props: {
           carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
         }`}
         onClick={() => handleCarouselButtons("PREV")}
+        disabled={buttonIsDisabled}
       >
         <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
       </button>
       <button
         className="carousel-btn rounded-tr-md rounded-br-md block right-0 text-transparent bg-black/50 hover:bg-black/90 group"
         onClick={() => handleCarouselButtons("NEXT")}
+        disabled={buttonIsDisabled}
       >
         <MdArrowBackIosNew className="rotate-180 text-white size-8 transition-all p-1 group-hover:p-0" />
       </button>
@@ -220,15 +228,9 @@ const Carousel = (props: {
         //   transform: `translateX(${carouselInfo.posX}px)`,
         // }}
       >
-        {/* {props.data.map((show) => (
-          <Fragment key={`${show.id}`}>
-            <ShowVignette show={show} handleOpenPopup={props.handleOpenPopup} />
-          </Fragment>
-        ))} */}
-        {/* {props.carouselData[0].map((item, index) => {
-          console.log(item);
-        })} */}
         {carouselDataIsReady &&
+          Array.isArray(props.carouselData) &&
+          props.carouselData[count.prev] &&
           props.carouselData[count.prev].map((show) => (
             <Fragment key={`${show.id}`}>
               <ShowVignette
@@ -238,6 +240,8 @@ const Carousel = (props: {
             </Fragment>
           ))}
         {carouselDataIsReady &&
+          Array.isArray(props.carouselData) &&
+          props.carouselData[count.prev] &&
           props.carouselData[count.current].map((show) => (
             <Fragment key={`${show.id}`}>
               <ShowVignette
@@ -247,6 +251,8 @@ const Carousel = (props: {
             </Fragment>
           ))}
         {carouselDataIsReady &&
+          Array.isArray(props.carouselData) &&
+          props.carouselData[count.prev] &&
           props.carouselData[count.next].map((show) => (
             <Fragment key={`${show.id}`}>
               <ShowVignette
