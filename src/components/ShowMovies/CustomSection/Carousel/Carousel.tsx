@@ -50,158 +50,159 @@ const Carousel = (props: {
     if (!carouselIsActivated) {
       setCarouselIsActivated(true);
     }
+    handleCarousel(signal);
     setButtonIsDisabled(true);
-    let newCount = shuffle(signal, props.carouselData, count);
-    setCount(newCount);
     // console.log(newCount);
     setTimeout(() => {
+      let newCount = shuffle(signal, props.carouselData, count);
+      setCount(newCount);
       console.log("timeout");
-    }, 5000);
-    setButtonIsDisabled(false);
+      setButtonIsDisabled(false);
+    }, 600);
   };
-  // const [carouselInfo, setCarouselInfo] = useState<CarouselInfoType>({
-  //   posX: 0,
-  //   screenSize: props.screenSize,
-  //   thumbnailSize: 0,
-  //   baseOffset: 0,
-  //   thumbnailCount: props.data.length,
-  //   maxSize: 0,
-  //   buttonWidth: 64,
-  // });
+  const [carouselInfo, setCarouselInfo] = useState<CarouselInfoType>({
+    posX: 0,
+    screenSize: props.screenSize,
+    thumbnailSize: 0,
+    baseOffset: 0,
+    thumbnailCount: props.data.length,
+    maxSize: 0,
+    buttonWidth: 64,
+  });
 
-  // console.log(props.carouselData);
+  console.log(props.carouselData);
 
-  // const carouselCalc = useMemo(() => {
-  //   const calc = displayCalculations(carouselInfo, props.screenSize);
-  //   return calc;
-  // }, [carouselInfo, props.screenSize]);
+  const carouselCalc = useMemo(() => {
+    const calc = displayCalculations(carouselInfo, props.screenSize);
+    return calc;
+  }, [carouselInfo, props.screenSize]);
 
-  // const [resetCarousel, setResetCarousel] = useState<boolean>(false);
-  // const handleResetCarousel = (value: boolean) => {
-  //   setResetCarousel(value);
-  // };
-  // // CAROUSEL REF & READY STATE
-  // const [carouselIsReady, setCarouselIsReady] = useState<boolean>(false);
-  // const carouselRef = useRef<HTMLUListElement>(null);
+  const [resetCarousel, setResetCarousel] = useState<boolean>(false);
+  const handleResetCarousel = (value: boolean) => {
+    setResetCarousel(value);
+  };
+  // CAROUSEL REF & READY STATE
+  const [carouselIsReady, setCarouselIsReady] = useState<boolean>(false);
+  const carouselRef = useRef<HTMLUListElement>(null);
 
-  // useLayoutEffect(() => {
-  //   if (carouselRef.current) {
-  //     if (!carouselIsReady) {
-  //       setCarouselIsReady(true);
-  //     }
-  //     const thumbnailWidth = carouselRef.current.children[0].clientWidth;
-  //     let marginLeft = 16;
-  //     if (props.screenSize >= 1024) {
-  //       marginLeft = 48;
-  //     }
-  //     setCarouselInfo((prevState) => {
-  //       let newState = { ...prevState, thumbnailSize: thumbnailWidth };
-  //       newState = {
-  //         ...newState,
-  //         maxSize:
-  //           -Math.abs(thumbnailWidth * carouselInfo.thumbnailCount) -
-  //           marginLeft,
-  //       };
-  //       newState = {
-  //         ...newState,
-  //         baseOffset: marginLeft,
-  //       };
-  //       return newState;
-  //     });
-  //   }
-  // }, [carouselRef, props.screenSize]);
+  useLayoutEffect(() => {
+    if (carouselRef.current) {
+      if (!carouselIsReady) {
+        setCarouselIsReady(true);
+      }
+      const thumbnailWidth = carouselRef.current.children[0].clientWidth;
+      let marginLeft = 16;
+      if (props.screenSize >= 1024) {
+        marginLeft = 48;
+      }
+      setCarouselInfo((prevState) => {
+        let newState = { ...prevState, thumbnailSize: thumbnailWidth };
+        newState = {
+          ...newState,
+          maxSize:
+            -Math.abs(thumbnailWidth * carouselInfo.thumbnailCount) -
+            marginLeft,
+        };
+        newState = {
+          ...newState,
+          baseOffset: marginLeft,
+        };
+        return newState;
+      });
+    }
+  }, [carouselRef, props.screenSize]);
 
   // const [carouselIsActivated, setCarouselIsActivated] =
   //   useState<boolean>(false);
 
-  // const handleCarousel = (signal: string) => {
-  //   if (!carouselIsActivated && carouselIsReady) {
-  //     setCarouselIsActivated(true);
-  //   }
+  const handleCarousel = (signal: string) => {
+    if (!carouselIsActivated && carouselIsReady) {
+      setCarouselIsActivated(true);
+    }
 
-  //   switch (signal) {
-  //     case "NEXT": {
-  //       const newPos =
-  //         carouselInfo.posX -
-  //         (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails +
-  //           carouselCalc.offset);
+    switch (signal) {
+      case "NEXT": {
+        const newPos =
+          carouselInfo.posX -
+          (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails +
+            carouselCalc.offset);
 
-  //       if (
-  //         newPos -
-  //           carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails <
-  //         carouselInfo.maxSize
-  //       ) {
-  //         if (!resetCarousel) {
-  //           setCarouselInfo((prevState) => {
-  //             let newState = {
-  //               ...prevState,
-  //               posX:
-  //                 carouselCalc.maxScrollX +
-  //                 carouselCalc.visibleThumbnailsRaw *
-  //                   carouselInfo.thumbnailSize +
-  //                 carouselCalc.offset,
-  //             };
-  //             return newState;
-  //           });
-  //           handleResetCarousel(true);
-  //           break;
-  //         } else {
-  //           setCarouselInfo({
-  //             ...carouselInfo,
-  //             posX: -Math.abs(carouselInfo.baseOffset),
-  //           });
-  //           handleResetCarousel(false);
-  //           break;
-  //         }
-  //       }
+        if (
+          newPos -
+            carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails <
+          carouselInfo.maxSize
+        ) {
+          if (!resetCarousel) {
+            setCarouselInfo((prevState) => {
+              let newState = {
+                ...prevState,
+                posX:
+                  carouselCalc.maxScrollX +
+                  carouselCalc.visibleThumbnailsRaw *
+                    carouselInfo.thumbnailSize +
+                  carouselCalc.offset,
+              };
+              return newState;
+            });
+            handleResetCarousel(true);
+            break;
+          } else {
+            setCarouselInfo({
+              ...carouselInfo,
+              posX: -Math.abs(carouselInfo.baseOffset),
+            });
+            handleResetCarousel(false);
+            break;
+          }
+        }
 
-  //       if (newPos == carouselCalc.maxScrollX) {
-  //         setCarouselInfo({ ...carouselInfo, posX: 0 });
-  //         break;
-  //       }
+        if (newPos == carouselCalc.maxScrollX) {
+          setCarouselInfo({ ...carouselInfo, posX: 0 });
+          break;
+        }
 
-  //       setCarouselInfo({ ...carouselInfo, posX: newPos });
-  //       break;
-  //     }
+        setCarouselInfo({ ...carouselInfo, posX: newPos });
+        break;
+      }
 
-  //     case "PREV": {
-  //       const newPos =
-  //         carouselInfo.posX +
-  //         (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails -
-  //           carouselCalc.offset);
-  //       if (newPos > 0) {
-  //         if (!resetCarousel) {
-  //           handleResetCarousel(true);
-  //           setCarouselInfo({
-  //             ...carouselInfo,
-  //             posX: -Math.abs(carouselInfo.baseOffset),
-  //           });
-  //           break;
-  //         } else {
-  //           handleResetCarousel(false);
-  //           setCarouselInfo((prevState) => {
-  //             let newState = {
-  //               ...prevState,
-  //               posX:
-  //                 carouselCalc.maxScrollX +
-  //                 carouselCalc.visibleThumbnailsRaw *
-  //                   carouselInfo.thumbnailSize +
-  //                 carouselCalc.offset,
-  //             };
-  //             return newState;
-  //           });
-  //           break;
-  //         }
-  //       }
-  //       setCarouselInfo({ ...carouselInfo, posX: newPos });
-  //       break;
-  //     }
-  //     default: {
-  //       console.log("default");
-  //       break;
-  //     }
-  //   }
-  // };
+      case "PREV": {
+        const newPos =
+          carouselInfo.posX +
+          (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails -
+            carouselCalc.offset);
+        if (newPos > 0) {
+          if (!resetCarousel) {
+            handleResetCarousel(true);
+            setCarouselInfo({
+              ...carouselInfo,
+              posX: -Math.abs(carouselInfo.baseOffset),
+            });
+            break;
+          } else {
+            handleResetCarousel(false);
+            setCarouselInfo((prevState) => {
+              let newState = {
+                ...prevState,
+                posX:
+                  carouselCalc.maxScrollX +
+                  carouselCalc.visibleThumbnailsRaw *
+                    carouselInfo.thumbnailSize +
+                  carouselCalc.offset,
+              };
+              return newState;
+            });
+            break;
+          }
+        }
+        setCarouselInfo({ ...carouselInfo, posX: newPos });
+        break;
+      }
+      default: {
+        console.log("default");
+        break;
+      }
+    }
+  };
 
   return (
     <div className="ml-4 lg:ml-12">
@@ -223,10 +224,10 @@ const Carousel = (props: {
       </button>
       <ul
         className="flex justify-between gap-[1vw] transition-all my-0"
-        // ref={carouselRef}
-        // style={{
-        //   transform: `translateX(${carouselInfo.posX}px)`,
-        // }}
+        ref={carouselRef}
+        style={{
+          transform: `translateX(${carouselInfo.posX}px)`,
+        }}
       >
         {carouselDataIsReady &&
           Array.isArray(props.carouselData) &&
