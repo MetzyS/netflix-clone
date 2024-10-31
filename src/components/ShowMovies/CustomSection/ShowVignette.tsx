@@ -17,7 +17,7 @@ const ShowVignette = (props: {
     };
   }, [props.show.backdrop_path]);
   return (
-    <li className="w-1/2 flex-shrink-0 sm:w-1/4 lg:w-1/5 rounded-lg">
+    <li className="w-1/2 flex-shrink-0 sm:w-1/4 lg:w-1/5 xl:w-1/6 rounded-sm">
       <button
         type="button"
         className="relative flex items-center"
@@ -27,7 +27,7 @@ const ShowVignette = (props: {
           <img
             src={`https://image.tmdb.org/t/p/w780/${props.show.backdrop_path}`}
             alt=""
-            className="aspect-video object-center object-fill rounded-lg"
+            className="aspect-video object-center object-fill rounded-sm"
           />
         ) : (
           <div className="aspect-video h-full w-full bg-neutral-700 animate-pulse"></div>

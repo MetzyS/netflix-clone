@@ -53,7 +53,7 @@ const Carousel = (props: {
   });
 
   const carouselCalc = useMemo(() => {
-    const calc = displayCalculations(carouselInfo, props.screenSize);
+    const calc = displayCalculations(carouselInfo);
     return calc;
   }, [carouselInfo, props.screenSize]);
 
@@ -186,7 +186,7 @@ const Carousel = (props: {
   };
 
   return (
-    <div className="ml-4 lg:ml-12">
+    <div className="ml-4 lg:ml-12 overflow-hidden">
       <button
         className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${
           carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
@@ -202,7 +202,7 @@ const Carousel = (props: {
         <MdArrowBackIosNew className="rotate-180 text-white size-8 transition-all p-1 group-hover:p-0" />
       </button>
       <ul
-        className="flex justify-between gap-[1vw] transition-all my-0"
+        className="flex justify-between gap-[1vw] transition-all duration-700 my-0"
         ref={carouselRef}
         style={{
           transform: `translateX(${carouselInfo.posX}px)`,

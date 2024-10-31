@@ -73,10 +73,7 @@ export const shuffle = (
   return newState;
 };
 
-export const displayCalculations = (
-  carouselInfo: CarouselInfoType,
-  screenSize: number
-) => {
+export const displayCalculations = (carouselInfo: CarouselInfoType) => {
   const displayableWidth = carouselInfo.screenSize - carouselInfo.baseOffset;
   // console.log(
   //   `displayableWidth = ${displayableWidth} , thumbnailSize: ${carouselInfo.thumbnailSize}`
@@ -93,7 +90,8 @@ export const displayCalculations = (
   );
   const visibleThumbnailsRaw =
     displayableWidthWithoutGaps / carouselInfo.thumbnailSize;
-  const maxOffset = (carouselInfo.thumbnailCount - 1) * (screenSize * 0.01);
+  const maxOffset =
+    (carouselInfo.thumbnailCount - 1) * (carouselInfo.screenSize * 0.01);
   const maxScrollX = -Math.abs(
     carouselInfo.thumbnailSize * carouselInfo.thumbnailCount + maxOffset
   );
