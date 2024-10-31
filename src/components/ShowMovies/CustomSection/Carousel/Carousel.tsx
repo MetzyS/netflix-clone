@@ -11,54 +11,36 @@ import ShowVignette from "../ShowVignette";
 import { MdArrowBackIosNew } from "react-icons/md";
 import {
   displayCalculations,
-  shuffle,
-  unShuffle,
+  // shuffle,
+  // unShuffle,
 } from "./CarouselCalculations";
 
 const Carousel = (props: {
   data: ResultType[];
-  carouselData: [ResultType[]];
   handleOpenPopup: (show: ResultType) => void;
   screenSize: number;
 }) => {
-  const [count, setCount] = useState<{
-    prev: number;
-    current: number;
-    next: number;
-  }>({
-    prev: 0,
-    current: 1,
-    next: 2,
-  });
-
+  const carouselRef = useRef<HTMLUListElement>(null);
   const [carouselIsActivated, setCarouselIsActivated] =
     useState<boolean>(false);
 
   const [carouselDataIsReady, setCarouselDataIsReady] =
     useState<boolean>(false);
 
-  const [buttonIsDisabled, setButtonIsDisabled] = useState<boolean>(false);
+  const [carouselIsReady, setCarouselIsReady] = useState<boolean>(false);
+
+  // const [buttonIsDisabled, setButtonIsDisabled] = useState<boolean>(false);
 
   useEffect(() => {
     setCarouselDataIsReady(false);
-    let unShuffledCount = unShuffle(props.carouselData, count);
-    setCount(unShuffledCount);
     setCarouselDataIsReady(true);
-  }, [props.carouselData]);
+  }, [props.data]);
 
   const handleCarouselButtons = (signal: string) => {
     if (!carouselIsActivated) {
       setCarouselIsActivated(true);
     }
     handleCarousel(signal);
-    setButtonIsDisabled(true);
-    // console.log(newCount);
-    setTimeout(() => {
-      let newCount = shuffle(signal, props.carouselData, count);
-      setCount(newCount);
-      console.log("timeout");
-      setButtonIsDisabled(false);
-    }, 600);
   };
   const [carouselInfo, setCarouselInfo] = useState<CarouselInfoType>({
     posX: 0,
@@ -70,8 +52,6 @@ const Carousel = (props: {
     buttonWidth: 64,
   });
 
-  console.log(props.carouselData);
-
   const carouselCalc = useMemo(() => {
     const calc = displayCalculations(carouselInfo, props.screenSize);
     return calc;
@@ -81,15 +61,10 @@ const Carousel = (props: {
   const handleResetCarousel = (value: boolean) => {
     setResetCarousel(value);
   };
-  // CAROUSEL REF & READY STATE
-  const [carouselIsReady, setCarouselIsReady] = useState<boolean>(false);
-  const carouselRef = useRef<HTMLUListElement>(null);
 
   useLayoutEffect(() => {
-    if (carouselRef.current) {
-      if (!carouselIsReady) {
-        setCarouselIsReady(true);
-      }
+    if (carouselRef.current && carouselDataIsReady) {
+      setCarouselIsReady(false);
       const thumbnailWidth = carouselRef.current.children[0].clientWidth;
       let marginLeft = 16;
       if (props.screenSize >= 1024) {
@@ -109,19 +84,21 @@ const Carousel = (props: {
         };
         return newState;
       });
+      setCarouselIsReady(true);
     }
-  }, [carouselRef, props.screenSize]);
+  }, [carouselRef, props.screenSize, carouselDataIsReady]);
 
   // const [carouselIsActivated, setCarouselIsActivated] =
   //   useState<boolean>(false);
 
   const handleCarousel = (signal: string) => {
-    if (!carouselIsActivated && carouselIsReady) {
-      setCarouselIsActivated(true);
-    }
-
+    // if (!carouselIsActivated && carouselIsReady) {
+    //   setCarouselIsActivated(true);
+    // }
     switch (signal) {
       case "NEXT": {
+        console.log(`oldPos = ${carouselInfo.posX}`);
+        console.log(carouselInfo);
         const newPos =
           carouselInfo.posX -
           (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails +
@@ -145,6 +122,7 @@ const Carousel = (props: {
               return newState;
             });
             handleResetCarousel(true);
+            console.log(`newPos = ${carouselInfo.posX}`);
             break;
           } else {
             setCarouselInfo({
@@ -152,16 +130,19 @@ const Carousel = (props: {
               posX: -Math.abs(carouselInfo.baseOffset),
             });
             handleResetCarousel(false);
+            console.log(`newPos = ${carouselInfo.posX}`);
             break;
           }
         }
 
         if (newPos == carouselCalc.maxScrollX) {
           setCarouselInfo({ ...carouselInfo, posX: 0 });
+          console.log(`newPos = ${carouselInfo.posX}`);
           break;
         }
 
         setCarouselInfo({ ...carouselInfo, posX: newPos });
+        console.log(`newPos = ${carouselInfo.posX}`);
         break;
       }
 
@@ -211,14 +192,12 @@ const Carousel = (props: {
           carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
         }`}
         onClick={() => handleCarouselButtons("PREV")}
-        disabled={buttonIsDisabled}
       >
         <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
       </button>
       <button
         className="carousel-btn rounded-tr-md rounded-br-md block right-0 text-transparent bg-black/50 hover:bg-black/90 group"
         onClick={() => handleCarouselButtons("NEXT")}
-        disabled={buttonIsDisabled}
       >
         <MdArrowBackIosNew className="rotate-180 text-white size-8 transition-all p-1 group-hover:p-0" />
       </button>
@@ -230,32 +209,8 @@ const Carousel = (props: {
         }}
       >
         {carouselDataIsReady &&
-          Array.isArray(props.carouselData) &&
-          props.carouselData[count.prev] &&
-          props.carouselData[count.prev].map((show) => (
-            <Fragment key={`${show.id}`}>
-              <ShowVignette
-                show={show}
-                handleOpenPopup={props.handleOpenPopup}
-              />
-            </Fragment>
-          ))}
-        {carouselDataIsReady &&
-          Array.isArray(props.carouselData) &&
-          props.carouselData[count.prev] &&
-          props.carouselData[count.current].map((show) => (
-            <Fragment key={`${show.id}`}>
-              <ShowVignette
-                show={show}
-                handleOpenPopup={props.handleOpenPopup}
-              />
-            </Fragment>
-          ))}
-        {carouselDataIsReady &&
-          Array.isArray(props.carouselData) &&
-          props.carouselData[count.prev] &&
-          props.carouselData[count.next].map((show) => (
-            <Fragment key={`${show.id}`}>
+          props.data.map((show) => (
+            <Fragment key={`test-${show.id}`}>
               <ShowVignette
                 show={show}
                 handleOpenPopup={props.handleOpenPopup}

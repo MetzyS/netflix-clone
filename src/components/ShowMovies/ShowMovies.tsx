@@ -22,13 +22,11 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
   const [profile, setProfile] = useState<undefined | number>(
     props.selectedProfile
   );
-  const [nb, setNb] = useState<number>(() => {
-    return Math.floor(Math.random() * 6);
-  });
   const [backdropVideoInfos, setBackdropVideoInfos] =
     useState<null | BackdropVideoInfoType>(null);
 
   useEffect(() => {
+    setWhiteTheme(false);
     if (
       !fetchedPopularShows.dataIsLoading &&
       fetchedPopularShows.error === null
@@ -45,7 +43,7 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
           throw new Error(err.message);
         }
       };
-      fetchVideo(fetchedPopularShows.data[0].results[nb].id);
+      fetchVideo(fetchedPopularShows.data[0].results[0].id);
     }
   }, [fetchedPopularShows.dataIsLoading]);
 
@@ -53,16 +51,6 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
     setProfile(id);
     handleSaveSelectedProfile(id);
   };
-
-  useEffect(() => {
-    const randomNumber = () => {
-      const nb = Math.floor(Math.random() * 10);
-      setNb(nb);
-      return nb;
-    };
-    randomNumber();
-    setWhiteTheme(false);
-  }, []);
 
   return (
     <>
@@ -83,7 +71,7 @@ const ShowMovies = (props: { selectedProfile: undefined | number }) => {
             ) : (
               <>
                 <ShowBackdrop
-                  showData={fetchedPopularShows.data[0].results[nb]}
+                  showData={fetchedPopularShows.data[0].results[0]}
                   content={content.topShowBanner}
                   backdropVideoInfos={backdropVideoInfos}
                 />

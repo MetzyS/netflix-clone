@@ -7,7 +7,6 @@ import { ShowDetailsType } from "../../../types/useLocaleTypes/ImportedLocaleTyp
 import ShowDetailsModal from "./ShowDetailsModal";
 import { IoIosArrowForward } from "react-icons/io";
 import Carousel from "./Carousel/Carousel";
-import { arraySplit } from "./Carousel/CarouselCalculations";
 
 const CustomSection = (props: {
   data: ResultType[];
@@ -40,16 +39,7 @@ const CustomSection = (props: {
     setSelectedShow(null);
   };
 
-  // console.log(props.data);
-
   const [screenSize, setScreenSize] = useState<number>(window.innerWidth);
-  const [carouselData, setCarouselData] = useState<[ResultType[]] | any>([]);
-  const handleCarouselData = (quotient: number) => {
-    let newData = Array.from(props.data);
-    let test = arraySplit(newData, quotient);
-    console.log(test);
-    setCarouselData(test);
-  };
 
   // SCREEN RESIZE
   useEffect(() => {
@@ -61,21 +51,6 @@ const CustomSection = (props: {
       window.removeEventListener("resize", () => handleScreenResize);
     };
   }, []);
-
-  useEffect(() => {
-    // handleCarouselData()
-    switch (true) {
-      case window.innerWidth < 640:
-        handleCarouselData(2);
-        break;
-      case window.innerWidth > 640 && window.innerWidth < 1024:
-        handleCarouselData(4);
-        break;
-      case window.innerWidth >= 1024:
-        handleCarouselData(5);
-        break;
-    }
-  }, [screenSize]);
 
   useEffect(() => {
     if (open === false) {
@@ -121,7 +96,6 @@ const CustomSection = (props: {
         <div className="relative overflow-visible overflow-x-scroll hide-scrollbar">
           <Carousel
             data={props.data}
-            carouselData={carouselData}
             handleOpenPopup={handleOpenPopup}
             screenSize={screenSize}
           />

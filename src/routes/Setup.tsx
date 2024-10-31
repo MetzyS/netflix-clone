@@ -185,14 +185,6 @@ const Setup = () => {
                 )}
                 {setupStep == 9 && <Navigate to="/" />}
               </div>
-              <Footer
-                selectBg="bg-white"
-                selectTextColor="text-neutral-600"
-                className="bg-[#f3f3f3] border-t border-t-black/10"
-                textColor="text-black"
-                selectBorderColor="border-black/30"
-                showLangText={true}
-              />
             </div>
           )}
         </>
