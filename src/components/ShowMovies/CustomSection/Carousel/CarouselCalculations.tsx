@@ -1,5 +1,10 @@
-import { CarouselInfoType, ResultType } from "../../../../types/data";
+import {
+  CarouselCalcType,
+  CarouselInfoType,
+  ResultType,
+} from "../../../../types/data";
 
+// Ancienne methode, rajoute trop de complexité.
 export const arraySplit = (array: any[], size: number) => {
   let oldArray = array;
   let newArray = [];
@@ -9,6 +14,7 @@ export const arraySplit = (array: any[], size: number) => {
   return newArray;
 };
 
+// Ancienne methode, rajoute trop de complexité.
 export const unShuffle = (
   array: [ResultType[]],
   count: { prev: number; current: number; next: number }
@@ -20,6 +26,7 @@ export const unShuffle = (
   return unShuffledCount;
 };
 
+// Ancienne methode, rajoute trop de complexité.
 export const shuffle = (
   signal: string,
   array: [ResultType[]],
@@ -75,9 +82,6 @@ export const shuffle = (
 
 export const displayCalculations = (carouselInfo: CarouselInfoType) => {
   const displayableWidth = carouselInfo.screenSize - carouselInfo.baseOffset;
-  // console.log(
-  //   `displayableWidth = ${displayableWidth} , thumbnailSize: ${carouselInfo.thumbnailSize}`
-  // );
   const visibleThumbnails = Math.floor(
     displayableWidth / carouselInfo.thumbnailSize
   );
@@ -106,4 +110,100 @@ export const displayCalculations = (carouselInfo: CarouselInfoType) => {
     maxOffset,
     maxScrollX,
   };
+};
+
+export const carouselCalculationsHandler = (
+  signal: string,
+  carouselInfo: CarouselInfoType,
+  carouselCalc: CarouselCalcType,
+  resetCarousel: boolean,
+  setCarouselInfo: (prevState: any) => void,
+  handleResetCarousel: (value: boolean) => void
+) => {
+  switch (signal) {
+    case "NEXT": {
+      console.log(`oldPos = ${carouselInfo.posX}`);
+      console.log(carouselInfo);
+      const newPos =
+        carouselInfo.posX -
+        (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails +
+          carouselCalc.offset);
+
+      if (
+        newPos -
+          carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails <
+        carouselInfo.maxSize
+      ) {
+        if (!resetCarousel) {
+          setCarouselInfo((prevState: any) => {
+            let newState = {
+              ...prevState,
+              posX:
+                carouselCalc.maxScrollX +
+                carouselCalc.visibleThumbnailsRaw * carouselInfo.thumbnailSize +
+                carouselCalc.offset,
+            };
+            return newState;
+          });
+          handleResetCarousel(true);
+          console.log(`newPos = ${carouselInfo.posX}`);
+          break;
+        } else {
+          setCarouselInfo({
+            ...carouselInfo,
+            posX: -Math.abs(carouselInfo.baseOffset),
+          });
+          handleResetCarousel(false);
+          console.log(`newPos = ${carouselInfo.posX}`);
+          break;
+        }
+      }
+
+      if (newPos == carouselCalc.maxScrollX) {
+        setCarouselInfo({ ...carouselInfo, posX: 0 });
+        console.log(`newPos = ${carouselInfo.posX}`);
+        break;
+      }
+
+      setCarouselInfo({ ...carouselInfo, posX: newPos });
+      console.log(`newPos = ${carouselInfo.posX}`);
+      break;
+    }
+
+    case "PREV": {
+      const newPos =
+        carouselInfo.posX +
+        (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails -
+          carouselCalc.offset);
+      if (newPos > 0) {
+        if (!resetCarousel) {
+          handleResetCarousel(true);
+          setCarouselInfo({
+            ...carouselInfo,
+            posX: -Math.abs(carouselInfo.baseOffset),
+          });
+          break;
+        } else {
+          handleResetCarousel(false);
+          setCarouselInfo((prevState: any) => {
+            let newState = {
+              ...prevState,
+              posX:
+                carouselCalc.maxScrollX +
+                carouselCalc.visibleThumbnailsRaw * carouselInfo.thumbnailSize +
+                carouselCalc.offset,
+            };
+            return newState;
+          });
+          break;
+        }
+      }
+      setCarouselInfo({ ...carouselInfo, posX: newPos });
+      break;
+    }
+    default: {
+      console.log("default");
+      break;
+    }
+  }
 };

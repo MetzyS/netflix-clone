@@ -1,17 +1,13 @@
+import { useState, useRef, useLayoutEffect, useMemo, useEffect } from "react";
 import {
-  useState,
-  useRef,
-  Fragment,
-  useLayoutEffect,
-  useMemo,
-  useEffect,
-} from "react";
-import { CarouselInfoType, ResultType } from "../../../../types/data";
+  CarouselCalcType,
+  CarouselInfoType,
+  ResultType,
+} from "../../../../types/data";
 import ShowVignette from "../ShowVignette";
 import {
   displayCalculations,
-  // shuffle,
-  // unShuffle,
+  carouselCalculationsHandler,
 } from "./CarouselCalculations";
 import CarouselButtons from "./CarouselButtons";
 
@@ -27,13 +23,11 @@ const Carousel = (props: {
   const [carouselDataIsReady, setCarouselDataIsReady] =
     useState<boolean>(false);
 
-  const [carouselIsReady, setCarouselIsReady] = useState<boolean>(false);
-
-  // const [buttonIsDisabled, setButtonIsDisabled] = useState<boolean>(false);
-
   useEffect(() => {
     setCarouselDataIsReady(false);
-    setCarouselDataIsReady(true);
+    if (props.data.length > 0) {
+      setCarouselDataIsReady(true);
+    }
   }, [props.data]);
 
   const handleCarouselButtons = (signal: string) => {
@@ -53,7 +47,7 @@ const Carousel = (props: {
   });
 
   const carouselCalc = useMemo(() => {
-    const calc = displayCalculations(carouselInfo);
+    const calc: CarouselCalcType = displayCalculations(carouselInfo);
     return calc;
   }, [carouselInfo, props.screenSize]);
 
@@ -64,7 +58,6 @@ const Carousel = (props: {
 
   useLayoutEffect(() => {
     if (carouselRef.current && carouselDataIsReady) {
-      setCarouselIsReady(false);
       const thumbnailWidth = carouselRef.current.children[0].clientWidth;
       let marginLeft = 16;
       if (props.screenSize >= 1024) {
@@ -84,105 +77,18 @@ const Carousel = (props: {
         };
         return newState;
       });
-      setCarouselIsReady(true);
     }
   }, [carouselRef, props.screenSize, carouselDataIsReady]);
 
-  // const [carouselIsActivated, setCarouselIsActivated] =
-  //   useState<boolean>(false);
-
   const handleCarousel = (signal: string) => {
-    // if (!carouselIsActivated && carouselIsReady) {
-    //   setCarouselIsActivated(true);
-    // }
-    switch (signal) {
-      case "NEXT": {
-        console.log(`oldPos = ${carouselInfo.posX}`);
-        console.log(carouselInfo);
-        const newPos =
-          carouselInfo.posX -
-          (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails +
-            carouselCalc.offset);
-
-        if (
-          newPos -
-            carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails <
-          carouselInfo.maxSize
-        ) {
-          if (!resetCarousel) {
-            setCarouselInfo((prevState) => {
-              let newState = {
-                ...prevState,
-                posX:
-                  carouselCalc.maxScrollX +
-                  carouselCalc.visibleThumbnailsRaw *
-                    carouselInfo.thumbnailSize +
-                  carouselCalc.offset,
-              };
-              return newState;
-            });
-            handleResetCarousel(true);
-            console.log(`newPos = ${carouselInfo.posX}`);
-            break;
-          } else {
-            setCarouselInfo({
-              ...carouselInfo,
-              posX: -Math.abs(carouselInfo.baseOffset),
-            });
-            handleResetCarousel(false);
-            console.log(`newPos = ${carouselInfo.posX}`);
-            break;
-          }
-        }
-
-        if (newPos == carouselCalc.maxScrollX) {
-          setCarouselInfo({ ...carouselInfo, posX: 0 });
-          console.log(`newPos = ${carouselInfo.posX}`);
-          break;
-        }
-
-        setCarouselInfo({ ...carouselInfo, posX: newPos });
-        console.log(`newPos = ${carouselInfo.posX}`);
-        break;
-      }
-
-      case "PREV": {
-        const newPos =
-          carouselInfo.posX +
-          (carouselInfo.thumbnailSize * carouselCalc.displayableThumbnails -
-            carouselCalc.offset);
-        if (newPos > 0) {
-          if (!resetCarousel) {
-            handleResetCarousel(true);
-            setCarouselInfo({
-              ...carouselInfo,
-              posX: -Math.abs(carouselInfo.baseOffset),
-            });
-            break;
-          } else {
-            handleResetCarousel(false);
-            setCarouselInfo((prevState) => {
-              let newState = {
-                ...prevState,
-                posX:
-                  carouselCalc.maxScrollX +
-                  carouselCalc.visibleThumbnailsRaw *
-                    carouselInfo.thumbnailSize +
-                  carouselCalc.offset,
-              };
-              return newState;
-            });
-            break;
-          }
-        }
-        setCarouselInfo({ ...carouselInfo, posX: newPos });
-        break;
-      }
-      default: {
-        console.log("default");
-        break;
-      }
-    }
+    carouselCalculationsHandler(
+      signal,
+      carouselInfo,
+      carouselCalc,
+      resetCarousel,
+      setCarouselInfo,
+      handleResetCarousel
+    );
   };
 
   return (

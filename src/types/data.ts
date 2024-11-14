@@ -613,4 +613,15 @@ export type CarouselInfoType = {
   buttonWidth: number;
 };
 
+export type CarouselCalcType = {
+  displayableWidth: number;
+  visibleThumbnails: number;
+  offset: number;
+  displayableWidthWithoutGaps: number;
+  displayableThumbnails: number;
+  visibleThumbnailsRaw: number;
+  maxOffset: number;
+  maxScrollX: number;
+};
+
 export default LangType;
