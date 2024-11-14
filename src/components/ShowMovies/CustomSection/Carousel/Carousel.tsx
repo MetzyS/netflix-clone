@@ -8,12 +8,12 @@ import {
 } from "react";
 import { CarouselInfoType, ResultType } from "../../../../types/data";
 import ShowVignette from "../ShowVignette";
-import { MdArrowBackIosNew } from "react-icons/md";
 import {
   displayCalculations,
   // shuffle,
   // unShuffle,
 } from "./CarouselCalculations";
+import CarouselButtons from "./CarouselButtons";
 
 const Carousel = (props: {
   data: ResultType[];
@@ -187,20 +187,10 @@ const Carousel = (props: {
 
   return (
     <div className="ml-4 lg:ml-12 overflow-hidden">
-      <button
-        className={`carousel-btn rounded-tl-md rounded-bl-md left-0 group ${
-          carouselIsActivated ? "block bg-black/50 hover:bg-black/90" : ""
-        }`}
-        onClick={() => handleCarouselButtons("PREV")}
-      >
-        <MdArrowBackIosNew className="text-white size-8 transition-all p-1 group-hover:p-0" />
-      </button>
-      <button
-        className="carousel-btn rounded-tr-md rounded-br-md block right-0 text-transparent bg-black/50 hover:bg-black/90 group"
-        onClick={() => handleCarouselButtons("NEXT")}
-      >
-        <MdArrowBackIosNew className="rotate-180 text-white size-8 transition-all p-1 group-hover:p-0" />
-      </button>
+      <CarouselButtons
+        isActivated={carouselIsActivated}
+        handleButtons={handleCarouselButtons}
+      />
       <ul
         className="flex justify-between gap-[1vw] transition-all duration-700 my-0"
         ref={carouselRef}
@@ -210,12 +200,11 @@ const Carousel = (props: {
       >
         {carouselDataIsReady &&
           props.data.map((show) => (
-            <Fragment key={`test-${show.id}`}>
-              <ShowVignette
-                show={show}
-                handleOpenPopup={props.handleOpenPopup}
-              />
-            </Fragment>
+            <ShowVignette
+              show={show}
+              handleOpenPopup={props.handleOpenPopup}
+              key={`test-${show.id}`}
+            />
           ))}
       </ul>
     </div>
