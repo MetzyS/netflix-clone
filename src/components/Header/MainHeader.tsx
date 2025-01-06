@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Header } from "../../types/data";
 import Logo from "../ui/Logo";
 import { UserType } from "../../types/user";
-import { FiHelpCircle, FiBell } from "react-icons/fi";
+import { FiBell } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdSearch } from "react-icons/io";
 import ProfileButton from "./MainHeaderComponents/ProfileButton";
@@ -24,14 +24,14 @@ const MainHeader = (props: {
   const [transparentMenu, setTransparentMenu] = useState(true);
 
   const handleTransparentMenu = () => {
-    let currentScroll = window.scrollY;
+    const currentScroll = window.scrollY;
     if (currentScroll > 5) {
       setTransparentMenu(false);
     } else {
       setTransparentMenu(true);
     }
   };
-
+  
   const [showNavMenu, setShowNavMenu] = useState<boolean>(false);
   const [showProfileMenu, setShowProfileMenu] = useState<boolean>(false);
   const [showNotificationMenu, setShowNotificationMenu] =
@@ -177,7 +177,7 @@ const MainHeader = (props: {
                   </div>
                 </div>
                 {/* Profile btn */}
-                <ProfileButton showMenu={handleShowProfileMenu} userProfileIcon={props.userProfileIcons[props.selectedProfile!]} username={props.user.username} content={props.content.mainHeader.profileMenu} handleDisconnect={props.handleDisconnect} disconnectString={props.content.disconnect}/>
+                <ProfileButton handleShowMenu={handleShowProfileMenu} showMenu={showProfileMenu} userProfileIcon={props.userProfileIcons[props.selectedProfile!]} username={props.user.username} content={props.content.mainHeader.profileMenu} handleDisconnect={props.handleDisconnect} disconnectString={props.content.disconnect}/>
               </div>
             </div>
           </nav>
