@@ -178,38 +178,6 @@ const MainHeader = (props: {
                 </div>
                 {/* Profile btn */}
                 <ProfileButton showMenu={handleShowProfileMenu} userProfileIcon={props.userProfileIcons[props.selectedProfile!]} username={props.user.username} content={props.content.mainHeader.profileMenu} handleDisconnect={props.handleDisconnect} disconnectString={props.content.disconnect}/>
-                {/* <div
-                  className="flex flex-col relative py-3 px-8 lg:py-0 lg:px-0 shrink-0"
-                  onMouseEnter={() => handleShowProfileMenu(true)}
-                >
-                  <button className="flex items-center gap-4">
-                    <img
-                      src={props.userProfileIcons[props.selectedProfile!]}
-                      className="w-8"
-                    />
-                    <span className="lg:hidden">{props.user.username}</span>
-                  </button>
-                </div>
-                <div className="lg:hidden">
-                  <ul className="flex flex-col border-b border-b-white/20 pb-2">
-                    {props.content.mainHeader.profileMenu.map((item, index) => (
-                      <li className="flex" key={`profileMenuItem-${index}`}>
-                        <a href={`${item.link}`} className="default-navlink">
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                    <li className="flex">
-                      <button
-                        type="button"
-                        className="default-navlink"
-                        onClick={props.handleDisconnect}
-                      >
-                        {props.content.disconnect}
-                      </button>
-                    </li>
-                  </ul>
-                </div> */}
               </div>
             </div>
           </nav>
