@@ -1,3 +1,8 @@
+export type HeaderProfileMenu = {
+  name: string;
+  link: string;
+}[];
+
 export type Header = {
   button: string;
   disconnect: string;

@@ -6,6 +6,7 @@ import { UserType } from "../../types/user";
 import { FiHelpCircle, FiBell } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdSearch } from "react-icons/io";
+import ProfileButton from "./MainHeaderComponents/ProfileButton";
 
 const MainHeader = (props: {
   content: Header;
@@ -176,7 +177,8 @@ const MainHeader = (props: {
                   </div>
                 </div>
                 {/* Profile btn */}
-                <div
+                <ProfileButton showMenu={handleShowProfileMenu} userProfileIcon={props.userProfileIcons[props.selectedProfile!]} username={props.user.username} content={props.content.mainHeader.profileMenu} handleDisconnect={props.handleDisconnect} disconnectString={props.content.disconnect}/>
+                {/* <div
                   className="flex flex-col relative py-3 px-8 lg:py-0 lg:px-0 shrink-0"
                   onMouseEnter={() => handleShowProfileMenu(true)}
                 >
@@ -207,7 +209,7 @@ const MainHeader = (props: {
                       </button>
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </div>
             </div>
           </nav>
