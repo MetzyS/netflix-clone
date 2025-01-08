@@ -4,7 +4,7 @@ import {
   ResultType,
   TopShowBannerType,
 } from "../../../types/data";
-import { FaPlay } from "react-icons/fa6";
+import { FaPause, FaPlay } from "react-icons/fa6";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { HiVolumeOff } from "react-icons/hi";
 import { HiVolumeUp } from "react-icons/hi";
@@ -36,6 +36,10 @@ const ShowBackdrop = (props: {
 
   const handleMuted = () => {
     setMuted(!muted);
+  };
+
+  const handlePlayVideo = () => {
+    setVideoIsPlaying(!videoIsPlaying);
   };
 
   const handleTriggerEffect = (values: { desc: string; title: string }) => {
@@ -147,17 +151,30 @@ const ShowBackdrop = (props: {
               </div>
               <div className="absolute -mr-14 top-12 lg:top-0 right-8 lg:right-0 h-full flex items-center">
                 {videoIsReady && displayVideo && (
-                  <button
-                    type="button"
-                    onClick={handleMuted}
-                    className="rounded-full border p-2 mr-2 hover:bg-white/10 hidden lg:block"
-                  >
-                    {muted ? (
-                      <HiVolumeOff className="size-3" />
-                    ) : (
-                      <HiVolumeUp className="size-3" />
-                    )}
-                  </button>
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleMuted}
+                      className="rounded-full border p-2 mr-2 hover:bg-white/10 hidden lg:block"
+                    >
+                      {muted ? (
+                        <HiVolumeOff className="size-3" />
+                      ) : (
+                        <HiVolumeUp className="size-3" />
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handlePlayVideo}
+                      className="rounded-full border p-2 mr-2 hover:bg-white/10 hidden lg:block"
+                    >
+                      {videoIsPlaying ? (
+                        <FaPause className="size-3" />
+                      ) : (
+                        <FaPlay className="size-3" />
+                      )}
+                    </button>
+                  </>
                 )}
                 <p className="bg-neutral-500/20 border-l-2 pl-4 py-1 pr-8">
                   12+
